@@ -237,9 +237,9 @@ if (!existsSync(resolve(projectRoot, 'html/.nojekyll'))) {
 }
 for (const workflowContract of [
   'npm run check',
-  'actions/configure-pages@v5',
-  'actions/upload-pages-artifact@v3',
-  'actions/deploy-pages@v4',
+  'actions/configure-pages@v6',
+  'actions/upload-pages-artifact@v5',
+  'actions/deploy-pages@v5',
 ]) {
   if (!pagesWorkflow.includes(workflowContract)) {
     errors.push(`Pages workflow is missing: ${workflowContract}`);

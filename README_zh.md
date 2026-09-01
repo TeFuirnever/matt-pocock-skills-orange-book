@@ -90,4 +90,5 @@ npm run check
 
 - Matt Pocock Skills 仓库及其代码/文档归原作者所有，采用 MIT License。
 - 本橙皮书原创讲解、匿名实例、HTML 和图示采用 CC BY-NC-SA 4.0。
+- 当前项目版权与归属范围见 [NOTICE.md](NOTICE.md)。
 - 本书不是 Matt Pocock 官方文档，不代表原作者背书。

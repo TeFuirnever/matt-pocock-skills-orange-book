@@ -60,4 +60,5 @@ the Pages workflow, and common public-repository secret/path patterns.
 The upstream Skills remain under their MIT license. Original book text, HTML,
 examples, and diagrams are licensed under CC BY-NC-SA 4.0. Embedded font
 subsets retain their own licenses. See [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md)
-and [LICENSES](LICENSES).
+and [LICENSES](LICENSES). Project copyright and attribution scope are recorded
+in [NOTICE.md](NOTICE.md).
