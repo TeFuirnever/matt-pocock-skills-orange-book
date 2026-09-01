@@ -6,7 +6,8 @@
   "scripts": {
     "build": "node scripts/build-html.mjs",
     "verify": "node scripts/verify-public.mjs",
-    "check": "npm run build && npm run verify"
+    "test": "node --test scripts/*.test.mjs",
+    "check": "npm run build && npm test && npm run verify"
   },
   "dependencies": {
     "marked": "^18.0.10"

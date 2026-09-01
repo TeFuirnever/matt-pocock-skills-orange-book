@@ -7,6 +7,12 @@ import {
 import { extname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import {
+  collectMarkdownUrls,
+  hasAiHeroSource,
+  hasMattPocockSkillsSource,
+} from './source-url-contract.mjs';
+
 const projectRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const fixedCommit = '6654f6b60cd9d5be8b54c6fafe44346dabeb3b76';
 const expectedChapterCount = 16;
@@ -116,6 +122,7 @@ const statementResearch = requireFile(
   errors,
   'research/matt-pocock-public-statements.md',
 );
+const statementUrls = collectMarkdownUrls(statementResearch);
 const sessionResearch = requireFile(
   errors,
   'research/anonymized-session-patterns.md',
@@ -166,10 +173,10 @@ if (statementCount !== expectedStatementCount) {
     `expected ${expectedStatementCount} first-party evidence records, found ${statementCount}`,
   );
 }
-if (!statementResearch.includes('https://github.com/mattpocock/skills')) {
+if (!hasMattPocockSkillsSource(statementUrls)) {
   errors.push('author research does not include the upstream repository');
 }
-if (!statementResearch.includes('https://www.aihero.dev/')) {
+if (!hasAiHeroSource(statementUrls)) {
   errors.push('author research does not include official AI Hero material');
 }
 
