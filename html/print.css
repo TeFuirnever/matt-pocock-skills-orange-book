@@ -1,0 +1,292 @@
+@page {
+  size: A4;
+  margin: 18mm 16mm 20mm;
+}
+:root {
+  color-scheme: light;
+  --ink: #1f2328;
+  --ink-strong: #14181d;
+  --muted: #625a52;
+  --orange: #e8862e;
+  --orange-dark: #b85e0b;
+  --paper: #fffdf9;
+  --paper-warm: #fdf6ec;
+  --line: #d8cfc4;
+  --code: #252a32;
+  --code-ink: #e8edf2;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #f1eee9;
+  color: var(--ink);
+  font-family: "PingFang SC", "Hiragino Sans GB", "Source Han Sans SC", "Microsoft YaHei", sans-serif;
+  font-size: 16px;
+  line-height: 1.78;
+  letter-spacing: 0;
+  text-wrap: pretty;
+}
+
+main {
+  width: min(100% - 32px, 860px);
+  margin: 32px auto;
+  padding: 54px 64px 72px;
+  background: var(--paper);
+  box-shadow: 0 12px 40px rgb(57 43 27 / 10%);
+  min-width: 0;
+}
+
+.skip-link {
+  position: fixed;
+  left: 12px;
+  top: 12px;
+  z-index: 10;
+  padding: 8px 12px;
+  background: var(--ink-strong);
+  color: white;
+  transform: translateY(-160%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--ink-strong);
+  line-height: 1.35;
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+h1 {
+  margin: 0 0 0.8em;
+  padding-bottom: 12px;
+  border-bottom: 4px solid var(--orange);
+  font-size: clamp(30px, 6vw, 44px);
+}
+
+h2 {
+  margin-top: 2.6em;
+  padding-left: 12px;
+  border-left: 6px solid var(--orange);
+  font-size: 28px;
+}
+
+h3 {
+  margin-top: 2em;
+  font-size: 21px;
+}
+
+h4 {
+  margin-top: 1.5em;
+  font-size: 17px;
+}
+
+p,
+li,
+td,
+th {
+  overflow-wrap: anywhere;
+}
+
+p {
+  margin: 0.65em 0;
+}
+
+a {
+  color: var(--orange-dark);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+a:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+}
+
+blockquote {
+  margin: 1.2em 0;
+  padding: 12px 18px;
+  border-left: 4px solid var(--orange);
+  background: var(--paper-warm);
+  color: #4a4038;
+}
+
+blockquote > :first-child {
+  margin-top: 0;
+}
+
+blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+hr {
+  margin: 2.2em 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
+ul,
+ol {
+  padding-left: 1.55em;
+}
+
+li {
+  margin: 0.3em 0;
+}
+
+code {
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: #f3eee7;
+  font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 0.88em;
+  word-break: break-word;
+}
+
+pre {
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 15px 17px;
+  border-radius: 6px;
+  background: var(--code);
+  color: var(--code-ink);
+  font-size: 14px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  tab-size: 2;
+}
+
+pre code {
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+}
+
+table {
+  width: 100%;
+  margin: 1.2em 0;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 0.92em;
+}
+
+th,
+td {
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: #f7ead9;
+  color: #5a3a14;
+}
+
+tr:nth-child(even) td {
+  background: #fbf8f3;
+}
+
+img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  margin: 1.3em auto;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+strong {
+  color: var(--ink-strong);
+}
+
+@media (max-width: 680px) {
+  body {
+    background: var(--paper);
+    font-size: 15px;
+  }
+
+  main {
+    width: 100%;
+    margin: 0;
+    padding: 28px 18px 48px;
+    box-shadow: none;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    table-layout: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@media print {
+  body {
+    background: white;
+    font-size: 10.5pt;
+  }
+
+  main {
+    width: auto;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .skip-link {
+    display: none;
+  }
+
+  h1 {
+    font-size: 20pt;
+  }
+
+  h2 {
+    margin-top: 1.6em;
+    font-size: 15pt;
+  }
+
+  h3 {
+    font-size: 12.5pt;
+  }
+
+  table {
+    font-size: 9pt;
+  }
+
+  pre {
+    overflow-x: hidden;
+    font-size: 8.5pt;
+  }
+}
