@@ -15,7 +15,7 @@ import {
 
 const projectRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const fixedCommit = '6654f6b60cd9d5be8b54c6fafe44346dabeb3b76';
-const expectedChapterCount = 15;
+const expectedChapterCount = 16;
 const expectedStatementCount = 15;
 const expectedSkills = [
   'ask-matt',
@@ -155,6 +155,7 @@ for (const requiredText of [
   '| 中级：已经能用 Agent 写功能',
   '高阶路径',
   'Matt Pocock 本人怎样讲 Skills',
+  '三个端到端操作案例：审报告、迁逻辑、修白屏',
 ]) {
   if (!book.includes(requiredText)) {
     errors.push(`missing required reader/evidence section: ${requiredText}`);
@@ -178,8 +179,8 @@ const imagePattern = /!\[[^\]]*\]\((assets\/[^)]+)\)/g;
 const imageReferences = [
   ...new Set([...book.matchAll(imagePattern)].map((match) => match[1])),
 ];
-if (imageReferences.length < 15) {
-  errors.push(`expected at least 15 unique book images, found ${imageReferences.length}`);
+if (imageReferences.length < 16) {
+  errors.push(`expected at least 16 unique book images, found ${imageReferences.length}`);
 }
 for (const imageReference of imageReferences) {
   const sourceImage = resolve(projectRoot, imageReference);
@@ -192,13 +193,24 @@ for (const imageReference of imageReferences) {
   }
 }
 
-for (const stem of ['reader-paths']) {
+for (const stem of ['reader-paths', 'end-to-end-operation-cases']) {
   for (const extension of ['.excalidraw', '.svg', '.png']) {
     const relativePath = `assets/diagrams/${stem}${extension}`;
     const path = resolve(projectRoot, relativePath);
     if (!existsSync(path) || statSync(path).size === 0) {
       errors.push(`missing diagram deliverable: ${relativePath}`);
     }
+  }
+}
+
+for (const forbiddenFraming of [
+  '三类 Agent 会话的脱敏复盘',
+  '这些案例是怎样脱敏的',
+  '脱敏会话实例',
+  '收集器当时定位了',
+]) {
+  if (book.includes(forbiddenFraming) || indexHtml.includes(forbiddenFraming)) {
+    errors.push(`reader-facing content uses production-process framing: ${forbiddenFraming}`);
   }
 }
 
