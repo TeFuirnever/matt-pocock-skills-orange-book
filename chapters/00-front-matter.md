@@ -16,7 +16,7 @@
 | 书稿核验 | 2026-09-01 |
 | Skill 数量 | 37 个：engineering 18、productivity 7、misc 4、in-progress 8 |
 | 目标读者 | 刚起步、已经在用、正在设计团队级 AI 工程流程的开发者 |
-| 补充证据 | Matt Pocock 官网一手材料；Codex、Claude Code、Zcode 会话的脱敏流程观察 |
+| 补充证据 | Matt Pocock 官网一手材料 |
 
 本书不是 Matt Pocock 官方文档，也不代表原作者背书。Skill 的原始代码与文档采用 MIT License；本书原创讲解、图示和案例采用 CC BY-NC-SA 4.0。
 
@@ -37,7 +37,6 @@
 10. 新人四周训练路线
 11. 37 个 Skills 逐项小白手册
 12. Matt Pocock 本人怎样讲 Skills
-13. 三类 Agent 会话的脱敏复盘
-14. 速查索引与资料声明
+13. 速查索引与资料声明
 
 ---
