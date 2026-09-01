@@ -165,6 +165,9 @@ for (const labName of expectedLabs) {
   const labSource = requireFile(errors, labPath);
   const labHtmlPath = `html/labs/${labName.replace(/\.md$/, '.html')}`;
   const labHtml = requireFile(errors, labHtmlPath);
+  if (/\]\((?:README|\d{2}-[a-z0-9-]+)\.html(?:#[^)]+)?\)/i.test(labSource)) {
+    errors.push(`${labPath} uses a generated HTML link instead of a source Markdown link`);
+  }
   for (const requiredSection of ['## 任务', '## 必须留下的产物', '## 验收', '## 停止条件']) {
     if (!labSource.includes(requiredSection)) {
       errors.push(`${labPath} is missing required Lab section: ${requiredSection}`);
@@ -173,6 +176,10 @@ for (const labName of expectedLabs) {
   if (!labHtml.includes('配套练习')) {
     errors.push(`${labHtmlPath} is missing generated Lab page content`);
   }
+}
+const labsReadme = requireFile(errors, 'labs/README.md');
+if (/\]\((?:README|\d{2}-[a-z0-9-]+)\.html(?:#[^)]+)?\)/i.test(labsReadme)) {
+  errors.push('labs/README.md uses a generated HTML link instead of a source Markdown link');
 }
 for (const requiredLabContract of [
   '四个递进 Lab',

@@ -8,4 +8,4 @@ Attribution-NonCommercial-ShareAlike 4.0 International license. See `LICENSE`
 for the complete legal text.
 
 Third-party source material and embedded assets remain subject to their own
-licenses and attribution requirements. See `THIRD_PARTY_NOTICES.md` for details.
+licenses and attribution requirements. See `THIRD-PARTY-NOTICES.md` for details.

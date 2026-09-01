@@ -93,7 +93,12 @@ function labTitle(source, fallback) {
 }
 
 function renderLabMarkdown(source) {
-  return new Marked({ gfm: true, breaks: false }).parse(source);
+  const staticSiteSource = source.replace(
+    /\]\((README|\d{2}-[a-z0-9-]+)\.md(#[^)]+)?\)/gi,
+    (_match, name, fragment = '') =>
+      `](${name === 'README' ? 'index' : name}.html${fragment})`,
+  );
+  return new Marked({ gfm: true, breaks: false }).parse(staticSiteSource);
 }
 
 function createLabPage({ title, description, body, labLinks }) {

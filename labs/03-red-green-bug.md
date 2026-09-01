@@ -49,4 +49,4 @@
 
 同一条命令已绿、回归测试已固化、范围没有扩张时停止。若根因超出当前 ticket，写入发现并退回 Lab 2 更新 spec。
 
-[进入 Lab 4](04-delivery-handoff.html) · [返回实验室](index.html)
+[进入 Lab 4](04-delivery-handoff.md) · [返回实验室](README.md)

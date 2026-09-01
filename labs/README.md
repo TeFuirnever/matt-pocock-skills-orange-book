@@ -6,19 +6,19 @@
 
 ## 四关路线
 
-### [Lab 1 · 先找到答案](01-find-the-answer.html)
+### [Lab 1 · 先找到答案](01-find-the-answer.md)
 
 练习：区分环境事实与人类决策。交接：决策记录 + 最小验证命令。
 
-### [Lab 2 · 把决定写成可施工规格](02-decision-to-spec.html)
+### [Lab 2 · 把决定写成可施工规格](02-decision-to-spec.md)
 
 练习：`grill-*`、`to-spec`、`to-tickets` 的边界。交接：spec + tracer-bullet ticket。
 
-### [Lab 3 · 让一个 bug 先变红](03-red-green-bug.html)
+### [Lab 3 · 让一个 bug 先变红](03-red-green-bug.md)
 
 练习：用可观察反馈替代猜测。交接：同一条红绿回归命令。
 
-### [Lab 4 · 完成一次可交接交付](04-delivery-handoff.html)
+### [Lab 4 · 完成一次可交接交付](04-delivery-handoff.md)
 
 练习：垂直切片、review 与 handoff。交接：交付包 + handoff。
 

@@ -7,8 +7,24 @@ A Chinese-first, beginner-friendly handbook for the public
 
 - [中文说明](README_zh.md)
 - [Online reading edition](https://tefuirnever.github.io/matt-pocock-skills-orange-book/)
+- [Learning Labs](https://tefuirnever.github.io/matt-pocock-skills-orange-book/labs/)
 - [Authoritative Markdown book](book.md)
 - [Generated HTML reading edition](html/index.html)
+
+## Azhou visual guide
+
+The book uses Azhou visual annotations to make two beginner decisions visible:
+a Skill is a repeatable work method rather than a longer one-off request, and
+an Agent should investigate facts before a human makes a trade-off. These are
+original teaching metaphors, not Matt Pocock quotations, upstream source
+material, or an author endorsement.
+
+![Azhou routes facts, trade-offs, and specifications](assets/azhou/decision-source-router.png)
+
+The diagrams are final public PNG renders only. Private Azhou Skill source,
+character references, prompts, templates, runtime files, receipts, and audit
+material are intentionally excluded. The book's factual claims remain linked
+to the fixed upstream commit and the evidence records under `research/`.
 
 ## What this repository contains
 
@@ -16,12 +32,13 @@ A Chinese-first, beginner-friendly handbook for the public
 - A step-by-step field guide for each Skill: trigger, input, process, boundary,
   teaching desktop UI example, output, verification, and beginner mistakes.
 - Three explicit reading paths for beginner, intermediate, and advanced users.
+- Four progressive Labs that turn reading into verifiable engineering work.
 - Seven progressive, synthetic desktop UI client exercises.
 - Three end-to-end operation cases: fact-auditing a technical report, moving
   configuration semantics, and fixing an Electron renderer blank screen.
 - Fifteen first-party evidence records from Matt Pocock's repository and
   official AI Hero pages, with version and inference boundaries.
-- Six Azhou beginner diagrams as final PNG assets.
+- Fifteen Azhou beginner diagrams as final PNG assets.
 - Ten editable Excalidraw scenes with SVG and PNG exports.
 
 The book is based on upstream commit
@@ -41,17 +58,30 @@ npm ci
 npm run check
 ```
 
-The numbered files under `chapters/` are the authoritative content sources.
-The build assembles them into `book.md`, generates both `html/index.html` and
-`html/book.html`, and copies every referenced PNG into `html/assets/`.
-The verifier checks 37/37 detailed Skill sections, all 16 chapter sources,
-25+ book images, the fixed upstream commit, first-party evidence counts,
-the Pages workflow, and common public-repository secret/path patterns.
+The numbered files under `chapters/` and `labs/` are the authoritative content
+sources. The build assembles the chapters into `book.md`, generates both
+`html/index.html` and `html/book.html`, generates standalone pages under
+`html/labs/`, and copies every referenced PNG into `html/assets/`.
+The verifier checks the fixed upstream commit, the Pages workflow, and common
+public-repository secret/path patterns. Its current verified snapshot
+(`2026-09-01`) is:
+
+| Surface | Verified count |
+|---|---:|
+| Numbered chapter sources | 16 |
+| Progressive Labs | 4 |
+| Detailed Skill sections | 37 |
+| First-party evidence records | 15 |
+| Referenced book images | 25 |
+| Final Azhou PNG diagrams | 15 |
+| Editable Excalidraw scenes | 10 |
+| Generated Lab pages | 5 |
 
 ## Visual sources
 
-- `assets/azhou/`: final public PNG diagrams only. No private Skill runtime,
-  prompt bundle, template, or machine receipt is included.
+- `assets/azhou/`: final public PNG diagrams only. They are Azhou teaching
+  annotations, not upstream evidence. No private Skill runtime, prompt bundle,
+  template, character reference, or machine receipt is included.
 - `assets/diagrams/`: original `.excalidraw` scenes plus SVG and PNG exports.
 
 ## License

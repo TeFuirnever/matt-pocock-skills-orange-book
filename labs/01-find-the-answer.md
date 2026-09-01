@@ -66,4 +66,4 @@
 
 决策记录被确认后停止。若出现新的业务取舍，不要边查边改；先更新记录，再进入 Lab 2。
 
-[进入 Lab 2](02-decision-to-spec.html) · [返回实验室](index.html)
+[进入 Lab 2](02-decision-to-spec.md) · [返回实验室](README.md)

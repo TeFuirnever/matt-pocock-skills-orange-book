@@ -57,4 +57,4 @@ spec 至少回答五件事：
 
 第一张 ticket 足以在一个会话内执行时停止。要做多张 ticket，先确认每张都能独立演示，再进入 Lab 3。
 
-[进入 Lab 3](03-red-green-bug.html) · [返回实验室](index.html)
+[进入 Lab 3](03-red-green-bug.md) · [返回实验室](README.md)

@@ -13,12 +13,26 @@
 | 入口 | 用途 |
 |---|---|
 | [在线阅读版](https://tefuirnever.github.io/matt-pocock-skills-orange-book/) | GitHub Pages 文档站，支持目录、搜索、移动端阅读和打印 |
+| [学习实验室](https://tefuirnever.github.io/matt-pocock-skills-orange-book/labs/) | 四个递进 Lab，把阅读变成可验证的工程练习 |
 | [book.md](book.md) | 权威正文，适合审阅、版本管理和引用 |
 | [chapters](chapters) | 16 个编号章节源，是内容事实源 |
+| [labs](labs) | 四个递进 Lab 的权威 Markdown 源 |
 | [html/index.html](html/index.html) | 本地 HTML 阅读版 |
 | [research](research) | Matt Pocock 公开一手材料的研究底稿 |
-| [assets/azhou](assets/azhou) | 6 张阿舟小白图解的最终 PNG |
+| [assets/azhou](assets/azhou) | 15 张阿舟小白图解的最终 PNG |
 | [assets/diagrams](assets/diagrams) | 10 张可编辑 Excalidraw 图源、SVG 和 PNG |
+
+## 阿舟图解导航
+
+本书使用阿舟图解，把两个新人最容易混淆的判断先变得可见：Skill 是可重复的
+工作方法，不是更长的一次性请求；Agent 应先查环境事实，再由人做取舍。它们是
+本书原创的教学隐喻，不是 Matt Pocock 原话、上游一手材料，也不代表作者背书。
+
+![阿舟图解：事实、取舍与规格的分流](assets/azhou/decision-source-router.png)
+
+仓库只收录可公开分发的最终 PNG。阿舟 Skill 源码、角色母版、提示词、模板、
+运行文件、回执和审计材料均不进入仓库；正文事实仍以固定上游提交和
+`research/` 下的材料记录为准。
 
 ## 这次不再只做索引
 
@@ -35,6 +49,10 @@
 此外还有 7 个由浅入深的合成案例，从文案小改、UI 原型、疑难 bug，
 一路到垂直切票、深模块、冲突解决和人工密钥向导。第 0 章先按小白、
 中级和高阶给出三条阅读路径，不要求所有人从头顺序读到尾。
+
+读完对应章节后，读者可进入四个递进 Lab：先查证一个工程结论，再把
+决策写成规格，用 Red-Green 修复问题，最后完成一次可交接交付。每关都
+明确要求留下产物、验收证据和停止条件。
 
 第 12 章吸收 15 条 Matt Pocock 公开一手材料，区分固定仓库事实、后续官方站表述
 和本书的工程推论。第 13 章给出审报告、迁逻辑、修白屏三个端到端操作案例，
@@ -67,20 +85,28 @@ npm ci
 npm run check
 ```
 
-`chapters/` 下 16 个编号 Markdown 是内容事实源。构建脚本依次装配出
-`book.md`、`html/index.html` 和 `html/book.html`，并复制全部 PNG 到
-`html/assets/`。公开审计会检查：
+`chapters/` 下 16 个编号 Markdown 和 `labs/` 下四个编号 Lab 是内容事实源。
+构建脚本依次装配出 `book.md`、`html/index.html`、`html/book.html` 和
+`html/labs/` 下的独立练习页面，并复制全部 PNG 到 `html/assets/`。公开审计会检查固定
+上游 commit、GitHub Pages 工作流以及常见本机路径、会话目录、token 和私钥模式是否泄漏。
 
-- 37/37 个 Skill 是否都有逐项讲解；
-- 16 个章节源是否能逐字装配成完整书；
-- 至少 16 张正文图片是否在 Markdown 和 HTML 中都存在；
-- 15 条作者材料和 GitHub Pages 工作流是否存在；
-- 固定上游 commit 是否仍被声明；
-- 常见本机路径、会话目录、token 和私钥模式是否泄漏。
+当前核验快照（`2026-09-01`）：
+
+| 维度 | 已核验数量 |
+|---|---:|
+| 编号章节源 | 16 |
+| 递进 Lab | 4 |
+| 逐项讲解的 Skill | 37 |
+| 一手材料记录 | 15 |
+| 正文引用图片 | 25 |
+| 阿舟最终 PNG 图解 | 15 |
+| 可编辑 Excalidraw 图源 | 10 |
+| 生成的 Lab 页面 | 5 |
 
 ## 图片说明
 
-- 阿舟图解：公开仓库只保留最终 PNG，不包含私有 Skill、提示包、模板、运行脚本或机器回执。
+- 阿舟图解：它们是教学注释，不替代上游证据。公开仓库只保留最终 PNG，不包含
+  私有 Skill、角色母版、提示包、模板、运行脚本或机器回执。
 - Excalidraw：保留可编辑 `.excalidraw`、SVG 和 PNG，方便社区纠错与再设计。
 - 图中嵌入字体子集继续遵守各自许可证，详见 [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md)。
 
