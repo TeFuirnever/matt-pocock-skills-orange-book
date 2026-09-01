@@ -84,7 +84,7 @@ const html = `<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="面向 AI 协作开发者的 Matt Pocock Skills 中文橙皮书，含 37 个 Skill 讲解、读者路径和脱敏会话实例。">
+  <meta name="description" content="面向 AI 协作开发者的 Matt Pocock Skills 中文橙皮书，含 37 个 Skill 讲解、读者路径和端到端操作案例。">
   <meta name="theme-color" content="#f8f7f4">
   <link rel="canonical" href="https://tefuirnever.github.io/matt-pocock-skills-orange-book/">
   <title>Matt Pocock Skills 橙皮书</title>

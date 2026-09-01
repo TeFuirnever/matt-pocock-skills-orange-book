@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="面向 AI 协作开发者的 Matt Pocock Skills 中文橙皮书，含 37 个 Skill 讲解、读者路径和脱敏会话实例。">
+  <meta name="description" content="面向 AI 协作开发者的 Matt Pocock Skills 中文橙皮书，含 37 个 Skill 讲解、读者路径和端到端操作案例。">
   <meta name="theme-color" content="#f8f7f4">
   <link rel="canonical" href="https://tefuirnever.github.io/matt-pocock-skills-orange-book/">
   <title>Matt Pocock Skills 橙皮书</title>
@@ -857,7 +857,8 @@ code {
 <a class="toc-link" href="#第-10-章-新人四周训练路线" data-section="第-10-章-新人四周训练路线">第 10 章 · 新人四周训练路线</a>
 <a class="toc-link" href="#第-11-章-37-个-skills-逐项小白手册" data-section="第-11-章-37-个-skills-逐项小白手册">第 11 章 · 37 个 Skills 逐项小白手册</a>
 <a class="toc-link" href="#第-12-章-matt-pocock-本人怎样讲-skills" data-section="第-12-章-matt-pocock-本人怎样讲-skills">第 12 章 · Matt Pocock 本人怎样讲 Skills</a>
-<a class="toc-link" href="#第-13-章-附录-37-个-skills-完整索引" data-section="第-13-章-附录-37-个-skills-完整索引">第 13 章 · 附录：37 个 Skills 完整索引</a>
+<a class="toc-link" href="#第-13-章-三个端到端操作案例-审报告-迁逻辑-修白屏" data-section="第-13-章-三个端到端操作案例-审报告-迁逻辑-修白屏">第 13 章 · 三个端到端操作案例：审报告、迁逻辑、修白屏</a>
+<a class="toc-link" href="#第-14-章-附录-37-个-skills-完整索引" data-section="第-14-章-附录-37-个-skills-完整索引">第 14 章 · 附录：37 个 Skills 完整索引</a>
 <a class="toc-link" href="#资料与诚实声明" data-section="资料与诚实声明">资料与诚实声明</a></nav>
         <div class="sidebar-meta">
           <span>固定上游提交</span>
@@ -926,6 +927,7 @@ code {
 <li>新人四周训练路线</li>
 <li>37 个 Skills 逐项小白手册</li>
 <li>Matt Pocock 本人怎样讲 Skills</li>
+<li>三个端到端操作案例：审报告、迁逻辑、修白屏</li>
 <li>速查索引与资料声明</li>
 </ol>
 <hr>
@@ -960,7 +962,7 @@ code {
 <td>高阶：正在带团队或建 Harness</td>
 <td>设计可组合、可审计、可降级的 Agent 工作流</td>
 <td>6 → 9 → 11 → 12 → 13</td>
-<td>把 Skill 改写成项目级流程，并用证据边界约束完成声明</td>
+<td>把 Skill 改写成项目级流程，并能执行跨文档、代码和运行边界的完整案例</td>
 </tr>
 </tbody></table>
 <p>如果你不知道自己是哪一档，用下面五个问题定位：</p>
@@ -1009,6 +1011,10 @@ code {
 <td>第 8 章</td>
 </tr>
 <tr>
+<td>想照着一套命令和产物做完端到端任务</td>
+<td>第 13 章</td>
+</tr>
+<tr>
 <td>想把公开 Skill 改成自己团队的规则</td>
 <td>第 9 章</td>
 </tr>
@@ -1026,22 +1032,15 @@ code {
 <li>说明应该留下什么产物和验证证据。</li>
 <li>最后列出常见失败与本章验收。</li>
 </ol>
-<h3 id="0-4-案例边界" tabindex="-1">0.4 案例边界<a class="heading-anchor" href="#0-4-案例边界" aria-label="链接到本节">#</a></h3>
-<p>书中的 UI 客户端案例全部是匿名化、合成化场景。它们保留常见工程问题，但不携带任何可识别的私有项目事实。</p>
-<p>可以出现的内容：</p>
+<h3 id="0-4-案例怎样使用" tabindex="-1">0.4 案例怎样使用<a class="heading-anchor" href="#0-4-案例怎样使用" aria-label="链接到本节">#</a></h3>
+<p>书中统一使用一个教学用桌面客户端：它有 renderer、preload、main 进程，支持多语言、Provider 配置、持久化和定时任务。案例代码与路径都是为教学构造的最小示例，重点是操作顺序，不要求你的仓库采用相同命名。</p>
+<p>使用案例时只替换三类信息：</p>
 <ul>
-<li>设置页文案与多语言资源；</li>
-<li>桌面客户端的 renderer、preload、main 进程；</li>
-<li>通用 Provider 配置与公共接口；</li>
-<li>定时任务面板、错误状态与重试；</li>
-<li>测试、类型检查、构建和评审结果。</li>
+<li>把示例路径替换为你仓库中的真实边界；</li>
+<li>把示例命令替换为能在你项目中变红、变绿的目标命令；</li>
+<li>把示例验收替换为用户真正可观察的行为。</li>
 </ul>
-<p>不会出现的内容：</p>
-<ul>
-<li>私有项目名、内部仓库地址和用户本机路径；</li>
-<li>未公开模块名、协议名、接口、事件或源代码；</li>
-<li>能反推出产品路线、客户、账号、密钥或发布状态的细节。</li>
-</ul>
+<p>不要照抄的部分包括虚构目录、测试文件名和模块名。应该照抄的是先确认失败风险、再选择 Skill、建立反馈环、执行最小修改、最后用新鲜证据验收的顺序。</p>
 <h3 id="0-5-证据口径" tabindex="-1">0.5 证据口径<a class="heading-anchor" href="#0-5-证据口径" aria-label="链接到本节">#</a></h3>
 <p>本书把证据分成三层：</p>
 <table>
@@ -1072,7 +1071,7 @@ code {
 <h3 id="0-6-本章验收" tabindex="-1">0.6 本章验收<a class="heading-anchor" href="#0-6-本章验收" aria-label="链接到本节">#</a></h3>
 <ul>
 <li>能说清本书主角是公开的 Matt Pocock Skills 仓库。</li>
-<li>能说清匿名实例是教学载体，不是私有项目案例披露。</li>
+<li>能把教学案例映射到自己仓库的真实路径、命令和用户行为。</li>
 <li>能区分固定上游事实、后续官网表述和当前验证。</li>
 <li>能根据自己的经验选择小白、中级或高阶路径。</li>
 </ul>
@@ -1765,7 +1764,7 @@ code {
 </ul>
 <hr>
 <h2 id="第-8-章-七个-ui-客户端实例-从浅到深" tabindex="-1">第 8 章 · 七个 UI 客户端实例，从浅到深<a class="heading-anchor" href="#第-8-章-七个-ui-客户端实例-从浅到深" aria-label="链接到本节">#</a></h2>
-<p>以下案例使用一个匿名桌面 AI 客户端作为教学背景。它有 renderer、preload、main 进程，支持多语言、Provider 配置和定时任务。所有名字、数据和代码均为公开可复现的合成示例。</p>
+<p>以下案例使用一个教学用桌面 AI 客户端。它有 renderer、preload、main 进程，支持多语言、Provider 配置和定时任务。示例刻意压缩了业务细节，让读者把注意力放在 Skill 选择、操作顺序与验收证据上。</p>
 <h3 id="实例一-设置页改一个文案" tabindex="-1">实例一：设置页改一个文案<a class="heading-anchor" href="#实例一-设置页改一个文案" aria-label="链接到本节">#</a></h3>
 <h4 id="任务" tabindex="-1">任务<a class="heading-anchor" href="#任务" aria-label="链接到本节">#</a></h4>
 <p>把设置页按钮从「保存」改成「保存并验证」，所有语言保持一致。</p>
@@ -2180,7 +2179,7 @@ before forming a root-cause theory.
 <li>当前是在做功能、处理缺陷、维护代码库，还是跨越会话边界；</li>
 <li>下一阶段需要继续、清空上下文、交接、压缩，还是交给子 Agent。</li>
 </ol>
-<p><strong>匿名 UI 客户端例子：</strong> 团队准备增加“启动时恢复上次工作区”，但不清楚恢复失败时的交互，也不清楚状态应该由哪一层持有。合理路由是先 <code>grill-with-docs</code>，状态模型仍说不清时转 <code>prototype</code>，决定稳定后再 <code>to-spec</code>。</p>
+<p><strong>UI 客户端操作例：</strong> 团队准备增加“启动时恢复上次工作区”，但不清楚恢复失败时的交互，也不清楚状态应该由哪一层持有。合理路由是先 <code>grill-with-docs</code>，状态模型仍说不清时转 <code>prototype</code>，决定稳定后再 <code>to-spec</code>。</p>
 <p><strong>可直接使用的输入：</strong></p>
 <pre><code class="language-text">/ask-matt
 
@@ -2211,7 +2210,7 @@ before forming a root-cause theory.
 <li>只写经过确认的配置与指针；</li>
 <li>回读文件，确认下游 Skill 能找到它们。</li>
 </ol>
-<p><strong>匿名 UI 客户端例子：</strong> 仓库已经使用本地 Markdown issue，而不是 GitHub Issues。setup 不应该强行迁移平台，只需把本地 issue 根目录、阻塞关系写法和领域文档路径配置给后续 Skills。</p>
+<p><strong>UI 客户端操作例：</strong> 仓库已经使用本地 Markdown issue，而不是 GitHub Issues。setup 不应该强行迁移平台，只需把本地 issue 根目录、阻塞关系写法和领域文档路径配置给后续 Skills。</p>
 <p><strong>产物与验收：</strong> 下游 Skill 能回答三件事：规格发布到哪里、ticket 状态怎样表达、领域术语和 ADR 去哪里读写。缺一项都不算 setup 完成。</p>
 <p><strong>新手误区：</strong> 把 setup 当脚手架生成器。它真正生成的是共同约定；文件只是约定的载体。</p>
 <h4 id="11-1-3-grill-with-docs-在真实仓库里把问题问清楚" tabindex="-1">11.1.3 <code>grill-with-docs</code>：在真实仓库里把问题问清楚<a class="heading-anchor" href="#11-1-3-grill-with-docs-在真实仓库里把问题问清楚" aria-label="链接到本节">#</a></h4>
@@ -2221,7 +2220,7 @@ before forming a root-cause theory.
 <p><strong>什么时候别用：</strong> 没有仓库的个人想法，用 <code>grill-me</code>；决定已经完成，只需整理，用 <code>to-spec</code>。</p>
 <p><strong>Agent 必须自己查的事实：</strong> 现有组件、状态管理方式、测试框架、类似交互、编码规范、领域文档。不要把这些问题甩回给用户。</p>
 <p><strong>必须交给人决定的事项：</strong> 用户体验取舍、容错政策、范围、非目标、兼容策略、风险偏好。</p>
-<p><strong>匿名 UI 客户端例子：</strong> “关闭窗口”究竟是退出应用、隐藏到托盘，还是保留后台任务？Agent 先查当前窗口生命周期，再向用户询问产品决策；确定词义后，立即把“关闭”“退出”“隐藏”写入领域词汇。</p>
+<p><strong>UI 客户端操作例：</strong> “关闭窗口”究竟是退出应用、隐藏到托盘，还是保留后台任务？Agent 先查当前窗口生命周期，再向用户询问产品决策；确定词义后，立即把“关闭”“退出”“隐藏”写入领域词汇。</p>
 <p><strong>可直接使用的输入：</strong></p>
 <pre><code class="language-text">/grill-with-docs
 
@@ -2245,7 +2244,7 @@ before forming a root-cause theory.
 <li>信息不足才进入 grilling；</li>
 <li>写 agent brief、needs-info notes，或按理由关闭。</li>
 </ol>
-<p><strong>匿名 UI 客户端例子：</strong> 用户报告“设置偶尔丢失”。triage 先检查是否已存在自动恢复逻辑和类似 issue，再按报告步骤复现。没有操作系统、版本和最小步骤时进入 <code>needs-info</code>，而不是猜根因并开工。</p>
+<p><strong>UI 客户端操作例：</strong> 用户报告“设置偶尔丢失”。triage 先检查是否已存在自动恢复逻辑和类似 issue，再按报告步骤复现。没有操作系统、版本和最小步骤时进入 <code>needs-info</code>，而不是猜根因并开工。</p>
 <p><strong>产物与验收：</strong> 每项都有当前状态、核验结果、代码位置或缺失信息、下一责任人。一个“看起来像 bug”的标签不是核验。</p>
 <p><strong>新手误区：</strong> 只改标签不留可执行 brief；或者把“无法复现”误写成“问题不存在”。</p>
 <h4 id="11-1-5-wayfinder-大工程先画决策地图-不急着施工" tabindex="-1">11.1.5 <code>wayfinder</code>：大工程先画决策地图，不急着施工<a class="heading-anchor" href="#11-1-5-wayfinder-大工程先画决策地图-不急着施工" aria-label="链接到本节">#</a></h4>
@@ -2262,7 +2261,7 @@ before forming a root-cause theory.
 <li>Decision tickets：每张只解决一个决定，并声明依赖。</li>
 </ul>
 <p><strong>ticket 类型：</strong> 可以通过讨论解决的 grilling ticket；必须看到可运行结果的 prototype ticket；依赖一手资料的 research ticket；必须由人完成外部动作的 task ticket。</p>
-<p><strong>匿名 UI 客户端例子：</strong> “重做插件系统”同时涉及权限、安装、版本、沙箱、UI、迁移和回滚。先建地图；“插件权限模型”阻塞“安装确认 UI”，“版本兼容策略”阻塞“自动更新”。地图清晰后再 <code>to-spec</code>，不要直接 <code>implement</code>。</p>
+<p><strong>UI 客户端操作例：</strong> “重做插件系统”同时涉及权限、安装、版本、沙箱、UI、迁移和回滚。先建地图；“插件权限模型”阻塞“安装确认 UI”，“版本兼容策略”阻塞“自动更新”。地图清晰后再 <code>to-spec</code>，不要直接 <code>implement</code>。</p>
 <p><strong>产物与验收：</strong> 所有重要未知都被命名；ticket 之间有真实依赖；地图最终产生决定而非半成品代码；进入实现前有一份收拢后的 spec。</p>
 <p><strong>新手误区：</strong> 把它当超大 todo list。它管理的是“还不知道什么”，不是“代码文件有哪些”。</p>
 <h4 id="11-1-6-to-spec-把已经讨论清楚的内容固定下来" tabindex="-1">11.1.6 <code>to-spec</code>：把已经讨论清楚的内容固定下来<a class="heading-anchor" href="#11-1-6-to-spec-把已经讨论清楚的内容固定下来" aria-label="链接到本节">#</a></h4>
@@ -2280,7 +2279,7 @@ before forming a root-cause theory.
 <li>Out of Scope；</li>
 <li>Further Notes。</li>
 </ol>
-<p><strong>匿名 UI 客户端例子：</strong> “新增离线状态条”已经决定展示位置、状态来源、重试行为和无网络文案。to-spec 将这些决定写成用户故事，并明确不在本期加入离线编辑队列。</p>
+<p><strong>UI 客户端操作例：</strong> “新增离线状态条”已经决定展示位置、状态来源、重试行为和无网络文案。to-spec 将这些决定写成用户故事，并明确不在本期加入离线编辑队列。</p>
 <p><strong>可直接使用的输入：</strong></p>
 <pre><code class="language-text">/to-spec
 
@@ -2301,7 +2300,7 @@ before forming a root-cause theory.
 <li>是否真的被另一张票阻塞；</li>
 <li>标题能否表达行为，而不是技术层。</li>
 </ul>
-<p><strong>匿名 UI 客户端例子：</strong></p>
+<p><strong>UI 客户端操作例：</strong></p>
 <ul>
 <li>票 1：用户保存一个最小账号配置，重启后仍可见；</li>
 <li>票 2：用户验证配置并看到成功/失败；</li>
@@ -2325,7 +2324,7 @@ before forming a root-cause theory.
 <li>调用 <code>code-review</code>；</li>
 <li>修复 finding 后提交当前分支。</li>
 </ol>
-<p><strong>匿名 UI 客户端例子：</strong> 当前票只要求“验证账号配置并显示结果”。实现不应顺便加入账号排序、导入导出和自动重试；发现产品未决定错误文案时应上报，而不是自行设计。</p>
+<p><strong>UI 客户端操作例：</strong> 当前票只要求“验证账号配置并显示结果”。实现不应顺便加入账号排序、导入导出和自动重试；发现产品未决定错误文案时应上报，而不是自行设计。</p>
 <p><strong>产物与验收：</strong> diff 可追溯到票；目标测试与 typecheck 有当前输出；完整测试在结束时运行；review finding 已处理或明确记录；提交只包含当前工作。</p>
 <p><strong>新手误区：</strong> 把 <code>implement</code> 理解成“自由发挥直到看起来完整”。它恰恰要求施工阶段服从已定边界。</p>
 <h4 id="11-1-9-prototype-用可丢弃代码回答一个设计问题" tabindex="-1">11.1.9 <code>prototype</code>：用可丢弃代码回答一个设计问题<a class="heading-anchor" href="#11-1-9-prototype-用可丢弃代码回答一个设计问题" aria-label="链接到本节">#</a></h4>
@@ -2337,7 +2336,7 @@ before forming a root-cause theory.
 <li>“UI 应该长什么样？”：在同一路由提供多个结构明显不同的变体，可快速切换。</li>
 </ul>
 <p><strong>共同约束：</strong> 明确标注 prototype；一条命令或双击即可运行；默认只用内存状态；不补生产级抽象、测试和错误处理；每次动作都把相关状态暴露出来。</p>
-<p><strong>匿名 UI 客户端例子：</strong> 团队无法仅靠文字决定“任务详情”应该是抽屉、侧栏还是独立页。原型同时做三个差异足够大的变体，使用同一组真实长度的合成数据，让用户完成相同任务后再决定。</p>
+<p><strong>UI 客户端操作例：</strong> 团队无法仅靠文字决定“任务详情”应该是抽屉、侧栏还是独立页。原型同时做三个差异足够大的变体，使用同一组真实长度的合成数据，让用户完成相同任务后再决定。</p>
 <p><strong>产物与验收：</strong> 问题写在原型顶部；每个变体能被运行；用户给出 verdict；被验证的决定进入正式 issue/spec；原型保存在 main 之外的 throwaway 分支并留下指针。</p>
 <p><strong>新手误区：</strong> 把原型做成“以后也许能直接上线”的半成品，于是开始补架构、权限和完整测试，反馈速度反而消失。</p>
 <h4 id="11-1-10-diagnosing-bugs-先制造稳定红色-再形成理论" tabindex="-1">11.1.10 <code>diagnosing-bugs</code>：先制造稳定红色，再形成理论<a class="heading-anchor" href="#11-1-10-diagnosing-bugs-先制造稳定红色-再形成理论" aria-label="链接到本节">#</a></h4>
@@ -2354,7 +2353,7 @@ before forming a root-cause theory.
 <li>Fix：最小修复并加入回归测试；</li>
 <li>Cleanup：删除临时日志，重新跑当前验证。</li>
 </ol>
-<p><strong>匿名 UI 客户端例子：</strong> “切换工作区后偶尔显示旧标题”。先写自动化连续切换并断言标题与当前工作区一致；确认它在旧代码上稳定失败；再分别测试缓存未失效、事件乱序、状态覆盖等假设。</p>
+<p><strong>UI 客户端操作例：</strong> “切换工作区后偶尔显示旧标题”。先写自动化连续切换并断言标题与当前工作区一致；确认它在旧代码上稳定失败；再分别测试缓存未失效、事件乱序、状态覆盖等假设。</p>
 <p><strong>可直接使用的输入：</strong></p>
 <pre><code class="language-text">请调用 diagnosing-bugs。
 症状是连续切换工作区后标题偶尔仍显示上一个名称。
@@ -2372,7 +2371,7 @@ before forming a root-cause theory.
 <li>失败时能说明哪条行为被破坏吗。</li>
 </ol>
 <p><strong>seam 选择：</strong> 优先最高层、最少数量、稳定的公共接口。外部 API、时钟、随机数可以 mock；不要 mock 自己的模块来模拟成功。</p>
-<p><strong>匿名 UI 客户端例子：</strong> 对“保存设置后重启仍保留”写一条穿过公共设置接口的测试，而不是分别测试序列化函数、文件函数和状态 reducer 的内部调用顺序。</p>
+<p><strong>UI 客户端操作例：</strong> 对“保存设置后重启仍保留”写一条穿过公共设置接口的测试，而不是分别测试序列化函数、文件函数和状态 reducer 的内部调用顺序。</p>
 <p><strong>循环：</strong></p>
 <ol>
 <li>写一条测试；</li>
@@ -2388,7 +2387,7 @@ before forming a root-cause theory.
 <p><strong>一句话理解：</strong> 把外部阅读交给后台 Agent，沿官方文档、规范、源码或第一方 API 追溯每项关键事实，并保存带引用的 Markdown。</p>
 <p><strong>什么时候用：</strong> 实现决定依赖浏览器行为、SDK 契约、协议、框架限制、版本差异或官方最佳实践。</p>
 <p><strong>什么时候别用：</strong> 答案就在当前仓库；或者只是想收集更多二手观点，却没有待解决的具体决定。</p>
-<p><strong>匿名 UI 客户端例子：</strong> 要决定系统通知在不同桌面平台的权限与点击行为。research 应查看各平台官方文档和所用运行时的官方 API，不以博客摘要代替。</p>
+<p><strong>UI 客户端操作例：</strong> 要决定系统通知在不同桌面平台的权限与点击行为。research 应查看各平台官方文档和所用运行时的官方 API，不以博客摘要代替。</p>
 <p><strong>输入要写清：</strong> 待回答的问题、固定版本、需要支持的环境、输出路径、哪些决定会被研究结果改变。</p>
 <p><strong>产物与验收：</strong> 单个 Markdown 文件；每个关键结论附近有一手来源；事实与推断分开；版本和日期可追溯；文件进入后续 <code>grill-with-docs</code>，不直接冒充产品决定。</p>
 <p><strong>新手误区：</strong> 搜到“大家都这么做”就停止追溯；或者只把链接堆在末尾，读者无法知道哪条链接支持哪项结论。</p>
@@ -2404,7 +2403,7 @@ before forming a root-cause theory.
 <li>决定形成时 inline 更新；</li>
 <li>只有难以逆转且不记录会令人意外时才建议 ADR。</li>
 </ul>
-<p><strong>匿名 UI 客户端例子：</strong> “连接”可能指保存凭据、验证凭据、建立长连接或启用账号。把它们统一叫连接会让 UI 文案和函数名不断漂移。领域建模应给每个行为一个能用例子反证的名字。</p>
+<p><strong>UI 客户端操作例：</strong> “连接”可能指保存凭据、验证凭据、建立长连接或启用账号。把它们统一叫连接会让 UI 文案和函数名不断漂移。领域建模应给每个行为一个能用例子反证的名字。</p>
 <p><strong>产物与验收：</strong> glossary 词条有定义、正例、反例和代码指针；后续 spec、ticket、测试和界面文案使用同一词义；ADR 数量保持克制。</p>
 <p><strong>新手误区：</strong> 把 <code>CONTEXT.md</code> 写成百科全书。它首先是共同语言和导航，不是整个系统的复制品。</p>
 <h4 id="11-1-14-codebase-design-用深模块语言讨论代码形状" tabindex="-1">11.1.14 <code>codebase-design</code>：用深模块语言讨论代码形状<a class="heading-anchor" href="#11-1-14-codebase-design-用深模块语言讨论代码形状" aria-label="链接到本节">#</a></h4>
@@ -2448,7 +2447,7 @@ before forming a root-cause theory.
 </tr>
 </tbody></table>
 <p><strong>删除测试：</strong> 假设删除这个模块。调用方需要重新实现多少复杂逻辑？如果只是把几行转发挪走，它很浅；如果大量规则重新散到各处，它可能很深。</p>
-<p><strong>匿名 UI 客户端例子：</strong> 五个设置组件依次调用 <code>read</code>、<code>parse</code>、<code>merge</code>、<code>validate</code>、<code>write</code>。更深的模块可以只暴露 <code>loadSettings</code> 与 <code>saveSettings</code>，把顺序、默认值和迁移藏起来。</p>
+<p><strong>UI 客户端操作例：</strong> 五个设置组件依次调用 <code>read</code>、<code>parse</code>、<code>merge</code>、<code>validate</code>、<code>write</code>。更深的模块可以只暴露 <code>loadSettings</code> 与 <code>saveSettings</code>，把顺序、默认值和迁移藏起来。</p>
 <p><strong>产物与验收：</strong> 设计讨论能说明接口、被隐藏的复杂度、seam、测试面和调用方收益；不会只说“再抽一层”或“更优雅”。</p>
 <p><strong>新手误区：</strong> 把文件短、函数多、类多误认为模块化。模块深度看的是调用方少学了多少，不是文件数量。</p>
 <h4 id="11-1-15-improve-codebase-architecture-先找高价值候选-再讨论接口" tabindex="-1">11.1.15 <code>improve-codebase-architecture</code>：先找高价值候选，再讨论接口<a class="heading-anchor" href="#11-1-15-improve-codebase-architecture-先找高价值候选-再讨论接口" aria-label="链接到本节">#</a></h4>
@@ -2464,7 +2463,7 @@ before forming a root-cause theory.
 <li>用户选择一个候选；</li>
 <li>再通过 grilling 讨论接口和迁移。</li>
 </ol>
-<p><strong>匿名 UI 客户端例子：</strong> 最近十次改动都触碰窗口偏好、托盘行为和启动设置。报告发现调用方必须知道同一套默认值和迁移顺序，推荐把这些规则放进一个深模块，但在用户选择前不直接重构。</p>
+<p><strong>UI 客户端操作例：</strong> 最近十次改动都触碰窗口偏好、托盘行为和启动设置。报告发现调用方必须知道同一套默认值和迁移顺序，推荐把这些规则放进一个深模块，但在用户选择前不直接重构。</p>
 <p><strong>产物与验收：</strong> 候选有文件、问题、方案、收益、推荐强度和图；顶级建议有依据；报告不落入仓库；未被选择的候选不产生代码改动。</p>
 <p><strong>新手误区：</strong> 跑一次架构扫描就自动重构全仓；或者脱离近期变化，列一堆理论上可优化但没人会再碰的区域。</p>
 <h4 id="11-1-16-code-review-把-standards-与-spec-分开验收" tabindex="-1">11.1.16 <code>code-review</code>：把 Standards 与 Spec 分开验收<a class="heading-anchor" href="#11-1-16-code-review-把-standards-与-spec-分开验收" aria-label="链接到本节">#</a></h4>
@@ -2482,7 +2481,7 @@ before forming a root-cause theory.
 <li>Standards 轴：设计、可读性、安全、测试、仓库规则是否满足；</li>
 <li>Spec 轴：用户故事、非目标、边界案例、验收是否满足。</li>
 </ul>
-<p><strong>匿名 UI 客户端例子：</strong> 新的错误提示组件结构清晰、测试完整，但漏掉“离线时不显示重试按钮”的需求。Standards 可通过，Spec 仍失败；总评不能用代码质量把需求缺口平均掉。</p>
+<p><strong>UI 客户端操作例：</strong> 新的错误提示组件结构清晰、测试完整，但漏掉“离线时不显示重试按钮”的需求。Standards 可通过，Spec 仍失败；总评不能用代码质量把需求缺口平均掉。</p>
 <p><strong>产物与验收：</strong> 两条轴分别列 finding、证据、严重度和最小修复；聚合时保留来源；只有两轴都通过才能收口。</p>
 <p><strong>新手误区：</strong> 只做 lint 风格检查；或者只照需求点功能，忽略测试泄漏内部实现和越界依赖。</p>
 <h4 id="11-1-17-resolving-merge-conflicts-解决两侧意图-不是选一侧文本" tabindex="-1">11.1.17 <code>resolving-merge-conflicts</code>：解决两侧意图，不是选一侧文本<a class="heading-anchor" href="#11-1-17-resolving-merge-conflicts-解决两侧意图-不是选一侧文本" aria-label="链接到本节">#</a></h4>
@@ -2498,7 +2497,7 @@ before forming a root-cause theory.
 <li>运行项目检查；</li>
 <li>stage 并继续操作直到结束。</li>
 </ol>
-<p><strong>匿名 UI 客户端例子：</strong> 一侧给设置项增加禁用态，另一侧把同一区域改成异步加载。正确结果应同时保留加载态和禁用规则，而不是接受“ours”或“theirs”。</p>
+<p><strong>UI 客户端操作例：</strong> 一侧给设置项增加禁用态，另一侧把同一区域改成异步加载。正确结果应同时保留加载态和禁用规则，而不是接受“ours”或“theirs”。</p>
 <p><strong>产物与验收：</strong> 工作树没有未解决冲突；项目验证通过；merge/rebase 完成；每个不兼容取舍能解释来源。上游 Skill 明确要求总是解决，不执行 <code>--abort</code>。</p>
 <p><strong>新手误区：</strong> 看到冲突标记就按“较新的代码”选择。时间不能说明产品和架构意图。</p>
 <h4 id="11-1-18-wizard-把只有人能做的步骤变成可审阅向导" tabindex="-1">11.1.18 <code>wizard</code>：把只有人能做的步骤变成可审阅向导<a class="heading-anchor" href="#11-1-18-wizard-把只有人能做的步骤变成可审阅向导" aria-label="链接到本节">#</a></h4>
@@ -2516,7 +2515,7 @@ before forming a root-cause theory.
 <li>不可逆动作前显式确认；</li>
 <li>用 <code>bash -n</code>，可用时再跑 shellcheck；不要由 Agent 代替用户完整执行。</li>
 </ol>
-<p><strong>匿名 UI 客户端例子：</strong> 管理员需要在第三方控制台创建最小权限 token，再写入本地环境和 CI。向导打开正确页面、提示权限、隐藏读取 token、写入目标并运行脱敏连通性检查。</p>
+<p><strong>UI 客户端操作例：</strong> 管理员需要在第三方控制台创建最小权限 token，再写入本地环境和 CI。向导打开正确页面、提示权限、隐藏读取 token、写入目标并运行不暴露凭据的连通性检查。</p>
 <p><strong>产物与验收：</strong> 所有人工步骤都有顺序和剩余阶段；每个值有来源与落点；secret 不进入聊天、日志或命令历史；脚本语法通过；是否提交仓库由可重复性决定。</p>
 <p><strong>新手误区：</strong> 把真实 secret 粘贴进对话，或者让 Agent 猜控制台按钮名称。</p>
 <h3 id="11-2-productivity-思考-交接-教学与-agent-文档的-7-个-skill" tabindex="-1">11.2 Productivity：思考、交接、教学与 Agent 文档的 7 个 Skill<a class="heading-anchor" href="#11-2-productivity-思考-交接-教学与-agent-文档的-7-个-skill" aria-label="链接到本节">#</a></h3>
@@ -2526,7 +2525,7 @@ before forming a root-cause theory.
 <p><strong>什么时候用：</strong> 答案主要在用户脑中，且当前没有需要同步维护的工作目录。</p>
 <p><strong>什么时候别用：</strong> 事实在代码或文档里；发生在真实仓库中时应优先 <code>grill-with-docs</code>；决定已经结束时应使用 <code>to-spec</code>。</p>
 <p><strong>它实际做什么：</strong> <code>grill-me</code> 本身非常薄，只负责调用 <code>grilling</code>。这正是 router Skill 的示范：入口稳定，提问纪律只有一个来源，避免两套访谈规则漂移。</p>
-<p><strong>匿名 UI 客户端例子：</strong> 产品负责人还没有仓库，只想先决定“首次启动引导”要解决什么问题。Agent 逐轮确认目标用户、必须完成的动作、可跳过策略、失败处理和明确非目标。</p>
+<p><strong>UI 客户端操作例：</strong> 产品负责人还没有仓库，只想先决定“首次启动引导”要解决什么问题。Agent 逐轮确认目标用户、必须完成的动作、可跳过策略、失败处理和明确非目标。</p>
 <p><strong>可直接使用的输入：</strong></p>
 <pre><code class="language-text">/grill-me
 
@@ -2546,7 +2545,7 @@ before forming a root-cause theory.
 </ul>
 <p><strong>一轮的正确形状：</strong> 同时询问当前 frontier 上的所有独立问题；每题编号，说明为什么要问，并给出推荐答案；然后等待用户回答，重新计算下一轮。</p>
 <p><strong>事实与决定的边界：</strong> “当前框架支持什么”由 Agent 查；“团队愿意承担哪种兼容成本”由用户定。一个好的 grilling 会减少用户负担，而不是把代码库调查伪装成访谈。</p>
-<p><strong>匿名 UI 客户端例子：</strong> 在决定错误详情如何展示前，必须先知道目标用户是谁、错误是否可恢复；“复制诊断信息按钮放哪”不是第一轮问题。</p>
+<p><strong>UI 客户端操作例：</strong> 在决定错误详情如何展示前，必须先知道目标用户是谁、错误是否可恢复；“复制诊断信息按钮放哪”不是第一轮问题。</p>
 <p><strong>产物与验收：</strong> 没有问题依赖同轮尚未回答的问题；每轮结束后设计树被更新；frontier 为空才声明共同理解；在用户确认之前不进入实施。</p>
 <p><strong>新手误区：</strong> 一次列 30 个问题，表面全面，实际把前置与下游混在一起，用户只能凭空猜。</p>
 <h4 id="11-2-3-handoff-让工作跨会话旅行-但不复制整个世界" tabindex="-1">11.2.3 <code>handoff</code>：让工作跨会话旅行，但不复制整个世界<a class="heading-anchor" href="#11-2-3-handoff-让工作跨会话旅行-但不复制整个世界" aria-label="链接到本节">#</a></h4>
@@ -2564,7 +2563,7 @@ before forming a root-cause theory.
 <li>suggested skills；</li>
 <li>敏感信息脱敏说明。</li>
 </ul>
-<p><strong>匿名 UI 客户端例子：</strong> 原会话完成了错误状态规格，新会话只负责制作 UI prototype。handoff 指向 spec 和原型目标，不重贴全部访谈；明确“不要写生产代码”和验收问题。</p>
+<p><strong>UI 客户端操作例：</strong> 原会话完成了错误状态规格，新会话只负责制作 UI prototype。handoff 指向 spec 和原型目标，不重贴全部访谈；明确“不要写生产代码”和验收问题。</p>
 <p><strong>产物与验收：</strong> 文档位于 OS 临时目录，不污染仓库；新 Agent 无需重问已决定内容；没有密钥、个人路径和原始敏感日志；旧的测试结果被标为历史快照。</p>
 <p><strong>新手误区：</strong> 把聊天摘要当事实源。真正稳定的事实应在 spec、ticket、代码和测试里，handoff 只做索引与状态压缩。</p>
 <h4 id="11-2-4-teach-把一次问答变成跨会话学习工作区" tabindex="-1">11.2.4 <code>teach</code>：把一次问答变成跨会话学习工作区<a class="heading-anchor" href="#11-2-4-teach-把一次问答变成跨会话学习工作区" aria-label="链接到本节">#</a></h4>
@@ -2581,7 +2580,7 @@ before forming a root-cause theory.
 <li><code>NOTES.md</code>：教学偏好和工作笔记。</li>
 </ul>
 <p><strong>学习原则：</strong> 知识获取阶段降低无关难度；技能训练阶段通过检索练习、间隔和交错增加“有益难度”；不要把当下答得快误认为长期记得住。</p>
-<p><strong>匿名 UI 客户端例子：</strong> 新人要学会诊断跨层 bug。第一课只练“构造 red-capable 命令”，第二课再练最小化，第三课混入事件乱序案例；每课都能在十几分钟内完成并得到即时反馈。</p>
+<p><strong>UI 客户端操作例：</strong> 新人要学会诊断跨层 bug。第一课只练“构造 red-capable 命令”，第二课再练最小化，第三课混入事件乱序案例；每课都能在十几分钟内完成并得到即时反馈。</p>
 <p><strong>产物与验收：</strong> 每课与 mission 直接相关；有一手资料；练习难度落在当前最近发展区；课程短而可完成；长期进展写进 learning record，而不是依赖聊天记忆。</p>
 <p><strong>新手误区：</strong> 一次生成一门宏大课程，内容很多但没有练习反馈，也没有后续会话可读取的学习状态。</p>
 <h4 id="11-2-5-to-questionnaire-把别人脑中的信息异步取回来" tabindex="-1">11.2.5 <code>to-questionnaire</code>：把别人脑中的信息异步取回来<a class="heading-anchor" href="#11-2-5-to-questionnaire-把别人脑中的信息异步取回来" aria-label="链接到本节">#</a></h4>
@@ -2598,7 +2597,7 @@ before forming a root-cause theory.
 <li>每个问题只问一个概念，必要时写 why this matters；</li>
 <li>Anything else。</li>
 </ol>
-<p><strong>匿名 UI 客户端例子：</strong> 团队要设计企业代理设置，但网络管理员才知道认证、证书和例外域名。问卷应询问这些事实会影响哪些决定，而不是问“您觉得页面怎么设计”。</p>
+<p><strong>UI 客户端操作例：</strong> 团队要设计企业代理设置，但网络管理员才知道认证、证书和例外域名。问卷应询问这些事实会影响哪些决定，而不是问“您觉得页面怎么设计”。</p>
 <p><strong>产物与验收：</strong> <code>to-questionnaire-&lt;slug&gt;.md</code> 存在；用户列出的每个信息缺口都有问题；最重要问题在前；收件人无需了解原对话也能回答。</p>
 <p><strong>新手误区：</strong> 写成满意度调查或把多个问题塞进一句；异步场景可能只有一次回复机会。</p>
 <h4 id="11-2-6-wait-what-上一条没听懂-先退回共同前提" tabindex="-1">11.2.6 <code>wait-what</code>：上一条没听懂，先退回共同前提<a class="heading-anchor" href="#11-2-6-wait-what-上一条没听懂-先退回共同前提" aria-label="链接到本节">#</a></h4>
@@ -2606,7 +2605,7 @@ before forming a root-cause theory.
 <p><strong>一句话理解：</strong> 它要求 Agent 为上一条回复补少量背景，用 ASD-STE100 风格的简明英语和项目共同语言重新表达。</p>
 <p><strong>什么时候用：</strong> 回复跳步、术语密集、缺失前提，用户知道“没听懂”但不确定从哪里断线。</p>
 <p><strong>什么时候别用：</strong> 需要修改事实或方案；这不是“说得更简单就算修复”的替代品。</p>
-<p><strong>匿名 UI 客户端例子：</strong> Agent 突然说“把该 adapter 设为 seam 可以提高 locality”。调用后，它应先解释调用方目前被迫知道哪些内部步骤，再用 <code>CONTEXT.md</code> 已有词汇重讲 adapter、seam 与 locality。</p>
+<p><strong>UI 客户端操作例：</strong> Agent 突然说“把该 adapter 设为 seam 可以提高 locality”。调用后，它应先解释调用方目前被迫知道哪些内部步骤，再用 <code>CONTEXT.md</code> 已有词汇重讲 adapter、seam 与 locality。</p>
 <p><strong>可直接使用的输入：</strong></p>
 <pre><code class="language-text">/wait-what
 </code></pre>
@@ -2627,7 +2626,7 @@ before forming a root-cause theory.
 <li>当前文件中的按需参考；</li>
 <li>由精准指针指向的外部参考。</li>
 </ol>
-<p><strong>匿名 UI 客户端例子：</strong> 根指导文件不应粘贴整套跨进程安全规范，只需写：“修改 renderer 与主进程数据通道时，先读取 <code>docs/security-boundaries.md</code> 并运行边界测试。”这条指针同时有触发和动作。</p>
+<p><strong>UI 客户端操作例：</strong> 根指导文件不应粘贴整套跨进程安全规范，只需写：“修改 renderer 与主进程数据通道时，先读取 <code>docs/security-boundaries.md</code> 并运行边界测试。”这条指针同时有触发和动作。</p>
 <p><strong>写 Skill 时的验收：</strong> description 能触发正确分支；步骤顺序可执行；边界与完成条件可观察；引用文件有达到条件；删除无行为影响的 no-op 句子。</p>
 <p><strong>新手误区：</strong> 通过加粗“必须”“绝对”来提高权威感。若一句话没有改变 Agent 下一步，语气再强也只是上下文噪音。</p>
 <h3 id="11-3-misc-四个强场景-强工具约束的-skill" tabindex="-1">11.3 Misc：四个强场景、强工具约束的 Skill<a class="heading-anchor" href="#11-3-misc-四个强场景-强工具约束的-skill" aria-label="链接到本节">#</a></h3>
@@ -2646,7 +2645,7 @@ before forming a root-cause theory.
 <li>询问团队是否调整阻止模式；</li>
 <li>用模拟 <code>git push origin main</code> 的 JSON 输入验证 exit code 2 和 BLOCKED 信息。</li>
 </ol>
-<p><strong>匿名 UI 客户端例子：</strong> 新人练习 Agent 协作时可以允许本地提交，但避免未经复核就推送远程。项目级 hook 随仓库共享，全球设置则影响所有项目，二者不能悄悄替用户选择。</p>
+<p><strong>UI 客户端操作例：</strong> 新人练习 Agent 协作时可以允许本地提交，但避免未经复核就推送远程。项目级 hook 随仓库共享，全球设置则影响所有项目，二者不能悄悄替用户选择。</p>
 <p><strong>产物与验收：</strong> hook 文件存在且可执行；settings 合并正确；危险样例被拒绝；普通只读 Git 命令不受影响。</p>
 <p><strong>新手误区：</strong> 认为写进规则文件就能阻止命令。真正的 guardrail 必须位于运行时执行边界，并用可观察失败验证。</p>
 <h4 id="11-3-2-migrate-to-shoehorn-只在测试里减少大型对象伪造" tabindex="-1">11.3.2 <code>migrate-to-shoehorn</code>：只在测试里减少大型对象伪造<a class="heading-anchor" href="#11-3-2-migrate-to-shoehorn-只在测试里减少大型对象伪造" aria-label="链接到本节">#</a></h4>
@@ -2675,7 +2674,7 @@ before forming a root-cause theory.
 <td>要求完整对象，之后可再切回 partial</td>
 </tr>
 </tbody></table>
-<p><strong>匿名 UI 客户端例子：</strong> 一个窗口对象有几十个字段，测试只关心 <code>id</code> 和 <code>isVisible</code>。使用 partial helper 比伪造整棵对象或 <code>as unknown as WindowState</code> 更清楚。</p>
+<p><strong>UI 客户端操作例：</strong> 一个窗口对象有几十个字段，测试只关心 <code>id</code> 和 <code>isVisible</code>。使用 partial helper 比伪造整棵对象或 <code>as unknown as WindowState</code> 更清楚。</p>
 <p><strong>产物与验收：</strong> 依赖仅在 devDependencies；目标测试中的断言被有意选择的 helper 替换；typecheck 与测试通过；没有扩散到生产目录。</p>
 <p><strong>新手误区：</strong> 机械替换所有 <code>as</code>。类型断言可能有不同语义，迁移前必须先理解测试为什么需要不完整或错误数据。</p>
 <h4 id="11-3-3-scaffold-exercises-按固定课程结构生成可-lint-的练习骨架" tabindex="-1">11.3.3 <code>scaffold-exercises</code>：按固定课程结构生成可 lint 的练习骨架<a class="heading-anchor" href="#11-3-3-scaffold-exercises-按固定课程结构生成可-lint-的练习骨架" aria-label="链接到本节">#</a></h4>
@@ -2684,7 +2683,7 @@ before forming a root-cause theory.
 <p><strong>什么时候用：</strong> 当前仓库确实使用 <code>pnpm ai-hero-cli internal lint</code> 和上游规定的练习布局。</p>
 <p><strong>什么时候别用：</strong> 普通产品仓库。不要仅因为“要写教程”就引入一套不匹配的课程目录。</p>
 <p><strong>核心规则：</strong> section 使用 <code>XX-name</code>；exercise 使用 <code>XX.YY-name</code>；每题至少有一个 variant；每个 variant 有非空 <code>readme.md</code>；有代码时 <code>main.ts</code> 不得是空壳；移动时使用 <code>git mv</code>。</p>
-<p><strong>匿名 UI 客户端例子：</strong> 团队要做“状态管理诊断练习”。如果课程仓库匹配，先建 explainer；需要动手时再增加 problem 和 solution，而不是在产品源码旁生成练习目录。</p>
+<p><strong>UI 客户端操作例：</strong> 团队要做“状态管理诊断练习”。如果课程仓库匹配，先建 explainer；需要动手时再增加 problem 和 solution，而不是在产品源码旁生成练习目录。</p>
 <p><strong>产物与验收：</strong> 目录编号连续；readme 无断链；专用 lint 通过；重命名保留历史；提交只包含计划中的练习骨架。</p>
 <p><strong>新手误区：</strong> 看到一个 Skill 能生成目录就拿来做任何脚手架。Skill 的完成命令和目录规则已经把它绑定到特定仓库。</p>
 <h4 id="11-3-4-setup-pre-commit-为已有-node-仓库接入提交前检查" tabindex="-1">11.3.4 <code>setup-pre-commit</code>：为已有 Node 仓库接入提交前检查<a class="heading-anchor" href="#11-3-4-setup-pre-commit-为已有-node-仓库接入提交前检查" aria-label="链接到本节">#</a></h4>
@@ -2702,7 +2701,7 @@ before forming a root-cause theory.
 <li>验证 hook、prepare、执行权限和实际命令；</li>
 <li>用一次提交作为烟雾测试。</li>
 </ol>
-<p><strong>匿名 UI 客户端例子：</strong> 大型桌面客户端完整测试需要十分钟，直接塞进 pre-commit 会伤害反馈。此时应先讨论把快速目标检查放 pre-commit、完整检查放 CI，而不是机械照抄。</p>
+<p><strong>UI 客户端操作例：</strong> 大型桌面客户端完整测试需要十分钟，直接塞进 pre-commit 会伤害反馈。此时应先讨论把快速目标检查放 pre-commit、完整检查放 CI，而不是机械照抄。</p>
 <p><strong>产物与验收：</strong> 不覆盖已有配置；使用真实包管理器；缺少脚本时删除对应行并报告；一次实际提交能证明 hook 生效。</p>
 <p><strong>新手误区：</strong> 把“检查越多越安全”当绝对真理。慢到大家绕过的 hook 不是可靠门禁。</p>
 <h3 id="11-4-in-progress-八个实验-skill-先读稳定性再试" tabindex="-1">11.4 In-progress：八个实验 Skill，先读稳定性再试<a class="heading-anchor" href="#11-4-in-progress-八个实验-skill-先读稳定性再试" aria-label="链接到本节">#</a></h3>
@@ -2712,7 +2711,7 @@ before forming a root-cause theory.
 <p><strong>一句话理解：</strong> 它不把交接只保存成文件，而是把脱敏摘要作为 prompt 传给 <code>claude --bg --name</code>，让后台 Agent 立即在当前目录接手。</p>
 <p><strong>与稳定 <code>handoff</code> 的差别：</strong> 稳定版产出可携带文档；实验版直接启动特定 CLI 的后台任务，运行时耦合更强。</p>
 <p><strong>输入与步骤：</strong> 根据用户给的下一阶段目标压缩对话；引用已有 spec、issue、commit 而不复制；加入 suggested skills；脱敏；使用描述性名称启动后台任务。</p>
-<p><strong>匿名 UI 客户端例子：</strong> 当前 Agent 完成需求澄清，后台 Agent 只负责官方 API research。摘要应指向研究问题和输出路径，不能把本地 token、用户数据或完整聊天塞进命令参数。</p>
+<p><strong>UI 客户端操作例：</strong> 当前 Agent 完成需求澄清，后台 Agent 只负责官方 API research。摘要应指向研究问题和输出路径，不能把本地 token、用户数据或完整聊天塞进命令参数。</p>
 <p><strong>产物与验收：</strong> 后台任务有可识别名称；工作目录正确；摘要有边界和指针；用户能通过 <code>claude agents</code> 管理；敏感信息未进入 prompt。</p>
 <p><strong>实验风险：</strong> CLI 参数、后台 Agent 能力和会话管理均为工具特定，不能当成跨 Agent 标准。</p>
 <h4 id="11-4-2-implement-spec-把一份规格实现为单分支-pr-的并行任务图" tabindex="-1">11.4.2 <code>implement-spec</code>：把一份规格实现为单分支 PR 的并行任务图<a class="heading-anchor" href="#11-4-2-implement-spec-把一份规格实现为单分支-pr-的并行任务图" aria-label="链接到本节">#</a></h4>
@@ -2730,7 +2729,7 @@ before forming a root-cause theory.
 <li>全部完成后运行 code review 并集中修复；</li>
 <li>标记 ready，清理 worktrees。</li>
 </ol>
-<p><strong>匿名 UI 客户端例子：</strong> “账号配置”有四张票，其中 UI 文案与配置存储可并行，真实请求依赖两者。task graph 应让前两张同时开始，不能按票号盲目串行。</p>
+<p><strong>UI 客户端操作例：</strong> “账号配置”有四张票，其中 UI 文案与配置存储可并行，真实请求依赖两者。task graph 应让前两张同时开始，不能按票号盲目串行。</p>
 <p><strong>产物与验收：</strong> 所有 tickets 在同一 PR 可追溯；依赖得到尊重；subagent 通过 context pointers 共享资料；worktree 清理完成；最终 review 有证据。</p>
 <p><strong>实验风险：</strong> 需要可靠的并行 Agent、worktree 和 PR 权限；缺任一项都应降级到稳定 <code>implement</code>，不能伪造并行完成。</p>
 <h4 id="11-4-3-loop-me-把生活或工作中的重复循环写成可实现-workflow" tabindex="-1">11.4.3 <code>loop-me</code>：把生活或工作中的重复循环写成可实现 workflow<a class="heading-anchor" href="#11-4-3-loop-me-把生活或工作中的重复循环写成可实现-workflow" aria-label="链接到本节">#</a></h4>
@@ -2743,7 +2742,7 @@ before forming a root-cause theory.
 <li>Push right：把人工确认尽量推迟，让自动部分先做完；</li>
 <li>Brief：给人的是决策摘要和资产指针，不是未经处理的原始输出。</li>
 </ul>
-<p><strong>匿名 UI 客户端例子：</strong> 每周整理崩溃报告是一个 loop。workflow 可以在新报告到达时触发，自动聚类并生成 brief，只在需要决定优先级时设置一次 checkpoint。</p>
+<p><strong>UI 客户端操作例：</strong> 每周整理崩溃报告是一个 loop。workflow 可以在新报告到达时触发，自动聚类并生成 brief，只在需要决定优先级时设置一次 checkpoint。</p>
 <p><strong>产物与验收：</strong> <code>NOTES.md</code> 记录用户世界和术语；每个 workflow 有触发、步骤、外部系统、checkpoint、brief 和完成状态；实现者无需追加问题。</p>
 <p><strong>实验风险：</strong> 不要为了“自动化”强加 AI、定时器或 checkpoint。原文明确要求只有 grilling 证明需要时才加入结构。</p>
 <h4 id="11-4-4-retro-复盘-agent-环境-而不是评价一次回答好不好" tabindex="-1">11.4.4 <code>retro</code>：复盘 Agent 环境，而不是评价一次回答好不好<a class="heading-anchor" href="#11-4-4-retro-复盘-agent-环境-而不是评价一次回答好不好" aria-label="链接到本节">#</a></h4>
@@ -2751,7 +2750,7 @@ before forming a root-cause theory.
 <p><strong>一句话理解：</strong> 从真实会话一手记录寻找环境改进，让下一次 Agent 更容易找到信息、得到反馈并少走弯路。</p>
 <p><strong>候选类别：</strong> Navigation、Automated checks、Coding standards、Global guidance、Tool economy、No-ops、Information access。</p>
 <p><strong>关键分工：</strong> 实现 Agent 上下文压力最大，应少背规范；review Agent 只需读 diff，更适合执行细致标准。根指导文件应该保留导航指针，具体标准放到 review 或自动检查。</p>
-<p><strong>匿名 UI 客户端例子：</strong> Agent 三次才找到设置迁移入口。retro 可以建议在领域文档加导航指针；若错误可被静态测试捕获，则优先新增自动检查，而不是再写一句“请小心”。</p>
+<p><strong>UI 客户端操作例：</strong> Agent 三次才找到设置迁移入口。retro 可以建议在领域文档加导航指针；若错误可被静态测试捕获，则优先新增自动检查，而不是再写一句“请小心”。</p>
 <p><strong>产物与验收：</strong> 候选按严重度排列；每项都有会话证据、建议放置位置和预期行为变化；不会把偶发偏好升级成全局规则。</p>
 <p><strong>实验风险：</strong> 会话日志可能含隐私，读取、摘录和发布前必须单独脱敏；改环境前仍需维护者确认。</p>
 <h4 id="11-4-5-setup-ts-deep-modules-用-dependency-cruiser-把深模块边界变成硬检查" tabindex="-1">11.4.5 <code>setup-ts-deep-modules</code>：用 dependency-cruiser 把深模块边界变成硬检查<a class="heading-anchor" href="#11-4-5-setup-ts-deep-modules-用-dependency-cruiser-把深模块边界变成硬检查" aria-label="链接到本节">#</a></h4>
@@ -2765,7 +2764,7 @@ before forming a root-cause theory.
 <li>禁止依赖环。</li>
 </ol>
 <p><strong>执行顺序：</strong> 检测包管理器和 packages root；合并而非覆盖既有配置；安装依赖；写四条规则；接入 umbrella check；创建 example package；完成 pass → 人工加入 deep import 后 fail → 删除后 pass；最后写包目录 README 和根指针。</p>
-<p><strong>匿名 UI 客户端例子：</strong> <code>settings</code> 包公开 <code>loadSettings</code> 与 <code>saveSettings</code>，内部迁移和文件实现放在 <code>lib/</code>。其他包深导入 <code>lib/migrate</code> 时，边界检查必须失败。</p>
+<p><strong>UI 客户端操作例：</strong> <code>settings</code> 包公开 <code>loadSettings</code> 与 <code>saveSettings</code>，内部迁移和文件实现放在 <code>lib/</code>。其他包深导入 <code>lib/migrate</code> 时，边界检查必须失败。</p>
 <p><strong>产物与验收：</strong> 最关键证据不是配置文件存在，而是同一规则真的观察到 pass-fail-pass；文档说明多个小入口优于一个巨型 barrel。</p>
 <p><strong>实验风险：</strong> 这是侵入性工具链改动。大型既有仓库应先在一个包或分支试验，评估历史 deep import 的迁移成本。</p>
 <h4 id="11-4-6-writing-fragments-探索期只采集有生命力的写作碎片" tabindex="-1">11.4.6 <code>writing-fragments</code>：探索期只采集有生命力的写作碎片<a class="heading-anchor" href="#11-4-6-writing-fragments-探索期只采集有生命力的写作碎片" aria-label="链接到本节">#</a></h4>
@@ -2773,7 +2772,7 @@ before forming a root-cause theory.
 <p><strong>一句话理解：</strong> 写作 explore 阶段不排结构，只把可能进入成稿的句子、论点、片段、类比和 leading word 追加到 Markdown。</p>
 <p><strong>片段可以是什么：</strong> 一句锋利表达、带理由的主张、场景、代码、半成品想法、引语、观察簇，或能支撑全文的 leading word。</p>
 <p><strong>文件规则：</strong> 首次只写一个工作标题；片段之间用水平线分隔；正文内部不加层级和标签；每次写前重读磁盘；默认追加，不覆盖用户手工调整。</p>
-<p><strong>匿名 UI 客户端例子：</strong> 为“AI 协作中的反馈环”写文章时，可以先保存“旧测试是历史，不是当前证据”这类句子、一次失败场景和“反馈债务”这个 leading word，不急着决定章节。</p>
+<p><strong>UI 客户端操作例：</strong> 为“AI 协作中的反馈环”写文章时，可以先保存“旧测试是历史，不是当前证据”这类句子、一次失败场景和“反馈债务”这个 leading word，不急着决定章节。</p>
 <p><strong>产物与验收：</strong> 每个片段作者自己能看懂；没有为了完整性补造素材；用户删改或重排后下一次追加不会覆盖。</p>
 <p><strong>实验风险：</strong> 这是写作能力，不是工程需求 Skill；不要在产品实现流程里自动触发。</p>
 <h4 id="11-4-7-writing-beats-从固定素材中选择一条可达的叙事路径" tabindex="-1">11.4.7 <code>writing-beats</code>：从固定素材中选择一条可达的叙事路径<a class="heading-anchor" href="#11-4-7-writing-beats-从固定素材中选择一条可达的叙事路径" aria-label="链接到本节">#</a></h4>
@@ -2788,7 +2787,7 @@ before forming a root-cause theory.
 <li>再给 2–3 个当前可达的下一 beat；</li>
 <li>直到自然结束。</li>
 </ol>
-<p><strong>匿名 UI 客户端例子：</strong> 文章要讲“red-capable 反馈环”。如果读者还不知道 seam，就不能在第一段直接用“公共 seam”论证测试位置；要先用失败命令的场景把反馈环 grounded。</p>
+<p><strong>UI 客户端操作例：</strong> 文章要讲“red-capable 反馈环”。如果读者还不知道 seam，就不能在第一段直接用“公共 seam”论证测试位置；要先用失败命令的场景把反馈环 grounded。</p>
 <p><strong>产物与验收：</strong> 有持续更新的 grounded 概念集合；每个 beat 都能说明需要哪些前提、引入什么；素材不足时明确指出缺口，不凭空扩写。</p>
 <p><strong>实验风险：</strong> 逐 beat 需要频繁人机选择，不适合用户想一次性自动生成完整文章的场景。</p>
 <h4 id="11-4-8-writing-shape-从固定素材中逐段塑造一篇文章" tabindex="-1">11.4.8 <code>writing-shape</code>：从固定素材中逐段塑造一篇文章<a class="heading-anchor" href="#11-4-8-writing-shape-从固定素材中逐段塑造一篇文章" aria-label="链接到本节">#</a></h4>
@@ -2803,7 +2802,7 @@ before forming a root-cause theory.
 <li>原措辞本身重要才引用，否则转述；</li>
 <li>多行、可运行或示意代码使用 code block。</li>
 </ul>
-<p><strong>匿名 UI 客户端例子：</strong> 把一组 Skill 访谈笔记整理成教程。开头承诺解决“为什么 Agent 总在没问清时开工”，后续段落若漂到工具安装，应回到开头承诺或调整 thesis。</p>
+<p><strong>UI 客户端操作例：</strong> 把一组 Skill 访谈笔记整理成教程。开头承诺解决“为什么 Agent 总在没问清时开工”，后续段落若漂到工具安装，应回到开头承诺或调整 thesis。</p>
 <p><strong>产物与验收：</strong> 原材料只读；成稿单独保存；每个块对读者有新作用；未 grounded 的概念先补基础；素材缺例子时要求用户提供或删掉该论证。</p>
 <p><strong>实验风险：</strong> 它不是发布、平台排版或事实研究工具；这些必须由其他流程承担。</p>
 <h3 id="11-5-把-37-个名字压缩成-6-个新手问题" tabindex="-1">11.5 把 37 个名字压缩成 6 个新手问题<a class="heading-anchor" href="#11-5-把-37-个名字压缩成-6-个新手问题" aria-label="链接到本节">#</a></h3>
@@ -2936,7 +2935,570 @@ before forming a root-cause theory.
 <li>不把作者的公开材料写成对本书的认可或效果保证。</li>
 </ul>
 <hr>
-<h2 id="第-13-章-附录-37-个-skills-完整索引" tabindex="-1">第 13 章 · 附录：37 个 Skills 完整索引<a class="heading-anchor" href="#第-13-章-附录-37-个-skills-完整索引" aria-label="链接到本节">#</a></h2>
+<h2 id="第-13-章-三个端到端操作案例-审报告-迁逻辑-修白屏" tabindex="-1">第 13 章 · 三个端到端操作案例：审报告、迁逻辑、修白屏<a class="heading-anchor" href="#第-13-章-三个端到端操作案例-审报告-迁逻辑-修白屏" aria-label="链接到本节">#</a></h2>
+<p>第 8 章解决的是「遇到某类任务，应该选哪个 Skill」。这一章再往前一步：把三个真实工程中常见的任务，从收到需求一直走到可验证完成。</p>
+<p>这里不比较 Agent 品牌，也不复盘聊天过程。案例只关心五件事：任务怎样失败、为什么选择这些 Skills、Agent 具体执行什么、哪些失败可以降级、什么证据才允许宣布完成。</p>
+<p><img src="assets/diagrams/end-to-end-operation-cases.png" alt="三个端到端操作案例"></p>
+<h3 id="13-1-先看共同操作骨架" tabindex="-1">13.1 先看共同操作骨架<a class="heading-anchor" href="#13-1-先看共同操作骨架" aria-label="链接到本节">#</a></h3>
+<p>三个案例表面不同，底层都遵循同一条操作链：</p>
+<pre><code class="language-text">写出可观察目标
+  → 找到拥有答案的代码、配置或文档
+  → 选择能约束最大失败风险的 Skill
+  → 建立修正前就能捕获问题的反馈环
+  → 做最小修改
+  → 重跑当前验证
+  → 记录有限结论和未覆盖边界
+</code></pre>
+<p>开始前先写一张任务卡：</p>
+<pre><code class="language-markdown">## Goal
+用户最终能观察到什么变化？
+
+## Primary failure risk
+这次任务最可能怎样“看起来完成、实际上失败”？
+
+## Evidence owner
+哪个代码、配置、外部文档或运行结果拥有答案？
+
+## Red-capable check
+哪条命令或哪个现象能在修正前暴露问题？
+
+## Done
+哪些新鲜证据同时成立，才允许结束？
+</code></pre>
+<p>这张卡不是形式主义。它会直接决定该用 <code>research</code>、<code>diagnosing-bugs</code>、<code>implement</code>，还是先退回 <code>grill-with-docs</code>。</p>
+<h3 id="13-2-案例一-审查一份技术报告的事实准确性" tabindex="-1">13.2 案例一：审查一份技术报告的事实准确性<a class="heading-anchor" href="#13-2-案例一-审查一份技术报告的事实准确性" aria-label="链接到本节">#</a></h3>
+<h4 id="任务-5" tabindex="-1">任务<a class="heading-anchor" href="#任务-5" aria-label="链接到本节">#</a></h4>
+<p>团队准备发布一份桌面客户端架构报告。报告里写了模块数量、状态枚举、调度阶段、公开接口和后端能力。文字已经很顺，但没有人能确认这些具体说法是否仍与当前仓库一致。</p>
+<p>目标不是润色，而是把每个可证伪断言变成「有一手证据支持」「需要修正」或「当前无法确认」。</p>
+<h4 id="最大失败风险" tabindex="-1">最大失败风险<a class="heading-anchor" href="#最大失败风险" aria-label="链接到本节">#</a></h4>
+<p>Agent 很容易继续用文字理解文字：发现前后不矛盾，就判断报告正确。可技术报告最危险的不是语病，而是一个过期数字、漏掉的状态，或者把默认路径写成唯一入口。</p>
+<h4 id="skill-链-2" tabindex="-1">Skill 链<a class="heading-anchor" href="#skill-链-2" aria-label="链接到本节">#</a></h4>
+<pre><code class="language-text">research
+  → code-review
+  → writing-for-agents
+</code></pre>
+<ul>
+<li><code>research</code> 负责为每条断言找到真正拥有答案的一手来源；</li>
+<li><code>code-review</code> 把事实错误与表达规范问题分开；</li>
+<li><code>writing-for-agents</code> 把容易漂移的绝对表述改成能指导后续 Agent 回到证据的写法。</li>
+</ul>
+<p>需求本身已经清楚，不需要重新 <code>grill</code>。报告也不是功能规格，不应该进入 <code>implement</code>。</p>
+<h4 id="可直接交给-agent-的输入" tabindex="-1">可直接交给 Agent 的输入<a class="heading-anchor" href="#可直接交给-agent-的输入" aria-label="链接到本节">#</a></h4>
+<pre><code class="language-text">审查 docs/architecture-report.md 的事实准确性，不要先改文风。
+
+按以下顺序执行：
+1. 抽取所有可证伪断言，优先处理数量、枚举、阶段、默认值、
+   “全部”“唯一”“从不”这类绝对表述。
+2. 为每条断言指定拥有答案的一手代码、配置或官方资料。
+3. 实际读取定义并运行可重复检查；不要用另一份说明文档互相证明。
+4. 输出断言账本：断言、证据、判定、建议改写、覆盖限制。
+5. 只修改已被证据推翻的内容；无法确认的标为未知。
+6. 修改后重新检查账本与报告是否一致。
+</code></pre>
+<p>示例路径只是占位符。真正执行时，Agent 必须先定位你的报告和代码边界。</p>
+<h4 id="操作一-抽取断言-不要从头顺读" tabindex="-1">操作一：抽取断言，不要从头顺读<a class="heading-anchor" href="#操作一-抽取断言-不要从头顺读" aria-label="链接到本节">#</a></h4>
+<p>先把能被事实推翻的句子列出来：</p>
+<pre><code class="language-text">- 调度流程一共有四个阶段。
+- ProviderManager 是唯一的请求入口。
+- 所有后端都支持流式输出。
+- 设置变更会立即持久化到磁盘。
+</code></pre>
+<p>「架构清晰」「体验流畅」不是这一轮的事实断言。把主观评价混进来，会让审查范围无限扩大。</p>
+<h4 id="操作二-给断言分配证据所有者" tabindex="-1">操作二：给断言分配证据所有者<a class="heading-anchor" href="#操作二-给断言分配证据所有者" aria-label="链接到本节">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>断言类型</th>
+<th>优先证据</th>
+<th>不够强的证据</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>状态或阶段</td>
+<td>enum、schema、状态机分支</td>
+<td>旧流程图、变量名</td>
+</tr>
+<tr>
+<td>模块数量</td>
+<td>当前注册表、目录清单、构建入口</td>
+<td>README 中的旧数字</td>
+</tr>
+<tr>
+<td>唯一入口</td>
+<td>调用关系、路由表、公开导出</td>
+<td>只找到一个熟悉的调用点</td>
+</tr>
+<tr>
+<td>能力支持</td>
+<td>实际注册能力、功能开关、契约测试</td>
+<td>接口里存在可选字段</td>
+</tr>
+<tr>
+<td>持久化行为</td>
+<td>写入与重建后的读取测试</td>
+<td>UI 当下显示正确</td>
+</tr>
+</tbody></table>
+<p>搜索命令要围绕断言，而不是漫无目的浏览：</p>
+<pre><code class="language-bash">rg -n &#39;&lt;状态名或阶段名&gt;&#39; src packages electron
+rg -n &#39;register|provider|capabilities&#39; src packages electron
+rg -n &#39;persist|serialize|save|load&#39; src packages electron
+</code></pre>
+<p>这些命令只负责定位候选。最终判定必须读取定义、调用关系或运行结果。</p>
+<h4 id="操作三-维护断言账本" tabindex="-1">操作三：维护断言账本<a class="heading-anchor" href="#操作三-维护断言账本" aria-label="链接到本节">#</a></h4>
+<pre><code class="language-markdown">| 断言 | 证据 | 判定 | 修改 |
+|---|---|---|---|
+| 调度流程有四个阶段 | 状态定义列出五个可达阶段 | 错误 | 改为五个，并列出名称 |
+| 某模块是唯一入口 | 默认路由走该模块，但测试入口绕过 | 部分成立 | 改为默认生产入口 |
+| 所有后端支持同一能力 | 两个后端没有显式能力声明 | 未知 | 删除“所有”，记录待验证范围 |
+</code></pre>
+<p>「没搜到」不能自动写成「不存在」。只有搜索范围、生成代码、动态注册和排除目录都被说明后，负向结论才有足够强度。</p>
+<h4 id="操作四-分两轴修改" tabindex="-1">操作四：分两轴修改<a class="heading-anchor" href="#操作四-分两轴修改" aria-label="链接到本节">#</a></h4>
+<p>第一轴只处理事实：数字、状态、流程和能力。第二轴再处理文档规范：标题、术语、链接和可读性。</p>
+<p>如果同时改事实和文风，reviewer 很难判断某段变化是纠错还是改写偏好。</p>
+<h4 id="可以降级与不能降级" tabindex="-1">可以降级与不能降级<a class="heading-anchor" href="#可以降级与不能降级" aria-label="链接到本节">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>情况</th>
+<th>能否降级</th>
+<th>动作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>代码图工具不可用</td>
+<td>可以</td>
+<td>用定向搜索、调用点清单和逐文件读取代替，注明覆盖范围</td>
+</tr>
+<tr>
+<td>某条构建命令耗时过长</td>
+<td>可以</td>
+<td>先跑能直接验证该断言的目标命令，再决定是否扩大</td>
+</tr>
+<tr>
+<td>找不到断言的一手来源</td>
+<td>不可以猜</td>
+<td>标为未知，交给维护者或删除绝对表述</td>
+</tr>
+<tr>
+<td>报告与当前代码冲突</td>
+<td>不可以用文档覆盖代码事实</td>
+<td>修正文档，或另开明确的代码变更任务</td>
+</tr>
+</tbody></table>
+<h4 id="完成证据" tabindex="-1">完成证据<a class="heading-anchor" href="#完成证据" aria-label="链接到本节">#</a></h4>
+<ul>
+<li>每个已修改事实都能指向一手来源；</li>
+<li>未验证内容仍明确标为未知；</li>
+<li>报告没有用另一份二手文档自证；</li>
+<li>事实 review 与文风 review 分开；</li>
+<li>修改后重新运行了相关检查，而不是引用旧日志。</li>
+</ul>
+<h4 id="举一反三" tabindex="-1">举一反三<a class="heading-anchor" href="#举一反三" aria-label="链接到本节">#</a></h4>
+<p>同一操作法可用于 API 文档、迁移指南、发布说明、ADR 和安全设计文档。只需替换断言类型与证据所有者，不要替换「先抽断言、再找一手证据」的顺序。</p>
+<h3 id="13-3-案例二-把配置规范化逻辑迁入中央同步处理器" tabindex="-1">13.3 案例二：把配置规范化逻辑迁入中央同步处理器<a class="heading-anchor" href="#13-3-案例二-把配置规范化逻辑迁入中央同步处理器" aria-label="链接到本节">#</a></h3>
+<h4 id="任务-6" tabindex="-1">任务<a class="heading-anchor" href="#任务-6" aria-label="链接到本节">#</a></h4>
+<p>桌面客户端有两类 Provider 配置：</p>
+<ul>
+<li><code>custom</code> 保留用户填写的 endpoint 和 options；</li>
+<li><code>preset</code> 必须移除 endpoint 和只对自定义模式有效的字段。</li>
+</ul>
+<p>原逻辑散落在一个辅助函数中。现在要把完整语义收口到中央同步处理器，不新建文件，不顺手设计框架。</p>
+<h4 id="最大失败风险-2" tabindex="-1">最大失败风险<a class="heading-anchor" href="#最大失败风险-2" aria-label="链接到本节">#</a></h4>
+<p>这不是把几个 <code>if</code> 复制到另一个文件。真正风险包括：</p>
+<ol>
+<li>漏掉原函数中的某个分支；</li>
+<li>新位置的输入处于不同生命周期；</li>
+<li><code>delete field</code> 与 <code>field = undefined</code> 在序列化后不等价；</li>
+<li>旧函数仍有调用者；</li>
+<li>类型检查通过，但持久化结果已经变化。</li>
+</ol>
+<h4 id="skill-链-3" tabindex="-1">Skill 链<a class="heading-anchor" href="#skill-链-3" aria-label="链接到本节">#</a></h4>
+<pre><code class="language-text">implement
+  → diagnosing-bugs（仅在验证失败时进入）
+  → code-review
+</code></pre>
+<p>任务边界与目标位置已经确定，所以从 <code>implement</code> 开始。若测试或写入通道失败，再用 <code>diagnosing-bugs</code> 区分代码问题、测试问题和环境问题。最后用 <code>code-review</code> 分开检查工程标准与迁移规格。</p>
+<h4 id="可直接交给-agent-的输入-2" tabindex="-1">可直接交给 Agent 的输入<a class="heading-anchor" href="#可直接交给-agent-的输入-2" aria-label="链接到本节">#</a></h4>
+<pre><code class="language-text">将现有 Provider 配置规范化逻辑完整迁入 ConfigSyncService.sync。
+
+约束：
+- 不新建文件，不引入新依赖，不设计通用框架。
+- 编辑前列出原逻辑的全部分支、调用者和不变式。
+- 先用公共输入输出锁定 custom 与 preset 行为。
+- 修改后逐分支双向对照，不能只报告 typecheck 通过。
+- 特别检查字段删除与 undefined 在真实序列化边界是否等价。
+- 只有确认旧 helper 无调用者后才能删除。
+</code></pre>
+<h4 id="操作一-把原语义写成行为表" tabindex="-1">操作一：把原语义写成行为表<a class="heading-anchor" href="#操作一-把原语义写成行为表" aria-label="链接到本节">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>必须保留</th>
+<th>必须移除</th>
+<th>默认行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>kind=custom</code></td>
+<td>endpoint、options、credentialRef</td>
+<td>preset-only fields</td>
+<td>endpoint 去首尾空格</td>
+</tr>
+<tr>
+<td><code>kind=preset</code></td>
+<td>id、model、credentialRef</td>
+<td>endpoint、options</td>
+<td>使用注册表中的 endpoint</td>
+</tr>
+<tr>
+<td>未知 kind</td>
+<td>无</td>
+<td>无</td>
+<td>schema 应先拒绝，不在同步器里静默猜测</td>
+</tr>
+</tbody></table>
+<p>这张表是迁移规格。没有它，Agent 只能比较两段代码长得像不像。</p>
+<h4 id="操作二-先锁定公共行为" tabindex="-1">操作二：先锁定公共行为<a class="heading-anchor" href="#操作二-先锁定公共行为" aria-label="链接到本节">#</a></h4>
+<p>下面是教学用测试骨架，路径和 API 名称要替换为项目真实边界：</p>
+<pre><code class="language-typescript">it(&#39;preserves custom endpoint and options after sync&#39;, async () =&gt; {
+  await syncService.sync({
+    id: &#39;custom-a&#39;,
+    kind: &#39;custom&#39;,
+    endpoint: &#39; https://example.test/v1 &#39;,
+    options: { compatibility: &#39;openai&#39; },
+  });
+
+  expect(await repository.read(&#39;custom-a&#39;)).toMatchObject({
+    endpoint: &#39;https://example.test/v1&#39;,
+    options: { compatibility: &#39;openai&#39; },
+  });
+});
+
+it(&#39;removes custom-only fields from preset serialization&#39;, async () =&gt; {
+  await syncService.sync({
+    id: &#39;preset-a&#39;,
+    kind: &#39;preset&#39;,
+    endpoint: &#39;https://stale.example.test&#39;,
+    options: { compatibility: &#39;legacy&#39; },
+  });
+
+  const persisted = await repository.readRaw(&#39;preset-a&#39;);
+  expect(Object.hasOwn(persisted, &#39;endpoint&#39;)).toBe(false);
+  expect(Object.hasOwn(persisted, &#39;options&#39;)).toBe(false);
+});
+</code></pre>
+<p>第二个断言故意检查字段是否存在，而不只是值是否为 <code>undefined</code>。这样才能捕获序列化语义差异。</p>
+<h4 id="操作三-运行修改前基线" tabindex="-1">操作三：运行修改前基线<a class="heading-anchor" href="#操作三-运行修改前基线" aria-label="链接到本节">#</a></h4>
+<pre><code class="language-bash">pnpm vitest run tests/config-sync.test.ts
+pnpm typecheck
+</code></pre>
+<p>这是行为保持型迁移，测试在修改前应该是绿色。若缺少覆盖，先补测试并确认它能在破坏某个不变式时变红，再开始移动代码。</p>
+<h4 id="操作四-做最小迁移" tabindex="-1">操作四：做最小迁移<a class="heading-anchor" href="#操作四-做最小迁移" aria-label="链接到本节">#</a></h4>
+<p>编辑只完成三件事：</p>
+<ol>
+<li>在中央同步处理器中复现行为表；</li>
+<li>让现有入口经过新位置；</li>
+<li>在确认无调用者后删除旧 helper 和本次产生的无用 import。</li>
+</ol>
+<p>不要趁机创建 <code>UniversalConfigNormalizer</code>、feature flag 或兼容层。只有真实调用方证明需要复用时，抽象才有成本收益。</p>
+<h4 id="操作五-做双向语义对照" tabindex="-1">操作五：做双向语义对照<a class="heading-anchor" href="#操作五-做双向语义对照" aria-label="链接到本节">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>对照方向</th>
+<th>问题</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>旧 → 新</td>
+<td>旧逻辑的每个分支在新位置是否都有对应行为？</td>
+</tr>
+<tr>
+<td>新 → 旧</td>
+<td>新逻辑是否增加了原任务未要求的默认值、错误吞掉或字段变换？</td>
+</tr>
+<tr>
+<td>调用方</td>
+<td>是否仍有入口绕过中央处理器？</td>
+</tr>
+<tr>
+<td>序列化</td>
+<td><code>undefined</code>、缺失字段和 <code>null</code> 的最终 JSON 是否相同？</td>
+</tr>
+<tr>
+<td>生命周期</td>
+<td>规范化发生在校验前、校验后还是写盘前，是否改变错误行为？</td>
+</tr>
+</tbody></table>
+<h4 id="操作六-验证最终状态" tabindex="-1">操作六：验证最终状态<a class="heading-anchor" href="#操作六-验证最终状态" aria-label="链接到本节">#</a></h4>
+<pre><code class="language-bash">pnpm vitest run tests/config-sync.test.ts
+pnpm typecheck
+rg -n &#39;legacyNormalizeProviderConfig&#39; src packages electron
+</code></pre>
+<p>最后一条搜索应该没有有效调用者；但生成文件、fixture 和历史文档命中要逐项判断，不能看到任何命中就机械删除。</p>
+<h4 id="失败分支" tabindex="-1">失败分支<a class="heading-anchor" href="#失败分支" aria-label="链接到本节">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>失败</th>
+<th>正确处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>编辑工具拒绝目标路径</td>
+<td>换可审查的编辑通道，保留同一补丁目标</td>
+</tr>
+<tr>
+<td>测试失败且磁盘输出不符</td>
+<td>进入 <code>diagnosing-bugs</code>，先判断迁移位置还是序列化假设错误</td>
+</tr>
+<tr>
+<td>typecheck 通过但 raw JSON 不同</td>
+<td>以行为测试为准，类型检查不能替代持久化等价性</td>
+</tr>
+<tr>
+<td>独立 reviewer 不可用</td>
+<td>当前 Agent 串行执行 Standards/Spec 两轴 review，并明确验证边界</td>
+</tr>
+<tr>
+<td>旧 helper 仍有调用者</td>
+<td>暂不删除；完成调用方迁移或缩小本次范围</td>
+</tr>
+</tbody></table>
+<h4 id="完成证据-2" tabindex="-1">完成证据<a class="heading-anchor" href="#完成证据-2" aria-label="链接到本节">#</a></h4>
+<ul>
+<li>修改前后的行为测试都通过；</li>
+<li>custom、preset 与非法输入的分支完整；</li>
+<li>原逻辑与新逻辑已双向对照；</li>
+<li>持久化输出证明字段删除语义不变；</li>
+<li>旧 helper 没有有效调用者；</li>
+<li>没有新增与任务无关的抽象和依赖。</li>
+</ul>
+<h4 id="举一反三-2" tabindex="-1">举一反三<a class="heading-anchor" href="#举一反三-2" aria-label="链接到本节">#</a></h4>
+<p>同一操作法可用于字段重命名、schema 升级、缓存归一化和 IPC payload 迁移。核心不是「搬代码」，而是先锁定公共行为，再证明新旧边界等价。</p>
+<h3 id="13-4-案例三-定位并修复-electron-renderer-白屏" tabindex="-1">13.4 案例三：定位并修复 Electron renderer 白屏<a class="heading-anchor" href="#13-4-案例三-定位并修复-electron-renderer-白屏" aria-label="链接到本节">#</a></h3>
+<h4 id="症状-3" tabindex="-1">症状<a class="heading-anchor" href="#症状-3" aria-label="链接到本节">#</a></h4>
+<p>设置页合入一个共享配置工具后，开发模式偶尔正常，打包后的桌面客户端启动却只显示白屏。DevTools 控制台出现：</p>
+<pre><code class="language-text">Dynamic require of &quot;path&quot; is not supported
+</code></pre>
+<p>目标不是让错误消失一次，而是找到 Node-only 依赖怎样进入 renderer，并建立以后能自动阻止同类回归的边界检查。</p>
+<h4 id="最大失败风险-3" tabindex="-1">最大失败风险<a class="heading-anchor" href="#最大失败风险-3" aria-label="链接到本节">#</a></h4>
+<p>白屏可能来自 React 运行错误、资源路径、CSP、preload 失配、IPC 契约或 Node 依赖泄漏。直接升级打包器、打开 <code>nodeIntegration</code>，或者给 <code>path</code> 加 polyfill，都可能掩盖真正的进程边界破坏。</p>
+<h4 id="skill-链-4" tabindex="-1">Skill 链<a class="heading-anchor" href="#skill-链-4" aria-label="链接到本节">#</a></h4>
+<pre><code class="language-text">diagnosing-bugs
+  → tdd
+  → code-review
+</code></pre>
+<ul>
+<li><code>diagnosing-bugs</code> 先建立稳定复现和导入链证据；</li>
+<li><code>tdd</code> 把 renderer 不得 value-import Node-only 模块变成可自动执行的边界；</li>
+<li><code>code-review</code> 检查修复是否遵守进程、安全与规格边界。</li>
+</ul>
+<p>如果打包器行为不熟悉，才插入 <code>research</code>，并只查当前版本的官方文档。</p>
+<h4 id="可直接交给-agent-的输入-3" tabindex="-1">可直接交给 Agent 的输入<a class="heading-anchor" href="#可直接交给-agent-的输入-3" aria-label="链接到本节">#</a></h4>
+<pre><code class="language-text">修复打包后 renderer 白屏。不要先升级依赖或增加 polyfill。
+
+1. 用当前打包产物稳定复现，并记录第一条根错误。
+2. 从出错组件向下追踪完整 value-import 链，找到第一个 Node-only 边界。
+3. 为每个假设写预测，并一次只验证一个。
+4. 在修复前增加 renderer boundary 回归检查，确认它能因当前泄漏变红。
+5. 若 renderer 只需要类型，改为 type-only import；若需要能力，通过 typed preload/IPC 暴露最小接口。
+6. 重跑目标测试、renderer build 和桌面 smoke test。
+7. 删除临时日志，不改变 nodeIntegration 等安全设置。
+</code></pre>
+<h4 id="操作一-建立可重复复现" tabindex="-1">操作一：建立可重复复现<a class="heading-anchor" href="#操作一-建立可重复复现" aria-label="链接到本节">#</a></h4>
+<p>至少保留两个反馈环：</p>
+<pre><code class="language-bash">pnpm vitest run tests/integration/renderer-boundary.test.ts
+pnpm build:renderer
+</code></pre>
+<p>第一个负责快速边界回归，第二个证明真实打包链不再包含失败。若问题只出现在完整桌面包，再补最小启动 smoke；不要一开始就反复跑整个发布流水线。</p>
+<h4 id="操作二-写出排序假设" tabindex="-1">操作二：写出排序假设<a class="heading-anchor" href="#操作二-写出排序假设" aria-label="链接到本节">#</a></h4>
+<table>
+<thead>
+<tr>
+<th align="right">顺序</th>
+<th>假设</th>
+<th>可观察预测</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">1</td>
+<td>renderer value-import 了 Node-only 配置服务</td>
+<td>bundle 或导入图能追到 <code>path</code>、<code>fs</code> 或 Electron main 依赖</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td>preload 暴露对象与 renderer 类型不一致</td>
+<td>控制台第一条错误是 API 缺失，而不是动态 require</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td>静态资源 base 路径错误</td>
+<td>Network 面板出现入口 JS 404，错误发生在业务模块加载前</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td>React 组件自身抛错</td>
+<td>bundle 能加载，错误栈停在组件逻辑且没有 Node 模块命中</td>
+</tr>
+</tbody></table>
+<p>当前错误文本强烈支持假设 1，但仍要用导入链证明，不能凭经验直接改。</p>
+<h4 id="操作三-追踪第一条非法导入链" tabindex="-1">操作三：追踪第一条非法导入链<a class="heading-anchor" href="#操作三-追踪第一条非法导入链" aria-label="链接到本节">#</a></h4>
+<p>教学示例：</p>
+<pre><code class="language-text">SettingsPanel.tsx
+  → @app/shared-config
+  → ConfigFileStore
+  → node:path
+</code></pre>
+<p>真正需要修复的是第一个不该跨过 renderer 边界的 value import，通常不是最底层报错的 <code>node:path</code>。</p>
+<h4 id="操作四-先让边界测试变红" tabindex="-1">操作四：先让边界测试变红<a class="heading-anchor" href="#操作四-先让边界测试变红" aria-label="链接到本节">#</a></h4>
+<p>边界测试可以扫描 renderer 源码与构建产物，至少禁止：</p>
+<ul>
+<li><code>node:*</code>、<code>fs</code>、<code>path</code>、<code>os</code>、<code>child_process</code>；</li>
+<li>Electron main-only 包；</li>
+<li>会把上述依赖继续带入 bundle 的项目包；</li>
+<li>绕过 preload 的直接系统访问。</li>
+</ul>
+<p>测试必须先因当前导入链失败。一个从未捕获过问题的绿色测试，不能证明它约束了目标行为。</p>
+<h4 id="操作五-按真实需求选择修法" tabindex="-1">操作五：按真实需求选择修法<a class="heading-anchor" href="#操作五-按真实需求选择修法" aria-label="链接到本节">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>renderer 真正需要什么</th>
+<th>修法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>只需要 TypeScript 类型</td>
+<td>使用 <code>import type</code>，保证运行时 bundle 不加载目标包</td>
+</tr>
+<tr>
+<td>需要读取或写入本地配置</td>
+<td>main 执行文件操作，preload 暴露最小 typed API，renderer 通过 IPC 调用</td>
+</tr>
+<tr>
+<td>需要纯函数转换</td>
+<td>将纯函数拆到无 Node 依赖的共享模块，Node adapter 留在 main</td>
+</tr>
+<tr>
+<td>只是为了复用一个常量</td>
+<td>把常量放到无副作用的契约包，不导入整个服务模块</td>
+</tr>
+</tbody></table>
+<p>一个最小 IPC 方向示例：</p>
+<pre><code class="language-typescript">// renderer
+const config = await window.desktopApi.providerConfig.load();
+
+// preload 暴露最小能力，文件系统仍留在 main
+contextBridge.exposeInMainWorld(&#39;desktopApi&#39;, {
+  providerConfig: {
+    load: () =&gt; ipcRenderer.invoke(&#39;provider-config:load&#39;),
+  },
+});
+</code></pre>
+<p>通道名、schema 和错误类型应来自项目现有 IPC 契约，不要照抄字符串创建第二套协议。</p>
+<h4 id="操作六-分层验证" tabindex="-1">操作六：分层验证<a class="heading-anchor" href="#操作六-分层验证" aria-label="链接到本节">#</a></h4>
+<pre><code class="language-bash">pnpm vitest run tests/integration/renderer-boundary.test.ts
+pnpm build:renderer
+pnpm test --filter settings-panel
+</code></pre>
+<p>然后启动打包产物或等价 smoke，确认：</p>
+<ol>
+<li>首屏不再白屏；</li>
+<li>设置读取仍可用；</li>
+<li>DevTools 没有新的 preload/IPC 错误；</li>
+<li><code>nodeIntegration</code>、context isolation 和 CSP 没有被放宽；</li>
+<li>临时日志已清理。</li>
+</ol>
+<h4 id="错误修法" tabindex="-1">错误修法<a class="heading-anchor" href="#错误修法" aria-label="链接到本节">#</a></h4>
+<ul>
+<li>给 <code>path</code> 或 <code>fs</code> 加浏览器 polyfill；</li>
+<li>开启 renderer 的 Node 能力；</li>
+<li>捕获启动异常后显示空页面；</li>
+<li>只删掉报错 import，却不验证功能仍可用；</li>
+<li>只跑单元测试，不重新构建 renderer；</li>
+<li>因为开发模式正常，就忽略打包产物的真实错误。</li>
+</ul>
+<h4 id="完成证据-3" tabindex="-1">完成证据<a class="heading-anchor" href="#完成证据-3" aria-label="链接到本节">#</a></h4>
+<ul>
+<li>有一条能稳定捕获非法导入的回归检查；</li>
+<li>完整导入链已经记录，根因不是猜测；</li>
+<li>修复保持 renderer/Node 安全边界；</li>
+<li>renderer 构建、目标功能测试和桌面 smoke 当前通过；</li>
+<li>没有用安全降级或 polyfill 掩盖问题。</li>
+</ul>
+<h4 id="举一反三-3" tabindex="-1">举一反三<a class="heading-anchor" href="#举一反三-3" aria-label="链接到本节">#</a></h4>
+<p>同一诊断方式可用于 Web Worker 引入 DOM API、SSR 代码引用浏览器全局、React Native 引入 Node 包，以及浏览器扩展 content script 越过权限边界。先找非法依赖怎样穿过边界，再决定是 type-only import、纯模块拆分还是受控桥接。</p>
+<h3 id="13-5-三个案例怎样选" tabindex="-1">13.5 三个案例怎样选<a class="heading-anchor" href="#13-5-三个案例怎样选" aria-label="链接到本节">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>你看到的症状</th>
+<th>首个 Skill</th>
+<th>第一个产物</th>
+<th>不可省略的验证</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>文档写得像真的，但数字和绝对表述很多</td>
+<td><code>research</code></td>
+<td>可证伪断言账本</td>
+<td>断言到一手证据的映射</td>
+</tr>
+<tr>
+<td>逻辑要从旧位置迁到新边界</td>
+<td><code>implement</code></td>
+<td>原行为与不变式表</td>
+<td>新旧公共输出等价</td>
+</tr>
+<tr>
+<td>客户端白屏或跨运行时失败</td>
+<td><code>diagnosing-bugs</code></td>
+<td>稳定复现与导入链</td>
+<td>回归检查、真实构建、smoke</td>
+</tr>
+</tbody></table>
+<p>不要因为都能用 <code>code-review</code>，就从 review 开始。review 是后置反馈；它不能替代一开始对事实、行为或根因的建模。</p>
+<h3 id="13-6-把案例映射到自己的仓库" tabindex="-1">13.6 把案例映射到自己的仓库<a class="heading-anchor" href="#13-6-把案例映射到自己的仓库" aria-label="链接到本节">#</a></h3>
+<p>复制下面模板，填真实路径和命令：</p>
+<pre><code class="language-text">任务：
+一句话写出用户可观察结果。
+
+最大失败风险：
+哪一种假完成最危险？
+
+Skill 选择：
+哪个 Skill 直接限制这个失败风险？为什么不是别的 Skill？
+
+证据所有者：
+哪些代码、配置、官方资料或运行结果拥有答案？
+
+操作顺序：
+1. 修改前调查或基线。
+2. 能捕获目标问题的反馈环。
+3. 最小修改。
+4. 失败分支与允许的降级。
+5. 修改后的当前验证。
+
+完成收据：
+- 改了什么。
+- 实际运行了什么。
+- 证明了什么有限结论。
+- 哪些范围没有验证。
+</code></pre>
+<p>如果模板里只填得出「让 Agent 看一下」「测试通过」，说明任务还没有形成可执行工程案例。继续缩小目标或补齐证据所有者。</p>
+<h3 id="13-7-本章验收" tabindex="-1">13.7 本章验收<a class="heading-anchor" href="#13-7-本章验收" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>能按失败风险选择 Skill，而不是按 Agent 品牌或聊天习惯选择。</li>
+<li>能把一个抽象要求拆成实际输入、命令、文件产物和验收证据。</li>
+<li>能区分工具通道失败、工程假设被证伪和验证门槛失败。</li>
+<li>能将案例迁移到新项目，同时保留反馈环与安全边界。</li>
+<li>能说明当前证据证明了什么，也能说明它没有证明什么。</li>
+</ul>
+<hr>
+<h2 id="第-14-章-附录-37-个-skills-完整索引" tabindex="-1">第 14 章 · 附录：37 个 Skills 完整索引<a class="heading-anchor" href="#第-14-章-附录-37-个-skills-完整索引" aria-label="链接到本节">#</a></h2>
 <p>下面的列表以固定提交为准。稳定分类来自仓库目录；一句话说明综合了上游 README、各 Skill frontmatter 与正文。</p>
 <h3 id="a-engineering-18-个" tabindex="-1">A. Engineering：18 个<a class="heading-anchor" href="#a-engineering-18-个" aria-label="链接到本节">#</a></h3>
 <table>
