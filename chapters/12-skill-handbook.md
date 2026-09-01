@@ -914,6 +914,8 @@ Misc 不是“低价值”，而是“适用面窄”。使用前先确认仓库
 
 当你不确定时，不必从头翻这一章。只回答下面六问：
 
+![阿舟知识图：37 个 Skills 的六个新手问题路由](assets/azhou/six-questions-skill-router.png)
+
 1. **需求还没问清吗？** 无仓库用 `grill-me`，有仓库用 `grill-with-docs`，超出一个会话用 `wayfinder`。
 2. **决定已经清楚了吗？** 写 `to-spec`；需要多人或多会话交付，再用 `to-tickets`。
 3. **现在已经进入施工了吗？** 用 `implement`，在预定 seam 内按需加载 `tdd`，结束前 `code-review`。

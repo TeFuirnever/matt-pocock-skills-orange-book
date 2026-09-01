@@ -17,6 +17,12 @@ const projectRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const fixedCommit = '6654f6b60cd9d5be8b54c6fafe44346dabeb3b76';
 const expectedChapterCount = 16;
 const expectedStatementCount = 15;
+const expectedLabs = [
+  '01-find-the-answer.md',
+  '02-decision-to-spec.md',
+  '03-red-green-bug.md',
+  '04-delivery-handoff.md',
+];
 const expectedSkills = [
   'ask-matt',
   'setup-matt-pocock-skills',
@@ -116,6 +122,7 @@ const assembledBook = `${chapterNames
 const book = requireFile(errors, 'book.md');
 const indexHtml = requireFile(errors, 'html/index.html');
 const bookHtml = requireFile(errors, 'html/book.html');
+const labsIndexHtml = requireFile(errors, 'html/labs/index.html');
 const pagesWorkflow = requireFile(errors, '.github/workflows/pages.yml');
 const statementResearch = requireFile(
   errors,
@@ -134,6 +141,9 @@ if (book !== assembledBook) {
 if (!book.includes(fixedCommit)) {
   errors.push('book.md does not declare the fixed upstream commit');
 }
+if (!book.includes('[配套学习实验室](labs/)')) {
+  errors.push('book.md does not link readers to the learning labs');
+}
 
 const detailedSkillPattern = /^#### 11\.[1-4]\.\d+ \`([^\`]+)\`/gm;
 const documentedSkills = [...book.matchAll(detailedSkillPattern)].map(
@@ -147,6 +157,30 @@ if (documentedSkills.length !== expectedSkills.length) {
 for (const skill of expectedSkills) {
   if (!documentedSkills.includes(skill)) {
     errors.push(`missing detailed Skill section: ${skill}`);
+  }
+}
+
+for (const labName of expectedLabs) {
+  const labPath = `labs/${labName}`;
+  const labSource = requireFile(errors, labPath);
+  const labHtmlPath = `html/labs/${labName.replace(/\.md$/, '.html')}`;
+  const labHtml = requireFile(errors, labHtmlPath);
+  for (const requiredSection of ['## 任务', '## 必须留下的产物', '## 验收', '## 停止条件']) {
+    if (!labSource.includes(requiredSection)) {
+      errors.push(`${labPath} is missing required Lab section: ${requiredSection}`);
+    }
+  }
+  if (!labHtml.includes('配套练习')) {
+    errors.push(`${labHtmlPath} is missing generated Lab page content`);
+  }
+}
+for (const requiredLabContract of [
+  '四个递进 Lab',
+  'Lab 1 · 先找到答案',
+  'Lab 4 · 完成一次可交接交付',
+]) {
+  if (!labsIndexHtml.includes(requiredLabContract)) {
+    errors.push(`labs index is missing: ${requiredLabContract}`);
   }
 }
 
@@ -176,11 +210,15 @@ if (!hasAiHeroSource(statementUrls)) {
 }
 
 const imagePattern = /!\[[^\]]*\]\((assets\/[^)]+)\)/g;
+const htmlImagePattern = /<img\b[^>]*\bsrc=["'](assets\/[^"']+)["'][^>]*>/g;
 const imageReferences = [
-  ...new Set([...book.matchAll(imagePattern)].map((match) => match[1])),
+  ...new Set([
+    ...[...book.matchAll(imagePattern)].map((match) => match[1]),
+    ...[...book.matchAll(htmlImagePattern)].map((match) => match[1]),
+  ]),
 ];
-if (imageReferences.length < 16) {
-  errors.push(`expected at least 16 unique book images, found ${imageReferences.length}`);
+if (imageReferences.length < 25) {
+  errors.push(`expected at least 25 unique book images, found ${imageReferences.length}`);
 }
 for (const imageReference of imageReferences) {
   const sourceImage = resolve(projectRoot, imageReference);
@@ -261,6 +299,6 @@ if (errors.length > 0) {
   process.exitCode = 1;
 } else {
   console.log(
-    `[verify] passed: ${chapterNames.length} chapters, ${documentedSkills.length} Skills, ${statementCount} first-party records, ${imageReferences.length} images, Pages contract present, public scan clean`,
+    `[verify] passed: ${chapterNames.length} chapters, ${expectedLabs.length} Labs, ${documentedSkills.length} Skills, ${statementCount} first-party records, ${imageReferences.length} images, Pages contract present, public scan clean`,
   );
 }

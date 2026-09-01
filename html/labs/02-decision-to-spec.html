@@ -1,4 +1,13 @@
-@page {
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Matt Pocock Skills 橙皮书配套学习实验室：用可验证产物完成从调查到交接的四个任务。">
+  <meta name="theme-color" content="#f8f7f4">
+  <link rel="canonical" href="https://tefuirnever.github.io/matt-pocock-skills-orange-book/labs/">
+  <title>Lab 2 · 把决定写成可施工规格 · Skills 学习实验室</title>
+  <style>@page {
   size: A4;
   margin: 18mm 16mm 20mm;
 }
@@ -924,3 +933,84 @@ code {
     padding: 0;
   }
 }
+</style>
+</head>
+<body class="lab-page">
+  <a class="skip-link" href="#lab-content">跳到 Lab 正文</a>
+  <header class="topbar">
+    <div class="lab-topbar">
+      <a class="brand" href="../" aria-label="回到橙皮书首页">
+        <span class="brand-mark" aria-hidden="true">M</span>
+        <span><strong>Skills 学习实验室</strong><small>从阅读到可验证交付</small></span>
+      </a>
+      <nav class="lab-topbar-actions" aria-label="实验室操作">
+        <a href="../">阅读全书</a>
+        <a href="https://github.com/TeFuirnever/matt-pocock-skills-orange-book" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main id="lab-content" class="lab-layout">
+    <aside class="lab-sidebar" aria-label="学习实验室导航">
+      <p class="sidebar-label">四个递进 Lab</p>
+      <nav class="toc"><a class="toc-link" href="index.html">全部 Labs</a>
+<a class="toc-link" href="01-find-the-answer.html">Lab 1 · 先找到答案</a>
+<a class="toc-link" href="02-decision-to-spec.html">Lab 2 · 把决定写成可施工规格</a>
+<a class="toc-link" href="03-red-green-bug.html">Lab 3 · 让一个 bug 先变红</a>
+<a class="toc-link" href="04-delivery-handoff.html">Lab 4 · 完成一次可交接交付</a></nav>
+      <div class="sidebar-meta">
+        <span>每关都需留下</span>
+        <code>可复跑证据</code>
+      </div>
+    </aside>
+    <article class="book-article lab-article">
+      <p class="lab-kicker">配套练习</p>
+      <p class="lab-description">在自己的仓库完成一个小任务，并把可验证产物留给下一关。</p>
+      <h1>Lab 2 · 把决定写成可施工规格</h1>
+<p><strong>难度：小白到中级</strong>　<strong>预计：45–75 分钟</strong>　<strong>主风险：把访谈、规格和实现混成一段聊天</strong></p>
+<h2>任务</h2>
+<p>使用 Lab 1 的决策记录，形成一个足以交给新会话执行的最小 spec，再拆出第一张 tracer-bullet ticket。</p>
+<p>本关只做规格与拆票，不写产品代码。若发现关键决定没有确定，退回 Lab 1，而不是让 <code>to-spec</code> 替你猜。</p>
+<h2>操作</h2>
+<h3>1. 固定输入</h3>
+<p>把 Lab 1 的决策记录作为唯一业务输入，再补充必要的代码调查证据。明确告诉 Agent：不要重开访谈；缺少人类决定时，列为未决问题并停止。</p>
+<h3>2. 写最小 spec</h3>
+<p>spec 至少回答五件事：</p>
+<pre><code class="language-markdown">## User-visible outcome
+&lt;用户现在能观察到什么变化&gt;
+
+## Scope
+- In: &lt;这次必须实现的行为&gt;
+- Out: &lt;明确不实现的行为&gt;
+
+## Acceptance
+- &lt;用户行为 + 预期结果&gt;
+
+## Testing seam
+- &lt;通过哪层公开接口或交互验证&gt;
+
+## Open questions
+- &lt;若为空，明确写“无”&gt;
+</code></pre>
+<h3>3. 拆第一张 tracer-bullet ticket</h3>
+<p>一张 ticket 必须是一条可演示的垂直行为，不要按 renderer、main、测试分别横向切开。它要包含：目标、允许改动的边界、验收、目标命令、明确不做。</p>
+<h2>必须留下的产物</h2>
+<ul>
+<li>一份 spec；</li>
+<li>第一张包含验收和测试 seam 的 ticket；</li>
+<li>一份未决问题清单，或明确“无未决问题”。</li>
+</ul>
+<h2>验收</h2>
+<ul>
+<li>新会话只读 spec 和 ticket，就能知道目标、边界、验收和下一步；</li>
+<li>spec 中没有把推测写成事实；</li>
+<li>ticket 不是“改三个文件”，而是用户可观察的行为；</li>
+<li>没有在本关提前创建不可验证的实现代码。</li>
+</ul>
+<h2>停止条件</h2>
+<p>第一张 ticket 足以在一个会话内执行时停止。要做多张 ticket，先确认每张都能独立演示，再进入 Lab 3。</p>
+<p><a href="03-red-green-bug.html">进入 Lab 3</a> · <a href="index.html">返回实验室</a></p>
+
+    </article>
+  </main>
+</body>
+</html>
