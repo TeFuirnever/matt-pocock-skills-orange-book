@@ -12,10 +12,13 @@
 
 | 入口 | 用途 |
 |---|---|
+| [在线阅读版](https://tefuirnever.github.io/matt-pocock-skills-orange-book/) | GitHub Pages 文档站，支持目录、搜索、移动端阅读和打印 |
 | [book.md](book.md) | 权威正文，适合审阅、版本管理和引用 |
-| [html/book.html](html/book.html) | 完整 HTML 阅读版，适合浏览器阅读与打印 |
+| [chapters](chapters) | 16 个编号章节源，是内容事实源 |
+| [html/index.html](html/index.html) | 本地 HTML 阅读版 |
+| [research](research) | 作者一手材料与脱敏会话模式的研究底稿 |
 | [assets/azhou](assets/azhou) | 6 张阿舟小白图解的最终 PNG |
-| [assets/diagrams](assets/diagrams) | 8 张可编辑 Excalidraw 图源、SVG 和 PNG |
+| [assets/diagrams](assets/diagrams) | 10 张可编辑 Excalidraw 图源、SVG 和 PNG |
 
 ## 这次不再只做索引
 
@@ -30,7 +33,13 @@
 7. 新人最容易犯什么错误。
 
 此外还有 7 个由浅入深的合成案例，从文案小改、UI 原型、疑难 bug，
-一路到垂直切票、深模块、冲突解决和人工密钥向导。
+一路到垂直切票、深模块、冲突解决和人工密钥向导。第 0 章先按小白、
+中级和高阶给出三条阅读路径，不要求所有人从头顺序读到尾。
+
+第 12 章吸收 15 条 Matt Pocock 公开一手材料，区分固定仓库事实、后续官方站表述
+和本书的工程推论。第 13 章把 Codex、Zcode、Claude Code 本地会话中重复出现的
+协作模式改写为 3 个详细教学案例；仅保留因果顺序和验证信号，不公开原始对话或
+可反推的项目信息。
 
 ## 材料基准
 
@@ -60,11 +69,14 @@ npm ci
 npm run check
 ```
 
-`book.md` 是唯一内容事实源。构建脚本生成 `html/book.html`，并复制全部
-PNG 到 `html/assets/`。公开审计会检查：
+`chapters/` 下 16 个编号 Markdown 是内容事实源。构建脚本依次装配出
+`book.md`、`html/index.html` 和 `html/book.html`，并复制全部 PNG 到
+`html/assets/`。公开审计会检查：
 
 - 37/37 个 Skill 是否都有逐项讲解；
-- 14 张正文图片是否在 Markdown 和 HTML 中都存在；
+- 16 个章节源是否能逐字装配成完整书；
+- 至少 16 张正文图片是否在 Markdown 和 HTML 中都存在；
+- 15 条作者材料、3 个脱敏案例和 GitHub Pages 工作流是否存在；
 - 固定上游 commit 是否仍被声明；
 - 常见本机路径、会话目录、token 和私钥模式是否泄漏。
 

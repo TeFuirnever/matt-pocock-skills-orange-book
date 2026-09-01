@@ -6,17 +6,24 @@ A Chinese-first, beginner-friendly handbook for the public
 [`mattpocock/skills`](https://github.com/mattpocock/skills) repository.
 
 - [中文说明](README_zh.md)
+- [Online reading edition](https://tefuirnever.github.io/matt-pocock-skills-orange-book/)
 - [Authoritative Markdown book](book.md)
-- [Generated HTML reading edition](html/book.html)
+- [Generated HTML reading edition](html/index.html)
 
 ## What this repository contains
 
 - A fixed-version explanation of all 37 upstream Skills.
 - A step-by-step field guide for each Skill: trigger, input, process, boundary,
   anonymous desktop UI example, output, verification, and beginner mistakes.
+- Three explicit reading paths for beginner, intermediate, and advanced users.
 - Seven progressive, synthetic desktop UI client exercises.
+- Fifteen first-party evidence records from Matt Pocock's repository and
+  official AI Hero pages, with version and inference boundaries.
+- Three detailed, sanitized session reconstructions based on recurring Codex,
+  Zcode, and Claude Code collaboration patterns. They are teaching syntheses,
+  not raw transcripts or project case studies.
 - Six Azhou beginner diagrams as final PNG assets.
-- Eight editable Excalidraw scenes with SVG and PNG exports.
+- Ten editable Excalidraw scenes with SVG and PNG exports.
 
 The book is based on upstream commit
 [`6654f6b60cd9d5be8b54c6fafe44346dabeb3b76`](https://github.com/mattpocock/skills/tree/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76):
@@ -35,10 +42,12 @@ npm ci
 npm run check
 ```
 
-`book.md` is the content source of truth. The build generates
-`html/book.html` and copies every referenced PNG into `html/assets/`.
-The verifier checks 37/37 detailed Skill sections, image availability, the
-fixed upstream commit, and common public-repository secret/path patterns.
+The numbered files under `chapters/` are the authoritative content sources.
+The build assembles them into `book.md`, generates both `html/index.html` and
+`html/book.html`, and copies every referenced PNG into `html/assets/`.
+The verifier checks 37/37 detailed Skill sections, all 16 chapter sources,
+16+ book images, the fixed upstream commit, research/session evidence counts,
+the Pages workflow, and common public-repository secret/path patterns.
 
 ## Visual sources
 

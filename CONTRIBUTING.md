@@ -11,7 +11,10 @@ or fixed-version traceability are welcome.
 - Use public, anonymous desktop UI examples. Do not submit private project names,
   private code, local user paths, credentials, or raw chat transcripts.
 - Do not silently describe an `in-progress` Skill as stable.
-- Keep `book.md` as the content source of truth; do not edit generated HTML only.
+- Keep numbered files under `chapters/` as the content source of truth. Do not
+  edit generated `book.md` or HTML without changing the chapter or build source.
+- Put evidence collection notes under `research/` and keep author statement,
+  repository fact, teaching synthesis, and session-derived pattern distinct.
 
 ## Diagrams
 
@@ -31,6 +34,9 @@ npm run check
 
 The check must pass before a pull request is ready. Describe any validation that
 could not be run.
+
+For site changes, also open `html/index.html` at desktop and mobile widths and
+exercise the table of contents, search, mobile drawer, and print action.
 
 ## Pull requests
 
