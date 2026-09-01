@@ -1,0 +1,51 @@
+name: Content correction
+description: Report an inaccurate, unclear, or insufficiently sourced passage.
+title: "[Content]: "
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Beginner path or concepts
+        - Skill reference
+        - Synthetic example
+        - Source or attribution
+        - Diagram or accessibility
+        - Other book content
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: Provide the chapter, heading, page URL, or file path.
+      placeholder: "Chapter 06, section 6.3"
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong or unclear?
+      description: Explain the current problem and its impact on readers.
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: Suggested correction
+      description: Describe the smallest accurate correction you recommend.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Public evidence
+      description: Link public upstream source material when the correction depends on a factual claim.
+  - type: checkboxes
+    id: public-boundary
+    attributes:
+      label: Public repository boundary
+      options:
+        - label: I have not included credentials, private paths, private code, or raw chat transcripts.
+          required: true

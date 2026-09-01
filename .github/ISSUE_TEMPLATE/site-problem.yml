@@ -1,0 +1,47 @@
+name: Site or rendering problem
+description: Report a broken page, interaction, layout, image, or accessibility issue.
+title: "[Site]: "
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page URL
+      placeholder: https://tefuirnever.github.io/matt-pocock-skills-orange-book/
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser and device
+      placeholder: "Safari 18 on macOS, or Chrome 140 on Android"
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Describe what happened and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      placeholder: |
+        1. Open the page
+        2. Select...
+        3. Observe...
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Screenshot or console output
+      description: Attach public-safe evidence without credentials, private paths, or personal information.
+  - type: checkboxes
+    id: public-boundary
+    attributes:
+      label: Public repository boundary
+      options:
+        - label: I reviewed the report and attachments for private or sensitive information.
+          required: true
