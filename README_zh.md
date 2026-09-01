@@ -14,11 +14,11 @@
 |---|---|
 | [在线阅读版](https://tefuirnever.github.io/matt-pocock-skills-orange-book/) | GitHub Pages 文档站，支持目录、搜索、移动端阅读和打印 |
 | [book.md](book.md) | 权威正文，适合审阅、版本管理和引用 |
-| [chapters](chapters) | 16 个编号章节源，是内容事实源 |
+| [chapters](chapters) | 15 个编号章节源，是内容事实源 |
 | [html/index.html](html/index.html) | 本地 HTML 阅读版 |
-| [research](research) | 作者一手材料与脱敏会话模式的研究底稿 |
+| [research](research) | Matt Pocock 公开一手材料的研究底稿 |
 | [assets/azhou](assets/azhou) | 6 张阿舟小白图解的最终 PNG |
-| [assets/diagrams](assets/diagrams) | 10 张可编辑 Excalidraw 图源、SVG 和 PNG |
+| [assets/diagrams](assets/diagrams) | 9 张可编辑 Excalidraw 图源、SVG 和 PNG |
 
 ## 这次不再只做索引
 
@@ -37,9 +37,7 @@
 中级和高阶给出三条阅读路径，不要求所有人从头顺序读到尾。
 
 第 12 章吸收 15 条 Matt Pocock 公开一手材料，区分固定仓库事实、后续官方站表述
-和本书的工程推论。第 13 章把 Codex、Zcode、Claude Code 本地会话中重复出现的
-协作模式改写为 3 个详细教学案例；仅保留因果顺序和验证信号，不公开原始对话或
-可反推的项目信息。
+和本书的工程推论。第 13 章提供 37 个 Skills 的完整索引、资料来源与适用边界。
 
 ## 材料基准
 
@@ -58,7 +56,6 @@
 - 私有项目名、私有源码和内部接口；
 - 用户本机绝对路径；
 - 密钥、账号、客户或发布信息；
-- Codex、Claude Code 或其他工具的原始聊天记录。
 
 书中讲的是公开 Skill 如何用于一类工程问题，不是在披露某个非开源项目的真实 case。
 
@@ -69,14 +66,14 @@ npm ci
 npm run check
 ```
 
-`chapters/` 下 16 个编号 Markdown 是内容事实源。构建脚本依次装配出
+`chapters/` 下 15 个编号 Markdown 是内容事实源。构建脚本依次装配出
 `book.md`、`html/index.html` 和 `html/book.html`，并复制全部 PNG 到
 `html/assets/`。公开审计会检查：
 
 - 37/37 个 Skill 是否都有逐项讲解；
-- 16 个章节源是否能逐字装配成完整书；
-- 至少 16 张正文图片是否在 Markdown 和 HTML 中都存在；
-- 15 条作者材料、3 个脱敏案例和 GitHub Pages 工作流是否存在；
+- 15 个章节源是否能逐字装配成完整书；
+- 至少 15 张正文图片是否在 Markdown 和 HTML 中都存在；
+- 15 条作者材料和 GitHub Pages 工作流是否存在；
 - 固定上游 commit 是否仍被声明；
 - 常见本机路径、会话目录、token 和私钥模式是否泄漏。
 

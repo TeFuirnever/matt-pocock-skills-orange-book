@@ -857,8 +857,7 @@ code {
 <a class="toc-link" href="#第-10-章-新人四周训练路线" data-section="第-10-章-新人四周训练路线">第 10 章 · 新人四周训练路线</a>
 <a class="toc-link" href="#第-11-章-37-个-skills-逐项小白手册" data-section="第-11-章-37-个-skills-逐项小白手册">第 11 章 · 37 个 Skills 逐项小白手册</a>
 <a class="toc-link" href="#第-12-章-matt-pocock-本人怎样讲-skills" data-section="第-12-章-matt-pocock-本人怎样讲-skills">第 12 章 · Matt Pocock 本人怎样讲 Skills</a>
-<a class="toc-link" href="#第-13-章-三类-agent-会话的脱敏复盘" data-section="第-13-章-三类-agent-会话的脱敏复盘">第 13 章 · 三类 Agent 会话的脱敏复盘</a>
-<a class="toc-link" href="#第-14-章-附录-37-个-skills-完整索引" data-section="第-14-章-附录-37-个-skills-完整索引">第 14 章 · 附录：37 个 Skills 完整索引</a>
+<a class="toc-link" href="#第-13-章-附录-37-个-skills-完整索引" data-section="第-13-章-附录-37-个-skills-完整索引">第 13 章 · 附录：37 个 Skills 完整索引</a>
 <a class="toc-link" href="#资料与诚实声明" data-section="资料与诚实声明">资料与诚实声明</a></nav>
         <div class="sidebar-meta">
           <span>固定上游提交</span>
@@ -907,7 +906,7 @@ code {
 </tr>
 <tr>
 <td>补充证据</td>
-<td>Matt Pocock 官网一手材料；Codex、Claude Code、Zcode 会话的脱敏流程观察</td>
+<td>Matt Pocock 官网一手材料</td>
 </tr>
 </tbody></table>
 <p>本书不是 Matt Pocock 官方文档，也不代表原作者背书。Skill 的原始代码与文档采用 MIT License；本书原创讲解、图示和案例采用 CC BY-NC-SA 4.0。</p>
@@ -927,7 +926,6 @@ code {
 <li>新人四周训练路线</li>
 <li>37 个 Skills 逐项小白手册</li>
 <li>Matt Pocock 本人怎样讲 Skills</li>
-<li>三类 Agent 会话的脱敏复盘</li>
 <li>速查索引与资料声明</li>
 </ol>
 <hr>
@@ -955,13 +953,13 @@ code {
 <tr>
 <td>中级：已经能用 Agent 写功能</td>
 <td>解决需求漂移、弱测试、疑难 bug 和跨会话失真</td>
-<td>3 → 4 → 5 → 7 → 8 → 13</td>
+<td>3 → 4 → 5 → 7 → 8</td>
 <td>让 spec、ticket、测试和 handoff 组成连续工程链</td>
 </tr>
 <tr>
 <td>高阶：正在带团队或建 Harness</td>
 <td>设计可组合、可审计、可降级的 Agent 工作流</td>
-<td>6 → 9 → 11 → 12 → 13 → 14</td>
+<td>6 → 9 → 11 → 12 → 13</td>
 <td>把 Skill 改写成项目级流程，并用证据边界约束完成声明</td>
 </tr>
 </tbody></table>
@@ -1018,10 +1016,6 @@ code {
 <td>想知道 Matt Pocock 本人怎样表述这套方法</td>
 <td>第 12 章</td>
 </tr>
-<tr>
-<td>想看 Codex、Claude Code、Zcode 会话提炼出的流程细节</td>
-<td>第 13 章</td>
-</tr>
 </tbody></table>
 <h3 id="0-3-本书采用的讲法" tabindex="-1">0.3 本书采用的讲法<a class="heading-anchor" href="#0-3-本书采用的讲法" aria-label="链接到本节">#</a></h3>
 <p>每一章都按同一顺序展开：</p>
@@ -1046,7 +1040,6 @@ code {
 <ul>
 <li>私有项目名、内部仓库地址和用户本机路径；</li>
 <li>未公开模块名、协议名、接口、事件或源代码；</li>
-<li>Codex、Claude Code 或其他工具的原始聊天记录；</li>
 <li>能反推出产品路线、客户、账号、密钥或发布状态的细节。</li>
 </ul>
 <h3 id="0-5-证据口径" tabindex="-1">0.5 证据口径<a class="heading-anchor" href="#0-5-证据口径" aria-label="链接到本节">#</a></h3>
@@ -1070,11 +1063,6 @@ code {
 <td>这些表述已经出现在固定提交中，或他为本书背书</td>
 </tr>
 <tr>
-<td>脱敏会话模式</td>
-<td>一种流程在真实 Agent 会话中曾经出现</td>
-<td>某个私有项目已经这样实现，更不是成功率</td>
-</tr>
-<tr>
 <td>当前验证</td>
 <td>当前代码、当前分支、当前命令的结果</td>
 <td>下一次改动仍然会通过</td>
@@ -1085,7 +1073,7 @@ code {
 <ul>
 <li>能说清本书主角是公开的 Matt Pocock Skills 仓库。</li>
 <li>能说清匿名实例是教学载体，不是私有项目案例披露。</li>
-<li>能区分固定上游事实、后续官网表述、脱敏会话模式和当前验证。</li>
+<li>能区分固定上游事实、后续官网表述和当前验证。</li>
 <li>能根据自己的经验选择小白、中级或高阶路径。</li>
 </ul>
 <hr>
@@ -2948,388 +2936,7 @@ before forming a root-cause theory.
 <li>不把作者的公开材料写成对本书的认可或效果保证。</li>
 </ul>
 <hr>
-<h2 id="第-13-章-三类-agent-会话的脱敏复盘" tabindex="-1">第 13 章 · 三类 Agent 会话的脱敏复盘<a class="heading-anchor" href="#第-13-章-三类-agent-会话的脱敏复盘" aria-label="链接到本节">#</a></h2>
-<p>本章不展示聊天截图，也不复制原始对话。它从 Codex、Claude Code 和 Zcode 的本地历史中提取工程过程，再把任务、文件、标识符和产品信息改写为公开教学场景。</p>
-<p><img src="assets/diagrams/session-evidence-sanitization.png" alt="从本地会话到公开教学案例"></p>
-<h3 id="13-1-这些案例是怎样脱敏的" tabindex="-1">13.1 这些案例是怎样脱敏的<a class="heading-anchor" href="#13-1-这些案例是怎样脱敏的" aria-label="链接到本节">#</a></h3>
-<table>
-<thead>
-<tr>
-<th>处理层</th>
-<th>保留</th>
-<th>移除或改写</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>候选定位</td>
-<td>Skill 名、验证词、工具失败信号</td>
-<td>不做内容公开</td>
-</tr>
-<tr>
-<td>机器脱敏</td>
-<td>任务顺序与结果标签</td>
-<td>URL、绝对路径、密钥形式、长 ID、hash</td>
-</tr>
-<tr>
-<td>人工核对</td>
-<td>请求→调查→失败→修正→验证的因果</td>
-<td>项目名、模块名、代码符号、用户原话</td>
-</tr>
-<tr>
-<td>教学合成</td>
-<td>Skill 选择、产物结构、验收方法</td>
-<td>能反推业务路线、客户、账号或发布状态的信息</td>
-</tr>
-</tbody></table>
-<p>收集器当时定位了 67 个相关运行：Codex 30、Claude Code 30、Zcode 7。这些数字只说明存在可用的过程样本，不是产品横评，也不是 Skill 成功率。</p>
-<h3 id="13-2-案例一-claude-code-的技术报告事实审计" tabindex="-1">13.2 案例一：Claude Code 的技术报告事实审计<a class="heading-anchor" href="#13-2-案例一-claude-code-的技术报告事实审计" aria-label="链接到本节">#</a></h3>
-<h4 id="适合谁" tabindex="-1">适合谁<a class="heading-anchor" href="#适合谁" aria-label="链接到本节">#</a></h4>
-<p>这是一个小白到中级的过渡案例。任务不是写代码，但它训练了 AI 协作开发中最重要的基础能力：把「说得很像真的话」拆成可证伪断言。</p>
-<h4 id="脱敏任务" tabindex="-1">脱敏任务<a class="heading-anchor" href="#脱敏任务" aria-label="链接到本节">#</a></h4>
-<p>一份桌面客户端架构报告已经写完，其中包含模块数量、状态枚举、调度阶段、执行模式和后端能力等具体说法。目标是确认这些说法都有一手代码或配置证据，而不是「读起来合理」。</p>
-<h4 id="传统开发者容易怎样做" tabindex="-1">传统开发者容易怎样做<a class="heading-anchor" href="#传统开发者容易怎样做" aria-label="链接到本节">#</a></h4>
-<ol>
-<li>从头到尾通读报告，凭熟悉感标几个「可能有问题」。</li>
-<li>只检查文字流畅度，不检查可证伪的数值和状态。</li>
-<li>让 Agent 「仔细检查不要幻觉」，但不指定证据应来自哪里。</li>
-</ol>
-<p>这样做的问题是：Agent 会继续用语言理解语言，却没有被迫回到代码事实。</p>
-<h4 id="skill-选择-7" tabindex="-1">Skill 选择<a class="heading-anchor" href="#skill-选择-7" aria-label="链接到本节">#</a></h4>
-<ul>
-<li><code>research</code>：对每个断言找拥有答案的一手来源。</li>
-<li><code>code-review</code>：将报告本身的规范问题和事实错误分开。</li>
-<li><code>writing-for-agents</code>：把未来还会漂移的断言改写为指向可核验证据的表述。</li>
-</ul>
-<h4 id="可直接使用的脱敏输入" tabindex="-1">可直接使用的脱敏输入<a class="heading-anchor" href="#可直接使用的脱敏输入" aria-label="链接到本节">#</a></h4>
-<pre><code class="language-text">审查这份技术报告的事实准确性，不要先改文风。
-
-1. 先抽取所有可证伪断言，特别是数量、状态、执行阶段、
-   公开接口和模块职责。
-2. 为每条断言指定拥有答案的一手代码或配置。
-3. 实际运行可重复的检查命令，不要只看文件名推断。
-4. 输出断言账本：断言、证据、判定、建议改写。
-5. 只修正有证据的错误；无法验证的标为未知。
-</code></pre>
-<h4 id="agent-行动时间线" tabindex="-1">Agent 行动时间线<a class="heading-anchor" href="#agent-行动时间线" aria-label="链接到本节">#</a></h4>
-<table>
-<thead>
-<tr>
-<th>步骤</th>
-<th>行动</th>
-<th>为什么必须这样做</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>把报告中具体数字、枚举、阶段名和绝对语句抽成约 16 条断言</td>
-<td>没有断言单元，就无法一条条证伪</td>
-</tr>
-<tr>
-<td>2</td>
-<td>为每条断言选定拥有答案的来源</td>
-<td>文档内部自洽不是证据</td>
-</tr>
-<tr>
-<td>3</td>
-<td>用命令统计行为、读取枚举、检查分支和后端列表</td>
-<td>让结论能被第二个人重复</td>
-</tr>
-<tr>
-<td>4</td>
-<td>对 3 条不一致做精确修正</td>
-<td>两条数字已漂移，一条流程阶段说得过度</td>
-</tr>
-<tr>
-<td>5</td>
-<td>再次读回修改段落，确认没有将「未知」改写成「不存在」</td>
-<td>负向结论需要更强覆盖证据</td>
-</tr>
-</tbody></table>
-<h4 id="断言账本示例" tabindex="-1">断言账本示例<a class="heading-anchor" href="#断言账本示例" aria-label="链接到本节">#</a></h4>
-<table>
-<thead>
-<tr>
-<th>断言</th>
-<th>证据所有者</th>
-<th>判定</th>
-<th>处理</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>调度流程有四个阶段</td>
-<td>状态定义与调度分支</td>
-<td>不准确</td>
-<td>改为当前可观察的五个阶段</td>
-</tr>
-<tr>
-<td>某模块为惟一执行入口</td>
-<td>公开调用点与路由配置</td>
-<td>部分成立</td>
-<td>改为默认入口，并列出例外边界</td>
-</tr>
-<tr>
-<td>所有后端都支持同一能力</td>
-<td>后端注册与功能开关</td>
-<td>未知</td>
-<td>不做否定，添加验证限制</td>
-</tr>
-</tbody></table>
-<h4 id="本案例不能证明什么" tabindex="-1">本案例不能证明什么<a class="heading-anchor" href="#本案例不能证明什么" aria-label="链接到本节">#</a></h4>
-<ul>
-<li>不能证明 Claude Code 会自动找到所有幻觉。</li>
-<li>不能证明 16 条断言覆盖了整份报告。</li>
-<li>不能用历史命令为当前代码继续背书。</li>
-</ul>
-<h3 id="13-3-案例二-zcode-的配置规范化逻辑迁移" tabindex="-1">13.3 案例二：Zcode 的配置规范化逻辑迁移<a class="heading-anchor" href="#13-3-案例二-zcode-的配置规范化逻辑迁移" aria-label="链接到本节">#</a></h3>
-<h4 id="适合谁-2" tabindex="-1">适合谁<a class="heading-anchor" href="#适合谁-2" aria-label="链接到本节">#</a></h4>
-<p>这是一个中级案例。你已经能让 Agent 改代码，但需要学会在「写入工具失败」、「后台 review 超时」和「语义细节存疑」同时出现时，哪些可以降级，哪些不能略过。</p>
-<h4 id="脱敏任务-2" tabindex="-1">脱敏任务<a class="heading-anchor" href="#脱敏任务-2" aria-label="链接到本节">#</a></h4>
-<p>一套通用模型配置需要在同步时规范化：自定义模式需保留端点和选项，预置模式需移除无效字段。现有逻辑散落在一个辅助函数中，要求将完整语义收口到中央同步处理器，不新建文件。</p>
-<h4 id="任务的真正风险" tabindex="-1">任务的真正风险<a class="heading-anchor" href="#任务的真正风险" aria-label="链接到本节">#</a></h4>
-<p>表面上只是「复制几个 if 分支」，真正风险却有四层：</p>
-<ol>
-<li>是否覆盖原辅助函数的每个分支；</li>
-<li>新位置的输入和原位置是否处于同一生命周期；</li>
-<li>「删除字段」与「赋值为 <code>undefined</code>」在后续序列化中是否等价；</li>
-<li>旧辅助函数是否仍有其他调用者。</li>
-</ol>
-<h4 id="skill-选择-8" tabindex="-1">Skill 选择<a class="heading-anchor" href="#skill-选择-8" aria-label="链接到本节">#</a></h4>
-<ul>
-<li><code>implement</code>：任务边界已经确定，按现有结构做最小改动。</li>
-<li><code>diagnosing-bugs</code>：写入工具失败时，先区分环境问题和代码问题。</li>
-<li><code>code-review</code>：实现后按原逻辑逐分支对照，再单独检查任务要求。</li>
-</ul>
-<h4 id="可直接使用的脱敏输入-2" tabindex="-1">可直接使用的脱敏输入<a class="heading-anchor" href="#可直接使用的脱敏输入-2" aria-label="链接到本节">#</a></h4>
-<pre><code class="language-text">将已有的配置规范化逻辑完整收口到中央同步处理器。
-
-约束：
-- 不新建文件，不设计新抽象。
-- 先列出原逻辑的全部分支与不变式，再编辑。
-- 修改后逐分支双向对照，不能只看类型检查通过。
-- 特别核对字段删除和空值在序列化边界的等价性。
-- 运行定向类型检查和现有测试，记录实际输出。
-</code></pre>
-<h4 id="agent-行动时间线-2" tabindex="-1">Agent 行动时间线<a class="heading-anchor" href="#agent-行动时间线-2" aria-label="链接到本节">#</a></h4>
-<ol>
-<li><strong>读取原语义。</strong> 不先写代码，将自定义分支、预置分支、默认值和删除行为列成表。</li>
-<li><strong>第一次写入失败。</strong> 工具拒绝了目标路径；这是写入通道问题，不是代码理论被证伪。</li>
-<li><strong>第二次写入失败。</strong> 保留原补丁和误差信息，更换为当前环境允许的可审查编辑方式。</li>
-<li><strong>完成最小实现。</strong> 只在已指定处理器中合并分支，不新增通用 helper。</li>
-<li><strong>运行类型检查。</strong> 结果通过，但这只能证明类型契约。</li>
-<li><strong>后台 review 超时。</strong> 不把「没有 review 结果」宣称为「没有问题」；改为当前 Agent 串行做两轴 review。</li>
-<li><strong>发现语义差异候选。</strong> 旧逻辑删除字段，新逻辑赋空值。</li>
-<li><strong>核对序列化。</strong> 只有在当前序列化边界两者实际输出一致时，才记录为等价；否则必须修复。</li>
-</ol>
-<h4 id="降级决策表" tabindex="-1">降级决策表<a class="heading-anchor" href="#降级决策表" aria-label="链接到本节">#</a></h4>
-<table>
-<thead>
-<tr>
-<th>失败</th>
-<th>可以降级吗</th>
-<th>正确动作</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>某个编辑工具不可用</td>
-<td>可以</td>
-<td>换用可审查写入方式，保留同一补丁目标</td>
-</tr>
-<tr>
-<td>后台 review 超时</td>
-<td>可以</td>
-<td>改为串行两轴 review，明确无独立 reviewer</td>
-</tr>
-<tr>
-<td>类型检查失败</td>
-<td>不可以</td>
-<td>修复后重跑，不能用人工目测替代</td>
-</tr>
-<tr>
-<td>原逻辑与新逻辑分支不一致</td>
-<td>不可以</td>
-<td>找回丢失分支或获得明确的需求变更</td>
-</tr>
-<tr>
-<td>序列化等价性未核对</td>
-<td>不可以</td>
-<td>执行可观察输出对比或增加回归测试</td>
-</tr>
-</tbody></table>
-<h4 id="本案例不能证明什么-2" tabindex="-1">本案例不能证明什么<a class="heading-anchor" href="#本案例不能证明什么-2" aria-label="链接到本节">#</a></h4>
-<ul>
-<li>工具最终写入成功，不等于实现语义正确。</li>
-<li>类型检查通过，不等于持久化输出等价。</li>
-<li>当前序列化器忽略空值，不代表所有后续消费者都忽略。</li>
-</ul>
-<h3 id="13-4-案例三-codex-的整仓定位与冲突审计" tabindex="-1">13.4 案例三：Codex 的整仓定位与冲突审计<a class="heading-anchor" href="#13-4-案例三-codex-的整仓定位与冲突审计" aria-label="链接到本节">#</a></h3>
-<h4 id="适合谁-3" tabindex="-1">适合谁<a class="heading-anchor" href="#适合谁-3" aria-label="链接到本节">#</a></h4>
-<p>这是一个高阶案例。它不是找一个 bug，而是在文档、运行状态、历史记录和候选方案并存时，建立「谁有权描述当前」的证据层级。</p>
-<h4 id="脱敏任务-3" tabindex="-1">脱敏任务<a class="heading-anchor" href="#脱敏任务-3" aria-label="链接到本节">#</a></h4>
-<p>一个桌面开发工具仓库经历了多轮实验，有当前说明、研究轨道、内容包、运行状态、历史收据和候选方案。用户要求端到端审视整仓定位是否一致，并列出真正冲突。</p>
-<h4 id="为什么-全局搜索关键词-不够" tabindex="-1">为什么「全局搜索关键词」不够<a class="heading-anchor" href="#为什么-全局搜索关键词-不够" aria-label="链接到本节">#</a></h4>
-<p>搜索可以找到所有「当前」、「完成」、「发布」，但它无法自动告诉你：</p>
-<ul>
-<li>这句话是当前事实、目标、历史引用还是测试 fixture；</li>
-<li>一份研究材料是否已经进入可交付包；</li>
-<li>一份收据证明的是历史发生过，还是当前仍然有效；</li>
-<li>一个未完成候选是真正阻塞，还是已被新方向取代。</li>
-</ul>
-<p>所以审计必须先建权威层级，再做内容对照。</p>
-<h4 id="skill-选择-9" tabindex="-1">Skill 选择<a class="heading-anchor" href="#skill-选择-9" aria-label="链接到本节">#</a></h4>
-<ul>
-<li><code>research</code>：找到每类状态的所有者。</li>
-<li><code>domain-modeling</code>：区分「研究轨道」、「交付包」、「运行」和「发布证据」。</li>
-<li><code>code-review</code>：把发现写成有等级、路径和影响的 findings。</li>
-<li><code>wayfinder</code>：将整仓问题拆成可独立决策的证据边界。</li>
-<li><code>writing-for-agents</code>：修正无触发条件的指针和互相竞争的状态文档。</li>
-</ul>
-<h4 id="可直接使用的脱敏输入-3" tabindex="-1">可直接使用的脱敏输入<a class="heading-anchor" href="#可直接使用的脱敏输入-3" aria-label="链接到本节">#</a></h4>
-<pre><code class="language-text">对当前仓库做只读、端到端的定位与状态冲突审计。
-
-先完成三件事，再判断冲突：
-1. 列出哪些表面有权描述当前产品定位、运行状态和发布状态。
-2. 区分当前事实、未实现目标、历史记录和研究材料。
-3. 对所有否定或穷尽性结论记录覆盖边界。
-
-输出 findings 时只分四类：
-- 当前冲突：两个现役权威面描述不一致。
-- 过期候选：旧计划仍被写成下一步。
-- 历史记录：当时成立，但不应参与当前判断。
-- 权威模糊：没有清楚的当前事实所有者。
-</code></pre>
-<h4 id="证据层级示例" tabindex="-1">证据层级示例<a class="heading-anchor" href="#证据层级示例" aria-label="链接到本节">#</a></h4>
-<table>
-<thead>
-<tr>
-<th>层级</th>
-<th>能回答的问题</th>
-<th>不能跨界回答的问题</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>当前运行状态与新鲜验证</td>
-<td>现在是否有活跃运行、命令当前是否通过</td>
-<td>产品应该如何定位</td>
-</tr>
-<tr>
-<td>当前产品说明</td>
-<td>对外定位、目标用户、公开范围</td>
-<td>某个历史运行的实际结果</td>
-</tr>
-<tr>
-<td>交付包与收据</td>
-<td>某一次可交付任务当时包含什么</td>
-<td>当前分支仍然通过</td>
-</tr>
-<tr>
-<td>研究轨道</td>
-<td>候选资料、未决问题、可实验方向</td>
-<td>已经获得生产发布权限</td>
-</tr>
-<tr>
-<td>历史记录</td>
-<td>过去发生过什么</td>
-<td>现在仍然如此</td>
-</tr>
-</tbody></table>
-<h4 id="发现写法示例" tabindex="-1">发现写法示例<a class="heading-anchor" href="#发现写法示例" aria-label="链接到本节">#</a></h4>
-<pre><code class="language-text">[P1] 当前定位面与运行入口对同一能力的状态不一致
-
-证据：当前说明将该能力标为主链，但新鲜运行状态显示无活跃运行，
-且发布门槛仍为 blocked。
-
-影响：新会话可能把研究就绪错当为交付就绪。
-
-最小修正：将产品说明改为已有研究候选，并指向真正的运行/发布状态面。
-</code></pre>
-<h4 id="本案例不能证明什么-3" tabindex="-1">本案例不能证明什么<a class="heading-anchor" href="#本案例不能证明什么-3" aria-label="链接到本节">#</a></h4>
-<ul>
-<li>无冲突结论不能超过实际枚举的证据面。</li>
-<li>仓库中有收据不等于当前存在可发布运行。</li>
-<li>研究材料完整不等于已经形成对外内容或实现计划。</li>
-</ul>
-<h3 id="13-5-三个案例的横向对照" tabindex="-1">13.5 三个案例的横向对照<a class="heading-anchor" href="#13-5-三个案例的横向对照" aria-label="链接到本节">#</a></h3>
-<table>
-<thead>
-<tr>
-<th>维度</th>
-<th>报告事实审计</th>
-<th>配置逻辑迁移</th>
-<th>整仓定位审计</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>首要风险</td>
-<td>文档幻觉</td>
-<td>语义不等价</td>
-<td>权威层级混乱</td>
-</tr>
-<tr>
-<td>第一个产物</td>
-<td>可证伪断言账本</td>
-<td>原逻辑分支/不变式表</td>
-<td>证据层级与表面清单</td>
-</tr>
-<tr>
-<td>关键反馈</td>
-<td>代码/配置定向检查</td>
-<td>类型、测试、序列化输出</td>
-<td>新鲜运行状态、验证器和覆盖证据</td>
-</tr>
-<tr>
-<td>可接受降级</td>
-<td>手工串行核对</td>
-<td>换写入工具、串行 review</td>
-<td>无图工具时用文件列表+定向命令</td>
-</tr>
-<tr>
-<td>不可降级</td>
-<td>断言到一手证据的映射</td>
-<td>分支完整性和序列化等价性</td>
-<td>当前/历史/目标的分层</td>
-</tr>
-<tr>
-<td>完成声明</td>
-<td>错误断言已修正，未知仍标明</td>
-<td>定向检查通过，逐分支双向对照完成</td>
-<td>findings 有证据、影响和最小修正，覆盖限制已声明</td>
-</tr>
-</tbody></table>
-<h3 id="13-6-把任意会话改写成可审计实战的模板" tabindex="-1">13.6 把任意会话改写成可审计实战的模板<a class="heading-anchor" href="#13-6-把任意会话改写成可审计实战的模板" aria-label="链接到本节">#</a></h3>
-<pre><code class="language-text">目标：
-用一句可验收的话描述本次结果。
-
-权威与边界：
-- 哪些文件、代码、运行状态拥有答案？
-- 哪些决定只能由人做？
-- 哪些信息不得进入公开产物？
-
-失败风险：
-- 这次任务最可能以哪种方式看似完成却实际失败？
-
-反馈环：
-- 哪条命令或哪个可观察现象能在修正前捕获问题？
-- 修正后重跑什么？
-
-执行约束：
-- 工具失败时可以怎样降级？
-- 哪个语义、安全或验证门槛不允许降级？
-
-收据：
-- 改了什么？
-- 实际运行了什么？
-- 证明了什么？
-- 仍然不能证明什么？
-</code></pre>
-<h3 id="13-7-本章验收" tabindex="-1">13.7 本章验收<a class="heading-anchor" href="#13-7-本章验收" aria-label="链接到本节">#</a></h3>
-<ul>
-<li>能把「Agent 说它做完了」改写为「哪个当前证据证明哪个有限结论」。</li>
-<li>能区分工具通道失败与工程理论被证伪。</li>
-<li>能为降级路径保留核心方法，而不是用「环境不支持」删掉验证。</li>
-<li>能在对外复盘时保留因果与教训，同时移除所有可识别的私有项目事实。</li>
-</ul>
-<hr>
-<h2 id="第-14-章-附录-37-个-skills-完整索引" tabindex="-1">第 14 章 · 附录：37 个 Skills 完整索引<a class="heading-anchor" href="#第-14-章-附录-37-个-skills-完整索引" aria-label="链接到本节">#</a></h2>
+<h2 id="第-13-章-附录-37-个-skills-完整索引" tabindex="-1">第 13 章 · 附录：37 个 Skills 完整索引<a class="heading-anchor" href="#第-13-章-附录-37-个-skills-完整索引" aria-label="链接到本节">#</a></h2>
 <p>下面的列表以固定提交为准。稳定分类来自仓库目录；一句话说明综合了上游 README、各 Skill frontmatter 与正文。</p>
 <h3 id="a-engineering-18-个" tabindex="-1">A. Engineering：18 个<a class="heading-anchor" href="#a-engineering-18-个" aria-label="链接到本节">#</a></h3>
 <table>
@@ -3681,7 +3288,6 @@ before forming a root-cause theory.
 <li>本书没有声称 37 个 Skills 都适合每个 Agent 运行时。</li>
 <li>上游仓库会变化，尤其是 <code>in-progress</code>。</li>
 <li>教学案例不证明任何私有产品已经实现或通过测试。</li>
-<li>脱敏会话模式不是原始转录，不能用于推断私有项目身份、状态或成功率。</li>
 <li>HTML 是由本书 Markdown 生成的阅读版，不是独立事实源。</li>
 <li>没有当前代码与当前命令输出时，不应把流程描述写成工程完成证明。</li>
 </ul>

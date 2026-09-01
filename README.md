@@ -19,11 +19,8 @@ A Chinese-first, beginner-friendly handbook for the public
 - Seven progressive, synthetic desktop UI client exercises.
 - Fifteen first-party evidence records from Matt Pocock's repository and
   official AI Hero pages, with version and inference boundaries.
-- Three detailed, sanitized session reconstructions based on recurring Codex,
-  Zcode, and Claude Code collaboration patterns. They are teaching syntheses,
-  not raw transcripts or project case studies.
 - Six Azhou beginner diagrams as final PNG assets.
-- Ten editable Excalidraw scenes with SVG and PNG exports.
+- Nine editable Excalidraw scenes with SVG and PNG exports.
 
 The book is based on upstream commit
 [`6654f6b60cd9d5be8b54c6fafe44346dabeb3b76`](https://github.com/mattpocock/skills/tree/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76):
@@ -45,8 +42,8 @@ npm run check
 The numbered files under `chapters/` are the authoritative content sources.
 The build assembles them into `book.md`, generates both `html/index.html` and
 `html/book.html`, and copies every referenced PNG into `html/assets/`.
-The verifier checks 37/37 detailed Skill sections, all 16 chapter sources,
-16+ book images, the fixed upstream commit, research/session evidence counts,
+The verifier checks 37/37 detailed Skill sections, all 15 chapter sources,
+15+ book images, the fixed upstream commit, first-party evidence counts,
 the Pages workflow, and common public-repository secret/path patterns.
 
 ## Visual sources

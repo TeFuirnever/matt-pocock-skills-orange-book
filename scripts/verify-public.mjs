@@ -15,9 +15,8 @@ import {
 
 const projectRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const fixedCommit = '6654f6b60cd9d5be8b54c6fafe44346dabeb3b76';
-const expectedChapterCount = 16;
+const expectedChapterCount = 15;
 const expectedStatementCount = 15;
-const expectedSessionCaseCount = 3;
 const expectedSkills = [
   'ask-matt',
   'setup-matt-pocock-skills',
@@ -123,10 +122,6 @@ const statementResearch = requireFile(
   'research/matt-pocock-public-statements.md',
 );
 const statementUrls = collectMarkdownUrls(statementResearch);
-const sessionResearch = requireFile(
-  errors,
-  'research/anonymized-session-patterns.md',
-);
 
 if (chapterNames.length !== expectedChapterCount) {
   errors.push(
@@ -160,7 +155,6 @@ for (const requiredText of [
   '| 中级：已经能用 Agent 写功能',
   '高阶路径',
   'Matt Pocock 本人怎样讲 Skills',
-  '三类 Agent 会话的脱敏复盘',
 ]) {
   if (!book.includes(requiredText)) {
     errors.push(`missing required reader/evidence section: ${requiredText}`);
@@ -180,30 +174,12 @@ if (!hasAiHeroSource(statementUrls)) {
   errors.push('author research does not include official AI Hero material');
 }
 
-const sessionChapter = readFileSync(
-  resolve(chapterDir, '14-session-evidence.md'),
-  'utf8',
-);
-const sessionCaseCount = [
-  ...sessionChapter.matchAll(/^### 13\.[2-4] 案例/gm),
-].length;
-if (sessionCaseCount !== expectedSessionCaseCount) {
-  errors.push(
-    `expected ${expectedSessionCaseCount} detailed sanitized cases, found ${sessionCaseCount}`,
-  );
-}
-for (const client of ['Codex', 'Zcode', 'Claude Code']) {
-  if (!sessionChapter.includes(client) || !sessionResearch.includes(client)) {
-    errors.push(`sanitized session evidence is missing client: ${client}`);
-  }
-}
-
 const imagePattern = /!\[[^\]]*\]\((assets\/[^)]+)\)/g;
 const imageReferences = [
   ...new Set([...book.matchAll(imagePattern)].map((match) => match[1])),
 ];
-if (imageReferences.length < 16) {
-  errors.push(`expected at least 16 unique book images, found ${imageReferences.length}`);
+if (imageReferences.length < 15) {
+  errors.push(`expected at least 15 unique book images, found ${imageReferences.length}`);
 }
 for (const imageReference of imageReferences) {
   const sourceImage = resolve(projectRoot, imageReference);
@@ -216,7 +192,7 @@ for (const imageReference of imageReferences) {
   }
 }
 
-for (const stem of ['reader-paths', 'session-evidence-sanitization']) {
+for (const stem of ['reader-paths']) {
   for (const extension of ['.excalidraw', '.svg', '.png']) {
     const relativePath = `assets/diagrams/${stem}${extension}`;
     const path = resolve(projectRoot, relativePath);
@@ -273,6 +249,6 @@ if (errors.length > 0) {
   process.exitCode = 1;
 } else {
   console.log(
-    `[verify] passed: ${chapterNames.length} chapters, ${documentedSkills.length} Skills, ${statementCount} first-party records, ${sessionCaseCount} sanitized cases, ${imageReferences.length} images, Pages contract present, public scan clean`,
+    `[verify] passed: ${chapterNames.length} chapters, ${documentedSkills.length} Skills, ${statementCount} first-party records, ${imageReferences.length} images, Pages contract present, public scan clean`,
   );
 }
