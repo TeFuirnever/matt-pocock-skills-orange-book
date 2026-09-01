@@ -70,6 +70,19 @@ Matt Pocock 这套仓库真正有价值的地方，是把几十年软件工程�
 
 前两题还回答不清，从小白路径开始；前三题稳定后转入中级；能用真实证据回答全部五题，再进入高阶路径。
 
+### 0.1.1 读完一段，立刻做一关
+
+正文解释“为什么”，[配套学习实验室](labs/)要求你在自己的仓库里留下“做过什么、怎样验证、下一步怎样交接”。四关不要求使用固定技术栈：
+
+| Lab | 先练什么 | 完成时必须留下什么 |
+|---|---|---|
+| Lab 1 | 事实调查与人类决策分界 | 决策记录 + 最小验证命令 |
+| Lab 2 | 决定如何变成 spec 与 ticket | spec + tracer-bullet ticket |
+| Lab 3 | bug 怎样从猜测变成反馈环 | 同一条红绿回归命令 |
+| Lab 4 | 怎样完成可交接的小型交付 | review 结论 + handoff |
+
+第一次读本书时，可以按“读第 3 章 → 做 Lab 1 → 读第 4 章 → 做 Lab 2”的节奏前进。任何一关卡住，不要跳到更复杂的 Skill；先修复该关缺失的事实、决定或验证。
+
 ### 0.2 按问题直达章节
 
 | 我现在遇到的问题 | 直接去哪里 |
@@ -84,6 +97,7 @@ Matt Pocock 这套仓库真正有价值的地方，是把几十年软件工程�
 | 想照着一套命令和产物做完端到端任务 | 第 13 章 |
 | 想把公开 Skill 改成自己团队的规则 | 第 9 章 |
 | 想知道 Matt Pocock 本人怎样表述这套方法 | 第 12 章 |
+| 想把阅读变成一次可验证的实操 | [配套学习实验室](labs/) |
 
 ### 0.3 本书采用的讲法
 
@@ -320,6 +334,8 @@ npx skills@latest add mattpocock/skills
 ---
 
 ## 第 3 章 · 写代码前：把模糊需求变成工程决策
+
+![阿舟知识图：事实调查、人类决策与规格的边界](assets/azhou/decision-source-router.png)
 
 ### 3.1 `grill-me`：答案在你脑子里
 
@@ -785,6 +801,8 @@ Mock 只应该放在系统边界，例如外部 API、时钟、随机数。不�
 ## 第 8 章 · 七个 UI 客户端实例，从浅到深
 
 以下案例使用一个教学用桌面 AI 客户端。它有 renderer、preload、main 进程，支持多语言、Provider 配置和定时任务。示例刻意压缩了业务细节，让读者把注意力放在 Skill 选择、操作顺序与验收证据上。
+
+![阿舟知识图：按 UI 任务的失败风险选择最小 Skill 链](assets/azhou/ui-task-risk-selector.png)
 
 ### 实例一：设置页改一个文案
 
@@ -2180,6 +2198,8 @@ Misc 不是“低价值”，而是“适用面窄”。使用前先确认仓库
 
 当你不确定时，不必从头翻这一章。只回答下面六问：
 
+![阿舟知识图：37 个 Skills 的六个新手问题路由](assets/azhou/six-questions-skill-router.png)
+
 1. **需求还没问清吗？** 无仓库用 `grill-me`，有仓库用 `grill-with-docs`，超出一个会话用 `wayfinder`。
 2. **决定已经清楚了吗？** 写 `to-spec`；需要多人或多会话交付，再用 `to-tickets`。
 3. **现在已经进入施工了吗？** 用 `implement`，在预定 seam 内按需加载 `tdd`，结束前 `code-review`。
@@ -2202,9 +2222,22 @@ Misc 不是“低价值”，而是“适用面窄”。使用前先确认仓库
 
 这一区分很重要。「作者今天如何讲」和「固定版本当时包含什么」是两个问题。把它们混在一起，就会让版本化教材失去可核验性。
 
-### 12.2 十条作者公开表述
+### 12.2 六张阅读卡：先抓住方法主线
 
-#### 12.2.1 Skill 是过程级约束，不是平台魔法
+下面六张是阿舟基于本章官网材料与固定提交所做的编辑性转述，用于建立阅读顺序；它们不是 Matt Pocock 的原帖、引语或平台截图。
+
+<div class="thread-card-grid" role="group" aria-label="阿舟对 Matt Pocock Skills 方法的六张阅读卡">
+  <img src="assets/azhou/matt-method-01-scope.png" alt="阅读卡一：Skill 不该接管整条工程链" loading="lazy">
+  <img src="assets/azhou/matt-method-02-flow.png" alt="阅读卡二：工作流不是一串命令" loading="lazy">
+  <img src="assets/azhou/matt-method-03-memory.png" alt="阅读卡三：聊天不是项目记忆" loading="lazy">
+  <img src="assets/azhou/matt-method-04-answers.png" alt="阅读卡四：答案在哪，决定谁来回答" loading="lazy">
+  <img src="assets/azhou/matt-method-05-feedback.png" alt="阅读卡五：反馈环不是交付后的装饰" loading="lazy">
+  <img src="assets/azhou/matt-method-06-handoff.png" alt="阅读卡六：计划稳定后才进入实现" loading="lazy">
+</div>
+
+### 12.3 十条作者公开表述
+
+#### 12.3.1 Skill 是过程级约束，不是平台魔法
 
 在 [AI Skills for Real Engineers](https://www.aihero.dev/skills) 中，Matt 把 Skills 描述为交给编码 Agent 的小型、聚焦指令，目的是让 Agent 按资深工程师式的工作方法执行。
 
@@ -2212,13 +2245,13 @@ Misc 不是“低价值”，而是“适用面窄”。使用前先确认仓库
 
 对小白的翻译：一个 Skill 不需要拥有整个项目。它只需要产出下一步能信任的东西，例如决策清单、spec、ticket、红色测试或 review findings。
 
-#### 12.2.2 跨会话不会凭空保留项目记忆
+#### 12.3.2 跨会话不会凭空保留项目记忆
 
 在 [My Claude Code Cohort - A Teaser](https://www.aihero.dev/my-claude-code-cohort-a-teaser) 中，Matt 强调会话之间需要额外的引导机制。这不是对每个厂商记忆功能的技术规格，而是一条工程建议：不要把依赖关系、业务词义和已定决策只留在聊天里。
 
 行动：用 `AGENTS.md`、领域文档、spec、ticket 和 handoff 把重要上下文移到可版本化介质。
 
-#### 12.2.3 大任务要围绕上下文边界分阶段
+#### 12.3.3 大任务要围绕上下文边界分阶段
 
 同一页建议将巨大功能拆成多个阶段。关键不是预测一个通用 token 阈值，而是让每个阶段都有：
 
@@ -2227,31 +2260,31 @@ Misc 不是“低价值”，而是“适用面窄”。使用前先确认仓库
 3. 可独立验证的完成条件；
 4. 下一阶段可以拒绝的错误输入。
 
-#### 12.2.4 反馈环是质量机制，不是收尾仪式
+#### 12.3.4 反馈环是质量机制，不是收尾仪式
 
 Matt 在 cohort 页面上把 feedback loops 放在核心位置；在 [Day 4: Feedback Loops](https://www.aihero.dev/workshops/day-4-feedback-loops-fcqu2) 中又把 do-work Skills、pre-commit hooks 和 red-green-refactor TDD 放在同一套训练里。
 
 对小白的翻译：Skill 告诉 Agent 应该怎样做，hook 自动拦下明确错误，TDD 让每个小行为都可观察。三者可组合，但没有任何一个能单独保证正确。
 
-#### 12.2.5 环境能回答的事实，不要再去问人
+#### 12.3.5 环境能回答的事实，不要再去问人
 
 在 [The /grilling Skill](https://www.aihero.dev/skills-grilling) 中，Matt 把问题分成两类：代码、文档、工具能查到的事实，应由 Skill 自己调查；只有产品取舍、风险偏好和业务决策才应等人回答。
 
 实战检查：每当 Agent 问一个问题，先问「这个答案在环境里吗？」如果在，要求它带证据回来，而不是把调查推给用户。
 
-#### 12.2.6 问题问完不等于形成共识
+#### 12.3.6 问题问完不等于形成共识
 
 `grilling` 页面还把「用户确认共同理解」作为从讨论进入行动的门槛。这条规则针对的是一种常见假完成：Agent 已经没有新问题，但人对范围、取舍和验收仍没有同一张图。
 
 可操作门槛：行动前回显「已定决策 / 未决问题 / 明确不做 / 验收方式」，再由人确认。
 
-#### 12.2.7 上下文快用尽时，主动交接而不是硬塞
+#### 12.3.7 上下文快用尽时，主动交接而不是硬塞
 
 在 [Skills Changelog: /handoff, /prototype, /review and /writing](https://www.aihero.dev/skills/skills-changelog-handoff-prototype-review-and-writing) 中，Matt 把 handoff 作为上下文耗尽时的主动策略。这里的「full context」应理解为交接的目标，不是对零遗漏的保证。
 
 一份可用 handoff 至少应当包含：当前目标、已确认决策、已改文件、当前验证、未决问题、下一个可执行动作。
 
-#### 12.2.8 `implement` 只消费已稳定的计划
+#### 12.3.8 `implement` 只消费已稳定的计划
 
 在 [The /implement Skill](https://www.aihero.dev/skills-implement) 中，Matt 用一句很强的边界描述这个 Skill：
 
@@ -2259,41 +2292,41 @@ Matt 在 cohort 页面上把 feedback loops 放在核心位置；在 [Day 4: Fee
 
 这不是说实现中发现错误也不能停。正确做法是：发现 spec 前提错误时，把问题退回上游决策阶段；不在实现中悄悄改目标。
 
-#### 12.2.9 原型只回答一个问题
+#### 12.3.9 原型只回答一个问题
 
 在 [The /prototype Skill](https://www.aihero.dev/skills-prototype) 中，原型被定义为可丢弃代码，用来回答一个设计问题。重点是问题优先、一次会话完成、决策后删除代码但保留结论。
 
 如果原型开始承担迁移、安全、完整错误处理和产品级样式，它就很可能已经变成了没有 spec 的实现。
 
-#### 12.2.10 人工外部步骤应该被编成可恢复向导
+#### 12.3.10 人工外部步骤应该被编成可恢复向导
 
 在 [The /wizard Skill](https://www.aihero.dev/skills-wizard) 中，外部控制台、凭据录入等人工操作被转化为交互式 Bash 向导。教学重点不是「自动化一切」，而是让不能自动化的部分也拥有顺序、安全输入、恢复点和最终摘要。
 
-### 12.3 固定提交里的五个可观察事实
+### 12.4 固定提交里的五个可观察事实
 
-#### 12.3.1 仓库定位是真实工程，不是 vibe coding
+#### 12.4.1 仓库定位是真实工程，不是 vibe coding
 
 固定版 [README](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/README.md) 把这些 Skills 描述为作者日常工程使用的做法，并强调小、易改、可组合。这能支持「把 Skill 当成可审查流程部件」，但不能证明任意组合都经过验证。
 
-#### 12.3.2 TDD 明文要求先红后绿
+#### 12.4.2 TDD 明文要求先红后绿
 
 固定版 [`tdd/SKILL.md`](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/tdd/SKILL.md) 要求先写失败测试，再只写让它通过的代码；而且测试 seam 需要前置确认。因此，「先代码后补测试」不是这个 Skill 的等价实现。
 
-#### 12.3.3 context pointer 的文案决定加载时机
+#### 12.4.3 context pointer 的文案决定加载时机
 
 固定版 [`writing-for-agents/SKILL.md`](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/productivity/writing-for-agents/SKILL.md) 指出，不是「有一个目标文件」就能保证 Agent 读取；指针文案需要说清什么情况下应该去读。
 
 检查你的项目规则：把「详见 `docs/testing.md`」改成「修改会话状态或重试逻辑前，先读 `docs/testing.md` 中的状态转移测试约束」。
 
-#### 12.3.4 `to-spec` 不再做现场访谈
+#### 12.4.4 `to-spec` 不再做现场访谈
 
 固定版 [`to-spec/SKILL.md`](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/to-spec/SKILL.md) 明文要求综合已知信息，不重开访谈。如果缺失业务决策，应回到 `grill-*` 或研究阶段，不应把假设写成 spec 事实。
 
-#### 12.3.5 retrospective 也要检查 Agent 能否获得信息
+#### 12.4.5 retrospective 也要检查 Agent 能否获得信息
 
 固定基线提交新增了「Information access」复盘类别。这给了一个很实用的诊断角度：Agent 做错时，不要只问模型或 prompt 是否不够强，还要检查它是否根本看不到日志、代码关系、运行状态或官方资料。
 
-### 12.4 把作者表述转成一套工程自检
+### 12.5 把作者表述转成一套工程自检
 
 | 检查点 | 一个合格答案的样子 |
 |---|---|
@@ -2305,7 +2338,7 @@ Matt 在 cohort 页面上把 feedback loops 放在核心位置；在 [Day 4: Fee
 | 上下文快耗尽时是否有交接 | handoff 包含当前证据与下一个动作，不依赖「去看上面聊天」 |
 | 工具不可用时是否保留核心方法 | 无法并行 review 时仍分开 Standards 与 Spec 两轴串行检查 |
 
-### 12.5 本章验收
+### 12.6 本章验收
 
 - 能区分官网当前表述与固定提交事实。
 - 能用「输入→产物→下一步」而不是「更强 prompt」解释 Skill 组合。

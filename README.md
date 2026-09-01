@@ -45,7 +45,7 @@ The numbered files under `chapters/` are the authoritative content sources.
 The build assembles them into `book.md`, generates both `html/index.html` and
 `html/book.html`, and copies every referenced PNG into `html/assets/`.
 The verifier checks 37/37 detailed Skill sections, all 16 chapter sources,
-16+ book images, the fixed upstream commit, first-party evidence counts,
+25+ book images, the fixed upstream commit, first-party evidence counts,
 the Pages workflow, and common public-repository secret/path patterns.
 
 ## Visual sources

@@ -2,6 +2,8 @@
 
 以下案例使用一个教学用桌面 AI 客户端。它有 renderer、preload、main 进程，支持多语言、Provider 配置和定时任务。示例刻意压缩了业务细节，让读者把注意力放在 Skill 选择、操作顺序与验收证据上。
 
+![阿舟知识图：按 UI 任务的失败风险选择最小 Skill 链](assets/azhou/ui-task-risk-selector.png)
+
 ### 实例一：设置页改一个文案
 
 #### 任务

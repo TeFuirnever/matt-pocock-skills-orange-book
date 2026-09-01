@@ -13,6 +13,7 @@ import { Marked } from 'marked';
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const chapterDir = resolve(projectRoot, 'chapters');
+const labsDir = resolve(projectRoot, 'labs');
 const bookPath = resolve(projectRoot, 'book.md');
 const cssPath = resolve(projectRoot, 'html/print.css');
 const scriptPath = resolve(projectRoot, 'html/site.js');
@@ -25,6 +26,14 @@ const chapterNames = readdirSync(chapterDir)
 
 if (chapterNames.length === 0) {
   throw new Error('No numbered chapter sources found under chapters/.');
+}
+
+const labNames = readdirSync(labsDir)
+  .filter((name) => /^\d{2}-.+\.md$/.test(name))
+  .sort((left, right) => left.localeCompare(right, 'en'));
+
+if (labNames.length === 0) {
+  throw new Error('No numbered learning labs found under labs/.');
 }
 
 const source = chapterNames
@@ -79,6 +88,60 @@ const chapterLinks = headings
   )
   .join('\n');
 
+function labTitle(source, fallback) {
+  return source.match(/^#\s+(.+)$/m)?.[1]?.trim() || fallback;
+}
+
+function renderLabMarkdown(source) {
+  return new Marked({ gfm: true, breaks: false }).parse(source);
+}
+
+function createLabPage({ title, description, body, labLinks }) {
+  return `<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Matt Pocock Skills 橙皮书配套学习实验室：用可验证产物完成从调查到交接的四个任务。">
+  <meta name="theme-color" content="#f8f7f4">
+  <link rel="canonical" href="https://tefuirnever.github.io/matt-pocock-skills-orange-book/labs/">
+  <title>${escapeHtml(title)} · Skills 学习实验室</title>
+  <style>${css}</style>
+</head>
+<body class="lab-page">
+  <a class="skip-link" href="#lab-content">跳到 Lab 正文</a>
+  <header class="topbar">
+    <div class="lab-topbar">
+      <a class="brand" href="../" aria-label="回到橙皮书首页">
+        <span class="brand-mark" aria-hidden="true">M</span>
+        <span><strong>Skills 学习实验室</strong><small>从阅读到可验证交付</small></span>
+      </a>
+      <nav class="lab-topbar-actions" aria-label="实验室操作">
+        <a href="../">阅读全书</a>
+        <a href="https://github.com/TeFuirnever/matt-pocock-skills-orange-book" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main id="lab-content" class="lab-layout">
+    <aside class="lab-sidebar" aria-label="学习实验室导航">
+      <p class="sidebar-label">四个递进 Lab</p>
+      <nav class="toc">${labLinks}</nav>
+      <div class="sidebar-meta">
+        <span>每关都需留下</span>
+        <code>可复跑证据</code>
+      </div>
+    </aside>
+    <article class="book-article lab-article">
+      <p class="lab-kicker">配套练习</p>
+      <p class="lab-description">${escapeHtml(description)}</p>
+      ${body}
+    </article>
+  </main>
+</body>
+</html>
+`;
+}
+
 const html = `<!doctype html>
 <html lang="zh-CN">
 <head>
@@ -107,6 +170,7 @@ const html = `<!doctype html>
         <div class="search-results" id="search-results" hidden></div>
       </div>
       <nav class="topbar-actions" aria-label="页面操作">
+        <a href="labs/">Labs</a>
         <a href="https://github.com/TeFuirnever/matt-pocock-skills-orange-book" target="_blank" rel="noreferrer">GitHub</a>
         <button class="icon-button mobile-search-button" id="mobile-search-button" type="button" aria-label="打开搜索" aria-expanded="false" title="搜索全书">⌕</button>
         <button class="icon-button" id="print-button" type="button" aria-label="打印或导出 PDF" title="打印或导出 PDF">⎙</button>
@@ -120,6 +184,7 @@ const html = `<!doctype html>
         <p class="sidebar-label">按读者程度</p>
         <nav class="reader-links" aria-label="读者路径">
           <a href="#第-0-章-这本书怎样读">小白：先选路径</a>
+          <a href="labs/">练习：完成四关 Lab</a>
           <a href="#第-8-章-七个-ui-客户端实例-从浅到深">中级：串联交付</a>
           <a href="#高阶进阶-从会使用-skill-到会设计-harness">高阶：设计 Harness</a>
         </nav>
@@ -165,6 +230,51 @@ writeFileSync(resolve(htmlDir, 'index.html'), html);
 writeFileSync(resolve(htmlDir, 'book.html'), html);
 writeFileSync(resolve(htmlDir, '.nojekyll'), '');
 
+const labsOutputDir = resolve(htmlDir, 'labs');
+rmSync(labsOutputDir, { recursive: true, force: true });
+mkdirSync(labsOutputDir, { recursive: true });
+
+const labSources = labNames.map((name) => {
+  const source = readFileSync(resolve(labsDir, name), 'utf8');
+  return {
+    name,
+    source,
+    title: labTitle(source, name.replace(/\.md$/, '')),
+    outputName: name.replace(/\.md$/, '.html'),
+  };
+});
+const labLinks = [
+  '<a class="toc-link" href="index.html">全部 Labs</a>',
+  ...labSources.map(
+    ({ outputName, title }) =>
+      `<a class="toc-link" href="${outputName}">${escapeHtml(title)}</a>`,
+  ),
+].join('\n');
+const labsIndexSource = readFileSync(resolve(labsDir, 'README.md'), 'utf8');
+
+writeFileSync(
+  resolve(labsOutputDir, 'index.html'),
+  createLabPage({
+    title: 'Skills 学习实验室',
+    description: '四个递进练习，把 Skill 选择、规格、反馈和交接变成可复跑的工程动作。',
+    body: renderLabMarkdown(labsIndexSource),
+    labLinks,
+  }),
+);
+
+for (const lab of labSources) {
+  writeFileSync(
+    resolve(labsOutputDir, lab.outputName),
+    createLabPage({
+      title: lab.title,
+      description: '在自己的仓库完成一个小任务，并把可验证产物留给下一关。',
+      body: renderLabMarkdown(lab.source),
+      labLinks,
+    }),
+  );
+}
+
 console.log(`[build] assembled ${chapterNames.length} chapter sources into ${bookPath}`);
 console.log(`[build] ${resolve(htmlDir, 'index.html')}`);
 console.log(`[build] ${resolve(htmlDir, 'book.html')}`);
+console.log(`[build] ${labSources.length} learning labs into ${labsOutputDir}`);

@@ -581,6 +581,74 @@ code {
   page-break-inside: avoid;
 }
 
+.book-article .thread-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 880px;
+  margin: 1.6em auto;
+}
+
+.book-article .thread-card-grid img {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  border: 1px solid var(--line);
+}
+
+.lab-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  width: min(100%, 1200px);
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.lab-topbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 14px;
+  font-size: 14px;
+}
+
+.lab-layout {
+  display: grid;
+  grid-template-columns: minmax(190px, 240px) minmax(0, 820px);
+  gap: 54px;
+  width: min(100%, 1160px);
+  margin: 0 auto;
+  padding: 52px 28px 80px;
+}
+
+.lab-sidebar {
+  align-self: start;
+  position: sticky;
+  top: calc(var(--topbar-height) + 24px);
+}
+
+.lab-article {
+  min-width: 0;
+}
+
+.lab-kicker {
+  margin: 0 0 6px;
+  color: var(--orange-dark);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.lab-description {
+  margin: 0 0 34px;
+  color: var(--muted);
+  font-size: 17px;
+}
+
 .book-article strong {
   color: var(--ink-strong);
 }
@@ -739,6 +807,46 @@ code {
     right: 14px;
     bottom: 14px;
   }
+
+  .lab-topbar {
+    padding: 0 18px;
+  }
+
+  .lab-topbar-actions {
+    gap: 10px;
+    font-size: 13px;
+  }
+
+  .lab-layout {
+    display: block;
+    padding: 32px 18px 64px;
+  }
+
+  .lab-sidebar {
+    position: static;
+    margin: 0 0 28px;
+  }
+
+  .lab-sidebar .toc {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .lab-sidebar .toc-link {
+    min-width: 0;
+    padding: 8px 9px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 620px) {
+  .book-article .thread-card-grid {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 440px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -805,6 +913,25 @@ code {
     overflow-x: hidden;
     font-size: 8.5pt;
   }
+
+  .book-article .thread-card-grid {
+    gap: 12px;
+    max-width: none;
+  }
+
+  .lab-topbar,
+  .lab-sidebar,
+  .lab-kicker,
+  .lab-description {
+    display: none;
+  }
+
+  .lab-layout {
+    display: block;
+    width: auto;
+    margin: 0;
+    padding: 0;
+  }
 }
 </style>
 </head>
@@ -825,6 +952,7 @@ code {
         <div class="search-results" id="search-results" hidden></div>
       </div>
       <nav class="topbar-actions" aria-label="页面操作">
+        <a href="labs/">Labs</a>
         <a href="https://github.com/TeFuirnever/matt-pocock-skills-orange-book" target="_blank" rel="noreferrer">GitHub</a>
         <button class="icon-button mobile-search-button" id="mobile-search-button" type="button" aria-label="打开搜索" aria-expanded="false" title="搜索全书">⌕</button>
         <button class="icon-button" id="print-button" type="button" aria-label="打印或导出 PDF" title="打印或导出 PDF">⎙</button>
@@ -838,6 +966,7 @@ code {
         <p class="sidebar-label">按读者程度</p>
         <nav class="reader-links" aria-label="读者路径">
           <a href="#第-0-章-这本书怎样读">小白：先选路径</a>
+          <a href="labs/">练习：完成四关 Lab</a>
           <a href="#第-8-章-七个-ui-客户端实例-从浅到深">中级：串联交付</a>
           <a href="#高阶进阶-从会使用-skill-到会设计-harness">高阶：设计 Harness</a>
         </nav>
@@ -974,6 +1103,38 @@ code {
 <li>某个工具或子 Agent 不可用时，流程还能否保留核心约束？</li>
 </ol>
 <p>前两题还回答不清，从小白路径开始；前三题稳定后转入中级；能用真实证据回答全部五题，再进入高阶路径。</p>
+<h3 id="0-1-1-读完一段-立刻做一关" tabindex="-1">0.1.1 读完一段，立刻做一关<a class="heading-anchor" href="#0-1-1-读完一段-立刻做一关" aria-label="链接到本节">#</a></h3>
+<p>正文解释“为什么”，<a href="labs/">配套学习实验室</a>要求你在自己的仓库里留下“做过什么、怎样验证、下一步怎样交接”。四关不要求使用固定技术栈：</p>
+<table>
+<thead>
+<tr>
+<th>Lab</th>
+<th>先练什么</th>
+<th>完成时必须留下什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Lab 1</td>
+<td>事实调查与人类决策分界</td>
+<td>决策记录 + 最小验证命令</td>
+</tr>
+<tr>
+<td>Lab 2</td>
+<td>决定如何变成 spec 与 ticket</td>
+<td>spec + tracer-bullet ticket</td>
+</tr>
+<tr>
+<td>Lab 3</td>
+<td>bug 怎样从猜测变成反馈环</td>
+<td>同一条红绿回归命令</td>
+</tr>
+<tr>
+<td>Lab 4</td>
+<td>怎样完成可交接的小型交付</td>
+<td>review 结论 + handoff</td>
+</tr>
+</tbody></table>
+<p>第一次读本书时，可以按“读第 3 章 → 做 Lab 1 → 读第 4 章 → 做 Lab 2”的节奏前进。任何一关卡住，不要跳到更复杂的 Skill；先修复该关缺失的事实、决定或验证。</p>
 <h3 id="0-2-按问题直达章节" tabindex="-1">0.2 按问题直达章节<a class="heading-anchor" href="#0-2-按问题直达章节" aria-label="链接到本节">#</a></h3>
 <table>
 <thead>
@@ -1021,6 +1182,10 @@ code {
 <tr>
 <td>想知道 Matt Pocock 本人怎样表述这套方法</td>
 <td>第 12 章</td>
+</tr>
+<tr>
+<td>想把阅读变成一次可验证的实操</td>
+<td><a href="labs/">配套学习实验室</a></td>
 </tr>
 </tbody></table>
 <h3 id="0-3-本书采用的讲法" tabindex="-1">0.3 本书采用的讲法<a class="heading-anchor" href="#0-3-本书采用的讲法" aria-label="链接到本节">#</a></h3>
@@ -1341,6 +1506,7 @@ code {
 </ul>
 <hr>
 <h2 id="第-3-章-写代码前-把模糊需求变成工程决策" tabindex="-1">第 3 章 · 写代码前：把模糊需求变成工程决策<a class="heading-anchor" href="#第-3-章-写代码前-把模糊需求变成工程决策" aria-label="链接到本节">#</a></h2>
+<p><img src="assets/azhou/decision-source-router.png" alt="阿舟知识图：事实调查、人类决策与规格的边界"></p>
 <h3 id="3-1-grill-me-答案在你脑子里" tabindex="-1">3.1 <code>grill-me</code>：答案在你脑子里<a class="heading-anchor" href="#3-1-grill-me-答案在你脑子里" aria-label="链接到本节">#</a></h3>
 <p><code>grill-me</code> 适合不依赖代码库的想法。它会把主题建模成一棵决策树，逐轮询问当前已经可以回答的前沿问题。</p>
 <p>适合：</p>
@@ -1765,6 +1931,7 @@ code {
 <hr>
 <h2 id="第-8-章-七个-ui-客户端实例-从浅到深" tabindex="-1">第 8 章 · 七个 UI 客户端实例，从浅到深<a class="heading-anchor" href="#第-8-章-七个-ui-客户端实例-从浅到深" aria-label="链接到本节">#</a></h2>
 <p>以下案例使用一个教学用桌面 AI 客户端。它有 renderer、preload、main 进程，支持多语言、Provider 配置和定时任务。示例刻意压缩了业务细节，让读者把注意力放在 Skill 选择、操作顺序与验收证据上。</p>
+<p><img src="assets/azhou/ui-task-risk-selector.png" alt="阿舟知识图：按 UI 任务的失败风险选择最小 Skill 链"></p>
 <h3 id="实例一-设置页改一个文案" tabindex="-1">实例一：设置页改一个文案<a class="heading-anchor" href="#实例一-设置页改一个文案" aria-label="链接到本节">#</a></h3>
 <h4 id="任务" tabindex="-1">任务<a class="heading-anchor" href="#任务" aria-label="链接到本节">#</a></h4>
 <p>把设置页按钮从「保存」改成「保存并验证」，所有语言保持一致。</p>
@@ -2807,6 +2974,7 @@ before forming a root-cause theory.
 <p><strong>实验风险：</strong> 它不是发布、平台排版或事实研究工具；这些必须由其他流程承担。</p>
 <h3 id="11-5-把-37-个名字压缩成-6-个新手问题" tabindex="-1">11.5 把 37 个名字压缩成 6 个新手问题<a class="heading-anchor" href="#11-5-把-37-个名字压缩成-6-个新手问题" aria-label="链接到本节">#</a></h3>
 <p>当你不确定时，不必从头翻这一章。只回答下面六问：</p>
+<p><img src="assets/azhou/six-questions-skill-router.png" alt="阿舟知识图：37 个 Skills 的六个新手问题路由"></p>
 <ol>
 <li><strong>需求还没问清吗？</strong> 无仓库用 <code>grill-me</code>，有仓库用 <code>grill-with-docs</code>，超出一个会话用 <code>wayfinder</code>。</li>
 <li><strong>决定已经清楚了吗？</strong> 写 <code>to-spec</code>；需要多人或多会话交付，再用 <code>to-tickets</code>。</li>
@@ -2839,15 +3007,24 @@ before forming a root-cause theory.
 </tr>
 </tbody></table>
 <p>这一区分很重要。「作者今天如何讲」和「固定版本当时包含什么」是两个问题。把它们混在一起，就会让版本化教材失去可核验性。</p>
-<h3 id="12-2-十条作者公开表述" tabindex="-1">12.2 十条作者公开表述<a class="heading-anchor" href="#12-2-十条作者公开表述" aria-label="链接到本节">#</a></h3>
-<h4 id="12-2-1-skill-是过程级约束-不是平台魔法" tabindex="-1">12.2.1 Skill 是过程级约束，不是平台魔法<a class="heading-anchor" href="#12-2-1-skill-是过程级约束-不是平台魔法" aria-label="链接到本节">#</a></h4>
+<h3 id="12-2-六张阅读卡-先抓住方法主线" tabindex="-1">12.2 六张阅读卡：先抓住方法主线<a class="heading-anchor" href="#12-2-六张阅读卡-先抓住方法主线" aria-label="链接到本节">#</a></h3>
+<p>下面六张是阿舟基于本章官网材料与固定提交所做的编辑性转述，用于建立阅读顺序；它们不是 Matt Pocock 的原帖、引语或平台截图。</p>
+<div class="thread-card-grid" role="group" aria-label="阿舟对 Matt Pocock Skills 方法的六张阅读卡">
+  <img src="assets/azhou/matt-method-01-scope.png" alt="阅读卡一：Skill 不该接管整条工程链" loading="lazy">
+  <img src="assets/azhou/matt-method-02-flow.png" alt="阅读卡二：工作流不是一串命令" loading="lazy">
+  <img src="assets/azhou/matt-method-03-memory.png" alt="阅读卡三：聊天不是项目记忆" loading="lazy">
+  <img src="assets/azhou/matt-method-04-answers.png" alt="阅读卡四：答案在哪，决定谁来回答" loading="lazy">
+  <img src="assets/azhou/matt-method-05-feedback.png" alt="阅读卡五：反馈环不是交付后的装饰" loading="lazy">
+  <img src="assets/azhou/matt-method-06-handoff.png" alt="阅读卡六：计划稳定后才进入实现" loading="lazy">
+</div><h3 id="12-3-十条作者公开表述" tabindex="-1">12.3 十条作者公开表述<a class="heading-anchor" href="#12-3-十条作者公开表述" aria-label="链接到本节">#</a></h3>
+<h4 id="12-3-1-skill-是过程级约束-不是平台魔法" tabindex="-1">12.3.1 Skill 是过程级约束，不是平台魔法<a class="heading-anchor" href="#12-3-1-skill-是过程级约束-不是平台魔法" aria-label="链接到本节">#</a></h4>
 <p>在 <a href="https://www.aihero.dev/skills">AI Skills for Real Engineers</a> 中，Matt 把 Skills 描述为交给编码 Agent 的小型、聚焦指令，目的是让 Agent 按资深工程师式的工作方法执行。</p>
 <p>同一页还强调 Skills 可以组成链路：前一个的产出会成为后一个的输入。</p>
 <p>对小白的翻译：一个 Skill 不需要拥有整个项目。它只需要产出下一步能信任的东西，例如决策清单、spec、ticket、红色测试或 review findings。</p>
-<h4 id="12-2-2-跨会话不会凭空保留项目记忆" tabindex="-1">12.2.2 跨会话不会凭空保留项目记忆<a class="heading-anchor" href="#12-2-2-跨会话不会凭空保留项目记忆" aria-label="链接到本节">#</a></h4>
+<h4 id="12-3-2-跨会话不会凭空保留项目记忆" tabindex="-1">12.3.2 跨会话不会凭空保留项目记忆<a class="heading-anchor" href="#12-3-2-跨会话不会凭空保留项目记忆" aria-label="链接到本节">#</a></h4>
 <p>在 <a href="https://www.aihero.dev/my-claude-code-cohort-a-teaser">My Claude Code Cohort - A Teaser</a> 中，Matt 强调会话之间需要额外的引导机制。这不是对每个厂商记忆功能的技术规格，而是一条工程建议：不要把依赖关系、业务词义和已定决策只留在聊天里。</p>
 <p>行动：用 <code>AGENTS.md</code>、领域文档、spec、ticket 和 handoff 把重要上下文移到可版本化介质。</p>
-<h4 id="12-2-3-大任务要围绕上下文边界分阶段" tabindex="-1">12.2.3 大任务要围绕上下文边界分阶段<a class="heading-anchor" href="#12-2-3-大任务要围绕上下文边界分阶段" aria-label="链接到本节">#</a></h4>
+<h4 id="12-3-3-大任务要围绕上下文边界分阶段" tabindex="-1">12.3.3 大任务要围绕上下文边界分阶段<a class="heading-anchor" href="#12-3-3-大任务要围绕上下文边界分阶段" aria-label="链接到本节">#</a></h4>
 <p>同一页建议将巨大功能拆成多个阶段。关键不是预测一个通用 token 阈值，而是让每个阶段都有：</p>
 <ol>
 <li>明确的决策边界；</li>
@@ -2855,42 +3032,42 @@ before forming a root-cause theory.
 <li>可独立验证的完成条件；</li>
 <li>下一阶段可以拒绝的错误输入。</li>
 </ol>
-<h4 id="12-2-4-反馈环是质量机制-不是收尾仪式" tabindex="-1">12.2.4 反馈环是质量机制，不是收尾仪式<a class="heading-anchor" href="#12-2-4-反馈环是质量机制-不是收尾仪式" aria-label="链接到本节">#</a></h4>
+<h4 id="12-3-4-反馈环是质量机制-不是收尾仪式" tabindex="-1">12.3.4 反馈环是质量机制，不是收尾仪式<a class="heading-anchor" href="#12-3-4-反馈环是质量机制-不是收尾仪式" aria-label="链接到本节">#</a></h4>
 <p>Matt 在 cohort 页面上把 feedback loops 放在核心位置；在 <a href="https://www.aihero.dev/workshops/day-4-feedback-loops-fcqu2">Day 4: Feedback Loops</a> 中又把 do-work Skills、pre-commit hooks 和 red-green-refactor TDD 放在同一套训练里。</p>
 <p>对小白的翻译：Skill 告诉 Agent 应该怎样做，hook 自动拦下明确错误，TDD 让每个小行为都可观察。三者可组合，但没有任何一个能单独保证正确。</p>
-<h4 id="12-2-5-环境能回答的事实-不要再去问人" tabindex="-1">12.2.5 环境能回答的事实，不要再去问人<a class="heading-anchor" href="#12-2-5-环境能回答的事实-不要再去问人" aria-label="链接到本节">#</a></h4>
+<h4 id="12-3-5-环境能回答的事实-不要再去问人" tabindex="-1">12.3.5 环境能回答的事实，不要再去问人<a class="heading-anchor" href="#12-3-5-环境能回答的事实-不要再去问人" aria-label="链接到本节">#</a></h4>
 <p>在 <a href="https://www.aihero.dev/skills-grilling">The /grilling Skill</a> 中，Matt 把问题分成两类：代码、文档、工具能查到的事实，应由 Skill 自己调查；只有产品取舍、风险偏好和业务决策才应等人回答。</p>
 <p>实战检查：每当 Agent 问一个问题，先问「这个答案在环境里吗？」如果在，要求它带证据回来，而不是把调查推给用户。</p>
-<h4 id="12-2-6-问题问完不等于形成共识" tabindex="-1">12.2.6 问题问完不等于形成共识<a class="heading-anchor" href="#12-2-6-问题问完不等于形成共识" aria-label="链接到本节">#</a></h4>
+<h4 id="12-3-6-问题问完不等于形成共识" tabindex="-1">12.3.6 问题问完不等于形成共识<a class="heading-anchor" href="#12-3-6-问题问完不等于形成共识" aria-label="链接到本节">#</a></h4>
 <p><code>grilling</code> 页面还把「用户确认共同理解」作为从讨论进入行动的门槛。这条规则针对的是一种常见假完成：Agent 已经没有新问题，但人对范围、取舍和验收仍没有同一张图。</p>
 <p>可操作门槛：行动前回显「已定决策 / 未决问题 / 明确不做 / 验收方式」，再由人确认。</p>
-<h4 id="12-2-7-上下文快用尽时-主动交接而不是硬塞" tabindex="-1">12.2.7 上下文快用尽时，主动交接而不是硬塞<a class="heading-anchor" href="#12-2-7-上下文快用尽时-主动交接而不是硬塞" aria-label="链接到本节">#</a></h4>
+<h4 id="12-3-7-上下文快用尽时-主动交接而不是硬塞" tabindex="-1">12.3.7 上下文快用尽时，主动交接而不是硬塞<a class="heading-anchor" href="#12-3-7-上下文快用尽时-主动交接而不是硬塞" aria-label="链接到本节">#</a></h4>
 <p>在 <a href="https://www.aihero.dev/skills/skills-changelog-handoff-prototype-review-and-writing">Skills Changelog: /handoff, /prototype, /review and /writing</a> 中，Matt 把 handoff 作为上下文耗尽时的主动策略。这里的「full context」应理解为交接的目标，不是对零遗漏的保证。</p>
 <p>一份可用 handoff 至少应当包含：当前目标、已确认决策、已改文件、当前验证、未决问题、下一个可执行动作。</p>
-<h4 id="12-2-8-implement-只消费已稳定的计划" tabindex="-1">12.2.8 <code>implement</code> 只消费已稳定的计划<a class="heading-anchor" href="#12-2-8-implement-只消费已稳定的计划" aria-label="链接到本节">#</a></h4>
+<h4 id="12-3-8-implement-只消费已稳定的计划" tabindex="-1">12.3.8 <code>implement</code> 只消费已稳定的计划<a class="heading-anchor" href="#12-3-8-implement-只消费已稳定的计划" aria-label="链接到本节">#</a></h4>
 <p>在 <a href="https://www.aihero.dev/skills-implement">The /implement Skill</a> 中，Matt 用一句很强的边界描述这个 Skill：</p>
 <blockquote>
 <p>「It never reopens the plan.」</p>
 </blockquote>
 <p>这不是说实现中发现错误也不能停。正确做法是：发现 spec 前提错误时，把问题退回上游决策阶段；不在实现中悄悄改目标。</p>
-<h4 id="12-2-9-原型只回答一个问题" tabindex="-1">12.2.9 原型只回答一个问题<a class="heading-anchor" href="#12-2-9-原型只回答一个问题" aria-label="链接到本节">#</a></h4>
+<h4 id="12-3-9-原型只回答一个问题" tabindex="-1">12.3.9 原型只回答一个问题<a class="heading-anchor" href="#12-3-9-原型只回答一个问题" aria-label="链接到本节">#</a></h4>
 <p>在 <a href="https://www.aihero.dev/skills-prototype">The /prototype Skill</a> 中，原型被定义为可丢弃代码，用来回答一个设计问题。重点是问题优先、一次会话完成、决策后删除代码但保留结论。</p>
 <p>如果原型开始承担迁移、安全、完整错误处理和产品级样式，它就很可能已经变成了没有 spec 的实现。</p>
-<h4 id="12-2-10-人工外部步骤应该被编成可恢复向导" tabindex="-1">12.2.10 人工外部步骤应该被编成可恢复向导<a class="heading-anchor" href="#12-2-10-人工外部步骤应该被编成可恢复向导" aria-label="链接到本节">#</a></h4>
+<h4 id="12-3-10-人工外部步骤应该被编成可恢复向导" tabindex="-1">12.3.10 人工外部步骤应该被编成可恢复向导<a class="heading-anchor" href="#12-3-10-人工外部步骤应该被编成可恢复向导" aria-label="链接到本节">#</a></h4>
 <p>在 <a href="https://www.aihero.dev/skills-wizard">The /wizard Skill</a> 中，外部控制台、凭据录入等人工操作被转化为交互式 Bash 向导。教学重点不是「自动化一切」，而是让不能自动化的部分也拥有顺序、安全输入、恢复点和最终摘要。</p>
-<h3 id="12-3-固定提交里的五个可观察事实" tabindex="-1">12.3 固定提交里的五个可观察事实<a class="heading-anchor" href="#12-3-固定提交里的五个可观察事实" aria-label="链接到本节">#</a></h3>
-<h4 id="12-3-1-仓库定位是真实工程-不是-vibe-coding" tabindex="-1">12.3.1 仓库定位是真实工程，不是 vibe coding<a class="heading-anchor" href="#12-3-1-仓库定位是真实工程-不是-vibe-coding" aria-label="链接到本节">#</a></h4>
+<h3 id="12-4-固定提交里的五个可观察事实" tabindex="-1">12.4 固定提交里的五个可观察事实<a class="heading-anchor" href="#12-4-固定提交里的五个可观察事实" aria-label="链接到本节">#</a></h3>
+<h4 id="12-4-1-仓库定位是真实工程-不是-vibe-coding" tabindex="-1">12.4.1 仓库定位是真实工程，不是 vibe coding<a class="heading-anchor" href="#12-4-1-仓库定位是真实工程-不是-vibe-coding" aria-label="链接到本节">#</a></h4>
 <p>固定版 <a href="https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/README.md">README</a> 把这些 Skills 描述为作者日常工程使用的做法，并强调小、易改、可组合。这能支持「把 Skill 当成可审查流程部件」，但不能证明任意组合都经过验证。</p>
-<h4 id="12-3-2-tdd-明文要求先红后绿" tabindex="-1">12.3.2 TDD 明文要求先红后绿<a class="heading-anchor" href="#12-3-2-tdd-明文要求先红后绿" aria-label="链接到本节">#</a></h4>
+<h4 id="12-4-2-tdd-明文要求先红后绿" tabindex="-1">12.4.2 TDD 明文要求先红后绿<a class="heading-anchor" href="#12-4-2-tdd-明文要求先红后绿" aria-label="链接到本节">#</a></h4>
 <p>固定版 <a href="https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/tdd/SKILL.md"><code>tdd/SKILL.md</code></a> 要求先写失败测试，再只写让它通过的代码；而且测试 seam 需要前置确认。因此，「先代码后补测试」不是这个 Skill 的等价实现。</p>
-<h4 id="12-3-3-context-pointer-的文案决定加载时机" tabindex="-1">12.3.3 context pointer 的文案决定加载时机<a class="heading-anchor" href="#12-3-3-context-pointer-的文案决定加载时机" aria-label="链接到本节">#</a></h4>
+<h4 id="12-4-3-context-pointer-的文案决定加载时机" tabindex="-1">12.4.3 context pointer 的文案决定加载时机<a class="heading-anchor" href="#12-4-3-context-pointer-的文案决定加载时机" aria-label="链接到本节">#</a></h4>
 <p>固定版 <a href="https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/productivity/writing-for-agents/SKILL.md"><code>writing-for-agents/SKILL.md</code></a> 指出，不是「有一个目标文件」就能保证 Agent 读取；指针文案需要说清什么情况下应该去读。</p>
 <p>检查你的项目规则：把「详见 <code>docs/testing.md</code>」改成「修改会话状态或重试逻辑前，先读 <code>docs/testing.md</code> 中的状态转移测试约束」。</p>
-<h4 id="12-3-4-to-spec-不再做现场访谈" tabindex="-1">12.3.4 <code>to-spec</code> 不再做现场访谈<a class="heading-anchor" href="#12-3-4-to-spec-不再做现场访谈" aria-label="链接到本节">#</a></h4>
+<h4 id="12-4-4-to-spec-不再做现场访谈" tabindex="-1">12.4.4 <code>to-spec</code> 不再做现场访谈<a class="heading-anchor" href="#12-4-4-to-spec-不再做现场访谈" aria-label="链接到本节">#</a></h4>
 <p>固定版 <a href="https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/to-spec/SKILL.md"><code>to-spec/SKILL.md</code></a> 明文要求综合已知信息，不重开访谈。如果缺失业务决策，应回到 <code>grill-*</code> 或研究阶段，不应把假设写成 spec 事实。</p>
-<h4 id="12-3-5-retrospective-也要检查-agent-能否获得信息" tabindex="-1">12.3.5 retrospective 也要检查 Agent 能否获得信息<a class="heading-anchor" href="#12-3-5-retrospective-也要检查-agent-能否获得信息" aria-label="链接到本节">#</a></h4>
+<h4 id="12-4-5-retrospective-也要检查-agent-能否获得信息" tabindex="-1">12.4.5 retrospective 也要检查 Agent 能否获得信息<a class="heading-anchor" href="#12-4-5-retrospective-也要检查-agent-能否获得信息" aria-label="链接到本节">#</a></h4>
 <p>固定基线提交新增了「Information access」复盘类别。这给了一个很实用的诊断角度：Agent 做错时，不要只问模型或 prompt 是否不够强，还要检查它是否根本看不到日志、代码关系、运行状态或官方资料。</p>
-<h3 id="12-4-把作者表述转成一套工程自检" tabindex="-1">12.4 把作者表述转成一套工程自检<a class="heading-anchor" href="#12-4-把作者表述转成一套工程自检" aria-label="链接到本节">#</a></h3>
+<h3 id="12-5-把作者表述转成一套工程自检" tabindex="-1">12.5 把作者表述转成一套工程自检<a class="heading-anchor" href="#12-5-把作者表述转成一套工程自检" aria-label="链接到本节">#</a></h3>
 <table>
 <thead>
 <tr>
@@ -2927,7 +3104,7 @@ before forming a root-cause theory.
 <td>无法并行 review 时仍分开 Standards 与 Spec 两轴串行检查</td>
 </tr>
 </tbody></table>
-<h3 id="12-5-本章验收" tabindex="-1">12.5 本章验收<a class="heading-anchor" href="#12-5-本章验收" aria-label="链接到本节">#</a></h3>
+<h3 id="12-6-本章验收" tabindex="-1">12.6 本章验收<a class="heading-anchor" href="#12-6-本章验收" aria-label="链接到本节">#</a></h3>
 <ul>
 <li>能区分官网当前表述与固定提交事实。</li>
 <li>能用「输入→产物→下一步」而不是「更强 prompt」解释 Skill 组合。</li>
