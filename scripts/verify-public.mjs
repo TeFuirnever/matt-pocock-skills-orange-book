@@ -315,6 +315,14 @@ const themeContracts = [
   "document.querySelector('meta[name=\"theme-color\"]')",
   "themeColor.setAttribute('content'",
 ];
+const printContracts = [
+  '@media print',
+  '--ink: #000000;',
+  'filter: grayscale(100%) contrast(1.1);',
+  'background: #ffffff;',
+  'text-decoration: underline;',
+  'display: table-header-group;',
+];
 const generatedThemePages = [
   ['main reading edition', indexHtml],
   ['practice index', labsIndexHtml],
@@ -327,6 +335,11 @@ for (const [pageName, pageHtml] of generatedThemePages) {
   for (const themeContract of themeContracts) {
     if (!pageHtml.includes(themeContract)) {
       errors.push(`${pageName} is missing theme contract: ${themeContract}`);
+    }
+  }
+  for (const printContract of printContracts) {
+    if (!pageHtml.includes(printContract)) {
+      errors.push(`${pageName} is missing print contract: ${printContract}`);
     }
   }
 }
