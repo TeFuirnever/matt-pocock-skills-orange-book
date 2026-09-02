@@ -174,7 +174,7 @@ select:focus-visible {
 
 .topbar-inner {
   display: grid;
-  grid-template-columns: minmax(230px, var(--sidebar-width)) minmax(280px, 680px) minmax(120px, 1fr);
+  grid-template-columns: minmax(230px, var(--sidebar-width)) minmax(280px, 1fr) max-content;
   align-items: center;
   gap: 20px;
   width: min(100%, 1500px);
@@ -323,16 +323,18 @@ select:focus-visible {
 
 .topbar-actions {
   display: flex;
-  min-width: 0;
+  min-width: max-content;
   align-items: center;
   justify-content: flex-end;
   gap: 10px;
 }
 
 .topbar-actions > a {
+  flex: 0 0 auto;
   color: var(--ink);
   font-size: 14px;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .theme-control {

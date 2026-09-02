@@ -323,6 +323,11 @@ const printContracts = [
   'text-decoration: underline;',
   'display: table-header-group;',
 ];
+const headerContracts = [
+  'grid-template-columns: minmax(230px, var(--sidebar-width)) minmax(280px, 1fr) max-content;',
+  '.topbar-actions > a {\n  flex: 0 0 auto;',
+  'white-space: nowrap;',
+];
 const generatedThemePages = [
   ['main reading edition', indexHtml],
   ['practice index', labsIndexHtml],
@@ -340,6 +345,11 @@ for (const [pageName, pageHtml] of generatedThemePages) {
   for (const printContract of printContracts) {
     if (!pageHtml.includes(printContract)) {
       errors.push(`${pageName} is missing print contract: ${printContract}`);
+    }
+  }
+  for (const headerContract of headerContracts) {
+    if (!pageHtml.includes(headerContract)) {
+      errors.push(`${pageName} is missing responsive header contract: ${headerContract}`);
     }
   }
 }
