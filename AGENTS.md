@@ -23,6 +23,9 @@ public Skills repository. Keep changes documentation-focused and reviewable.
 - Do not add private project names, source code, local user paths, credentials,
   raw chat transcripts, or internal release information.
 - Preserve third-party attribution, font licenses, and image provenance.
+- Add only final public Azhou PNG assets under `assets/azhou/`. Local review
+  candidates are not repository or Pages content and must not be described as
+  published illustrations.
 
 ## Required Verification
 
