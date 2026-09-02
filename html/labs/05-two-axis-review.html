@@ -3,10 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Matt Pocock Skills 橙皮书配套学习实验室：用可验证产物完成从调查到交接的四个任务。">
+  <meta name="description" content="Matt Pocock Skills 橙皮书实践路径：六个实践关卡与一个综合交付，用可验证产物完成从调查到交接。">
   <meta name="theme-color" content="#f8f7f4">
-  <link rel="canonical" href="https://tefuirnever.github.io/matt-pocock-skills-orange-book/labs/">
-  <title>Lab 4 · 完成一次可交接交付 · Skills 学习实验室</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23fff1df'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Georgia,serif' font-size='42' font-weight='700' fill='%239f4800'%3EM%3C/text%3E%3C/svg%3E">
+  <link rel="canonical" href="https://tefuirnever.github.io/matt-pocock-skills-orange-book/#practice-05-two-axis-review">
+  <title>实践关卡 5 · 分开两条 review 轴 · Skills 橙皮书实践路径</title>
   <style>@page {
   size: A4;
   margin: 18mm 16mm 20mm;
@@ -442,6 +443,31 @@ input:focus-visible {
   padding-left: 13px;
   border-left: 5px solid var(--orange);
   font-size: 27px;
+}
+
+.book-article .practice-heading {
+  margin-top: 4em;
+  padding: 18px 20px;
+  border: 1px solid #f1c18e;
+  border-left: 6px solid var(--orange);
+  border-radius: 8px;
+  background: var(--orange-soft);
+}
+
+.book-article .practice-path-heading {
+  border-color: var(--line);
+  border-left-color: var(--blue);
+  background: #eef7fd;
+}
+
+.book-article .practice-capstone-heading {
+  border-color: #dfad70;
+  border-left-color: var(--orange-dark);
+  background: #fff8ef;
+}
+
+.practice-toc-link {
+  font-weight: 700;
 }
 
 .book-article h3 {
@@ -936,93 +962,81 @@ code {
 </style>
 </head>
 <body class="lab-page">
-  <a class="skip-link" href="#lab-content">跳到 Lab 正文</a>
+  <a class="skip-link" href="#lab-content">跳到实践正文</a>
   <header class="topbar">
     <div class="lab-topbar">
-      <a class="brand" href="../" aria-label="回到橙皮书首页">
+      <a class="brand" href="../#practice-05-two-axis-review" aria-label="回到橙皮书实践路径">
         <span class="brand-mark" aria-hidden="true">M</span>
-        <span><strong>Skills 学习实验室</strong><small>从阅读到可验证交付</small></span>
+        <span><strong>Skills 橙皮书</strong><small>实践路径 · 从阅读到可验证交付</small></span>
       </a>
-      <nav class="lab-topbar-actions" aria-label="实验室操作">
-        <a href="../">阅读全书</a>
+      <nav class="lab-topbar-actions" aria-label="实践路径操作">
+        <a href="../#practice-05-two-axis-review">回到橙皮书</a>
         <a href="https://github.com/TeFuirnever/matt-pocock-skills-orange-book" target="_blank" rel="noreferrer">GitHub</a>
       </nav>
     </div>
   </header>
   <main id="lab-content" class="lab-layout">
-    <aside class="lab-sidebar" aria-label="学习实验室导航">
-      <p class="sidebar-label">四个递进 Lab</p>
-      <nav class="toc"><a class="toc-link" href="index.html">全部 Labs</a>
-<a class="toc-link" href="01-find-the-answer.html">Lab 1 · 先找到答案</a>
-<a class="toc-link" href="02-decision-to-spec.html">Lab 2 · 把决定写成可施工规格</a>
-<a class="toc-link" href="03-red-green-bug.html">Lab 3 · 让一个 bug 先变红</a>
-<a class="toc-link" href="04-delivery-handoff.html">Lab 4 · 完成一次可交接交付</a></nav>
+    <aside class="lab-sidebar" aria-label="实践路径导航">
+      <p class="sidebar-label">实践路径</p>
+      <nav class="toc"><a class="toc-link" href="../#practice-readme">实践路径总览</a>
+<a class="toc-link" href="01-find-the-answer.html">实践关卡 1 · 先找到答案</a>
+<a class="toc-link" href="02-decision-to-spec.html">实践关卡 2 · 把决定写成可施工规格</a>
+<a class="toc-link" href="03-red-green-bug.html">实践关卡 3 · 让一个 bug 先变红</a>
+<a class="toc-link" href="04-minimal-fix-evidence.html">实践关卡 4 · 用最小修复闭合证据</a>
+<a class="toc-link" href="05-two-axis-review.html">实践关卡 5 · 分开两条 review 轴</a>
+<a class="toc-link" href="06-handoff-rehearsal.html">实践关卡 6 · 交接前先复述</a>
+<a class="toc-link" href="07-capstone-delivery.html">综合交付 · 完成一次可交接交付</a></nav>
       <div class="sidebar-meta">
         <span>每关都需留下</span>
         <code>可复跑证据</code>
       </div>
     </aside>
     <article class="book-article lab-article">
-      <p class="lab-kicker">配套练习</p>
+      <p class="lab-kicker">橙皮书实践路径</p>
       <p class="lab-description">在自己的仓库完成一个小任务，并把可验证产物留给下一关。</p>
-      <h1>Lab 4 · 完成一次可交接交付</h1>
-<p><strong>难度：中级到高阶</strong>　<strong>预计：90–150 分钟</strong>　<strong>主风险：一个会话里同时重开计划、实现、评审和发布</strong></p>
+      <h1>实践关卡 5 · 分开两条 review 轴</h1>
+<p><strong>难度：中级</strong>　<strong>预计：30–45 分钟</strong>　<strong>动作：3</strong>　<strong>主风险：把“代码干净”误当成“需求做对”</strong></p>
+<blockquote>
+<p><strong>本关完成时：</strong> 你会得到两份互不替代的 review 结论：一份检查工程标准，一份检查用户承诺。</p>
+</blockquote>
+<h2>开始前</h2>
+<ul>
+<li>一条已完成、可运行的垂直行为；</li>
+<li>该行为对应的 spec、ticket 与新鲜验证结果；</li>
+<li>一个可供 review 的 diff 或变更集。</li>
+</ul>
 <h2>任务</h2>
-<p>从 Lab 2 选择一张边界清楚的 ticket，完成一次小型垂直切片：实现一个用户可观察行为，分开做 Standards 与 Spec review，并把状态交接给一个不读旧聊天的新会话。</p>
-<p>本关不包含生产发布。涉及凭据、付款、数据删除、权限升级或外部控制台时，必须把人工步骤拆为受控向导或交给维护者确认。</p>
+<p>把 review 拆为 Standards 与 Spec 两个问题。前者检查实现是否遵守项目边界，后者检查用户可观察结果是否兑现；任一结论都不能替代另一个。</p>
+<h2>不做</h2>
+<ul>
+<li>不只写“LGTM”“代码干净”或泛泛赞语；</li>
+<li>不以旧测试结果、主观印象或完整聊天作为 review 证据；</li>
+<li>不在 review 中悄悄改变已确认的范围。</li>
+</ul>
 <h2>操作</h2>
-<h3>1. 施工前检查输入</h3>
-<p>执行前只允许读取 spec、ticket、当前分支和事先约定的测试 seam。发现目标、验收或边界不清时，停止并退回 Lab 2；不要在 <code>implement</code> 阶段悄悄替换计划。</p>
-<h3>2. 完成一条垂直行为</h3>
-<p>让实现围绕一条用户可观察结果工作。每次改动后运行与该 ticket 对应的最小检查；最后补充分支适用的类型、lint 或集成检查。</p>
-<h3>3. 分开两条 review 轴</h3>
-<table>
-<thead>
-<tr>
-<th>轴</th>
-<th>要问的问题</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Standards</td>
-<td>类型、安全、边界、错误处理、项目约定是否满足？</td>
-</tr>
-<tr>
-<td>Spec</td>
-<td>用户故事、明确不做、验收与视觉/交互结果是否满足？</td>
-</tr>
-</tbody></table>
-<p>两条轴都必须写出“通过”或具体 finding。不能把“代码干净”当成“做对了需求”。</p>
-<h3>4. 写 handoff</h3>
-<p>在剩余上下文不足、需要人工确认或准备交由 review 时，写一份不依赖聊天记录的 handoff：</p>
-<pre><code class="language-markdown"># &lt;任务名&gt; Handoff
-
-## 当前目标
-## 已确认决定
-## 已改文件
-## 当前验证
-## Review 结论
-## 未决问题与风险
-## 下一步唯一动作
-</code></pre>
-<p>让一个新的会话或同事只读这份文件，先复述“已完成、未完成、下一步”，再继续工作。</p>
+<h3>1. 固定 review 输入</h3>
+<p>把 spec、ticket、diff、目标命令和本次结果排在一起。缺少任一项时，先补输入而不是开始评论代码风格。</p>
+<h3>2. 完成 Standards review</h3>
+<p>只回答类型、安全、错误处理、边界、测试 seam 与项目约定是否满足。每个 finding 必须指向文件、行为和最小修复；没有 finding 也要写明依据。</p>
+<h3>3. 完成 Spec review</h3>
+<p>只回答用户故事、明确不做、验收与可观察交互是否满足。确认没有把“实现合理”误当成“用户结果正确”。</p>
 <h2>必须留下的产物</h2>
 <ul>
-<li>spec 与 ticket 的最终链接；</li>
-<li>当前分支上的最小验证和补充检查结果；</li>
-<li>Standards 与 Spec 两份独立 review 结论；</li>
-<li>一份可被新会话读取的 handoff。</li>
+<li>Standards review：通过或有定位的 finding；</li>
+<li>Spec review：通过或有定位的 finding；</li>
+<li>每条 finding 对应的证据与下一步；</li>
+<li>仍存在的风险或明确“无”。</li>
 </ul>
 <h2>验收</h2>
 <ul>
-<li>新会话无需阅读原聊天，也能执行下一步；</li>
-<li>review finding 能指向行为、证据与最小修复，而非泛泛评价；</li>
-<li>未授权的外部操作没有被执行；</li>
-<li>当前验证新鲜可复跑，风险仍明确可见。</li>
+<li>两份结论使用不同的问题与证据；</li>
+<li>任何阻塞 finding 都能回到具体 seam、行为或范围；</li>
+<li>两条 review 轴都没有把发布授权当作普通代码检查；</li>
+<li>读者可从结论判断该继续修复、交接还是停止。</li>
 </ul>
 <h2>停止条件</h2>
-<p>交付包完整、验证通过且 handoff 已被独立复述时停止。是否合并、发布或执行外部人工步骤，由项目维护者在本关之外决定。</p>
-<p><a href="index.html">返回实验室</a> · <a href="../">回到全书</a></p>
+<p>两条 review 轴均已得到明确结论，且下一步唯一动作可被写成一句话时停止。</p>
+<p><a href="06-handoff-rehearsal.html">进入实践关卡 6</a> · <a href="index.html">返回实践路径</a></p>
 
     </article>
   </main>

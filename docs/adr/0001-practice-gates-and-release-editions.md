@@ -1,0 +1,3 @@
+# Make practice gates and release editions first-class reader concepts
+
+The Orange Book will embed contextual Practice Gates in its primary reading flow while retaining `labs/` as the authoritative exercise sources and a shareable secondary representation. Public UI identifies a Release Edition; its pinned upstream commit remains an Evidence Baseline in the source and verification layer. A version selector appears only after at least two released editions exist, and historical editions remain readable with an explicit historical status. This rejects both a separate Labs product and a decorative selector for unpublished editions.

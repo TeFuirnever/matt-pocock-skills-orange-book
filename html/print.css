@@ -435,6 +435,31 @@ input:focus-visible {
   font-size: 27px;
 }
 
+.book-article .practice-heading {
+  margin-top: 4em;
+  padding: 18px 20px;
+  border: 1px solid #f1c18e;
+  border-left: 6px solid var(--orange);
+  border-radius: 8px;
+  background: var(--orange-soft);
+}
+
+.book-article .practice-path-heading {
+  border-color: var(--line);
+  border-left-color: var(--blue);
+  background: #eef7fd;
+}
+
+.book-article .practice-capstone-heading {
+  border-color: #dfad70;
+  border-left-color: var(--orange-dark);
+  background: #fff8ef;
+}
+
+.practice-toc-link {
+  font-weight: 700;
+}
+
 .book-article h3 {
   margin-top: 2.1em;
   font-size: 21px;

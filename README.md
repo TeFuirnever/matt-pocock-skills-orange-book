@@ -7,7 +7,7 @@ A Chinese-first, beginner-friendly handbook for the public
 
 - [中文说明](README_zh.md)
 - [Online reading edition](https://tefuirnever.github.io/matt-pocock-skills-orange-book/)
-- [Learning Labs](https://tefuirnever.github.io/matt-pocock-skills-orange-book/labs/)
+- [Practice Path](https://tefuirnever.github.io/matt-pocock-skills-orange-book/#practice-readme)
 - [Authoritative Markdown book](book.md)
 - [Generated HTML reading edition](html/index.html)
 
@@ -32,7 +32,7 @@ to the fixed upstream commit and the evidence records under `research/`.
 - A step-by-step field guide for each Skill: trigger, input, process, boundary,
   teaching desktop UI example, output, verification, and beginner mistakes.
 - Three explicit reading paths for beginner, intermediate, and advanced users.
-- Four progressive Labs that turn reading into verifiable engineering work.
+- Six practice gates and one capstone that turn reading into verifiable engineering work.
 - Seven progressive, synthetic desktop UI client exercises.
 - Three end-to-end operation cases: fact-auditing a technical report, moving
   configuration semantics, and fixing an Electron renderer blank screen.
@@ -41,7 +41,7 @@ to the fixed upstream commit and the evidence records under `research/`.
 - Fifteen Azhou beginner diagrams as final PNG assets.
 - Ten editable Excalidraw scenes with SVG and PNG exports.
 
-The book is based on upstream commit
+The current reading edition is `v0.1.0`. Its evidence baseline is upstream commit
 [`6654f6b60cd9d5be8b54c6fafe44346dabeb3b76`](https://github.com/mattpocock/skills/tree/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76):
 18 engineering, 7 productivity, 4 misc, and 8 in-progress Skills.
 
@@ -59,9 +59,10 @@ npm run check
 ```
 
 The numbered files under `chapters/` and `labs/` are the authoritative content
-sources. The build assembles the chapters into `book.md`, generates both
-`html/index.html` and `html/book.html`, generates standalone pages under
-`html/labs/`, and copies every referenced PNG into `html/assets/`.
+sources. The build assembles chapters and placed practice sources into `book.md`,
+generates both `html/index.html` and `html/book.html`, generates standalone
+practice pages under `html/labs/`, and copies every referenced PNG into
+`html/assets/`.
 The verifier checks the fixed upstream commit, the Pages workflow, and common
 public-repository secret/path patterns. Its current verified snapshot
 (`2026-09-01`) is:
@@ -69,13 +70,14 @@ public-repository secret/path patterns. Its current verified snapshot
 | Surface | Verified count |
 |---|---:|
 | Numbered chapter sources | 16 |
-| Progressive Labs | 4 |
+| Practice gates | 6 |
+| Capstones | 1 |
 | Detailed Skill sections | 37 |
 | First-party evidence records | 15 |
 | Referenced book images | 25 |
 | Final Azhou PNG diagrams | 15 |
 | Editable Excalidraw scenes | 10 |
-| Generated Lab pages | 5 |
+| Generated practice pages | 8 |
 
 ## Visual sources
 

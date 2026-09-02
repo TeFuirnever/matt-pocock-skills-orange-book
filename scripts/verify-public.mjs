@@ -12,6 +12,7 @@ import {
   hasAiHeroSource,
   hasMattPocockSkillsSource,
 } from './source-url-contract.mjs';
+import { assembleBook, practicePlacements } from './content-assembly.mjs';
 
 const projectRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const fixedCommit = '6654f6b60cd9d5be8b54c6fafe44346dabeb3b76';
@@ -21,7 +22,10 @@ const expectedLabs = [
   '01-find-the-answer.md',
   '02-decision-to-spec.md',
   '03-red-green-bug.md',
-  '04-delivery-handoff.md',
+  '04-minimal-fix-evidence.md',
+  '05-two-axis-review.md',
+  '06-handoff-rehearsal.md',
+  '07-capstone-delivery.md',
 ];
 const expectedSkills = [
   'ask-matt',
@@ -80,6 +84,7 @@ const excludedDirectories = new Set([
   '.azhou',
   '.git',
   '.lavish',
+  '.omx',
   'node_modules',
 ]);
 const forbiddenPatterns = [
@@ -116,9 +121,20 @@ const chapterDir = resolve(projectRoot, 'chapters');
 const chapterNames = readdirSync(chapterDir)
   .filter((name) => /^\d{2}-.+\.md$/.test(name))
   .sort((left, right) => left.localeCompare(right, 'en'));
-const assembledBook = `${chapterNames
-  .map((name) => readFileSync(resolve(chapterDir, name), 'utf8').trimEnd())
-  .join('\n\n')}\n`;
+const expectedPracticeSources = ['README.md', ...expectedLabs];
+const placedPracticeSources = practicePlacements.map(({ sourceName }) => sourceName);
+if (placedPracticeSources.join('|') !== expectedPracticeSources.join('|')) {
+  errors.push('practice placements do not match the expected practice sources');
+}
+const practiceSources = practicePlacements.map(({ sourceName }) => ({
+  name: sourceName,
+  source: requireFile(errors, `labs/${sourceName}`),
+}));
+const assembledBook = assembleBook({
+  chapterNames,
+  chapterSource: (name) => readFileSync(resolve(chapterDir, name), 'utf8'),
+  practiceSources,
+});
 const book = requireFile(errors, 'book.md');
 const indexHtml = requireFile(errors, 'html/index.html');
 const bookHtml = requireFile(errors, 'html/book.html');
@@ -141,8 +157,12 @@ if (book !== assembledBook) {
 if (!book.includes(fixedCommit)) {
   errors.push('book.md does not declare the fixed upstream commit');
 }
-if (!book.includes('[配套学习实验室](labs/)')) {
-  errors.push('book.md does not link readers to the learning labs');
+if (!book.includes('[实践路径](#practice-readme)')) {
+  errors.push('book.md does not link readers to the integrated practice path');
+}
+const readingEdition = `v${JSON.parse(requireFile(errors, 'package.json')).version}`;
+if (!book.includes(`当前阅读版：${readingEdition}`)) {
+  errors.push(`book.md does not declare the current reading edition: ${readingEdition}`);
 }
 
 const detailedSkillPattern = /^#### 11\.[1-4]\.\d+ \`([^\`]+)\`/gm;
@@ -168,13 +188,21 @@ for (const labName of expectedLabs) {
   if (/\]\((?:README|\d{2}-[a-z0-9-]+)\.html(?:#[^)]+)?\)/i.test(labSource)) {
     errors.push(`${labPath} uses a generated HTML link instead of a source Markdown link`);
   }
-  for (const requiredSection of ['## 任务', '## 必须留下的产物', '## 验收', '## 停止条件']) {
+  for (const requiredSection of [
+    '## 开始前',
+    '## 任务',
+    '## 不做',
+    '## 操作',
+    '## 必须留下的产物',
+    '## 验收',
+    '## 停止条件',
+  ]) {
     if (!labSource.includes(requiredSection)) {
-      errors.push(`${labPath} is missing required Lab section: ${requiredSection}`);
+      errors.push(`${labPath} is missing required practice section: ${requiredSection}`);
     }
   }
-  if (!labHtml.includes('配套练习')) {
-    errors.push(`${labHtmlPath} is missing generated Lab page content`);
+  if (!labHtml.includes('橙皮书实践路径')) {
+    errors.push(`${labHtmlPath} is missing generated practice page content`);
   }
 }
 const labsReadme = requireFile(errors, 'labs/README.md');
@@ -182,12 +210,12 @@ if (/\]\((?:README|\d{2}-[a-z0-9-]+)\.html(?:#[^)]+)?\)/i.test(labsReadme)) {
   errors.push('labs/README.md uses a generated HTML link instead of a source Markdown link');
 }
 for (const requiredLabContract of [
-  '四个递进 Lab',
-  'Lab 1 · 先找到答案',
-  'Lab 4 · 完成一次可交接交付',
+  '六个实践关卡',
+  '实践关卡 1 · 先找到答案',
+  '综合交付 · 完成一次可交接交付',
 ]) {
   if (!labsIndexHtml.includes(requiredLabContract)) {
-    errors.push(`labs index is missing: ${requiredLabContract}`);
+    errors.push(`practice index is missing: ${requiredLabContract}`);
   }
 }
 
@@ -267,9 +295,24 @@ for (const siteContract of [
   'id="table-of-contents"',
   'id="menu-button"',
   'id="reading-progress-bar"',
+  '<span>当前阅读版</span>',
+  `<code>${readingEdition}</code>`,
+  `公开材料中文讲解 · ${readingEdition}`,
+  `href="#practice-readme"`,
 ]) {
   if (!indexHtml.includes(siteContract)) {
     errors.push(`generated HTML is missing site contract: ${siteContract}`);
+  }
+}
+if (indexHtml.includes('<span>固定上游提交</span>')) {
+  errors.push('generated HTML presents the upstream commit as the reader-facing identity');
+}
+const chapterNavigation = indexHtml.match(
+  /<nav class="toc" id="table-of-contents">([\s\S]*?)<\/nav>/,
+)?.[1] ?? '';
+for (const practiceOnlyLabel of ['实践关卡 1', '综合交付', '开始前', '必须留下的产物']) {
+  if (chapterNavigation.includes(practiceOnlyLabel)) {
+    errors.push(`chapter navigation leaks a practice-only section: ${practiceOnlyLabel}`);
   }
 }
 if (!existsSync(resolve(projectRoot, 'html/.nojekyll'))) {
@@ -306,6 +349,6 @@ if (errors.length > 0) {
   process.exitCode = 1;
 } else {
   console.log(
-    `[verify] passed: ${chapterNames.length} chapters, ${expectedLabs.length} Labs, ${documentedSkills.length} Skills, ${statementCount} first-party records, ${imageReferences.length} images, Pages contract present, public scan clean`,
+    `[verify] passed: ${chapterNames.length} chapters, ${expectedLabs.length} practice sources, ${documentedSkills.length} Skills, ${statementCount} first-party records, ${imageReferences.length} images, Pages contract present, public scan clean`,
   );
 }

@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="面向 AI 协作开发者的 Matt Pocock Skills 中文橙皮书，含 37 个 Skill 讲解、读者路径和端到端操作案例。">
+  <meta name="description" content="面向 AI 协作开发者的 Matt Pocock Skills 中文橙皮书，含 37 个 Skill 讲解、实践关卡与端到端操作案例。">
   <meta name="theme-color" content="#f8f7f4">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23fff1df'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Georgia,serif' font-size='42' font-weight='700' fill='%239f4800'%3EM%3C/text%3E%3C/svg%3E">
   <link rel="canonical" href="https://tefuirnever.github.io/matt-pocock-skills-orange-book/">
   <title>Matt Pocock Skills 橙皮书</title>
   <style>@page {
@@ -442,6 +443,31 @@ input:focus-visible {
   padding-left: 13px;
   border-left: 5px solid var(--orange);
   font-size: 27px;
+}
+
+.book-article .practice-heading {
+  margin-top: 4em;
+  padding: 18px 20px;
+  border: 1px solid #f1c18e;
+  border-left: 6px solid var(--orange);
+  border-radius: 8px;
+  background: var(--orange-soft);
+}
+
+.book-article .practice-path-heading {
+  border-color: var(--line);
+  border-left-color: var(--blue);
+  background: #eef7fd;
+}
+
+.book-article .practice-capstone-heading {
+  border-color: #dfad70;
+  border-left-color: var(--orange-dark);
+  background: #fff8ef;
+}
+
+.practice-toc-link {
+  font-weight: 700;
 }
 
 .book-article h3 {
@@ -943,7 +969,7 @@ code {
       <button class="icon-button menu-button" id="menu-button" type="button" aria-label="打开目录" aria-expanded="false" title="打开目录">☰</button>
       <a class="brand" href="#top" aria-label="回到页首">
         <span class="brand-mark" aria-hidden="true">M</span>
-        <span><strong>Skills 橙皮书</strong><small>Matt Pocock 公开材料中文讲解</small></span>
+        <span><strong>Skills 橙皮书</strong><small>Matt Pocock 公开材料中文讲解 · v0.1.0</small></span>
       </a>
       <div class="search-wrap">
         <label class="visually-hidden" for="site-search">搜索全书</label>
@@ -952,7 +978,7 @@ code {
         <div class="search-results" id="search-results" hidden></div>
       </div>
       <nav class="topbar-actions" aria-label="页面操作">
-        <a href="labs/">Labs</a>
+        <a href="#practice-readme">实践路径</a>
         <a href="https://github.com/TeFuirnever/matt-pocock-skills-orange-book" target="_blank" rel="noreferrer">GitHub</a>
         <button class="icon-button mobile-search-button" id="mobile-search-button" type="button" aria-label="打开搜索" aria-expanded="false" title="搜索全书">⌕</button>
         <button class="icon-button" id="print-button" type="button" aria-label="打印或导出 PDF" title="打印或导出 PDF">⎙</button>
@@ -966,10 +992,20 @@ code {
         <p class="sidebar-label">按读者程度</p>
         <nav class="reader-links" aria-label="读者路径">
           <a href="#第-0-章-这本书怎样读">小白：先选路径</a>
-          <a href="labs/">练习：完成四关 Lab</a>
+          <a href="#practice-readme">练习：进入实践路径</a>
           <a href="#第-8-章-七个-ui-客户端实例-从浅到深">中级：串联交付</a>
           <a href="#高阶进阶-从会使用-skill-到会设计-harness">高阶：设计 Harness</a>
         </nav>
+        <div class="sidebar-divider"></div>
+        <p class="sidebar-label">实践路径</p>
+        <nav class="toc" aria-label="实践路径目录"><a class="toc-link practice-toc-link" href="#practice-readme" data-section="practice-readme">橙皮书实践路径</a>
+<a class="toc-link practice-toc-link" href="#practice-01-find-the-answer" data-section="practice-01-find-the-answer">实践关卡 1 · 先找到答案</a>
+<a class="toc-link practice-toc-link" href="#practice-02-decision-to-spec" data-section="practice-02-decision-to-spec">实践关卡 2 · 把决定写成可施工规格</a>
+<a class="toc-link practice-toc-link" href="#practice-03-red-green-bug" data-section="practice-03-red-green-bug">实践关卡 3 · 让一个 bug 先变红</a>
+<a class="toc-link practice-toc-link" href="#practice-04-minimal-fix-evidence" data-section="practice-04-minimal-fix-evidence">实践关卡 4 · 用最小修复闭合证据</a>
+<a class="toc-link practice-toc-link" href="#practice-05-two-axis-review" data-section="practice-05-two-axis-review">实践关卡 5 · 分开两条 review 轴</a>
+<a class="toc-link practice-toc-link" href="#practice-06-handoff-rehearsal" data-section="practice-06-handoff-rehearsal">实践关卡 6 · 交接前先复述</a>
+<a class="toc-link practice-toc-link" href="#practice-07-capstone-delivery" data-section="practice-07-capstone-delivery">综合交付 · 完成一次可交接交付</a></nav>
         <div class="sidebar-divider"></div>
         <p class="sidebar-label">章节</p>
         <nav class="toc" id="table-of-contents"><a class="toc-link" href="#目录" data-section="目录">目录</a>
@@ -990,8 +1026,8 @@ code {
 <a class="toc-link" href="#第-14-章-附录-37-个-skills-完整索引" data-section="第-14-章-附录-37-个-skills-完整索引">第 14 章 · 附录：37 个 Skills 完整索引</a>
 <a class="toc-link" href="#资料与诚实声明" data-section="资料与诚实声明">资料与诚实声明</a></nav>
         <div class="sidebar-meta">
-          <span>固定上游提交</span>
-          <code>6654f6b</code>
+          <span>当前阅读版</span>
+          <code>v0.1.0</code>
         </div>
       </div>
     </aside>
@@ -1002,7 +1038,10 @@ code {
 <p>这不是一份命令清单。真正要学会的是：什么时候应该停下来问问题，什么时候应该做原型，什么时候必须先让测试变红，以及怎样把一次对话变成可跨会话交付的工程证据。</p>
 </blockquote>
 <p><img src="assets/azhou/skill-not-prompt.png" alt="阿舟图解：Skill 不是更长的 Prompt"></p>
-<p><strong>版本基准</strong></p>
+<p><strong>当前阅读版：v0.1.0</strong></p>
+<p>读者选择的是橙皮书的阅读版；上游固定提交只用于追溯本版的证据基线，不作为页面主身份。
+只有存在至少两份真实发布版时，页面才显示版本选择器；当前只显示本版标签，历史版将保持可读且明确标注为历史快照。</p>
+<p><strong>本版证据基线</strong></p>
 <table>
 <thead>
 <tr>
@@ -1015,7 +1054,7 @@ code {
 <td><a href="https://github.com/mattpocock/skills"><code>mattpocock/skills</code></a></td>
 </tr>
 <tr>
-<td>固定提交</td>
+<td>核验提交</td>
 <td><a href="https://github.com/mattpocock/skills/tree/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76"><code>6654f6b60cd9d5be8b54c6fafe44346dabeb3b76</code></a></td>
 </tr>
 <tr>
@@ -1103,38 +1142,84 @@ code {
 <li>某个工具或子 Agent 不可用时，流程还能否保留核心约束？</li>
 </ol>
 <p>前两题还回答不清，从小白路径开始；前三题稳定后转入中级；能用真实证据回答全部五题，再进入高阶路径。</p>
-<h3 id="0-1-1-读完一段-立刻做一关" tabindex="-1">0.1.1 读完一段，立刻做一关<a class="heading-anchor" href="#0-1-1-读完一段-立刻做一关" aria-label="链接到本节">#</a></h3>
-<p>正文解释“为什么”，<a href="labs/">配套学习实验室</a>要求你在自己的仓库里留下“做过什么、怎样验证、下一步怎样交接”。四关不要求使用固定技术栈：</p>
+<h3 id="0-1-1-用三层实践把阅读变成成果" tabindex="-1">0.1.1 用三层实践把阅读变成成果<a class="heading-anchor" href="#0-1-1-用三层实践把阅读变成成果" aria-label="链接到本节">#</a></h3>
+<p>正文解释“为什么”，实践把它变成可复跑的结果。三层的作用不同：</p>
 <table>
 <thead>
 <tr>
-<th>Lab</th>
+<th>层级</th>
+<th align="right">时长</th>
+<th>用途</th>
+<th>是否阻塞后续</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>微练习</td>
+<td align="right">5–10 分钟</td>
+<td>用每章验收问题检查自己是否理解一个概念</td>
+<td>否</td>
+</tr>
+<tr>
+<td>实践关卡</td>
+<td align="right">25–45 分钟</td>
+<td>用 3–5 个动作完成一项单一工程能力</td>
+<td>是：缺少产物就先补齐</td>
+</tr>
+<tr>
+<td>综合交付</td>
+<td align="right">60–150 分钟</td>
+<td>串联规格、反馈、review 与 handoff，完成小型垂直切片</td>
+<td>最后进行</td>
+</tr>
+</tbody></table>
+<p>微练习可以在读完任何一节后马上完成；它不要求固定技术栈，也不把思考题伪装成完成证据。</p>
+<h3 id="0-1-2-正文和实践路径是一条阅读路径" tabindex="-1">0.1.2 正文和实践路径是一条阅读路径<a class="heading-anchor" href="#0-1-2-正文和实践路径是一条阅读路径" aria-label="链接到本节">#</a></h3>
+<p><a href="#practice-readme">实践路径</a>嵌在正文的关键转折之后，同时保留独立链接供需要分享某一关的人使用。六个关卡和一个综合交付都要求在自己的仓库留下“做过什么、怎样验证、下一步怎样交接”：</p>
+<table>
+<thead>
+<tr>
+<th>关卡</th>
 <th>先练什么</th>
 <th>完成时必须留下什么</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>Lab 1</td>
+<td>实践关卡 1</td>
 <td>事实调查与人类决策分界</td>
 <td>决策记录 + 最小验证命令</td>
 </tr>
 <tr>
-<td>Lab 2</td>
+<td>实践关卡 2</td>
 <td>决定如何变成 spec 与 ticket</td>
-<td>spec + tracer-bullet ticket</td>
+<td>最小 spec + 第一张垂直 ticket</td>
 </tr>
 <tr>
-<td>Lab 3</td>
+<td>实践关卡 3</td>
 <td>bug 怎样从猜测变成反馈环</td>
-<td>同一条红绿回归命令</td>
+<td>稳定失败的目标命令</td>
 </tr>
 <tr>
-<td>Lab 4</td>
-<td>怎样完成可交接的小型交付</td>
-<td>review 结论 + handoff</td>
+<td>实践关卡 4</td>
+<td>用最小修复把同一条命令从红变绿</td>
+<td>最小 diff + 绿色验证</td>
+</tr>
+<tr>
+<td>实践关卡 5</td>
+<td>分开工程标准和用户承诺两条 review 轴</td>
+<td>两份独立 review 结论</td>
+</tr>
+<tr>
+<td>实践关卡 6</td>
+<td>交接前先由新会话复述</td>
+<td>可执行 handoff</td>
+</tr>
+<tr>
+<td>综合交付</td>
+<td>把前面的能力串成一条小型垂直切片</td>
+<td>spec、验证、review 与 handoff</td>
 </tr>
 </tbody></table>
-<p>第一次读本书时，可以按“读第 3 章 → 做 Lab 1 → 读第 4 章 → 做 Lab 2”的节奏前进。任何一关卡住，不要跳到更复杂的 Skill；先修复该关缺失的事实、决定或验证。</p>
+<p>第一次读本书时，可以按“读第 3 章 → 做实践关卡 1 → 读第 4 章 → 做实践关卡 2”的节奏前进。任何一关卡住，不要跳到更复杂的 Skill；先修复该关缺失的事实、决定或验证。</p>
 <h3 id="0-2-按问题直达章节" tabindex="-1">0.2 按问题直达章节<a class="heading-anchor" href="#0-2-按问题直达章节" aria-label="链接到本节">#</a></h3>
 <table>
 <thead>
@@ -1185,7 +1270,7 @@ code {
 </tr>
 <tr>
 <td>想把阅读变成一次可验证的实操</td>
-<td><a href="labs/">配套学习实验室</a></td>
+<td><a href="#practice-readme">实践路径</a></td>
 </tr>
 </tbody></table>
 <h3 id="0-3-本书采用的讲法" tabindex="-1">0.3 本书采用的讲法<a class="heading-anchor" href="#0-3-本书采用的讲法" aria-label="链接到本节">#</a></h3>
@@ -1241,6 +1326,40 @@ code {
 <li>能根据自己的经验选择小白、中级或高阶路径。</li>
 </ul>
 <hr>
+<h2 id="practice-readme" class="practice-heading practice-path-heading" tabindex="-1">橙皮书实践路径<a class="heading-anchor" href="#practice-readme" aria-label="链接到本节">#</a></h2>
+<p>这不是书外附录。实践路径把正文中的关键判断变成你在自己仓库里可复跑、可交接的动作。</p>
+<p>开始前，选一个非生产分支和一个可以独立验证的小改动。不要把第一次练习用在发布、凭据迁移、删除数据或不可逆的线上操作上。</p>
+<h3 id="三层练习" tabindex="-1">三层练习<a class="heading-anchor" href="#三层练习" aria-label="链接到本节">#</a></h3>
+<ul>
+<li><strong>章内微练习：</strong> 5–10 分钟，只验证一个概念，得到一个立刻可观察的结果；它不阻塞阅读。</li>
+<li><strong>实践关卡：</strong> 20–45 分钟、3–5 个动作，留下一个下一关可复用的产物。</li>
+<li><strong>综合交付：</strong> 60–150 分钟，把已完成关卡组合成一次小型、可 review 的交付。</li>
+</ul>
+<h3 id="六个实践关卡" tabindex="-1">六个实践关卡<a class="heading-anchor" href="#六个实践关卡" aria-label="链接到本节">#</a></h3>
+<h4 id="实践关卡-1-先找到答案-practice-01-find-the-answer" tabindex="-1"><a href="#practice-01-find-the-answer">实践关卡 1 · 先找到答案</a><a class="heading-anchor" href="#实践关卡-1-先找到答案-practice-01-find-the-answer" aria-label="链接到本节">#</a></h4>
+<p>把环境事实、人类决策和范围结论分开。产物：决策记录 + 最小验证命令。</p>
+<h4 id="实践关卡-2-把决定写成可施工规格-practice-02-decision-to-spec" tabindex="-1"><a href="#practice-02-decision-to-spec">实践关卡 2 · 把决定写成可施工规格</a><a class="heading-anchor" href="#实践关卡-2-把决定写成可施工规格-practice-02-decision-to-spec" aria-label="链接到本节">#</a></h4>
+<p>把已确认的决定压缩为 spec 与第一张垂直 ticket。产物：spec + tracer-bullet ticket。</p>
+<h4 id="实践关卡-3-让一个-bug-先变红-practice-03-red-green-bug" tabindex="-1"><a href="#practice-03-red-green-bug">实践关卡 3 · 让一个 bug 先变红</a><a class="heading-anchor" href="#实践关卡-3-让一个-bug-先变红-practice-03-red-green-bug" aria-label="链接到本节">#</a></h4>
+<p>把症状变成一条穿过公共 seam 的失败命令。产物：红色结果 + 可重复症状。</p>
+<h4 id="实践关卡-4-用最小修复闭合证据-practice-04-minimal-fix-evidence" tabindex="-1"><a href="#practice-04-minimal-fix-evidence">实践关卡 4 · 用最小修复闭合证据</a><a class="heading-anchor" href="#实践关卡-4-用最小修复闭合证据-practice-04-minimal-fix-evidence" aria-label="链接到本节">#</a></h4>
+<p>用同一条命令从红到绿，并固化回归。产物：最小 diff + 红绿证据 + 回归检查。</p>
+<h4 id="实践关卡-5-分开两条-review-轴-practice-05-two-axis-review" tabindex="-1"><a href="#practice-05-two-axis-review">实践关卡 5 · 分开两条 review 轴</a><a class="heading-anchor" href="#实践关卡-5-分开两条-review-轴-practice-05-two-axis-review" aria-label="链接到本节">#</a></h4>
+<p>分别审查工程标准与用户承诺。产物：Standards 与 Spec 两份结论。</p>
+<h4 id="实践关卡-6-交接前先复述-practice-06-handoff-rehearsal" tabindex="-1"><a href="#practice-06-handoff-rehearsal">实践关卡 6 · 交接前先复述</a><a class="heading-anchor" href="#实践关卡-6-交接前先复述-practice-06-handoff-rehearsal" aria-label="链接到本节">#</a></h4>
+<p>让新会话只读交接包后复述状态与唯一下一步。产物：可验证 handoff。</p>
+<h3 id="综合交付-完成一次可交接交付-practice-07-capstone-delivery" tabindex="-1"><a href="#practice-07-capstone-delivery">综合交付 · 完成一次可交接交付</a><a class="heading-anchor" href="#综合交付-完成一次可交接交付-practice-07-capstone-delivery" aria-label="链接到本节">#</a></h3>
+<p>选择一个真实但低风险的 ticket，串联规格、实现、双轴 review 与 handoff。它不是第七个大关卡，而是六关完成后的综合练习。</p>
+<h3 id="通用规则" tabindex="-1">通用规则<a class="heading-anchor" href="#通用规则" aria-label="链接到本节">#</a></h3>
+<ol>
+<li><strong>一关只解决一个问题。</strong> 发现目标变化，回到实践关卡 1 或 2，不在实现中悄悄扩张范围。</li>
+<li><strong>事实先查，取舍再问。</strong> 代码、日志、文档和命令能回答的事，由 Agent 带着证据回来。</li>
+<li><strong>每关都有停止条件。</strong> 达到验收后停止；未达到则保留失败证据，不用“差不多”通过。</li>
+<li><strong>下一关只读取产物，不读取整段聊天。</strong> 让 <code>decision.md</code>、<code>spec.md</code>、ticket、测试命令和 <code>handoff.md</code> 成为工作记忆。</li>
+</ol>
+<h3 id="通过标准" tabindex="-1">通过标准<a class="heading-anchor" href="#通过标准" aria-label="链接到本节">#</a></h3>
+<p>完成六个实践关卡和综合交付，不等于背下所有 Skill 名。你应该能够用一个真实小任务展示：谁负责事实调查、谁做取舍、什么命令能从红变绿、两条 review 轴怎样独立成立、下一位协作者从哪里继续。</p>
+<p><a href="#top">回到全书</a></p>
 <h2 id="第-1-章-skill-到底是什么" tabindex="-1">第 1 章 · Skill 到底是什么<a class="heading-anchor" href="#第-1-章-skill-到底是什么" aria-label="链接到本节">#</a></h2>
 <h3 id="1-1-skill-不是更长的-prompt" tabindex="-1">1.1 Skill 不是更长的 Prompt<a class="heading-anchor" href="#1-1-skill-不是更长的-prompt" aria-label="链接到本节">#</a></h3>
 <p>普通 Prompt 往往只描述一次任务：改一个页面、修一个 bug、写一段测试。</p>
@@ -1597,6 +1716,87 @@ code {
 <li>ADR 只记录高成本、反直觉、存在取舍的决定。</li>
 </ul>
 <hr>
+<h2 id="practice-01-find-the-answer" class="practice-heading practice-gate-heading" tabindex="-1">实践关卡 1 · 先找到答案<a class="heading-anchor" href="#practice-01-find-the-answer" aria-label="链接到本节">#</a></h2>
+<p><strong>难度：小白</strong>　<strong>预计：30–45 分钟</strong>　<strong>动作：3</strong>　<strong>主风险：把能查的事实丢回给人</strong></p>
+<blockquote>
+<p><strong>本关完成时：</strong> 你会得到一份能让新会话复述“已确认什么、由谁决定什么、这次做什么”的决策记录。</p>
+</blockquote>
+<h3 id="任务" tabindex="-1">任务<a class="heading-anchor" href="#任务" aria-label="链接到本节">#</a></h3>
+<p>任选一个小 UI 任务，例如“把设置页按钮文案改为保存并验证”。先不要修改代码。你要确认这个文案是否与现有行为一致，并判断这到底是纯文案修改还是新增功能。</p>
+<h3 id="开始前" tabindex="-1">开始前<a class="heading-anchor" href="#开始前" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>一个可运行的本地仓库与非生产分支；</li>
+<li>一个已知界面位置或搜索关键词；</li>
+<li>项目自己的最小验证命令。</li>
+</ul>
+<h3 id="不做" tabindex="-1">不做<a class="heading-anchor" href="#不做" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>不修改产品代码、测试或本地化文件；</li>
+<li>不替负责人决定业务取舍；</li>
+<li>不把调查扩张成完整实现计划。</li>
+</ul>
+<h3 id="操作" tabindex="-1">操作<a class="heading-anchor" href="#操作" aria-label="链接到本节">#</a></h3>
+<h4 id="1-写出待回答问题" tabindex="-1">1. 写出待回答问题<a class="heading-anchor" href="#1-写出待回答问题" aria-label="链接到本节">#</a></h4>
+<p>把任务拆成三类，不要混写：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>必须回答的问题</th>
+<th>谁回答</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>环境事实</td>
+<td>文案来自哪里？点击现在触发什么？哪些语言受影响？</td>
+<td>Agent 调查并给出文件、代码或命令证据</td>
+</tr>
+<tr>
+<td>人类决策</td>
+<td>“验证”是否应成为本次交付承诺？没有该行为时是否扩 scope？</td>
+<td>负责人确认</td>
+</tr>
+<tr>
+<td>规格结论</td>
+<td>这次改什么、不改什么、如何验证？</td>
+<td>写入记录，供下游使用</td>
+</tr>
+</tbody></table>
+<h4 id="2-运行最小调查" tabindex="-1">2. 运行最小调查<a class="heading-anchor" href="#2-运行最小调查" aria-label="链接到本节">#</a></h4>
+<p>让 Agent 使用仓库搜索、目标组件阅读、现有测试和 i18n 资源，而不是询问你“项目用什么框架”。要求每一个环境事实附一个可复查定位，例如文件路径、符号名或命令输出摘要。</p>
+<h4 id="3-写入决策记录" tabindex="-1">3. 写入决策记录<a class="heading-anchor" href="#3-写入决策记录" aria-label="链接到本节">#</a></h4>
+<p>在你选择的项目文档目录新建一份短记录，至少包含：</p>
+<pre><code class="language-markdown"># &lt;任务名&gt; 决策记录
+
+## 已确认事实
+- &lt;事实&gt;：&lt;证据定位&gt;
+
+## 人类决定
+- &lt;决定及原因&gt;
+
+## 本次范围
+- 做：&lt;可观察变化&gt;
+- 不做：&lt;明确排除项&gt;
+
+## 验证
+- &lt;一条当前可运行的命令&gt;
+</code></pre>
+<h3 id="必须留下的产物" tabindex="-1">必须留下的产物<a class="heading-anchor" href="#必须留下的产物" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>一份包含“已确认事实 / 人类决定 / 做与不做 / 验证”的决策记录；</li>
+<li>一条能在当前分支运行的最小验证命令；</li>
+<li>一句明确结论：这是文案修改，还是功能变化。</li>
+</ul>
+<h3 id="验收" tabindex="-1">验收<a class="heading-anchor" href="#验收" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>Agent 没有把代码、测试或本地化文件中可查的问题抛给人；</li>
+<li>文案承诺与现有行为一致，或者范围已被明确升级；</li>
+<li>新会话只读决策记录，也能复述本次做与不做；</li>
+<li>没有为“先调查”写入任何产品代码。</li>
+</ul>
+<h3 id="停止条件" tabindex="-1">停止条件<a class="heading-anchor" href="#停止条件" aria-label="链接到本节">#</a></h3>
+<p>决策记录被确认后停止。若出现新的业务取舍，不要边查边改；先更新记录，再进入实践关卡 2。</p>
+<p><a href="#practice-02-decision-to-spec">进入实践关卡 2</a> · <a href="#practice-readme">返回实践路径</a></p>
 <h2 id="第-4-章-从对话到交付-规格-拆票-实现和评审" tabindex="-1">第 4 章 · 从对话到交付：规格、拆票、实现和评审<a class="heading-anchor" href="#第-4-章-从对话到交付-规格-拆票-实现和评审" aria-label="链接到本节">#</a></h2>
 <p><img src="assets/diagrams/skills-delivery-feedback-loop.png" alt="Matt Pocock Skills 交付反馈环"></p>
 <h3 id="4-1-to-spec-记录已经做完的决定" tabindex="-1">4.1 <code>to-spec</code>：记录已经做完的决定<a class="heading-anchor" href="#4-1-to-spec-记录已经做完的决定" aria-label="链接到本节">#</a></h3>
@@ -1689,6 +1889,65 @@ code {
 <li>评审同时覆盖 Standards 与 Spec，但不混成一个结论。</li>
 </ul>
 <hr>
+<h2 id="practice-02-decision-to-spec" class="practice-heading practice-gate-heading" tabindex="-1">实践关卡 2 · 把决定写成可施工规格<a class="heading-anchor" href="#practice-02-decision-to-spec" aria-label="链接到本节">#</a></h2>
+<p><strong>难度：小白到中级</strong>　<strong>预计：35–45 分钟</strong>　<strong>动作：3</strong>　<strong>主风险：把访谈、规格和实现混成一段聊天</strong></p>
+<blockquote>
+<p><strong>本关完成时：</strong> 你会得到一份不依赖旧聊天、可交给新会话施工的最小 spec 与第一张垂直 ticket。</p>
+</blockquote>
+<h3 id="开始前-2" tabindex="-1">开始前<a class="heading-anchor" href="#开始前-2" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>已完成实践关卡 1 的决策记录；</li>
+<li>当前仓库中已有可定位的验证 seam；</li>
+<li>一个只包含单一用户可见结果的小改动。</li>
+</ul>
+<h3 id="任务-2" tabindex="-1">任务<a class="heading-anchor" href="#任务-2" aria-label="链接到本节">#</a></h3>
+<p>使用实践关卡 1 的决策记录，形成一个足以交给新会话执行的最小 spec，再拆出第一张 tracer-bullet ticket。</p>
+<p>本关只做规格与拆票，不写产品代码。若发现关键决定没有确定，退回实践关卡 1，而不是让 <code>to-spec</code> 替你猜。</p>
+<h3 id="不做-2" tabindex="-1">不做<a class="heading-anchor" href="#不做-2" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>不重开访谈或代替人类作未决决定；</li>
+<li>不把 ticket 拆成按文件或模块划分的横切清单；</li>
+<li>不在这一关开始实现。</li>
+</ul>
+<h3 id="操作-2" tabindex="-1">操作<a class="heading-anchor" href="#操作-2" aria-label="链接到本节">#</a></h3>
+<h4 id="1-固定输入" tabindex="-1">1. 固定输入<a class="heading-anchor" href="#1-固定输入" aria-label="链接到本节">#</a></h4>
+<p>把实践关卡 1 的决策记录作为唯一业务输入，再补充必要的代码调查证据。明确告诉 Agent：不要重开访谈；缺少人类决定时，列为未决问题并停止。</p>
+<h4 id="2-写最小-spec" tabindex="-1">2. 写最小 spec<a class="heading-anchor" href="#2-写最小-spec" aria-label="链接到本节">#</a></h4>
+<p>spec 至少回答五件事：</p>
+<pre><code class="language-markdown">## User-visible outcome
+&lt;用户现在能观察到什么变化&gt;
+
+## Scope
+- In: &lt;这次必须实现的行为&gt;
+- Out: &lt;明确不实现的行为&gt;
+
+## Acceptance
+- &lt;用户行为 + 预期结果&gt;
+
+## Testing seam
+- &lt;通过哪层公开接口或交互验证&gt;
+
+## Open questions
+- &lt;若为空，明确写“无”&gt;
+</code></pre>
+<h4 id="3-拆第一张-tracer-bullet-ticket" tabindex="-1">3. 拆第一张 tracer-bullet ticket<a class="heading-anchor" href="#3-拆第一张-tracer-bullet-ticket" aria-label="链接到本节">#</a></h4>
+<p>一张 ticket 必须是一条可演示的垂直行为，不要按 renderer、main、测试分别横向切开。它要包含：目标、允许改动的边界、验收、目标命令、明确不做。</p>
+<h3 id="必须留下的产物-2" tabindex="-1">必须留下的产物<a class="heading-anchor" href="#必须留下的产物-2" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>一份 spec；</li>
+<li>第一张包含验收和测试 seam 的 ticket；</li>
+<li>一份未决问题清单，或明确“无未决问题”。</li>
+</ul>
+<h3 id="验收-2" tabindex="-1">验收<a class="heading-anchor" href="#验收-2" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>新会话只读 spec 和 ticket，就能知道目标、边界、验收和下一步；</li>
+<li>spec 中没有把推测写成事实；</li>
+<li>ticket 不是“改三个文件”，而是用户可观察的行为；</li>
+<li>没有在本关提前创建不可验证的实现代码。</li>
+</ul>
+<h3 id="停止条件-2" tabindex="-1">停止条件<a class="heading-anchor" href="#停止条件-2" aria-label="链接到本节">#</a></h3>
+<p>第一张 ticket 足以在一个会话内执行时停止。要做多张 ticket，先确认每张都能独立演示，再进入实践关卡 3。</p>
+<p><a href="#practice-03-red-green-bug">进入实践关卡 3</a> · <a href="#practice-readme">返回实践路径</a></p>
 <h2 id="第-5-章-反馈环-原型-tdd-诊断和研究" tabindex="-1">第 5 章 · 反馈环：原型、TDD、诊断和研究<a class="heading-anchor" href="#第-5-章-反馈环-原型-tdd-诊断和研究" aria-label="链接到本节">#</a></h2>
 <h3 id="5-1-prototype-写代码只是为了回答问题" tabindex="-1">5.1 <code>prototype</code>：写代码只是为了回答问题<a class="heading-anchor" href="#5-1-prototype-写代码只是为了回答问题" aria-label="链接到本节">#</a></h3>
 <p>原型不是简陋版产品。它的验收标准不是代码质量，而是有没有回答那个设计问题。</p>
@@ -1777,6 +2036,95 @@ code {
 <li>外部技术事实优先查一手来源，并标注版本与日期。</li>
 </ul>
 <hr>
+<h2 id="practice-03-red-green-bug" class="practice-heading practice-gate-heading" tabindex="-1">实践关卡 3 · 让一个 bug 先变红<a class="heading-anchor" href="#practice-03-red-green-bug" aria-label="链接到本节">#</a></h2>
+<p><strong>难度：中级</strong>　<strong>预计：35–45 分钟</strong>　<strong>动作：3</strong>　<strong>主风险：先改默认值，再声称修复持久化问题</strong></p>
+<blockquote>
+<p><strong>本关完成时：</strong> 你会拿到一条在修改前稳定失败、并明确描述用户症状的目标命令。</p>
+</blockquote>
+<h3 id="开始前-3" tabindex="-1">开始前<a class="heading-anchor" href="#开始前-3" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>一个范围已确认、可在非生产分支复现的小 bug；</li>
+<li>一个可穿过公共 seam 的测试、脚本或端到端交互；</li>
+<li>不依赖生产数据、付费服务或不可控网络的复现条件。</li>
+</ul>
+<h3 id="任务-3" tabindex="-1">任务<a class="heading-anchor" href="#任务-3" aria-label="链接到本节">#</a></h3>
+<p>选择一个可重复的小 bug。优先选择“保存后重启失效”“错误状态没有展示”“设置修改未生效”这一类跨边界症状。目标不是尽快改掉它，而是先建立一条修复前会失败、修复后会通过的命令。</p>
+<h3 id="不做-3" tabindex="-1">不做<a class="heading-anchor" href="#不做-3" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>不修改实现代码或默认值；</li>
+<li>不用私有 helper、截图或旧聊天代替公共 seam 的结果；</li>
+<li>不同时验证超过四个根因假设。</li>
+</ul>
+<h3 id="操作-3" tabindex="-1">操作<a class="heading-anchor" href="#操作-3" aria-label="链接到本节">#</a></h3>
+<h4 id="1-用公共-seam-重现症状" tabindex="-1">1. 用公共 seam 重现症状<a class="heading-anchor" href="#1-用公共-seam-重现症状" aria-label="链接到本节">#</a></h4>
+<p>不要直接调用私有 helper，也不要从 UI 截图判断。通过用户可见的设置服务、公开 API、IPC 合约或端到端交互建立最小复现。</p>
+<p>写下这句话并让命令证明它：</p>
+<pre><code class="language-text">当 &lt;用户操作&gt; 完成并重建 &lt;公开边界&gt; 后，&lt;可观察结果&gt; 仍应为 &lt;期望值&gt;。
+</code></pre>
+<h4 id="2-确认红色" tabindex="-1">2. 确认红色<a class="heading-anchor" href="#2-确认红色" aria-label="链接到本节">#</a></h4>
+<p>在修改实现前运行目标命令。它必须因为这次症状失败，而不是因为环境、网络或无关测试失败。保存失败输出的简短摘要。</p>
+<h4 id="3-每次只验证一个假设" tabindex="-1">3. 每次只验证一个假设<a class="heading-anchor" href="#3-每次只验证一个假设" aria-label="链接到本节">#</a></h4>
+<p>列出不超过四个候选假设。每个假设必须附一个预测：例如“若写入丢失，磁盘记录没有该字段；若读取回退，磁盘存在该字段但读取值错误”。一次只做能区分一个假设的检查。</p>
+<h3 id="必须留下的产物-3" tabindex="-1">必须留下的产物<a class="heading-anchor" href="#必须留下的产物-3" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>可重复的症状描述；</li>
+<li>同一条目标命令的红色结果；</li>
+<li>被接受或排除的假设，以及每个结论的证据；</li>
+<li>将在下一关使用的目标命令与测试 seam。</li>
+</ul>
+<h3 id="验收-3" tabindex="-1">验收<a class="heading-anchor" href="#验收-3" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>红色发生在任何实现修改前；</li>
+<li>测试穿过真实公共 seam；</li>
+<li>失败由这次症状引起，而不是环境、网络或无关测试；</li>
+<li>验收引用的是本次运行结果，不是旧聊天里的成功记录。</li>
+</ul>
+<h3 id="停止条件-3" tabindex="-1">停止条件<a class="heading-anchor" href="#停止条件-3" aria-label="链接到本节">#</a></h3>
+<p>同一条命令稳定变红、候选假设已被收窄且范围没有扩张时停止。若根因超出当前 ticket，写入发现并退回实践关卡 2 更新 spec。</p>
+<p><a href="#practice-04-minimal-fix-evidence">进入实践关卡 4</a> · <a href="#practice-readme">返回实践路径</a></p>
+<h2 id="practice-04-minimal-fix-evidence" class="practice-heading practice-gate-heading" tabindex="-1">实践关卡 4 · 用最小修复闭合证据<a class="heading-anchor" href="#practice-04-minimal-fix-evidence" aria-label="链接到本节">#</a></h2>
+<p><strong>难度：中级</strong>　<strong>预计：25–35 分钟</strong>　<strong>动作：3</strong>　<strong>主风险：扩大改动面后失去因果关系</strong></p>
+<blockquote>
+<p><strong>本关完成时：</strong> 你会用实践关卡 3 的同一条命令证明修复从红变绿，并留下能解释因果的最小 diff。</p>
+</blockquote>
+<h3 id="开始前-4" tabindex="-1">开始前<a class="heading-anchor" href="#开始前-4" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>已完成实践关卡 3，且有保存下来的红色结果；</li>
+<li>已确认一条公共 seam 与不超过四个候选假设；</li>
+<li>一张范围清楚的 ticket 或等价规格。</li>
+</ul>
+<h3 id="任务-4" tabindex="-1">任务<a class="heading-anchor" href="#任务-4" aria-label="链接到本节">#</a></h3>
+<p>在只修改被证据指向的边界后，重跑同一条目标命令。目标是闭合“症状 → 假设 → 最小修复 → 绿色结果”的证据链，而不是趁机重构相邻模块。</p>
+<h3 id="不做-4" tabindex="-1">不做<a class="heading-anchor" href="#不做-4" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>不更换目标命令来制造绿色结果；</li>
+<li>不顺手重命名、格式化或重构无关代码；</li>
+<li>不把默认值改成期望值来掩盖持久化、读取或边界问题。</li>
+</ul>
+<h3 id="操作-4" tabindex="-1">操作<a class="heading-anchor" href="#操作-4" aria-label="链接到本节">#</a></h3>
+<h4 id="1-只选择一个被证据支持的假设" tabindex="-1">1. 只选择一个被证据支持的假设<a class="heading-anchor" href="#1-只选择一个被证据支持的假设" aria-label="链接到本节">#</a></h4>
+<p>写下“若此假设为真，修改哪个最小边界会让同一条命令通过”。若仍无法预测，不要改代码，退回实践关卡 3 补调查。</p>
+<h4 id="2-做最小修改并重跑同一条命令" tabindex="-1">2. 做最小修改并重跑同一条命令<a class="heading-anchor" href="#2-做最小修改并重跑同一条命令" aria-label="链接到本节">#</a></h4>
+<p>先运行目标命令，再做一个范围可解释的修改。修复后立即重跑同一命令，记录从红到绿的可辨认摘要。</p>
+<h4 id="3-固化反馈并清理探针" tabindex="-1">3. 固化反馈并清理探针<a class="heading-anchor" href="#3-固化反馈并清理探针" aria-label="链接到本节">#</a></h4>
+<p>将目标命令保留为永久回归测试或等价自动检查。删除临时日志、一次性脚本和只为定位问题建立的探针；再运行该区域已有的必要检查。</p>
+<h3 id="必须留下的产物-4" tabindex="-1">必须留下的产物<a class="heading-anchor" href="#必须留下的产物-4" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>一句“症状—假设—修改”因果说明；</li>
+<li>同一条命令的红色与绿色结果；</li>
+<li>一个永久回归测试或等价自动检查；</li>
+<li>已删除临时探针的说明。</li>
+</ul>
+<h3 id="验收-4" tabindex="-1">验收<a class="heading-anchor" href="#验收-4" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>绿色结果来自与红色结果相同的观察边界；</li>
+<li>diff 中的每一处改动都能对应一个证据或验收；</li>
+<li>无关检查没有替代目标命令成为主要证据；</li>
+<li>扩张范围时，已回到实践关卡 2 更新 spec。</li>
+</ul>
+<h3 id="停止条件-4" tabindex="-1">停止条件<a class="heading-anchor" href="#停止条件-4" aria-label="链接到本节">#</a></h3>
+<p>同一条命令已绿、回归已固化、临时探针已删除且范围没有扩张时停止。</p>
+<p><a href="#practice-05-two-axis-review">进入实践关卡 5</a> · <a href="#practice-readme">返回实践路径</a></p>
 <h2 id="第-6-章-代码不会自己变好-领域语言-深模块与双轴评审" tabindex="-1">第 6 章 · 代码不会自己变好：领域语言、深模块与双轴评审<a class="heading-anchor" href="#第-6-章-代码不会自己变好-领域语言-深模块与双轴评审" aria-label="链接到本节">#</a></h2>
 <h3 id="6-1-domain-modeling-共同语言不是术语装饰" tabindex="-1">6.1 <code>domain-modeling</code>：共同语言不是术语装饰<a class="heading-anchor" href="#6-1-domain-modeling-共同语言不是术语装饰" aria-label="链接到本节">#</a></h3>
 <p>领域语言会直接影响：</p>
@@ -1849,6 +2197,49 @@ code {
 <li>merge conflict 按两侧意图解决，不整批选边。</li>
 </ul>
 <hr>
+<h2 id="practice-05-two-axis-review" class="practice-heading practice-gate-heading" tabindex="-1">实践关卡 5 · 分开两条 review 轴<a class="heading-anchor" href="#practice-05-two-axis-review" aria-label="链接到本节">#</a></h2>
+<p><strong>难度：中级</strong>　<strong>预计：30–45 分钟</strong>　<strong>动作：3</strong>　<strong>主风险：把“代码干净”误当成“需求做对”</strong></p>
+<blockquote>
+<p><strong>本关完成时：</strong> 你会得到两份互不替代的 review 结论：一份检查工程标准，一份检查用户承诺。</p>
+</blockquote>
+<h3 id="开始前-5" tabindex="-1">开始前<a class="heading-anchor" href="#开始前-5" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>一条已完成、可运行的垂直行为；</li>
+<li>该行为对应的 spec、ticket 与新鲜验证结果；</li>
+<li>一个可供 review 的 diff 或变更集。</li>
+</ul>
+<h3 id="任务-5" tabindex="-1">任务<a class="heading-anchor" href="#任务-5" aria-label="链接到本节">#</a></h3>
+<p>把 review 拆为 Standards 与 Spec 两个问题。前者检查实现是否遵守项目边界，后者检查用户可观察结果是否兑现；任一结论都不能替代另一个。</p>
+<h3 id="不做-5" tabindex="-1">不做<a class="heading-anchor" href="#不做-5" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>不只写“LGTM”“代码干净”或泛泛赞语；</li>
+<li>不以旧测试结果、主观印象或完整聊天作为 review 证据；</li>
+<li>不在 review 中悄悄改变已确认的范围。</li>
+</ul>
+<h3 id="操作-5" tabindex="-1">操作<a class="heading-anchor" href="#操作-5" aria-label="链接到本节">#</a></h3>
+<h4 id="1-固定-review-输入" tabindex="-1">1. 固定 review 输入<a class="heading-anchor" href="#1-固定-review-输入" aria-label="链接到本节">#</a></h4>
+<p>把 spec、ticket、diff、目标命令和本次结果排在一起。缺少任一项时，先补输入而不是开始评论代码风格。</p>
+<h4 id="2-完成-standards-review" tabindex="-1">2. 完成 Standards review<a class="heading-anchor" href="#2-完成-standards-review" aria-label="链接到本节">#</a></h4>
+<p>只回答类型、安全、错误处理、边界、测试 seam 与项目约定是否满足。每个 finding 必须指向文件、行为和最小修复；没有 finding 也要写明依据。</p>
+<h4 id="3-完成-spec-review" tabindex="-1">3. 完成 Spec review<a class="heading-anchor" href="#3-完成-spec-review" aria-label="链接到本节">#</a></h4>
+<p>只回答用户故事、明确不做、验收与可观察交互是否满足。确认没有把“实现合理”误当成“用户结果正确”。</p>
+<h3 id="必须留下的产物-5" tabindex="-1">必须留下的产物<a class="heading-anchor" href="#必须留下的产物-5" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>Standards review：通过或有定位的 finding；</li>
+<li>Spec review：通过或有定位的 finding；</li>
+<li>每条 finding 对应的证据与下一步；</li>
+<li>仍存在的风险或明确“无”。</li>
+</ul>
+<h3 id="验收-5" tabindex="-1">验收<a class="heading-anchor" href="#验收-5" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>两份结论使用不同的问题与证据；</li>
+<li>任何阻塞 finding 都能回到具体 seam、行为或范围；</li>
+<li>两条 review 轴都没有把发布授权当作普通代码检查；</li>
+<li>读者可从结论判断该继续修复、交接还是停止。</li>
+</ul>
+<h3 id="停止条件-5" tabindex="-1">停止条件<a class="heading-anchor" href="#停止条件-5" aria-label="链接到本节">#</a></h3>
+<p>两条 review 轴均已得到明确结论，且下一步唯一动作可被写成一句话时停止。</p>
+<p><a href="#practice-06-handoff-rehearsal">进入实践关卡 6</a> · <a href="#practice-readme">返回实践路径</a></p>
 <h2 id="第-7-章-跨人-跨会话与人工步骤" tabindex="-1">第 7 章 · 跨人、跨会话与人工步骤<a class="heading-anchor" href="#第-7-章-跨人-跨会话与人工步骤" aria-label="链接到本节">#</a></h2>
 <h3 id="7-1-handoff-工作真的需要旅行时再用" tabindex="-1">7.1 <code>handoff</code>：工作真的需要旅行时再用<a class="heading-anchor" href="#7-1-handoff-工作真的需要旅行时再用" aria-label="链接到本节">#</a></h3>
 <p><img src="assets/azhou/context-durability.png" alt="阿舟图解：聊天上下文、仓库文档与工程证据"></p>
@@ -1929,11 +2320,101 @@ code {
 <li>Agent 文档使用精确指针，并定期删除 no-op 指令。</li>
 </ul>
 <hr>
+<h2 id="practice-06-handoff-rehearsal" class="practice-heading practice-gate-heading" tabindex="-1">实践关卡 6 · 交接前先复述<a class="heading-anchor" href="#practice-06-handoff-rehearsal" aria-label="链接到本节">#</a></h2>
+<p><strong>难度：中级</strong>　<strong>预计：25–35 分钟</strong>　<strong>动作：3</strong>　<strong>主风险：把聊天摘要误当作可执行状态</strong></p>
+<blockquote>
+<p><strong>本关完成时：</strong> 一个不了解旧聊天的人只读 handoff，就能准确复述已完成、未完成、风险与唯一下一步。</p>
+</blockquote>
+<h3 id="开始前-6" tabindex="-1">开始前<a class="heading-anchor" href="#开始前-6" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>已完成的 spec、ticket、验证结果与双轴 review；</li>
+<li>一个明确的交接时机：上下文不足、需人工决定或待下一会话继续；</li>
+<li>一个能独立复述状态的人或新会话。</li>
+</ul>
+<h3 id="任务-6" tabindex="-1">任务<a class="heading-anchor" href="#任务-6" aria-label="链接到本节">#</a></h3>
+<p>把交接从“压缩聊天”改为“索引事实与状态”。读者必须能够只靠 handoff 找回已确认决定、当前证据、风险与唯一下一步。</p>
+<h3 id="不做-6" tabindex="-1">不做<a class="heading-anchor" href="#不做-6" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>不复制原始聊天、敏感日志、凭据或本机路径；</li>
+<li>不把历史测试结果写成当前验证；</li>
+<li>不在 handoff 中隐藏多个互相竞争的下一步。</li>
+</ul>
+<h3 id="操作-6" tabindex="-1">操作<a class="heading-anchor" href="#操作-6" aria-label="链接到本节">#</a></h3>
+<h4 id="1-写最小-handoff" tabindex="-1">1. 写最小 handoff<a class="heading-anchor" href="#1-写最小-handoff" aria-label="链接到本节">#</a></h4>
+<p>使用固定区块：当前目标、已确认决定、已改文件、当前验证、review 结论、未决风险、下一步唯一动作。每项只链接或概括可复查的资料。</p>
+<h4 id="2-让陌生读者复述" tabindex="-1">2. 让陌生读者复述<a class="heading-anchor" href="#2-让陌生读者复述" aria-label="链接到本节">#</a></h4>
+<p>请新会话或同事只读 handoff，先复述“完成了什么、什么没完成、为什么停下、下一步是什么”。不要允许它读取旧聊天来补洞。</p>
+<h4 id="3-修复信息缺口" tabindex="-1">3. 修复信息缺口<a class="heading-anchor" href="#3-修复信息缺口" aria-label="链接到本节">#</a></h4>
+<p>若复述错误，补充缺失的链接、范围或风险，而不是增加叙事性细节。重复一次复述，直到关键状态一致。</p>
+<h3 id="必须留下的产物-6" tabindex="-1">必须留下的产物<a class="heading-anchor" href="#必须留下的产物-6" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>一份不依赖旧聊天的 handoff；</li>
+<li>一次独立复述结果；</li>
+<li>为修复复述错误所做的最小补充，或明确“无补充”；</li>
+<li>下一步唯一动作。</li>
+</ul>
+<h3 id="验收-6" tabindex="-1">验收<a class="heading-anchor" href="#验收-6" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>handoff 指向 spec、ticket、验证和 review 的真实位置；</li>
+<li>陌生读者无需询问历史背景即可复述状态；</li>
+<li>未授权外部动作仍被标记为人工步骤；</li>
+<li>下一步不是模糊的“继续看看”。</li>
+</ul>
+<h3 id="停止条件-6" tabindex="-1">停止条件<a class="heading-anchor" href="#停止条件-6" aria-label="链接到本节">#</a></h3>
+<p>独立复述与原状态一致，且唯一下一步已明确时停止。</p>
+<p><a href="#practice-07-capstone-delivery">进入综合交付</a> · <a href="#practice-readme">返回实践路径</a></p>
+<h2 id="practice-07-capstone-delivery" class="practice-heading practice-capstone-heading" tabindex="-1">综合交付 · 完成一次可交接交付<a class="heading-anchor" href="#practice-07-capstone-delivery" aria-label="链接到本节">#</a></h2>
+<p><strong>难度：中级到高阶</strong>　<strong>预计：60–150 分钟</strong>　<strong>动作：5</strong>　<strong>主风险：一个会话里同时重开计划、实现、评审和发布</strong></p>
+<blockquote>
+<p><strong>完成时：</strong> 你会交付一条用户可见的垂直行为，以及一套能被新会话接手的规格、验证、review 与 handoff。</p>
+</blockquote>
+<h3 id="开始前-7" tabindex="-1">开始前<a class="heading-anchor" href="#开始前-7" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>已完成实践关卡 2、4、5、6 的产物，或能提供等价证据；</li>
+<li>一张边界清楚、低风险且可独立验证的 ticket；</li>
+<li>非生产分支与项目约定的最小验证命令。</li>
+</ul>
+<h3 id="任务-7" tabindex="-1">任务<a class="heading-anchor" href="#任务-7" aria-label="链接到本节">#</a></h3>
+<p>选择一个真实但低风险的 ticket，完成一次小型垂直切片。综合交付检验的是你能否串联既有能力，不是一次性吸收新概念。</p>
+<h3 id="不做-7" tabindex="-1">不做<a class="heading-anchor" href="#不做-7" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>不在本关发布生产、读取凭据、删除数据、付款或升级权限；</li>
+<li>不重新讨论已确认的业务范围；</li>
+<li>不以“所有检查大致通过”替代用户可观察的验收。</li>
+</ul>
+<h3 id="操作-7" tabindex="-1">操作<a class="heading-anchor" href="#操作-7" aria-label="链接到本节">#</a></h3>
+<h4 id="1-重读输入并确认边界" tabindex="-1">1. 重读输入并确认边界<a class="heading-anchor" href="#1-重读输入并确认边界" aria-label="链接到本节">#</a></h4>
+<p>只读取 spec、ticket、当前分支和约定的测试 seam。目标、验收或明确不做不清楚时，退回实践关卡 2。</p>
+<h4 id="2-建立或确认目标反馈" tabindex="-1">2. 建立或确认目标反馈<a class="heading-anchor" href="#2-建立或确认目标反馈" aria-label="链接到本节">#</a></h4>
+<p>若是 bug，复用实践关卡 3 的红色命令；若是新行为，先写出用户操作与预期结果，再建立可复跑检查。</p>
+<h4 id="3-完成一条垂直行为" tabindex="-1">3. 完成一条垂直行为<a class="heading-anchor" href="#3-完成一条垂直行为" aria-label="链接到本节">#</a></h4>
+<p>围绕一个用户可观察结果实现最小改动。每次改动后运行目标检查，最后补充分支适用的类型、lint 或集成检查。</p>
+<h4 id="4-完成双轴-review" tabindex="-1">4. 完成双轴 review<a class="heading-anchor" href="#4-完成双轴-review" aria-label="链接到本节">#</a></h4>
+<p>复用实践关卡 5 的 Standards 与 Spec 轴。发现阻塞问题时修复并重新验证；没有 finding 时写出通过依据。</p>
+<h4 id="5-写-handoff-并独立复述" tabindex="-1">5. 写 handoff 并独立复述<a class="heading-anchor" href="#5-写-handoff-并独立复述" aria-label="链接到本节">#</a></h4>
+<p>按实践关卡 6 产出 handoff。让新会话或同事只读它后复述当前状态，再决定维护者是否合并、发布或执行人工步骤。</p>
+<h3 id="必须留下的产物-7" tabindex="-1">必须留下的产物<a class="heading-anchor" href="#必须留下的产物-7" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>spec 与 ticket 的最终链接；</li>
+<li>当前分支上的最小验证与补充检查结果；</li>
+<li>Standards 与 Spec 两份独立 review 结论；</li>
+<li>可被新会话复述的 handoff。</li>
+</ul>
+<h3 id="验收-7" tabindex="-1">验收<a class="heading-anchor" href="#验收-7" aria-label="链接到本节">#</a></h3>
+<ul>
+<li>新会话无需阅读原聊天，也能执行唯一下一步；</li>
+<li>用户承诺、最小验证与 review 结论能互相追溯；</li>
+<li>未授权的外部操作没有被执行；</li>
+<li>当前验证新鲜可复跑，风险仍明确可见。</li>
+</ul>
+<h3 id="停止条件-7" tabindex="-1">停止条件<a class="heading-anchor" href="#停止条件-7" aria-label="链接到本节">#</a></h3>
+<p>交付包完整、验证通过且 handoff 已被独立复述时停止。是否合并、发布或执行外部人工步骤，由项目维护者在本关之外决定。</p>
+<p><a href="#practice-readme">返回实践路径</a> · <a href="#top">回到全书</a></p>
 <h2 id="第-8-章-七个-ui-客户端实例-从浅到深" tabindex="-1">第 8 章 · 七个 UI 客户端实例，从浅到深<a class="heading-anchor" href="#第-8-章-七个-ui-客户端实例-从浅到深" aria-label="链接到本节">#</a></h2>
 <p>以下案例使用一个教学用桌面 AI 客户端。它有 renderer、preload、main 进程，支持多语言、Provider 配置和定时任务。示例刻意压缩了业务细节，让读者把注意力放在 Skill 选择、操作顺序与验收证据上。</p>
 <p><img src="assets/azhou/ui-task-risk-selector.png" alt="阿舟知识图：按 UI 任务的失败风险选择最小 Skill 链"></p>
 <h3 id="实例一-设置页改一个文案" tabindex="-1">实例一：设置页改一个文案<a class="heading-anchor" href="#实例一-设置页改一个文案" aria-label="链接到本节">#</a></h3>
-<h4 id="任务" tabindex="-1">任务<a class="heading-anchor" href="#任务" aria-label="链接到本节">#</a></h4>
+<h4 id="任务-8" tabindex="-1">任务<a class="heading-anchor" href="#任务-8" aria-label="链接到本节">#</a></h4>
 <p>把设置页按钮从「保存」改成「保存并验证」，所有语言保持一致。</p>
 <h4 id="传统开发的自然反应" tabindex="-1">传统开发的自然反应<a class="heading-anchor" href="#传统开发的自然反应" aria-label="链接到本节">#</a></h4>
 <p>全文搜索中文，找到 JSX，直接改字。</p>
@@ -1958,14 +2439,14 @@ code {
 <li>目标组件或交互测试；</li>
 <li>没有新增硬编码用户文本的扫描结果。</li>
 </ul>
-<h4 id="验收" tabindex="-1">验收<a class="heading-anchor" href="#验收" aria-label="链接到本节">#</a></h4>
+<h4 id="验收-8" tabindex="-1">验收<a class="heading-anchor" href="#验收-8" aria-label="链接到本节">#</a></h4>
 <ul>
 <li>文案与真实行为一致；</li>
 <li>所有受支持语言均有值；</li>
 <li>当前检查重新运行，而不是引用旧日志。</li>
 </ul>
 <h3 id="实例二-先做定时任务推荐面板原型" tabindex="-1">实例二：先做定时任务推荐面板原型<a class="heading-anchor" href="#实例二-先做定时任务推荐面板原型" aria-label="链接到本节">#</a></h3>
-<h4 id="任务-2" tabindex="-1">任务<a class="heading-anchor" href="#任务-2" aria-label="链接到本节">#</a></h4>
+<h4 id="任务-9" tabindex="-1">任务<a class="heading-anchor" href="#任务-9" aria-label="链接到本节">#</a></h4>
 <p>团队还没决定推荐项应该和现有任务列表并排，还是单独放在顶部。</p>
 <h4 id="错误做法" tabindex="-1">错误做法<a class="heading-anchor" href="#错误做法" aria-label="链接到本节">#</a></h4>
 <p>直接进入产品代码，接真实任务数据，补状态管理和错误处理，然后让产品在接近完成时选布局。</p>
@@ -1990,7 +2471,7 @@ code {
 <li>被淘汰方案的关键失败点；</li>
 <li>一条可以写进 spec 的明确决定。</li>
 </ul>
-<h4 id="验收-2" tabindex="-1">验收<a class="heading-anchor" href="#验收-2" aria-label="链接到本节">#</a></h4>
+<h4 id="验收-9" tabindex="-1">验收<a class="heading-anchor" href="#验收-9" aria-label="链接到本节">#</a></h4>
 <p>原型回答了结构问题就结束。不要因为代码看起来能用，就直接合并到主分支。</p>
 <h3 id="实例三-推理强度保存后被重置" tabindex="-1">实例三：推理强度保存后被重置<a class="heading-anchor" href="#实例三-推理强度保存后被重置" aria-label="链接到本节">#</a></h3>
 <h4 id="症状" tabindex="-1">症状<a class="heading-anchor" href="#症状" aria-label="链接到本节">#</a></h4>
@@ -2019,7 +2500,7 @@ code {
 <li>renderer 重启后读取了另一份配置作用域。</li>
 </ol>
 <p>每个假设都要有预测。例如假设 1 的预测是：磁盘文件中不存在 <code>reasoningEffort</code>，但 IPC 请求载荷存在。</p>
-<h4 id="验收-3" tabindex="-1">验收<a class="heading-anchor" href="#验收-3" aria-label="链接到本节">#</a></h4>
+<h4 id="验收-10" tabindex="-1">验收<a class="heading-anchor" href="#验收-10" aria-label="链接到本节">#</a></h4>
 <ul>
 <li>目标命令先红后绿；</li>
 <li>最小复现成为回归测试；</li>
@@ -2028,7 +2509,7 @@ code {
 <li>不把默认值修改伪装成持久化修复。</li>
 </ul>
 <h3 id="实例四-新增一个-provider-垂直切片" tabindex="-1">实例四：新增一个 Provider 垂直切片<a class="heading-anchor" href="#实例四-新增一个-provider-垂直切片" aria-label="链接到本节">#</a></h3>
-<h4 id="任务-3" tabindex="-1">任务<a class="heading-anchor" href="#任务-3" aria-label="链接到本节">#</a></h4>
+<h4 id="任务-10" tabindex="-1">任务<a class="heading-anchor" href="#任务-10" aria-label="链接到本节">#</a></h4>
 <p>新增一个需要 API key 的 Provider，用户可以保存、验证、设为默认并删除。</p>
 <h4 id="为什么不能直接-implement" tabindex="-1">为什么不能直接 implement<a class="heading-anchor" href="#为什么不能直接-implement" aria-label="链接到本节">#</a></h4>
 <p>至少有这些未决问题：</p>
@@ -2076,7 +2557,7 @@ code {
 <li>删除默认项并安全回退。</li>
 </ol>
 <p>每张票都包含一个用户可观察行为，不按 renderer/main/test 横向拆。</p>
-<h4 id="验收-4" tabindex="-1">验收<a class="heading-anchor" href="#验收-4" aria-label="链接到本节">#</a></h4>
+<h4 id="验收-11" tabindex="-1">验收<a class="heading-anchor" href="#验收-11" aria-label="链接到本节">#</a></h4>
 <ul>
 <li>规格中有明确 seam 与 out-of-scope；</li>
 <li>每张票都可单独演示；</li>
@@ -2105,7 +2586,7 @@ code {
 <li>测试能否只通过 interface 观察行为；</li>
 <li>迁移是否需要 expand–migrate–contract。</li>
 </ul>
-<h4 id="验收-5" tabindex="-1">验收<a class="heading-anchor" href="#验收-5" aria-label="链接到本节">#</a></h4>
+<h4 id="验收-12" tabindex="-1">验收<a class="heading-anchor" href="#验收-12" aria-label="链接到本节">#</a></h4>
 <ul>
 <li>重构由实际霰弹式修改证据驱动；</li>
 <li>interface 比实现显著更小；</li>
@@ -2122,7 +2603,7 @@ code {
 <p>使用 <code>resolving-merge-conflicts</code>，逐 hunk 读取两边意图。</p>
 <h4 id="意图合并" tabindex="-1">意图合并<a class="heading-anchor" href="#意图合并" aria-label="链接到本节">#</a></h4>
 <p>正确结果通常是：保留新领域词 <code>connectionId</code>，同时把 B 的回退验证迁移到新字段和新接口上。文本上不是任何一侧原样，但意图上保留了两侧价值。</p>
-<h4 id="验收-6" tabindex="-1">验收<a class="heading-anchor" href="#验收-6" aria-label="链接到本节">#</a></h4>
+<h4 id="验收-13" tabindex="-1">验收<a class="heading-anchor" href="#验收-13" aria-label="链接到本节">#</a></h4>
 <ul>
 <li>每个 hunk 都能说明两侧原始意图；</li>
 <li>没有批量 ours/theirs；</li>
@@ -2130,7 +2611,7 @@ code {
 <li>类型检查、目标测试和格式化在合并后重新运行。</li>
 </ul>
 <h3 id="实例七-需要人工配置第三方密钥" tabindex="-1">实例七：需要人工配置第三方密钥<a class="heading-anchor" href="#实例七-需要人工配置第三方密钥" aria-label="链接到本节">#</a></h3>
-<h4 id="任务-4" tabindex="-1">任务<a class="heading-anchor" href="#任务-4" aria-label="链接到本节">#</a></h4>
+<h4 id="任务-11" tabindex="-1">任务<a class="heading-anchor" href="#任务-11" aria-label="链接到本节">#</a></h4>
 <p>代码已经支持 Provider，但需要团队管理员去第三方控制台创建 key，并写入 CI secret。</p>
 <h4 id="错误做法-4" tabindex="-1">错误做法<a class="heading-anchor" href="#错误做法-4" aria-label="链接到本节">#</a></h4>
 <p>让管理员把 key 粘贴到聊天里，Agent 再执行命令。</p>
@@ -2145,7 +2626,7 @@ code {
 <li>运行不暴露凭据的连通性检查；</li>
 <li>支持中断后重新开始。</li>
 </ol>
-<h4 id="验收-7" tabindex="-1">验收<a class="heading-anchor" href="#验收-7" aria-label="链接到本节">#</a></h4>
+<h4 id="验收-14" tabindex="-1">验收<a class="heading-anchor" href="#验收-14" aria-label="链接到本节">#</a></h4>
 <ul>
 <li>secret 从未进入聊天、日志和 shell history；</li>
 <li>人只处理必须由人完成的外部步骤；</li>
@@ -3144,7 +3625,7 @@ before forming a root-cause theory.
 </code></pre>
 <p>这张卡不是形式主义。它会直接决定该用 <code>research</code>、<code>diagnosing-bugs</code>、<code>implement</code>，还是先退回 <code>grill-with-docs</code>。</p>
 <h3 id="13-2-案例一-审查一份技术报告的事实准确性" tabindex="-1">13.2 案例一：审查一份技术报告的事实准确性<a class="heading-anchor" href="#13-2-案例一-审查一份技术报告的事实准确性" aria-label="链接到本节">#</a></h3>
-<h4 id="任务-5" tabindex="-1">任务<a class="heading-anchor" href="#任务-5" aria-label="链接到本节">#</a></h4>
+<h4 id="任务-12" tabindex="-1">任务<a class="heading-anchor" href="#任务-12" aria-label="链接到本节">#</a></h4>
 <p>团队准备发布一份桌面客户端架构报告。报告里写了模块数量、状态枚举、调度阶段、公开接口和后端能力。文字已经很顺，但没有人能确认这些具体说法是否仍与当前仓库一致。</p>
 <p>目标不是润色，而是把每个可证伪断言变成「有一手证据支持」「需要修正」或「当前无法确认」。</p>
 <h4 id="最大失败风险" tabindex="-1">最大失败风险<a class="heading-anchor" href="#最大失败风险" aria-label="链接到本节">#</a></h4>
@@ -3274,7 +3755,7 @@ rg -n &#39;persist|serialize|save|load&#39; src packages electron
 <h4 id="举一反三" tabindex="-1">举一反三<a class="heading-anchor" href="#举一反三" aria-label="链接到本节">#</a></h4>
 <p>同一操作法可用于 API 文档、迁移指南、发布说明、ADR 和安全设计文档。只需替换断言类型与证据所有者，不要替换「先抽断言、再找一手证据」的顺序。</p>
 <h3 id="13-3-案例二-把配置规范化逻辑迁入中央同步处理器" tabindex="-1">13.3 案例二：把配置规范化逻辑迁入中央同步处理器<a class="heading-anchor" href="#13-3-案例二-把配置规范化逻辑迁入中央同步处理器" aria-label="链接到本节">#</a></h3>
-<h4 id="任务-6" tabindex="-1">任务<a class="heading-anchor" href="#任务-6" aria-label="链接到本节">#</a></h4>
+<h4 id="任务-13" tabindex="-1">任务<a class="heading-anchor" href="#任务-13" aria-label="链接到本节">#</a></h4>
 <p>桌面客户端有两类 Provider 配置：</p>
 <ul>
 <li><code>custom</code> 保留用户填写的 endpoint 和 options；</li>

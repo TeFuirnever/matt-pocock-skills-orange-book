@@ -3,10 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Matt Pocock Skills 橙皮书配套学习实验室：用可验证产物完成从调查到交接的四个任务。">
+  <meta name="description" content="Matt Pocock Skills 橙皮书实践路径：六个实践关卡与一个综合交付，用可验证产物完成从调查到交接。">
   <meta name="theme-color" content="#f8f7f4">
-  <link rel="canonical" href="https://tefuirnever.github.io/matt-pocock-skills-orange-book/labs/">
-  <title>Lab 1 · 先找到答案 · Skills 学习实验室</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23fff1df'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Georgia,serif' font-size='42' font-weight='700' fill='%239f4800'%3EM%3C/text%3E%3C/svg%3E">
+  <link rel="canonical" href="https://tefuirnever.github.io/matt-pocock-skills-orange-book/#practice-01-find-the-answer">
+  <title>实践关卡 1 · 先找到答案 · Skills 橙皮书实践路径</title>
   <style>@page {
   size: A4;
   margin: 18mm 16mm 20mm;
@@ -442,6 +443,31 @@ input:focus-visible {
   padding-left: 13px;
   border-left: 5px solid var(--orange);
   font-size: 27px;
+}
+
+.book-article .practice-heading {
+  margin-top: 4em;
+  padding: 18px 20px;
+  border: 1px solid #f1c18e;
+  border-left: 6px solid var(--orange);
+  border-radius: 8px;
+  background: var(--orange-soft);
+}
+
+.book-article .practice-path-heading {
+  border-color: var(--line);
+  border-left-color: var(--blue);
+  background: #eef7fd;
+}
+
+.book-article .practice-capstone-heading {
+  border-color: #dfad70;
+  border-left-color: var(--orange-dark);
+  background: #fff8ef;
+}
+
+.practice-toc-link {
+  font-weight: 700;
 }
 
 .book-article h3 {
@@ -936,44 +962,56 @@ code {
 </style>
 </head>
 <body class="lab-page">
-  <a class="skip-link" href="#lab-content">跳到 Lab 正文</a>
+  <a class="skip-link" href="#lab-content">跳到实践正文</a>
   <header class="topbar">
     <div class="lab-topbar">
-      <a class="brand" href="../" aria-label="回到橙皮书首页">
+      <a class="brand" href="../#practice-01-find-the-answer" aria-label="回到橙皮书实践路径">
         <span class="brand-mark" aria-hidden="true">M</span>
-        <span><strong>Skills 学习实验室</strong><small>从阅读到可验证交付</small></span>
+        <span><strong>Skills 橙皮书</strong><small>实践路径 · 从阅读到可验证交付</small></span>
       </a>
-      <nav class="lab-topbar-actions" aria-label="实验室操作">
-        <a href="../">阅读全书</a>
+      <nav class="lab-topbar-actions" aria-label="实践路径操作">
+        <a href="../#practice-01-find-the-answer">回到橙皮书</a>
         <a href="https://github.com/TeFuirnever/matt-pocock-skills-orange-book" target="_blank" rel="noreferrer">GitHub</a>
       </nav>
     </div>
   </header>
   <main id="lab-content" class="lab-layout">
-    <aside class="lab-sidebar" aria-label="学习实验室导航">
-      <p class="sidebar-label">四个递进 Lab</p>
-      <nav class="toc"><a class="toc-link" href="index.html">全部 Labs</a>
-<a class="toc-link" href="01-find-the-answer.html">Lab 1 · 先找到答案</a>
-<a class="toc-link" href="02-decision-to-spec.html">Lab 2 · 把决定写成可施工规格</a>
-<a class="toc-link" href="03-red-green-bug.html">Lab 3 · 让一个 bug 先变红</a>
-<a class="toc-link" href="04-delivery-handoff.html">Lab 4 · 完成一次可交接交付</a></nav>
+    <aside class="lab-sidebar" aria-label="实践路径导航">
+      <p class="sidebar-label">实践路径</p>
+      <nav class="toc"><a class="toc-link" href="../#practice-readme">实践路径总览</a>
+<a class="toc-link" href="01-find-the-answer.html">实践关卡 1 · 先找到答案</a>
+<a class="toc-link" href="02-decision-to-spec.html">实践关卡 2 · 把决定写成可施工规格</a>
+<a class="toc-link" href="03-red-green-bug.html">实践关卡 3 · 让一个 bug 先变红</a>
+<a class="toc-link" href="04-minimal-fix-evidence.html">实践关卡 4 · 用最小修复闭合证据</a>
+<a class="toc-link" href="05-two-axis-review.html">实践关卡 5 · 分开两条 review 轴</a>
+<a class="toc-link" href="06-handoff-rehearsal.html">实践关卡 6 · 交接前先复述</a>
+<a class="toc-link" href="07-capstone-delivery.html">综合交付 · 完成一次可交接交付</a></nav>
       <div class="sidebar-meta">
         <span>每关都需留下</span>
         <code>可复跑证据</code>
       </div>
     </aside>
     <article class="book-article lab-article">
-      <p class="lab-kicker">配套练习</p>
+      <p class="lab-kicker">橙皮书实践路径</p>
       <p class="lab-description">在自己的仓库完成一个小任务，并把可验证产物留给下一关。</p>
-      <h1>Lab 1 · 先找到答案</h1>
-<p><strong>难度：小白</strong>　<strong>预计：30–45 分钟</strong>　<strong>主风险：把能查的事实丢回给人</strong></p>
+      <h1>实践关卡 1 · 先找到答案</h1>
+<p><strong>难度：小白</strong>　<strong>预计：30–45 分钟</strong>　<strong>动作：3</strong>　<strong>主风险：把能查的事实丢回给人</strong></p>
+<blockquote>
+<p><strong>本关完成时：</strong> 你会得到一份能让新会话复述“已确认什么、由谁决定什么、这次做什么”的决策记录。</p>
+</blockquote>
 <h2>任务</h2>
 <p>任选一个小 UI 任务，例如“把设置页按钮文案改为保存并验证”。先不要修改代码。你要确认这个文案是否与现有行为一致，并判断这到底是纯文案修改还是新增功能。</p>
-<h2>前置</h2>
+<h2>开始前</h2>
 <ul>
 <li>一个可运行的本地仓库与非生产分支；</li>
 <li>一个已知界面位置或搜索关键词；</li>
 <li>项目自己的最小验证命令。</li>
+</ul>
+<h2>不做</h2>
+<ul>
+<li>不修改产品代码、测试或本地化文件；</li>
+<li>不替负责人决定业务取舍；</li>
+<li>不把调查扩张成完整实现计划。</li>
 </ul>
 <h2>操作</h2>
 <h3>1. 写出待回答问题</h3>
@@ -1035,8 +1073,8 @@ code {
 <li>没有为“先调查”写入任何产品代码。</li>
 </ul>
 <h2>停止条件</h2>
-<p>决策记录被确认后停止。若出现新的业务取舍，不要边查边改；先更新记录，再进入 Lab 2。</p>
-<p><a href="02-decision-to-spec.html">进入 Lab 2</a> · <a href="index.html">返回实验室</a></p>
+<p>决策记录被确认后停止。若出现新的业务取舍，不要边查边改；先更新记录，再进入实践关卡 2。</p>
+<p><a href="02-decision-to-spec.html">进入实践关卡 2</a> · <a href="index.html">返回实践路径</a></p>
 
     </article>
   </main>

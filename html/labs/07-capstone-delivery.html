@@ -6,8 +6,8 @@
   <meta name="description" content="Matt Pocock Skills 橙皮书实践路径：六个实践关卡与一个综合交付，用可验证产物完成从调查到交接。">
   <meta name="theme-color" content="#f8f7f4">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23fff1df'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Georgia,serif' font-size='42' font-weight='700' fill='%239f4800'%3EM%3C/text%3E%3C/svg%3E">
-  <link rel="canonical" href="https://tefuirnever.github.io/matt-pocock-skills-orange-book/#practice-03-red-green-bug">
-  <title>实践关卡 3 · 让一个 bug 先变红 · Skills 橙皮书实践路径</title>
+  <link rel="canonical" href="https://tefuirnever.github.io/matt-pocock-skills-orange-book/#practice-07-capstone-delivery">
+  <title>综合交付 · 完成一次可交接交付 · Skills 橙皮书实践路径</title>
   <style>@page {
   size: A4;
   margin: 18mm 16mm 20mm;
@@ -965,12 +965,12 @@ code {
   <a class="skip-link" href="#lab-content">跳到实践正文</a>
   <header class="topbar">
     <div class="lab-topbar">
-      <a class="brand" href="../#practice-03-red-green-bug" aria-label="回到橙皮书实践路径">
+      <a class="brand" href="../#practice-07-capstone-delivery" aria-label="回到橙皮书实践路径">
         <span class="brand-mark" aria-hidden="true">M</span>
         <span><strong>Skills 橙皮书</strong><small>实践路径 · 从阅读到可验证交付</small></span>
       </a>
       <nav class="lab-topbar-actions" aria-label="实践路径操作">
-        <a href="../#practice-03-red-green-bug">回到橙皮书</a>
+        <a href="../#practice-07-capstone-delivery">回到橙皮书</a>
         <a href="https://github.com/TeFuirnever/matt-pocock-skills-orange-book" target="_blank" rel="noreferrer">GitHub</a>
       </nav>
     </div>
@@ -994,52 +994,53 @@ code {
     <article class="book-article lab-article">
       <p class="lab-kicker">橙皮书实践路径</p>
       <p class="lab-description">在自己的仓库完成一个小任务，并把可验证产物留给下一关。</p>
-      <h1>实践关卡 3 · 让一个 bug 先变红</h1>
-<p><strong>难度：中级</strong>　<strong>预计：35–45 分钟</strong>　<strong>动作：3</strong>　<strong>主风险：先改默认值，再声称修复持久化问题</strong></p>
+      <h1>综合交付 · 完成一次可交接交付</h1>
+<p><strong>难度：中级到高阶</strong>　<strong>预计：60–150 分钟</strong>　<strong>动作：5</strong>　<strong>主风险：一个会话里同时重开计划、实现、评审和发布</strong></p>
 <blockquote>
-<p><strong>本关完成时：</strong> 你会拿到一条在修改前稳定失败、并明确描述用户症状的目标命令。</p>
+<p><strong>完成时：</strong> 你会交付一条用户可见的垂直行为，以及一套能被新会话接手的规格、验证、review 与 handoff。</p>
 </blockquote>
 <h2>开始前</h2>
 <ul>
-<li>一个范围已确认、可在非生产分支复现的小 bug；</li>
-<li>一个可穿过公共 seam 的测试、脚本或端到端交互；</li>
-<li>不依赖生产数据、付费服务或不可控网络的复现条件。</li>
+<li>已完成实践关卡 2、4、5、6 的产物，或能提供等价证据；</li>
+<li>一张边界清楚、低风险且可独立验证的 ticket；</li>
+<li>非生产分支与项目约定的最小验证命令。</li>
 </ul>
 <h2>任务</h2>
-<p>选择一个可重复的小 bug。优先选择“保存后重启失效”“错误状态没有展示”“设置修改未生效”这一类跨边界症状。目标不是尽快改掉它，而是先建立一条修复前会失败、修复后会通过的命令。</p>
+<p>选择一个真实但低风险的 ticket，完成一次小型垂直切片。综合交付检验的是你能否串联既有能力，不是一次性吸收新概念。</p>
 <h2>不做</h2>
 <ul>
-<li>不修改实现代码或默认值；</li>
-<li>不用私有 helper、截图或旧聊天代替公共 seam 的结果；</li>
-<li>不同时验证超过四个根因假设。</li>
+<li>不在本关发布生产、读取凭据、删除数据、付款或升级权限；</li>
+<li>不重新讨论已确认的业务范围；</li>
+<li>不以“所有检查大致通过”替代用户可观察的验收。</li>
 </ul>
 <h2>操作</h2>
-<h3>1. 用公共 seam 重现症状</h3>
-<p>不要直接调用私有 helper，也不要从 UI 截图判断。通过用户可见的设置服务、公开 API、IPC 合约或端到端交互建立最小复现。</p>
-<p>写下这句话并让命令证明它：</p>
-<pre><code class="language-text">当 &lt;用户操作&gt; 完成并重建 &lt;公开边界&gt; 后，&lt;可观察结果&gt; 仍应为 &lt;期望值&gt;。
-</code></pre>
-<h3>2. 确认红色</h3>
-<p>在修改实现前运行目标命令。它必须因为这次症状失败，而不是因为环境、网络或无关测试失败。保存失败输出的简短摘要。</p>
-<h3>3. 每次只验证一个假设</h3>
-<p>列出不超过四个候选假设。每个假设必须附一个预测：例如“若写入丢失，磁盘记录没有该字段；若读取回退，磁盘存在该字段但读取值错误”。一次只做能区分一个假设的检查。</p>
+<h3>1. 重读输入并确认边界</h3>
+<p>只读取 spec、ticket、当前分支和约定的测试 seam。目标、验收或明确不做不清楚时，退回实践关卡 2。</p>
+<h3>2. 建立或确认目标反馈</h3>
+<p>若是 bug，复用实践关卡 3 的红色命令；若是新行为，先写出用户操作与预期结果，再建立可复跑检查。</p>
+<h3>3. 完成一条垂直行为</h3>
+<p>围绕一个用户可观察结果实现最小改动。每次改动后运行目标检查，最后补充分支适用的类型、lint 或集成检查。</p>
+<h3>4. 完成双轴 review</h3>
+<p>复用实践关卡 5 的 Standards 与 Spec 轴。发现阻塞问题时修复并重新验证；没有 finding 时写出通过依据。</p>
+<h3>5. 写 handoff 并独立复述</h3>
+<p>按实践关卡 6 产出 handoff。让新会话或同事只读它后复述当前状态，再决定维护者是否合并、发布或执行人工步骤。</p>
 <h2>必须留下的产物</h2>
 <ul>
-<li>可重复的症状描述；</li>
-<li>同一条目标命令的红色结果；</li>
-<li>被接受或排除的假设，以及每个结论的证据；</li>
-<li>将在下一关使用的目标命令与测试 seam。</li>
+<li>spec 与 ticket 的最终链接；</li>
+<li>当前分支上的最小验证与补充检查结果；</li>
+<li>Standards 与 Spec 两份独立 review 结论；</li>
+<li>可被新会话复述的 handoff。</li>
 </ul>
 <h2>验收</h2>
 <ul>
-<li>红色发生在任何实现修改前；</li>
-<li>测试穿过真实公共 seam；</li>
-<li>失败由这次症状引起，而不是环境、网络或无关测试；</li>
-<li>验收引用的是本次运行结果，不是旧聊天里的成功记录。</li>
+<li>新会话无需阅读原聊天，也能执行唯一下一步；</li>
+<li>用户承诺、最小验证与 review 结论能互相追溯；</li>
+<li>未授权的外部操作没有被执行；</li>
+<li>当前验证新鲜可复跑，风险仍明确可见。</li>
 </ul>
 <h2>停止条件</h2>
-<p>同一条命令稳定变红、候选假设已被收窄且范围没有扩张时停止。若根因超出当前 ticket，写入发现并退回实践关卡 2 更新 spec。</p>
-<p><a href="04-minimal-fix-evidence.html">进入实践关卡 4</a> · <a href="index.html">返回实践路径</a></p>
+<p>交付包完整、验证通过且 handoff 已被独立复述时停止。是否合并、发布或执行外部人工步骤，由项目维护者在本关之外决定。</p>
+<p><a href="index.html">返回实践路径</a> · <a href="../">回到全书</a></p>
 
     </article>
   </main>

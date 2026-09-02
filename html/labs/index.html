@@ -3,10 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Matt Pocock Skills 橙皮书配套学习实验室：用可验证产物完成从调查到交接的四个任务。">
+  <meta name="description" content="Matt Pocock Skills 橙皮书实践路径：六个实践关卡与一个综合交付，用可验证产物完成从调查到交接。">
   <meta name="theme-color" content="#f8f7f4">
-  <link rel="canonical" href="https://tefuirnever.github.io/matt-pocock-skills-orange-book/labs/">
-  <title>Skills 学习实验室 · Skills 学习实验室</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23fff1df'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Georgia,serif' font-size='42' font-weight='700' fill='%239f4800'%3EM%3C/text%3E%3C/svg%3E">
+  <link rel="canonical" href="https://tefuirnever.github.io/matt-pocock-skills-orange-book/#practice-readme">
+  <title>Skills 橙皮书实践路径</title>
   <style>@page {
   size: A4;
   margin: 18mm 16mm 20mm;
@@ -442,6 +443,31 @@ input:focus-visible {
   padding-left: 13px;
   border-left: 5px solid var(--orange);
   font-size: 27px;
+}
+
+.book-article .practice-heading {
+  margin-top: 4em;
+  padding: 18px 20px;
+  border: 1px solid #f1c18e;
+  border-left: 6px solid var(--orange);
+  border-radius: 8px;
+  background: var(--orange-soft);
+}
+
+.book-article .practice-path-heading {
+  border-color: var(--line);
+  border-left-color: var(--blue);
+  background: #eef7fd;
+}
+
+.book-article .practice-capstone-heading {
+  border-color: #dfad70;
+  border-left-color: var(--orange-dark);
+  background: #fff8ef;
+}
+
+.practice-toc-link {
+  font-weight: 700;
 }
 
 .book-article h3 {
@@ -936,56 +962,71 @@ code {
 </style>
 </head>
 <body class="lab-page">
-  <a class="skip-link" href="#lab-content">跳到 Lab 正文</a>
+  <a class="skip-link" href="#lab-content">跳到实践正文</a>
   <header class="topbar">
     <div class="lab-topbar">
-      <a class="brand" href="../" aria-label="回到橙皮书首页">
+      <a class="brand" href="../#practice-readme" aria-label="回到橙皮书实践路径">
         <span class="brand-mark" aria-hidden="true">M</span>
-        <span><strong>Skills 学习实验室</strong><small>从阅读到可验证交付</small></span>
+        <span><strong>Skills 橙皮书</strong><small>实践路径 · 从阅读到可验证交付</small></span>
       </a>
-      <nav class="lab-topbar-actions" aria-label="实验室操作">
-        <a href="../">阅读全书</a>
+      <nav class="lab-topbar-actions" aria-label="实践路径操作">
+        <a href="../#practice-readme">回到橙皮书</a>
         <a href="https://github.com/TeFuirnever/matt-pocock-skills-orange-book" target="_blank" rel="noreferrer">GitHub</a>
       </nav>
     </div>
   </header>
   <main id="lab-content" class="lab-layout">
-    <aside class="lab-sidebar" aria-label="学习实验室导航">
-      <p class="sidebar-label">四个递进 Lab</p>
-      <nav class="toc"><a class="toc-link" href="index.html">全部 Labs</a>
-<a class="toc-link" href="01-find-the-answer.html">Lab 1 · 先找到答案</a>
-<a class="toc-link" href="02-decision-to-spec.html">Lab 2 · 把决定写成可施工规格</a>
-<a class="toc-link" href="03-red-green-bug.html">Lab 3 · 让一个 bug 先变红</a>
-<a class="toc-link" href="04-delivery-handoff.html">Lab 4 · 完成一次可交接交付</a></nav>
+    <aside class="lab-sidebar" aria-label="实践路径导航">
+      <p class="sidebar-label">实践路径</p>
+      <nav class="toc"><a class="toc-link" href="../#practice-readme">实践路径总览</a>
+<a class="toc-link" href="01-find-the-answer.html">实践关卡 1 · 先找到答案</a>
+<a class="toc-link" href="02-decision-to-spec.html">实践关卡 2 · 把决定写成可施工规格</a>
+<a class="toc-link" href="03-red-green-bug.html">实践关卡 3 · 让一个 bug 先变红</a>
+<a class="toc-link" href="04-minimal-fix-evidence.html">实践关卡 4 · 用最小修复闭合证据</a>
+<a class="toc-link" href="05-two-axis-review.html">实践关卡 5 · 分开两条 review 轴</a>
+<a class="toc-link" href="06-handoff-rehearsal.html">实践关卡 6 · 交接前先复述</a>
+<a class="toc-link" href="07-capstone-delivery.html">综合交付 · 完成一次可交接交付</a></nav>
       <div class="sidebar-meta">
         <span>每关都需留下</span>
         <code>可复跑证据</code>
       </div>
     </aside>
     <article class="book-article lab-article">
-      <p class="lab-kicker">配套练习</p>
-      <p class="lab-description">四个递进练习，把 Skill 选择、规格、反馈和交接变成可复跑的工程动作。</p>
-      <h1>Skills 学习实验室</h1>
-<p>这不是四篇阅读理解。每一关都要求你在自己的仓库里完成一个小任务，并留下下一关可以直接读取的文件或命令。</p>
-<p>开始前，选一个非生产分支和一个可以独立验证的小改动。不要把练习第一次用在发布、凭据迁移、删除数据或不可逆的线上操作上。</p>
-<h2>四关路线</h2>
-<h3><a href="01-find-the-answer.html">Lab 1 · 先找到答案</a></h3>
-<p>练习：区分环境事实与人类决策。交接：决策记录 + 最小验证命令。</p>
-<h3><a href="02-decision-to-spec.html">Lab 2 · 把决定写成可施工规格</a></h3>
-<p>练习：<code>grill-*</code>、<code>to-spec</code>、<code>to-tickets</code> 的边界。交接：spec + tracer-bullet ticket。</p>
-<h3><a href="03-red-green-bug.html">Lab 3 · 让一个 bug 先变红</a></h3>
-<p>练习：用可观察反馈替代猜测。交接：同一条红绿回归命令。</p>
-<h3><a href="04-delivery-handoff.html">Lab 4 · 完成一次可交接交付</a></h3>
-<p>练习：垂直切片、review 与 handoff。交接：交付包 + handoff。</p>
+      <p class="lab-kicker">橙皮书实践路径</p>
+      <p class="lab-description">六个实践关卡与一个综合交付，把 Skill 选择、规格、反馈、评审和交接变成可复跑的工程动作。</p>
+      <h1>橙皮书实践路径</h1>
+<p>这不是书外附录。实践路径把正文中的关键判断变成你在自己仓库里可复跑、可交接的动作。</p>
+<p>开始前，选一个非生产分支和一个可以独立验证的小改动。不要把第一次练习用在发布、凭据迁移、删除数据或不可逆的线上操作上。</p>
+<h2>三层练习</h2>
+<ul>
+<li><strong>章内微练习：</strong> 5–10 分钟，只验证一个概念，得到一个立刻可观察的结果；它不阻塞阅读。</li>
+<li><strong>实践关卡：</strong> 20–45 分钟、3–5 个动作，留下一个下一关可复用的产物。</li>
+<li><strong>综合交付：</strong> 60–150 分钟，把已完成关卡组合成一次小型、可 review 的交付。</li>
+</ul>
+<h2>六个实践关卡</h2>
+<h3><a href="01-find-the-answer.html">实践关卡 1 · 先找到答案</a></h3>
+<p>把环境事实、人类决策和范围结论分开。产物：决策记录 + 最小验证命令。</p>
+<h3><a href="02-decision-to-spec.html">实践关卡 2 · 把决定写成可施工规格</a></h3>
+<p>把已确认的决定压缩为 spec 与第一张垂直 ticket。产物：spec + tracer-bullet ticket。</p>
+<h3><a href="03-red-green-bug.html">实践关卡 3 · 让一个 bug 先变红</a></h3>
+<p>把症状变成一条穿过公共 seam 的失败命令。产物：红色结果 + 可重复症状。</p>
+<h3><a href="04-minimal-fix-evidence.html">实践关卡 4 · 用最小修复闭合证据</a></h3>
+<p>用同一条命令从红到绿，并固化回归。产物：最小 diff + 红绿证据 + 回归检查。</p>
+<h3><a href="05-two-axis-review.html">实践关卡 5 · 分开两条 review 轴</a></h3>
+<p>分别审查工程标准与用户承诺。产物：Standards 与 Spec 两份结论。</p>
+<h3><a href="06-handoff-rehearsal.html">实践关卡 6 · 交接前先复述</a></h3>
+<p>让新会话只读交接包后复述状态与唯一下一步。产物：可验证 handoff。</p>
+<h2><a href="07-capstone-delivery.html">综合交付 · 完成一次可交接交付</a></h2>
+<p>选择一个真实但低风险的 ticket，串联规格、实现、双轴 review 与 handoff。它不是第七个大关卡，而是六关完成后的综合练习。</p>
 <h2>通用规则</h2>
 <ol>
-<li><strong>一关只解决一个问题。</strong> 发现目标变化，回到 Lab 1 或 Lab 2，不在实现中悄悄扩张范围。</li>
+<li><strong>一关只解决一个问题。</strong> 发现目标变化，回到实践关卡 1 或 2，不在实现中悄悄扩张范围。</li>
 <li><strong>事实先查，取舍再问。</strong> 代码、日志、文档和命令能回答的事，由 Agent 带着证据回来。</li>
 <li><strong>每关都有停止条件。</strong> 达到验收后停止；未达到则保留失败证据，不用“差不多”通过。</li>
 <li><strong>下一关只读取产物，不读取整段聊天。</strong> 让 <code>decision.md</code>、<code>spec.md</code>、ticket、测试命令和 <code>handoff.md</code> 成为工作记忆。</li>
 </ol>
 <h2>通过标准</h2>
-<p>完成四关，不等于背下所有 Skill 名。你应该能够用一个真实小任务展示：谁负责事实调查、谁做取舍、什么命令能变红、下一位协作者从哪里继续。</p>
+<p>完成六个实践关卡和综合交付，不等于背下所有 Skill 名。你应该能够用一个真实小任务展示：谁负责事实调查、谁做取舍、什么命令能从红变绿、两条 review 轴怎样独立成立、下一位协作者从哪里继续。</p>
 <p><a href="../">回到全书</a></p>
 
     </article>

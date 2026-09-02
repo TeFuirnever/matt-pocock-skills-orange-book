@@ -13,10 +13,10 @@
 | 入口 | 用途 |
 |---|---|
 | [在线阅读版](https://tefuirnever.github.io/matt-pocock-skills-orange-book/) | GitHub Pages 文档站，支持目录、搜索、移动端阅读和打印 |
-| [学习实验室](https://tefuirnever.github.io/matt-pocock-skills-orange-book/labs/) | 四个递进 Lab，把阅读变成可验证的工程练习 |
+| [实践路径](https://tefuirnever.github.io/matt-pocock-skills-orange-book/#practice-readme) | 六个实践关卡与一个综合交付，把阅读变成可验证的工程练习 |
 | [book.md](book.md) | 权威正文，适合审阅、版本管理和引用 |
 | [chapters](chapters) | 16 个编号章节源，是内容事实源 |
-| [labs](labs) | 四个递进 Lab 的权威 Markdown 源 |
+| [labs](labs) | 六个实践关卡与一个综合交付的权威 Markdown 源 |
 | [html/index.html](html/index.html) | 本地 HTML 阅读版 |
 | [research](research) | Matt Pocock 公开一手材料的研究底稿 |
 | [assets/azhou](assets/azhou) | 15 张阿舟小白图解的最终 PNG |
@@ -50,9 +50,10 @@
 一路到垂直切票、深模块、冲突解决和人工密钥向导。第 0 章先按小白、
 中级和高阶给出三条阅读路径，不要求所有人从头顺序读到尾。
 
-读完对应章节后，读者可进入四个递进 Lab：先查证一个工程结论，再把
-决策写成规格，用 Red-Green 修复问题，最后完成一次可交接交付。每关都
-明确要求留下产物、验收证据和停止条件。
+读完对应章节后，读者进入同一条实践路径：先查证一个工程结论，再把
+决策写成规格，让 bug 先变红，用最小修复闭合证据，分开两条 review 轴，
+交接前先复述，最后完成一次可交接交付。每关都明确要求留下产物、验收
+证据和停止条件。
 
 第 12 章吸收 15 条 Matt Pocock 公开一手材料，区分固定仓库事实、后续官方站表述
 和本书的工程推论。第 13 章给出审报告、迁逻辑、修白屏三个端到端操作案例，
@@ -60,6 +61,7 @@
 
 ## 材料基准
 
+- 当前阅读版：`v0.1.0`
 - 上游仓库：[`mattpocock/skills`](https://github.com/mattpocock/skills)
 - 固定提交：[`6654f6b60cd9d5be8b54c6fafe44346dabeb3b76`](https://github.com/mattpocock/skills/tree/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76)
 - 提交时间：2026-08-24
@@ -67,6 +69,7 @@
 - 范围：18 个 engineering、7 个 productivity、4 个 misc、8 个 in-progress
 
 仓库后续会变化，尤其是 `in-progress`。本书只对固定提交负责，不把实验目录写成稳定接口。
+页面只会在存在至少两份真实发布版时显示版本选择器；当前显示本版标签，未来历史版会保持可读并标注为历史快照。
 
 ## 公开边界
 
@@ -85,9 +88,9 @@ npm ci
 npm run check
 ```
 
-`chapters/` 下 16 个编号 Markdown 和 `labs/` 下四个编号 Lab 是内容事实源。
+`chapters/` 下 16 个编号 Markdown 和 `labs/` 下六个实践关卡、一个综合交付是内容事实源。
 构建脚本依次装配出 `book.md`、`html/index.html`、`html/book.html` 和
-`html/labs/` 下的独立练习页面，并复制全部 PNG 到 `html/assets/`。公开审计会检查固定
+`html/labs/` 下的独立实践页面，并复制全部 PNG 到 `html/assets/`。公开审计会检查固定
 上游 commit、GitHub Pages 工作流以及常见本机路径、会话目录、token 和私钥模式是否泄漏。
 
 当前核验快照（`2026-09-01`）：
@@ -95,13 +98,14 @@ npm run check
 | 维度 | 已核验数量 |
 |---|---:|
 | 编号章节源 | 16 |
-| 递进 Lab | 4 |
+| 实践关卡 | 6 |
+| 综合交付 | 1 |
 | 逐项讲解的 Skill | 37 |
 | 一手材料记录 | 15 |
 | 正文引用图片 | 25 |
 | 阿舟最终 PNG 图解 | 15 |
 | 可编辑 Excalidraw 图源 | 10 |
-| 生成的 Lab 页面 | 5 |
+| 生成的实践页面 | 8 |
 
 ## 图片说明
 

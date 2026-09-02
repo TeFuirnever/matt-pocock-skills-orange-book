@@ -6,12 +6,17 @@
 
 ![阿舟图解：Skill 不是更长的 Prompt](assets/azhou/skill-not-prompt.png)
 
-**版本基准**
+**当前阅读版：v0.1.0**
+
+读者选择的是橙皮书的阅读版；上游固定提交只用于追溯本版的证据基线，不作为页面主身份。
+只有存在至少两份真实发布版时，页面才显示版本选择器；当前只显示本版标签，历史版将保持可读且明确标注为历史快照。
+
+**本版证据基线**
 
 | 项目 | 本书口径 |
 |---|---|
 | 上游仓库 | [`mattpocock/skills`](https://github.com/mattpocock/skills) |
-| 固定提交 | [`6654f6b60cd9d5be8b54c6fafe44346dabeb3b76`](https://github.com/mattpocock/skills/tree/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76) |
+| 核验提交 | [`6654f6b60cd9d5be8b54c6fafe44346dabeb3b76`](https://github.com/mattpocock/skills/tree/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76) |
 | 固定时间 | 2026-08-24 |
 | 书稿核验 | 2026-09-01 |
 | Skill 数量 | 37 个：engineering 18、productivity 7、misc 4、in-progress 8 |
