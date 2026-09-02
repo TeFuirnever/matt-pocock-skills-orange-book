@@ -324,9 +324,23 @@ const printContracts = [
   'display: table-header-group;',
 ];
 const headerContracts = [
-  'grid-template-columns: minmax(230px, var(--sidebar-width)) minmax(280px, 1fr) max-content;',
+  'grid-template-columns: minmax(248px, var(--sidebar-width)) minmax(280px, 1fr) max-content;',
   '.topbar-actions > a {\n  flex: 0 0 auto;',
   'white-space: nowrap;',
+];
+const professionalDesignContracts = [
+  '--shadow-soft:',
+  '.icon-button svg {',
+  '.book-article h2:not(.practice-heading)::before',
+  '@media (max-width: 600px)',
+];
+const mobileUtilityContracts = [
+  'id="sidebar-search-button"',
+  'id="sidebar-print-button"',
+  "document.querySelector('#sidebar-search-button')",
+  "document.querySelector('#sidebar-print-button')",
+  "sidebarSearchButton?.addEventListener('click', () => setMobileSearch(true));",
+  "sidebarPrintButton?.addEventListener('click', () => window.print());",
 ];
 const generatedThemePages = [
   ['main reading edition', indexHtml],
@@ -351,6 +365,16 @@ for (const [pageName, pageHtml] of generatedThemePages) {
     if (!pageHtml.includes(headerContract)) {
       errors.push(`${pageName} is missing responsive header contract: ${headerContract}`);
     }
+  }
+  for (const designContract of professionalDesignContracts) {
+    if (!pageHtml.includes(designContract)) {
+      errors.push(`${pageName} is missing design-system contract: ${designContract}`);
+    }
+  }
+}
+for (const mobileUtilityContract of mobileUtilityContracts) {
+  if (!indexHtml.includes(mobileUtilityContract)) {
+    errors.push(`main reading edition is missing mobile utility contract: ${mobileUtilityContract}`);
   }
 }
 if (indexHtml.includes('<span>固定上游提交</span>')) {

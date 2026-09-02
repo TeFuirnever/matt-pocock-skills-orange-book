@@ -96,6 +96,12 @@ const themeControl = `<label class="theme-control" for="theme-select">
   </select>
 </label>`;
 const themeStatus = '<p class="theme-status" id="theme-status" role="status" aria-live="polite"></p>';
+const icons = {
+  menu: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>',
+  search: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg>',
+  print: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8V4h10v4M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"/><path d="M7 14h10v6H7z"/></svg>',
+  up: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg>',
+};
 const headingCounts = new Map();
 const headings = [];
 const practiceKindByTitle = new Map(
@@ -246,7 +252,7 @@ const html = `<!doctype html>
   <div class="reading-progress" aria-hidden="true"><span id="reading-progress-bar"></span></div>
   <header class="topbar">
     <div class="topbar-inner">
-      <button class="icon-button menu-button" id="menu-button" type="button" aria-label="打开目录" aria-expanded="false" title="打开目录">☰</button>
+      <button class="icon-button menu-button" id="menu-button" type="button" aria-label="打开目录" aria-expanded="false" title="打开目录">${icons.menu}</button>
       <a class="brand" href="#top" aria-label="回到页首">
         <span class="brand-mark" aria-hidden="true">M</span>
         <span><strong>Skills 橙皮书</strong><small>Matt Pocock 公开材料中文讲解 · ${readingEdition}</small></span>
@@ -261,8 +267,8 @@ const html = `<!doctype html>
         ${themeControl}
         <a href="#${practiceAnchor('README.md')}">实践路径</a>
         <a href="https://github.com/TeFuirnever/matt-pocock-skills-orange-book" target="_blank" rel="noreferrer">GitHub</a>
-        <button class="icon-button mobile-search-button" id="mobile-search-button" type="button" aria-label="打开搜索" aria-expanded="false" title="搜索全书">⌕</button>
-        <button class="icon-button" id="print-button" type="button" aria-label="打印或导出 PDF" title="打印或导出 PDF">⎙</button>
+        <button class="icon-button mobile-search-button" id="mobile-search-button" type="button" aria-label="打开搜索" aria-expanded="false" title="搜索全书">${icons.search}</button>
+        <button class="icon-button" id="print-button" type="button" aria-label="打印或导出 PDF" title="打印或导出 PDF">${icons.print}</button>
       </nav>
     </div>
   </header>
@@ -278,6 +284,10 @@ const html = `<!doctype html>
           <a href="#第-8-章-七个-ui-客户端实例-从浅到深">中级：串联交付</a>
           <a href="#高阶进阶-从会使用-skill-到会设计-harness">高阶：设计 Harness</a>
         </nav>
+        <div class="mobile-utilities" aria-label="移动端工具">
+          <button class="mobile-utility" id="sidebar-search-button" type="button">${icons.search}<span>搜索全书</span></button>
+          <button class="mobile-utility" id="sidebar-print-button" type="button">${icons.print}<span>打印或导出</span></button>
+        </div>
         <div class="sidebar-divider"></div>
         <p class="sidebar-label">实践路径</p>
         <nav class="toc" aria-label="实践路径目录">${practiceLinks}</nav>
@@ -294,7 +304,7 @@ const html = `<!doctype html>
       <article class="book-article">${body}</article>
     </main>
   </div>
-  <button class="back-to-top icon-button" id="back-to-top" type="button" aria-label="回到顶部" title="回到顶部" hidden>↑</button>
+  <button class="back-to-top icon-button" id="back-to-top" type="button" aria-label="回到顶部" title="回到顶部" hidden>${icons.up}</button>
   <script>${themeScript}</script>
   <script>${siteScript}</script>
 </body>

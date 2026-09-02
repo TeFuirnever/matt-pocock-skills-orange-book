@@ -7,6 +7,8 @@ const sidebarOverlay = document.querySelector('#sidebar-overlay');
 const searchInput = document.querySelector('#site-search');
 const searchResults = document.querySelector('#search-results');
 const mobileSearchButton = document.querySelector('#mobile-search-button');
+const sidebarSearchButton = document.querySelector('#sidebar-search-button');
+const sidebarPrintButton = document.querySelector('#sidebar-print-button');
 const progressBar = document.querySelector('#reading-progress-bar');
 const printButton = document.querySelector('#print-button');
 const backToTopButton = document.querySelector('#back-to-top');
@@ -49,6 +51,7 @@ sidebar.addEventListener('click', (event) => {
 mobileSearchButton.addEventListener('click', () => {
   setMobileSearch(!body.classList.contains('mobile-search-open'));
 });
+sidebarSearchButton?.addEventListener('click', () => setMobileSearch(true));
 
 function sectionText(heading) {
   const parts = [];
@@ -182,6 +185,7 @@ for (const heading of document.querySelectorAll('.book-article h2')) {
 }
 
 printButton.addEventListener('click', () => window.print());
+sidebarPrintButton?.addEventListener('click', () => window.print());
 backToTopButton.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
