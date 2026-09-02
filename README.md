@@ -11,7 +11,12 @@ A Chinese-first, beginner-friendly handbook for the public
 - [Authoritative Markdown book](book.md)
 - [Generated HTML reading edition](html/index.html)
 
-## Azhou visual guide
+## Azhou editorial guide
+
+Azhou is the book's editorial and visual guide. It translates traceable public
+material into executable, verifiable Chinese engineering actions, with three
+rules: evidence first, people decide trade-offs, and deliveries leave replayable
+evidence.
 
 The book uses Azhou visual annotations to make two beginner decisions visible:
 a Skill is a repeatable work method rather than a longer one-off request, and

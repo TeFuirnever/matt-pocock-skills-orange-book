@@ -12,6 +12,10 @@ _Avoid_: upstream version, commit version, page version
 The internal pinned upstream snapshot and first-party evidence records that bound the factual claims in one Release Edition.
 _Avoid_: public version, reader version
 
+**Azhou Editorial System**:
+The reader-facing editorial and visual layer that translates traceable public material into executable, verifiable Chinese engineering actions. It makes evidence visible, leaves trade-offs to people, and requires replayable delivery evidence.
+_Avoid_: upstream author, evidence source, decision maker
+
 **Reading Path**:
 A reader-oriented route through one Release Edition, such as a beginner, advanced, or practice route.
 _Avoid_: version, edition
