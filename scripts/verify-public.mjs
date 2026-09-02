@@ -304,6 +304,32 @@ for (const siteContract of [
     errors.push(`generated HTML is missing site contract: ${siteContract}`);
   }
 }
+const themeContracts = [
+  'id="theme-select"',
+  'value="system"',
+  'value="light"',
+  'value="dark"',
+  'data-theme="dark"',
+  "localStorage.getItem('orange-book-theme')",
+  "prefers-color-scheme: dark",
+  "document.querySelector('meta[name=\"theme-color\"]')",
+  "themeColor.setAttribute('content'",
+];
+const generatedThemePages = [
+  ['main reading edition', indexHtml],
+  ['practice index', labsIndexHtml],
+  ...expectedLabs.map((labName) => [
+    `practice page ${labName}`,
+    requireFile(errors, `html/labs/${labName.replace(/\.md$/, '.html')}`),
+  ]),
+];
+for (const [pageName, pageHtml] of generatedThemePages) {
+  for (const themeContract of themeContracts) {
+    if (!pageHtml.includes(themeContract)) {
+      errors.push(`${pageName} is missing theme contract: ${themeContract}`);
+    }
+  }
+}
 if (indexHtml.includes('<span>固定上游提交</span>')) {
   errors.push('generated HTML presents the upstream commit as the reader-facing identity');
 }

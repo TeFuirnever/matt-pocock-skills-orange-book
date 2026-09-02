@@ -5,6 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Matt Pocock Skills 橙皮书实践路径：六个实践关卡与一个综合交付，用可验证产物完成从调查到交接。">
   <meta name="theme-color" content="#f8f7f4">
+  <script>(() => {
+  const root = document.documentElement;
+  const systemTheme = () => typeof window.matchMedia === 'function'
+    && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  let selected = 'system';
+  try {
+    const preference = localStorage.getItem('orange-book-theme');
+    selected = preference === 'light' || preference === 'dark' ? preference : 'system';
+  } catch {}
+  const theme = selected === 'system' ? systemTheme() : selected;
+  root.dataset.themePreference = selected;
+  root.dataset.theme = theme;
+  const themeColor = document.querySelector('meta[name="theme-color"]');
+  if (themeColor) themeColor.setAttribute('content', theme === 'dark' ? '#1c1f24' : '#f8f7f4');
+})();</script>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23fff1df'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Georgia,serif' font-size='42' font-weight='700' fill='%239f4800'%3EM%3C/text%3E%3C/svg%3E">
   <link rel="canonical" href="https://tefuirnever.github.io/matt-pocock-skills-orange-book/#practice-07-capstone-delivery">
   <title>综合交付 · 完成一次可交接交付 · Skills 橙皮书实践路径</title>
@@ -28,8 +43,53 @@
   --line: #ddd8d1;
   --code: #24272d;
   --code-ink: #eef1f4;
+  --focus: #f3a04e;
+  --control-border: #cbc5bd;
+  --placeholder: #888078;
+  --control-hover-border: #bdb5ac;
+  --navigation-ink: #4b4641;
+  --practice-border: #f1c18e;
+  --practice-path-surface: #eef7fd;
+  --capstone-border: #dfad70;
+  --capstone-surface: #fff8ef;
+  --quote-ink: #4a4038;
+  --table-heading-surface: #f7ead9;
+  --table-heading-ink: #5a3a14;
+  --table-stripe: #fbfaf8;
+  --topbar-bg: rgb(248 247 244 / 96%);
   --topbar-height: 64px;
   --sidebar-width: 280px;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ink: #f2eee8;
+  --ink-strong: #fffaf4;
+  --muted: #b8b0a7;
+  --orange: #f6ad68;
+  --orange-dark: #ffca9c;
+  --orange-soft: #3b2b1d;
+  --blue: #a9d5ff;
+  --paper: #1c1f24;
+  --surface: #252931;
+  --surface-strong: #30353e;
+  --line: #4a515c;
+  --code: #101318;
+  --code-ink: #f5f2ed;
+  --focus: #ffca7b;
+  --control-border: #59616e;
+  --placeholder: #b8b0a7;
+  --control-hover-border: #778190;
+  --navigation-ink: #e0dad2;
+  --practice-border: #8d6039;
+  --practice-path-surface: #1b3447;
+  --capstone-border: #a77644;
+  --capstone-surface: #38291d;
+  --quote-ink: #e4dcd3;
+  --table-heading-surface: #3d2d1f;
+  --table-heading-ink: #ffdcba;
+  --table-stripe: #23272e;
+  --topbar-bg: rgb(28 31 36 / 96%);
 }
 
 * {
@@ -74,8 +134,9 @@ a:hover {
 
 a:focus-visible,
 button:focus-visible,
-input:focus-visible {
-  outline: 3px solid #f3a04e;
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--focus);
   outline-offset: 2px;
 }
 
@@ -132,7 +193,7 @@ input:focus-visible {
   z-index: 60;
   height: var(--topbar-height);
   border-bottom: 1px solid var(--line);
-  background: rgb(248 247 244 / 96%);
+  background: var(--topbar-bg);
   backdrop-filter: blur(10px);
 }
 
@@ -206,14 +267,14 @@ input:focus-visible {
   width: 100%;
   height: 40px;
   padding: 0 42px 0 14px;
-  border: 1px solid #cbc5bd;
+  border: 1px solid var(--control-border);
   border-radius: 6px;
   background: var(--paper);
   color: var(--ink);
 }
 
 .search-wrap input::placeholder {
-  color: #888078;
+  color: var(--placeholder);
 }
 
 .search-wrap kbd {
@@ -299,6 +360,48 @@ input:focus-visible {
   text-decoration: none;
 }
 
+.theme-control {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.theme-control select {
+  min-width: 92px;
+  height: 38px;
+  padding: 0 28px 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.theme-control select:hover {
+  border-color: var(--control-hover-border);
+  background: var(--orange-soft);
+}
+
+.theme-status {
+  display: none;
+  width: min(calc(100% - 36px), 720px);
+  margin: 10px auto 0;
+  padding: 8px 12px;
+  border: 1px solid var(--practice-border);
+  border-radius: 6px;
+  background: var(--orange-soft);
+  color: var(--orange-dark);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+:root[data-theme-persistence="unavailable"] .theme-status {
+  display: block;
+}
+
 .icon-button {
   display: inline-grid;
   width: 38px;
@@ -315,7 +418,7 @@ input:focus-visible {
 }
 
 .icon-button:hover {
-  border-color: #bdb5ac;
+  border-color: var(--control-hover-border);
   background: var(--orange-soft);
 }
 
@@ -371,7 +474,7 @@ input:focus-visible {
   padding: 7px 9px;
   border-left: 3px solid transparent;
   border-radius: 0 4px 4px 0;
-  color: #4b4641;
+  color: var(--navigation-ink);
   font-size: 13px;
   line-height: 1.45;
   text-decoration: none;
@@ -448,7 +551,7 @@ input:focus-visible {
 .book-article .practice-heading {
   margin-top: 4em;
   padding: 18px 20px;
-  border: 1px solid #f1c18e;
+  border: 1px solid var(--practice-border);
   border-left: 6px solid var(--orange);
   border-radius: 8px;
   background: var(--orange-soft);
@@ -457,13 +560,13 @@ input:focus-visible {
 .book-article .practice-path-heading {
   border-color: var(--line);
   border-left-color: var(--blue);
-  background: #eef7fd;
+  background: var(--practice-path-surface);
 }
 
 .book-article .practice-capstone-heading {
-  border-color: #dfad70;
+  border-color: var(--capstone-border);
   border-left-color: var(--orange-dark);
-  background: #fff8ef;
+  background: var(--capstone-surface);
 }
 
 .practice-toc-link {
@@ -513,7 +616,7 @@ h4:hover .heading-anchor,
   padding: 13px 18px;
   border-left: 4px solid var(--orange);
   background: var(--orange-soft);
-  color: #4a4038;
+  color: var(--quote-ink);
 }
 
 .book-article blockquote > :first-child {
@@ -589,12 +692,12 @@ code {
 }
 
 .book-article th {
-  background: #f7ead9;
-  color: #5a3a14;
+  background: var(--table-heading-surface);
+  color: var(--table-heading-ink);
 }
 
 .book-article tr:nth-child(even) td {
-  background: #fbfaf8;
+  background: var(--table-stripe);
 }
 
 .book-article img {
@@ -762,6 +865,15 @@ code {
     gap: 6px;
   }
 
+  .theme-control-label {
+    display: none;
+  }
+
+  .theme-control select {
+    min-width: 84px;
+    padding-left: 7px;
+  }
+
   .docs-layout {
     display: block;
     width: 100%;
@@ -835,12 +947,24 @@ code {
   }
 
   .lab-topbar {
-    padding: 0 18px;
+    min-height: var(--topbar-height);
+    height: auto;
+    padding: 8px 18px;
+    align-items: flex-start;
+  }
+
+  .lab-page .topbar {
+    height: auto;
+    min-height: var(--topbar-height);
   }
 
   .lab-topbar-actions {
     gap: 10px;
     font-size: 13px;
+  }
+
+  .lab-topbar-actions > a[target="_blank"] {
+    display: none;
   }
 
   .lab-layout {
@@ -886,6 +1010,37 @@ code {
 }
 
 @media print {
+  :root[data-theme="dark"] {
+    color-scheme: light;
+    --ink: #25221f;
+    --ink-strong: #151311;
+    --muted: #6f6861;
+    --orange: #d96d11;
+    --orange-dark: #9f4800;
+    --orange-soft: #fff1df;
+    --blue: #1769aa;
+    --paper: #ffffff;
+    --surface: #f8f7f4;
+    --surface-strong: #f0ede8;
+    --line: #ddd8d1;
+    --code: #24272d;
+    --code-ink: #eef1f4;
+    --focus: #f3a04e;
+    --control-border: #cbc5bd;
+    --placeholder: #888078;
+    --control-hover-border: #bdb5ac;
+    --navigation-ink: #4b4641;
+    --practice-border: #f1c18e;
+    --practice-path-surface: #eef7fd;
+    --capstone-border: #dfad70;
+    --capstone-surface: #fff8ef;
+    --quote-ink: #4a4038;
+    --table-heading-surface: #f7ead9;
+    --table-heading-ink: #5a3a14;
+    --table-stripe: #fbfaf8;
+    --topbar-bg: rgb(248 247 244 / 96%);
+  }
+
   body {
     background: white;
     font-size: 10.5pt;
@@ -970,11 +1125,20 @@ code {
         <span><strong>Skills 橙皮书</strong><small>实践路径 · 从阅读到可验证交付</small></span>
       </a>
       <nav class="lab-topbar-actions" aria-label="实践路径操作">
+        <label class="theme-control" for="theme-select">
+  <span class="theme-control-label">主题</span>
+  <select id="theme-select" aria-label="主题：跟随系统">
+    <option value="system">跟随系统</option>
+    <option value="light">浅色</option>
+    <option value="dark">深色</option>
+  </select>
+</label>
         <a href="../#practice-07-capstone-delivery">回到橙皮书</a>
         <a href="https://github.com/TeFuirnever/matt-pocock-skills-orange-book" target="_blank" rel="noreferrer">GitHub</a>
       </nav>
     </div>
   </header>
+  <p class="theme-status" id="theme-status" role="status" aria-live="polite"></p>
   <main id="lab-content" class="lab-layout">
     <aside class="lab-sidebar" aria-label="实践路径导航">
       <p class="sidebar-label">实践路径</p>
@@ -1044,5 +1208,68 @@ code {
 
     </article>
   </main>
+  <script>'use strict';
+
+const themeStorageKey = 'orange-book-theme';
+const themeLabels = {
+  system: '跟随系统',
+  light: '浅色',
+  dark: '深色',
+};
+const root = document.documentElement;
+const themeSelect = document.querySelector('#theme-select');
+const themeColor = document.querySelector('meta[name="theme-color"]');
+const themeStatus = document.querySelector('#theme-status');
+const colorSchemeMedia = window.matchMedia?.('(prefers-color-scheme: dark)');
+let currentPreference = 'system';
+
+function announce(message) {
+  root.dataset.themePersistence = 'unavailable';
+  if (themeStatus) themeStatus.textContent = message;
+}
+
+function savedPreference() {
+  try {
+    const value = window.localStorage.getItem(themeStorageKey);
+    return value === 'light' || value === 'dark' ? value : 'system';
+  } catch {
+    announce('无法读取主题偏好；当前主题仅在本次浏览中有效。');
+    return 'system';
+  }
+}
+
+function systemTheme() {
+  return colorSchemeMedia?.matches ? 'dark' : 'light';
+}
+
+function applyPreference(preference) {
+  const theme = preference === 'system' ? systemTheme() : preference;
+  currentPreference = preference;
+  root.dataset.theme = theme;
+  root.dataset.themePreference = preference;
+  themeColor?.setAttribute('content', theme === 'dark' ? '#1c1f24' : '#f8f7f4');
+  if (themeSelect) {
+    themeSelect.value = preference;
+    themeSelect.setAttribute('aria-label', `主题：${themeLabels[preference]}`);
+  }
+}
+
+function savePreference(preference) {
+  try {
+    if (preference === 'system') window.localStorage.removeItem(themeStorageKey);
+    else window.localStorage.setItem(themeStorageKey, preference);
+  } catch {
+    announce('无法保存主题偏好；当前主题仅在本次浏览中有效。');
+  }
+  applyPreference(preference);
+}
+
+applyPreference(savedPreference());
+
+themeSelect?.addEventListener('change', () => savePreference(themeSelect.value));
+colorSchemeMedia?.addEventListener?.('change', () => {
+  if (currentPreference === 'system') applyPreference('system');
+});
+</script>
 </body>
 </html>

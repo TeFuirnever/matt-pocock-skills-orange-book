@@ -22,6 +22,7 @@ const chapterDir = resolve(projectRoot, 'chapters');
 const labsDir = resolve(projectRoot, 'labs');
 const bookPath = resolve(projectRoot, 'book.md');
 const cssPath = resolve(projectRoot, 'html/print.css');
+const themeScriptPath = resolve(projectRoot, 'html/theme.js');
 const scriptPath = resolve(projectRoot, 'html/site.js');
 const htmlDir = resolve(projectRoot, 'html');
 const imageGroups = ['azhou', 'diagrams'];
@@ -69,7 +70,32 @@ const completeBook = assembleBook({
 writeFileSync(bookPath, completeBook);
 
 const css = readFileSync(cssPath, 'utf8');
-const script = readFileSync(scriptPath, 'utf8');
+const themeScript = readFileSync(themeScriptPath, 'utf8');
+const siteScript = readFileSync(scriptPath, 'utf8');
+const themeBootstrap = `(() => {
+  const root = document.documentElement;
+  const systemTheme = () => typeof window.matchMedia === 'function'
+    && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  let selected = 'system';
+  try {
+    const preference = localStorage.getItem('orange-book-theme');
+    selected = preference === 'light' || preference === 'dark' ? preference : 'system';
+  } catch {}
+  const theme = selected === 'system' ? systemTheme() : selected;
+  root.dataset.themePreference = selected;
+  root.dataset.theme = theme;
+  const themeColor = document.querySelector('meta[name="theme-color"]');
+  if (themeColor) themeColor.setAttribute('content', theme === 'dark' ? '#1c1f24' : '#f8f7f4');
+})();`;
+const themeControl = `<label class="theme-control" for="theme-select">
+  <span class="theme-control-label">主题</span>
+  <select id="theme-select" aria-label="主题：跟随系统">
+    <option value="system">跟随系统</option>
+    <option value="light">浅色</option>
+    <option value="dark">深色</option>
+  </select>
+</label>`;
+const themeStatus = '<p class="theme-status" id="theme-status" role="status" aria-live="polite"></p>';
 const headingCounts = new Map();
 const headings = [];
 const practiceKindByTitle = new Map(
@@ -159,6 +185,7 @@ function createLabPage({ title, description, body, labLinks, canonicalHref, main
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Matt Pocock Skills 橙皮书实践路径：六个实践关卡与一个综合交付，用可验证产物完成从调查到交接。">
   <meta name="theme-color" content="#f8f7f4">
+  <script>${themeBootstrap}</script>
   <link rel="icon" href="${faviconHref}">
   <link rel="canonical" href="https://tefuirnever.github.io/matt-pocock-skills-orange-book/${canonicalHref}">
   <title>${escapeHtml(pageTitle)}</title>
@@ -173,11 +200,13 @@ function createLabPage({ title, description, body, labLinks, canonicalHref, main
         <span><strong>Skills 橙皮书</strong><small>实践路径 · 从阅读到可验证交付</small></span>
       </a>
       <nav class="lab-topbar-actions" aria-label="实践路径操作">
+        ${themeControl}
         <a href="${mainHref}">回到橙皮书</a>
         <a href="https://github.com/TeFuirnever/matt-pocock-skills-orange-book" target="_blank" rel="noreferrer">GitHub</a>
       </nav>
     </div>
   </header>
+  ${themeStatus}
   <main id="lab-content" class="lab-layout">
     <aside class="lab-sidebar" aria-label="实践路径导航">
       <p class="sidebar-label">实践路径</p>
@@ -193,6 +222,7 @@ function createLabPage({ title, description, body, labLinks, canonicalHref, main
       ${body}
     </article>
   </main>
+  <script>${themeScript}</script>
 </body>
 </html>
 `;
@@ -205,6 +235,7 @@ const html = `<!doctype html>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="面向 AI 协作开发者的 Matt Pocock Skills 中文橙皮书，含 37 个 Skill 讲解、实践关卡与端到端操作案例。">
   <meta name="theme-color" content="#f8f7f4">
+  <script>${themeBootstrap}</script>
   <link rel="icon" href="${faviconHref}">
   <link rel="canonical" href="https://tefuirnever.github.io/matt-pocock-skills-orange-book/">
   <title>Matt Pocock Skills 橙皮书</title>
@@ -227,6 +258,7 @@ const html = `<!doctype html>
         <div class="search-results" id="search-results" hidden></div>
       </div>
       <nav class="topbar-actions" aria-label="页面操作">
+        ${themeControl}
         <a href="#${practiceAnchor('README.md')}">实践路径</a>
         <a href="https://github.com/TeFuirnever/matt-pocock-skills-orange-book" target="_blank" rel="noreferrer">GitHub</a>
         <button class="icon-button mobile-search-button" id="mobile-search-button" type="button" aria-label="打开搜索" aria-expanded="false" title="搜索全书">⌕</button>
@@ -234,6 +266,7 @@ const html = `<!doctype html>
       </nav>
     </div>
   </header>
+  ${themeStatus}
   <div class="sidebar-overlay" id="sidebar-overlay" hidden></div>
   <div class="docs-layout" id="top">
     <aside class="sidebar" id="sidebar" aria-label="全书目录">
@@ -262,7 +295,8 @@ const html = `<!doctype html>
     </main>
   </div>
   <button class="back-to-top icon-button" id="back-to-top" type="button" aria-label="回到顶部" title="回到顶部" hidden>↑</button>
-  <script>${script}</script>
+  <script>${themeScript}</script>
+  <script>${siteScript}</script>
 </body>
 </html>
 `;
