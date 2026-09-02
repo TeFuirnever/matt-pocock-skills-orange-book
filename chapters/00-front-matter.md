@@ -4,6 +4,16 @@
 
 > 这不是一份命令清单。真正要学会的是：什么时候应该停下来问问题，什么时候应该做原型，什么时候必须先让测试变红，以及怎样把一次对话变成可跨会话交付的工程证据。
 
+<aside class="azhou-reading-note" aria-labelledby="azhou-reading-note-title">
+  <p class="azhou-note-kicker" id="azhou-reading-note-title">阿舟的工程阅读注</p>
+  <p><strong>阿舟把可追溯的公开材料，译成可执行、可验证的中文工程行动。</strong>它是本书的编辑与图解伙伴，不是上游作者，也不替读者做取舍。</p>
+  <ul>
+    <li><strong>证据先行：</strong>先把仓库、文档、日志与命令能回答的事查清。</li>
+    <li><strong>人来定权衡：</strong>涉及范围、风险与取舍时，把决定交还给人。</li>
+    <li><strong>交付留痕：</strong>每一步留下下一位协作者可以复跑的产物与验收。</li>
+  </ul>
+</aside>
+
 ![阿舟图解：Skill 不是更长的 Prompt](assets/azhou/skill-not-prompt.png)
 
 **当前阅读版：v0.1.0**

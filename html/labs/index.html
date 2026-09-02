@@ -783,6 +783,73 @@ code {
   box-shadow: var(--shadow-soft);
 }
 
+.azhou-reading-note,
+.azhou-method-card {
+  max-width: 780px;
+  margin: 1.8em 0 2.2em;
+  padding: 20px 22px;
+  border: 1px solid var(--practice-border);
+  border-top: 3px solid var(--orange);
+  border-radius: 12px;
+  background: var(--orange-soft);
+  box-shadow: 0 8px 22px rgb(57 43 30 / 8%);
+}
+
+.azhou-note-kicker {
+  margin: 0 0 8px;
+  color: var(--orange-dark);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.azhou-reading-note > p:not(.azhou-note-kicker),
+.azhou-method-card > p:not(.azhou-note-kicker) {
+  max-width: 64ch;
+  margin: 0;
+}
+
+.azhou-reading-note ul {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.azhou-reading-note li,
+.azhou-method-steps li {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--practice-border);
+  border-radius: 8px;
+  background: var(--paper);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.azhou-reading-note li strong,
+.azhou-method-steps li strong {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--orange-dark);
+}
+
+.azhou-method-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.azhou-method-steps span {
+  color: var(--muted);
+}
+
 .lab-topbar {
   display: flex;
   align-items: center;
@@ -1114,6 +1181,16 @@ code {
     grid-template-columns: minmax(0, 1fr);
     max-width: 440px;
   }
+
+  .azhou-reading-note,
+  .azhou-method-card {
+    padding: 18px;
+  }
+
+  .azhou-reading-note ul,
+  .azhou-method-steps {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1228,9 +1305,21 @@ code {
   .book-article tr,
   .book-article blockquote,
   .book-article pre,
-  .book-article .practice-heading {
+  .book-article .practice-heading,
+  .book-article .azhou-reading-note,
+  .book-article .azhou-method-card {
     break-inside: avoid;
     page-break-inside: avoid;
+  }
+
+  .book-article .azhou-reading-note,
+  .book-article .azhou-method-card,
+  .book-article .azhou-reading-note li,
+  .book-article .azhou-method-steps li {
+    border-color: #000000;
+    border-radius: 0;
+    background: #ffffff;
+    box-shadow: none;
   }
 
   .book-article pre {
@@ -1322,7 +1411,15 @@ code {
       <p class="lab-description">六个实践关卡与一个综合交付，把 Skill 选择、规格、反馈、评审和交接变成可复跑的工程动作。</p>
       <h1>橙皮书实践路径</h1>
 <p>这不是书外附录。实践路径把正文中的关键判断变成你在自己仓库里可复跑、可交接的动作。</p>
-<p>开始前，选一个非生产分支和一个可以独立验证的小改动。不要把第一次练习用在发布、凭据迁移、删除数据或不可逆的线上操作上。</p>
+<aside class="azhou-method-card" aria-labelledby="azhou-method-card-title">
+  <p class="azhou-note-kicker" id="azhou-method-card-title">阿舟方法卡</p>
+  <p><strong>先看证据 → 再定权衡 → 最后留下可复跑凭据。</strong></p>
+  <ol class="azhou-method-steps">
+    <li><strong>看证据</strong><span>用仓库、文档、日志与命令回答能验证的问题。</span></li>
+    <li><strong>定权衡</strong><span>把范围、风险与优先级交给应当负责的人。</span></li>
+    <li><strong>留凭据</strong><span>让下一关或下一位协作者只读产物也能继续。</span></li>
+  </ol>
+</aside><p>开始前，选一个非生产分支和一个可以独立验证的小改动。不要把第一次练习用在发布、凭据迁移、删除数据或不可逆的线上操作上。</p>
 <h2>三层练习</h2>
 <ul>
 <li><strong>章内微练习：</strong> 5–10 分钟，只验证一个概念，得到一个立刻可观察的结果；它不阻塞阅读。</li>

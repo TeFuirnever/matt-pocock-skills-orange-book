@@ -342,6 +342,14 @@ const mobileUtilityContracts = [
   "sidebarSearchButton?.addEventListener('click', () => setMobileSearch(true));",
   "sidebarPrintButton?.addEventListener('click', () => window.print());",
 ];
+const azhouReadingContracts = [
+  '阿舟的工程阅读注',
+  '阿舟把可追溯的公开材料，译成可执行、可验证的中文工程行动。',
+];
+const azhouMethodContracts = [
+  '阿舟方法卡',
+  '先看证据 → 再定权衡 → 最后留下可复跑凭据。',
+];
 const generatedThemePages = [
   ['main reading edition', indexHtml],
   ['practice index', labsIndexHtml],
@@ -375,6 +383,26 @@ for (const [pageName, pageHtml] of generatedThemePages) {
 for (const mobileUtilityContract of mobileUtilityContracts) {
   if (!indexHtml.includes(mobileUtilityContract)) {
     errors.push(`main reading edition is missing mobile utility contract: ${mobileUtilityContract}`);
+  }
+}
+for (const azhouConceptContract of [...azhouReadingContracts, ...azhouMethodContracts]) {
+  if (!book.includes(azhouConceptContract)) {
+    errors.push(`book source is missing Azhou concept contract: ${azhouConceptContract}`);
+  }
+}
+for (const [pageName, pageHtml] of [
+  ['main reading edition', indexHtml],
+  ['print reading edition', bookHtml],
+]) {
+  for (const azhouConceptContract of [...azhouReadingContracts, ...azhouMethodContracts]) {
+    if (!pageHtml.includes(azhouConceptContract)) {
+      errors.push(`${pageName} is missing Azhou concept contract: ${azhouConceptContract}`);
+    }
+  }
+}
+for (const azhouMethodContract of azhouMethodContracts) {
+  if (!labsIndexHtml.includes(azhouMethodContract)) {
+    errors.push(`practice index is missing Azhou concept contract: ${azhouMethodContract}`);
   }
 }
 if (indexHtml.includes('<span>固定上游提交</span>')) {

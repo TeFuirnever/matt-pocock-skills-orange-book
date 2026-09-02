@@ -758,6 +758,73 @@ code {
   box-shadow: var(--shadow-soft);
 }
 
+.azhou-reading-note,
+.azhou-method-card {
+  max-width: 780px;
+  margin: 1.8em 0 2.2em;
+  padding: 20px 22px;
+  border: 1px solid var(--practice-border);
+  border-top: 3px solid var(--orange);
+  border-radius: 12px;
+  background: var(--orange-soft);
+  box-shadow: 0 8px 22px rgb(57 43 30 / 8%);
+}
+
+.azhou-note-kicker {
+  margin: 0 0 8px;
+  color: var(--orange-dark);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.azhou-reading-note > p:not(.azhou-note-kicker),
+.azhou-method-card > p:not(.azhou-note-kicker) {
+  max-width: 64ch;
+  margin: 0;
+}
+
+.azhou-reading-note ul {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.azhou-reading-note li,
+.azhou-method-steps li {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--practice-border);
+  border-radius: 8px;
+  background: var(--paper);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.azhou-reading-note li strong,
+.azhou-method-steps li strong {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--orange-dark);
+}
+
+.azhou-method-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.azhou-method-steps span {
+  color: var(--muted);
+}
+
 .lab-topbar {
   display: flex;
   align-items: center;
@@ -1089,6 +1156,16 @@ code {
     grid-template-columns: minmax(0, 1fr);
     max-width: 440px;
   }
+
+  .azhou-reading-note,
+  .azhou-method-card {
+    padding: 18px;
+  }
+
+  .azhou-reading-note ul,
+  .azhou-method-steps {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1203,9 +1280,21 @@ code {
   .book-article tr,
   .book-article blockquote,
   .book-article pre,
-  .book-article .practice-heading {
+  .book-article .practice-heading,
+  .book-article .azhou-reading-note,
+  .book-article .azhou-method-card {
     break-inside: avoid;
     page-break-inside: avoid;
+  }
+
+  .book-article .azhou-reading-note,
+  .book-article .azhou-method-card,
+  .book-article .azhou-reading-note li,
+  .book-article .azhou-method-steps li {
+    border-color: #000000;
+    border-radius: 0;
+    background: #ffffff;
+    box-shadow: none;
   }
 
   .book-article pre {

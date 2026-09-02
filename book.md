@@ -4,6 +4,16 @@
 
 > 这不是一份命令清单。真正要学会的是：什么时候应该停下来问问题，什么时候应该做原型，什么时候必须先让测试变红，以及怎样把一次对话变成可跨会话交付的工程证据。
 
+<aside class="azhou-reading-note" aria-labelledby="azhou-reading-note-title">
+  <p class="azhou-note-kicker" id="azhou-reading-note-title">阿舟的工程阅读注</p>
+  <p><strong>阿舟把可追溯的公开材料，译成可执行、可验证的中文工程行动。</strong>它是本书的编辑与图解伙伴，不是上游作者，也不替读者做取舍。</p>
+  <ul>
+    <li><strong>证据先行：</strong>先把仓库、文档、日志与命令能回答的事查清。</li>
+    <li><strong>人来定权衡：</strong>涉及范围、风险与取舍时，把决定交还给人。</li>
+    <li><strong>交付留痕：</strong>每一步留下下一位协作者可以复跑的产物与验收。</li>
+  </ul>
+</aside>
+
 ![阿舟图解：Skill 不是更长的 Prompt](assets/azhou/skill-not-prompt.png)
 
 **当前阅读版：v0.1.0**
@@ -165,6 +175,16 @@ Matt Pocock 这套仓库真正有价值的地方，是把几十年软件工程�
 ## 橙皮书实践路径
 
 这不是书外附录。实践路径把正文中的关键判断变成你在自己仓库里可复跑、可交接的动作。
+
+<aside class="azhou-method-card" aria-labelledby="azhou-method-card-title">
+  <p class="azhou-note-kicker" id="azhou-method-card-title">阿舟方法卡</p>
+  <p><strong>先看证据 → 再定权衡 → 最后留下可复跑凭据。</strong></p>
+  <ol class="azhou-method-steps">
+    <li><strong>看证据</strong><span>用仓库、文档、日志与命令回答能验证的问题。</span></li>
+    <li><strong>定权衡</strong><span>把范围、风险与优先级交给应当负责的人。</span></li>
+    <li><strong>留凭据</strong><span>让下一关或下一位协作者只读产物也能继续。</span></li>
+  </ol>
+</aside>
 
 开始前，选一个非生产分支和一个可以独立验证的小改动。不要把第一次练习用在发布、凭据迁移、删除数据或不可逆的线上操作上。
 

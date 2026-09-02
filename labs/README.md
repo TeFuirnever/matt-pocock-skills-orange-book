@@ -2,6 +2,16 @@
 
 这不是书外附录。实践路径把正文中的关键判断变成你在自己仓库里可复跑、可交接的动作。
 
+<aside class="azhou-method-card" aria-labelledby="azhou-method-card-title">
+  <p class="azhou-note-kicker" id="azhou-method-card-title">阿舟方法卡</p>
+  <p><strong>先看证据 → 再定权衡 → 最后留下可复跑凭据。</strong></p>
+  <ol class="azhou-method-steps">
+    <li><strong>看证据</strong><span>用仓库、文档、日志与命令回答能验证的问题。</span></li>
+    <li><strong>定权衡</strong><span>把范围、风险与优先级交给应当负责的人。</span></li>
+    <li><strong>留凭据</strong><span>让下一关或下一位协作者只读产物也能继续。</span></li>
+  </ol>
+</aside>
+
 开始前，选一个非生产分支和一个可以独立验证的小改动。不要把第一次练习用在发布、凭据迁移、删除数据或不可逆的线上操作上。
 
 ## 三层练习

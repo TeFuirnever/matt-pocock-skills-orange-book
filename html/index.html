@@ -783,6 +783,73 @@ code {
   box-shadow: var(--shadow-soft);
 }
 
+.azhou-reading-note,
+.azhou-method-card {
+  max-width: 780px;
+  margin: 1.8em 0 2.2em;
+  padding: 20px 22px;
+  border: 1px solid var(--practice-border);
+  border-top: 3px solid var(--orange);
+  border-radius: 12px;
+  background: var(--orange-soft);
+  box-shadow: 0 8px 22px rgb(57 43 30 / 8%);
+}
+
+.azhou-note-kicker {
+  margin: 0 0 8px;
+  color: var(--orange-dark);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.azhou-reading-note > p:not(.azhou-note-kicker),
+.azhou-method-card > p:not(.azhou-note-kicker) {
+  max-width: 64ch;
+  margin: 0;
+}
+
+.azhou-reading-note ul {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.azhou-reading-note li,
+.azhou-method-steps li {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--practice-border);
+  border-radius: 8px;
+  background: var(--paper);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.azhou-reading-note li strong,
+.azhou-method-steps li strong {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--orange-dark);
+}
+
+.azhou-method-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.azhou-method-steps span {
+  color: var(--muted);
+}
+
 .lab-topbar {
   display: flex;
   align-items: center;
@@ -1114,6 +1181,16 @@ code {
     grid-template-columns: minmax(0, 1fr);
     max-width: 440px;
   }
+
+  .azhou-reading-note,
+  .azhou-method-card {
+    padding: 18px;
+  }
+
+  .azhou-reading-note ul,
+  .azhou-method-steps {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1228,9 +1305,21 @@ code {
   .book-article tr,
   .book-article blockquote,
   .book-article pre,
-  .book-article .practice-heading {
+  .book-article .practice-heading,
+  .book-article .azhou-reading-note,
+  .book-article .azhou-method-card {
     break-inside: avoid;
     page-break-inside: avoid;
+  }
+
+  .book-article .azhou-reading-note,
+  .book-article .azhou-method-card,
+  .book-article .azhou-reading-note li,
+  .book-article .azhou-method-steps li {
+    border-color: #000000;
+    border-radius: 0;
+    background: #ffffff;
+    box-shadow: none;
   }
 
   .book-article pre {
@@ -1367,7 +1456,15 @@ code {
 <blockquote>
 <p>这不是一份命令清单。真正要学会的是：什么时候应该停下来问问题，什么时候应该做原型，什么时候必须先让测试变红，以及怎样把一次对话变成可跨会话交付的工程证据。</p>
 </blockquote>
-<p><img src="assets/azhou/skill-not-prompt.png" alt="阿舟图解：Skill 不是更长的 Prompt"></p>
+<aside class="azhou-reading-note" aria-labelledby="azhou-reading-note-title">
+  <p class="azhou-note-kicker" id="azhou-reading-note-title">阿舟的工程阅读注</p>
+  <p><strong>阿舟把可追溯的公开材料，译成可执行、可验证的中文工程行动。</strong>它是本书的编辑与图解伙伴，不是上游作者，也不替读者做取舍。</p>
+  <ul>
+    <li><strong>证据先行：</strong>先把仓库、文档、日志与命令能回答的事查清。</li>
+    <li><strong>人来定权衡：</strong>涉及范围、风险与取舍时，把决定交还给人。</li>
+    <li><strong>交付留痕：</strong>每一步留下下一位协作者可以复跑的产物与验收。</li>
+  </ul>
+</aside><p><img src="assets/azhou/skill-not-prompt.png" alt="阿舟图解：Skill 不是更长的 Prompt"></p>
 <p><strong>当前阅读版：v0.1.0</strong></p>
 <p>读者选择的是橙皮书的阅读版；上游固定提交只用于追溯本版的证据基线，不作为页面主身份。
 只有存在至少两份真实发布版时，页面才显示版本选择器；当前只显示本版标签，历史版将保持可读且明确标注为历史快照。</p>
@@ -1658,7 +1755,15 @@ code {
 <hr>
 <h2 id="practice-readme" class="practice-heading practice-path-heading" tabindex="-1">橙皮书实践路径<a class="heading-anchor" href="#practice-readme" aria-label="链接到本节">#</a></h2>
 <p>这不是书外附录。实践路径把正文中的关键判断变成你在自己仓库里可复跑、可交接的动作。</p>
-<p>开始前，选一个非生产分支和一个可以独立验证的小改动。不要把第一次练习用在发布、凭据迁移、删除数据或不可逆的线上操作上。</p>
+<aside class="azhou-method-card" aria-labelledby="azhou-method-card-title">
+  <p class="azhou-note-kicker" id="azhou-method-card-title">阿舟方法卡</p>
+  <p><strong>先看证据 → 再定权衡 → 最后留下可复跑凭据。</strong></p>
+  <ol class="azhou-method-steps">
+    <li><strong>看证据</strong><span>用仓库、文档、日志与命令回答能验证的问题。</span></li>
+    <li><strong>定权衡</strong><span>把范围、风险与优先级交给应当负责的人。</span></li>
+    <li><strong>留凭据</strong><span>让下一关或下一位协作者只读产物也能继续。</span></li>
+  </ol>
+</aside><p>开始前，选一个非生产分支和一个可以独立验证的小改动。不要把第一次练习用在发布、凭据迁移、删除数据或不可逆的线上操作上。</p>
 <h3 id="三层练习" tabindex="-1">三层练习<a class="heading-anchor" href="#三层练习" aria-label="链接到本节">#</a></h3>
 <ul>
 <li><strong>章内微练习：</strong> 5–10 分钟，只验证一个概念，得到一个立刻可观察的结果；它不阻塞阅读。</li>
