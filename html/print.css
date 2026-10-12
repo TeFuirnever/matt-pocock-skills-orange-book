@@ -1340,3 +1340,61 @@ code {
     padding: 0;
   }
 }
+
+/* Skill handbook quick jump, chapter pager, and practice/chapter cross-links */
+.book-article h4 {
+  padding-left: 10px;
+  border-left: 3px solid var(--practice-border);
+}
+
+.skill-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  margin: 0.8em 0 1.6em;
+  padding: 12px 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.skill-jump a {
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.chapter-pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 2.6em 0 0.6em;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+
+.chapter-pager a {
+  text-decoration: none;
+}
+
+.chapter-pager .pager-next {
+  margin-left: auto;
+  text-align: right;
+}
+
+.practice-standalone-link {
+  font-size: 14px;
+}
+
+.lab-chapter-link {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+@media print {
+  .skill-jump,
+  .chapter-pager {
+    border-color: #cccccc;
+    background: #ffffff;
+  }
+}

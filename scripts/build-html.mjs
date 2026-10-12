@@ -152,6 +152,97 @@ const marked = new Marked({
 });
 
 const body = marked.parse(completeBook);
+
+const chapterInfoByName = new Map();
+for (const chapterName of chapterNames) {
+  const source = readFileSync(resolve(chapterDir, chapterName), 'utf8');
+  const title = source.match(/^##\s+(.+)$/m)?.[1]?.trim()
+    ?? source.match(/^#\s+(.+)$/m)?.[1]?.trim();
+  const heading = headings.find(
+    ({ depth, text }) => depth === 2 && text === title,
+  );
+  if (heading) chapterInfoByName.set(chapterName, { id: heading.id, title });
+}
+
+function injectAfterHeading(html, id, addition) {
+  const at = html.indexOf(`id="${id}"`);
+  if (at === -1) throw new Error(`build: heading not found for injection: ${id}`);
+  const end = html.indexOf('\n', html.indexOf('</h', at)) + 1;
+  return `${html.slice(0, end)}${addition}\n${html.slice(end)}`;
+}
+
+let enrichedBody = body;
+for (let index = 0; index < headings.length; index++) {
+  const heading = headings[index];
+  if (heading.depth !== 3 || !/^11\.[1-4]\s/.test(heading.text)) continue;
+  const skillLinks = [];
+  for (
+    let cursor = index + 1;
+    cursor < headings.length && headings[cursor].depth > 3;
+    cursor++
+  ) {
+    if (headings[cursor].depth !== 4) continue;
+    const skillName = headings[cursor].text.match(/`([^`]+)`/)?.[1];
+    skillLinks.push(
+      `<a href="#${headings[cursor].id}"><code>${escapeHtml(skillName ?? headings[cursor].text)}</code></a>`,
+    );
+  }
+  enrichedBody = injectAfterHeading(
+    enrichedBody,
+    heading.id,
+    `<nav class="skill-jump" aria-label="本节 Skill 速查">${skillLinks.join('')}</nav>`,
+  );
+}
+
+for (const { sourceName } of practicePlacements) {
+  const standaloneName = sourceName === 'README.md'
+    ? 'labs/index.html'
+    : `labs/${sourceName.replace(/\.md$/, '.html')}`;
+  enrichedBody = injectAfterHeading(
+    enrichedBody,
+    practiceAnchor(sourceName),
+    `<p class="practice-standalone-link"><a href="${standaloneName}">打开此关独立页，方便打印与分享</a></p>`,
+  );
+}
+
+const tocChapters = headings.filter(
+  ({ depth, text }) => depth === 2 && /^第\s*\d+\s*章/.test(text),
+);
+function chapterPager(prev, next) {
+  return [
+    '<nav class="chapter-pager" aria-label="章节导航">',
+    prev
+      ? `<a class="pager-prev" href="#${prev.id}">← 上一章：${escapeHtml(prev.title)}</a>`
+      : '<span></span>',
+    next
+      ? `<a class="pager-next" href="#${next.id}">下一章：${escapeHtml(next.title)} →</a>`
+      : `<a class="pager-next" href="#${practiceAnchor('README.md')}">进入实践路径 →</a>`,
+    '</nav>',
+  ].join('');
+}
+for (let index = 1; index < tocChapters.length; index++) {
+  const marker = `<h2 id="${tocChapters[index].id}"`;
+  const at = enrichedBody.indexOf(marker);
+  if (at === -1) {
+    throw new Error(`build: chapter heading not found: ${tocChapters[index].id}`);
+  }
+  const pager = chapterPager(
+    index >= 2
+      ? { id: tocChapters[index - 2].id, title: tocChapters[index - 2].text }
+      : null,
+    { id: tocChapters[index].id, title: tocChapters[index].text },
+  );
+  enrichedBody = `${enrichedBody.slice(0, at)}${pager}\n${enrichedBody.slice(at)}`;
+}
+enrichedBody += `\n${chapterPager(
+  tocChapters.length >= 2
+    ? {
+        id: tocChapters[tocChapters.length - 2].id,
+        title: tocChapters[tocChapters.length - 2].text,
+      }
+    : null,
+  null,
+)}\n`;
 const practiceLinks = headings
   .filter(({ depth, text }) => depth === 2 && practiceKindByTitle.has(text))
   .map(
@@ -180,7 +271,7 @@ function renderLabMarkdown(source) {
   return new Marked({ gfm: true, breaks: false }).parse(staticSiteSource);
 }
 
-function createLabPage({ title, description, body, labLinks, canonicalHref, mainHref }) {
+function createLabPage({ title, description, body, labLinks, canonicalHref, mainHref, chapter }) {
   const pageTitle = title === 'Skills 橙皮书实践路径'
     ? title
     : `${title} · Skills 橙皮书实践路径`;
@@ -225,6 +316,7 @@ function createLabPage({ title, description, body, labLinks, canonicalHref, main
     <article class="book-article lab-article">
       <p class="lab-kicker">橙皮书实践路径</p>
       <p class="lab-description">${escapeHtml(description)}</p>
+      <p class="lab-chapter-link">对应正文：<a href="${chapter.href}">${escapeHtml(chapter.title)}</a></p>
       ${body}
     </article>
   </main>
@@ -301,7 +393,7 @@ const html = `<!doctype html>
       </div>
     </aside>
     <main id="book-content" class="content">
-      <article class="book-article">${body}</article>
+      <article class="book-article">${enrichedBody}</article>
     </main>
   </div>
   <button class="back-to-top icon-button" id="back-to-top" type="button" aria-label="回到顶部" title="回到顶部" hidden>${icons.up}</button>
@@ -347,6 +439,17 @@ const labLinks = [
 ].join('\n');
 const labsIndexSource = practiceSources.find((practice) => practice.name === 'README.md').source;
 
+function chapterLinkFor(sourceName) {
+  const placement = practicePlacements.find(
+    (candidate) => candidate.sourceName === sourceName,
+  );
+  const info = chapterInfoByName.get(placement.afterChapter);
+  if (!info) {
+    throw new Error(`build: no chapter anchor for ${placement.afterChapter}`);
+  }
+  return { href: `../#${info.id}`, title: info.title };
+}
+
 writeFileSync(
   resolve(labsOutputDir, 'index.html'),
   createLabPage({
@@ -356,6 +459,7 @@ writeFileSync(
     labLinks,
     canonicalHref: `#${practiceAnchor('README.md')}`,
     mainHref: `../#${practiceAnchor('README.md')}`,
+    chapter: chapterLinkFor('README.md'),
   }),
 );
 
@@ -369,6 +473,7 @@ for (const lab of labSources) {
       labLinks,
       canonicalHref: `#${practiceAnchor(lab.name)}`,
       mainHref: `../#${practiceAnchor(lab.name)}`,
+      chapter: chapterLinkFor(lab.name),
     }),
   );
 }

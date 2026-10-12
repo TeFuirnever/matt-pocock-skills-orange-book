@@ -3513,59 +3513,59 @@ Skill 选择：
 
 | Skill | 调用倾向 | 解决的问题 |
 |---|---|---|
-| `ask-matt` | 用户 | 为当前情境选择 Skill 或流程 |
-| `grill-with-docs` | 用户 | 在真实仓库里问清需求，同时更新领域词汇与 ADR |
-| `triage` | 用户 | 让 issue 和外部 PR 经过状态化分诊、核验与简报 |
-| `improve-codebase-architecture` | 用户 | 调查模块加深机会，生成 HTML 候选报告，再逐项讨论 |
-| `setup-matt-pocock-skills` | 用户 | 配置 tracker、triage labels 与领域文档布局 |
-| `to-spec` | 用户 | 把已完成的对话决策整理成规格并发布到 tracker |
-| `to-tickets` | 用户 | 把计划拆成声明阻塞关系的 tracer-bullet tickets |
-| `implement` | 用户 | 按 spec/tickets 实现，在约定 seam 做 TDD 并完成 review |
-| `wayfinder` | 用户 | 用决策 tickets 管理一个会话装不下的大型工作 |
-| `prototype` | 模型 | 用可抛弃代码回答状态模型或 UI 结构问题 |
-| `diagnosing-bugs` | 模型 | 从 red-capable 反馈环开始诊断疑难 bug 与性能退化 |
-| `research` | 模型 | 用高可信一手来源调查外部事实并形成引用文档 |
-| `tdd` | 模型 | 在预先同意的公共 seam 做一行为一循环的红绿开发 |
-| `domain-modeling` | 模型 | 打磨共同语言，及时更新 `GLOSSARY.md`，谨慎记录 ADR |
-| `codebase-design` | 模型 | 提供深模块、接口、seam、adapter 等共享设计词汇 |
-| `code-review` | 模型 | 并行或隔离执行 Standards 与 Spec 两轴评审 |
-| `wizard` | 模型 | 为只有人能完成的控制台、凭据和迁移步骤生成安全向导 |
-| `implement-spec` | 用户 | 按任务图并行实现整份规格，汇总到集成分支并统一评审 |
-| `retro` | 用户 | 从会话证据提出环境改进，机械错误优先转为自动检查 |
-| `pr` | 模型 | 用最小图示、前后证据与合并影响撰写 PR 正文 |
+| [`ask-matt`](#11-1-1-ask-matt-不知道走哪条路时先路由) | 用户 | 为当前情境选择 Skill 或流程 |
+| [`grill-with-docs`](#11-1-3-grill-with-docs-在真实仓库里把问题问清楚) | 用户 | 在真实仓库里问清需求，同时更新领域词汇与 ADR |
+| [`triage`](#11-1-4-triage-先确认来件是什么-再决定谁处理) | 用户 | 让 issue 和外部 PR 经过状态化分诊、核验与简报 |
+| [`improve-codebase-architecture`](#11-1-15-improve-codebase-architecture-先找高价值候选-再讨论接口) | 用户 | 调查模块加深机会，生成 HTML 候选报告，再逐项讨论 |
+| [`setup-matt-pocock-skills`](#11-1-2-setup-matt-pocock-skills-第一次使用前对齐仓库现实) | 用户 | 配置 tracker、triage labels 与领域文档布局 |
+| [`to-spec`](#11-1-6-to-spec-把已经讨论清楚的内容固定下来) | 用户 | 把已完成的对话决策整理成规格并发布到 tracker |
+| [`to-tickets`](#11-1-7-to-tickets-把规格切成能独立反馈的纵向薄片) | 用户 | 把计划拆成声明阻塞关系的 tracer-bullet tickets |
+| [`implement`](#11-1-8-implement-按批准的-spec-或-ticket-施工) | 用户 | 按 spec/tickets 实现，在约定 seam 做 TDD 并完成 review |
+| [`wayfinder`](#11-1-5-wayfinder-大工程先画决策地图-不急着施工) | 用户 | 用决策 tickets 管理一个会话装不下的大型工作 |
+| [`prototype`](#11-1-9-prototype-用可丢弃代码回答一个设计问题) | 模型 | 用可抛弃代码回答状态模型或 UI 结构问题 |
+| [`diagnosing-bugs`](#11-1-10-diagnosing-bugs-先制造稳定红色-再形成理论) | 模型 | 从 red-capable 反馈环开始诊断疑难 bug 与性能退化 |
+| [`research`](#11-1-12-research-外部事实必须回到一手来源) | 模型 | 用高可信一手来源调查外部事实并形成引用文档 |
+| [`tdd`](#11-1-11-tdd-一次只推动一个可观察行为) | 模型 | 在预先同意的公共 seam 做一行为一循环的红绿开发 |
+| [`domain-modeling`](#11-1-13-domain-modeling-先统一词义-再让代码承载词义) | 模型 | 打磨共同语言，及时更新 `GLOSSARY.md`，谨慎记录 ADR |
+| [`codebase-design`](#11-1-14-codebase-design-用深模块语言讨论代码形状) | 模型 | 提供深模块、接口、seam、adapter 等共享设计词汇 |
+| [`code-review`](#11-1-16-code-review-把-standards-与-spec-分开验收) | 模型 | 并行或隔离执行 Standards 与 Spec 两轴评审 |
+| [`wizard`](#11-1-17-wizard-把只有人能做的步骤变成可审阅向导) | 模型 | 为只有人能完成的控制台、凭据和迁移步骤生成安全向导 |
+| [`implement-spec`](#11-1-18-implement-spec-把一份规格汇总到集成分支的并行任务图) | 用户 | 按任务图并行实现整份规格，汇总到集成分支并统一评审 |
+| [`retro`](#11-1-19-retro-复盘-agent-环境-而不是评价一次回答好不好) | 用户 | 从会话证据提出环境改进，机械错误优先转为自动检查 |
+| [`pr`](#11-1-20-pr-用最小图示和证据写清-pr) | 模型 | 用最小图示、前后证据与合并影响撰写 PR 正文 |
 
 ### B. Productivity：7 个
 
 | Skill | 调用倾向 | 解决的问题 |
 |---|---|---|
-| `grill-me` | 用户 | 不依赖仓库地把模糊想法问清楚 |
-| `handoff` | 用户 | 把当前对话压缩为新 Agent 可继续的临时交接文档 |
-| `teach` | 用户 | 在持久工作区里跨会话教学，依赖可信资料与学习记录 |
-| `to-questionnaire` | 用户 | 把别人掌握的未知信息整理成异步问卷 |
-| `wait-what` | 用户 | 上一条消息没落地时，用缺失上下文和直白语言重讲 |
-| `grilling` | 模型 | 用决策树和 frontier 组织多轮追问 |
-| `writing-for-agents` | 模型 | 设计 context pointer、降低两类负担并删除 no-op 指令 |
+| [`grill-me`](#11-2-1-grill-me-没有仓库时-把脑中的想法问清楚) | 用户 | 不依赖仓库地把模糊想法问清楚 |
+| [`handoff`](#11-2-3-handoff-让工作跨会话旅行-但不复制整个世界) | 用户 | 把当前对话压缩为新 Agent 可继续的临时交接文档 |
+| [`teach`](#11-2-4-teach-把一次问答变成跨会话学习工作区) | 用户 | 在持久工作区里跨会话教学，依赖可信资料与学习记录 |
+| [`to-questionnaire`](#11-2-5-to-questionnaire-把别人脑中的信息异步取回来) | 用户 | 把别人掌握的未知信息整理成异步问卷 |
+| [`wait-what`](#11-2-6-wait-what-上一条没听懂-先退回共同前提) | 用户 | 上一条消息没落地时，用缺失上下文和直白语言重讲 |
+| [`grilling`](#11-2-2-grilling-用决策树和-frontier-管理追问) | 模型 | 用决策树和 frontier 组织多轮追问 |
+| [`writing-for-agents`](#11-2-7-writing-for-agents-写给-agent-的文档要改变行为) | 模型 | 设计 context pointer、降低两类负担并删除 no-op 指令 |
 
 ### C. Misc：4 个
 
 | Skill | 适用条件 | 注意事项 |
 |---|---|---|
-| `git-guardrails-claude-code` | 需要用 Claude Code hooks 阻止危险 Git 命令 | 工具特定，先确认运行时 |
-| `migrate-to-shoehorn` | 测试项目使用 `@total-typescript/shoehorn` | 作者技术栈特定，不是通用规则 |
-| `scaffold-exercises` | 需要课程章节、题目、答案和讲解目录 | 面向教学内容生产 |
-| `setup-pre-commit` | 需要 Husky、lint-staged、Prettier、类型检查和测试 | 先匹配现有包管理器与 CI |
+| [`git-guardrails-claude-code`](#11-3-1-git-guardrails-claude-code-在-claude-code-执行前拦截危险-git-命令) | 需要用 Claude Code hooks 阻止危险 Git 命令 | 工具特定，先确认运行时 |
+| [`migrate-to-shoehorn`](#11-3-2-migrate-to-shoehorn-只在测试里减少大型对象伪造) | 测试项目使用 `@total-typescript/shoehorn` | 作者技术栈特定，不是通用规则 |
+| [`scaffold-exercises`](#11-3-3-scaffold-exercises-按固定课程结构生成可-lint-的练习骨架) | 需要课程章节、题目、答案和讲解目录 | 面向教学内容生产 |
+| [`setup-pre-commit`](#11-3-4-setup-pre-commit-为已有-node-仓库接入提交前检查) | 需要 Husky、lint-staged、Prettier、类型检查和测试 | 先匹配现有包管理器与 CI |
 
 ### D. In-progress：7 个
 
 | Skill | 当前方向 | 稳定性提醒 |
 |---|---|---|
-| `claude-handoff` | 用后台 Claude Agent 立即接手当前对话 | 工具特定，行为可能变化 |
-| `loop-me` | 有状态地拷问工作流规格 | 实验中 |
-| `setup-ts-deep-modules` | 用 dependency-cruiser 约束 TypeScript 深模块 | 工具链侵入较大，先原型验证 |
-| `writing-beats` | 把素材组织成逐步展开的叙事 beats | 写作实验 |
-| `writing-fragments` | 挖掘未结构化写作碎片 | 写作实验 |
-| `writing-shape` | 逐段把原始材料塑造成文章 | 写作实验 |
-| `chief-of-staff` | 通过后台子 Agent 与日程建议协调长期目标 | 长会话与运行时相关，仍属实验 |
+| [`claude-handoff`](#11-4-1-claude-handoff-把-handoff-直接启动成后台-claude-agent) | 用后台 Claude Agent 立即接手当前对话 | 工具特定，行为可能变化 |
+| [`loop-me`](#11-4-2-loop-me-把生活或工作中的重复循环写成可实现-workflow) | 有状态地拷问工作流规格 | 实验中 |
+| [`setup-ts-deep-modules`](#11-4-3-setup-ts-deep-modules-用-dependency-cruiser-把深模块边界变成硬检查) | 用 dependency-cruiser 约束 TypeScript 深模块 | 工具链侵入较大，先原型验证 |
+| [`writing-beats`](#11-4-5-writing-beats-从固定素材中选择一条可达的叙事路径) | 把素材组织成逐步展开的叙事 beats | 写作实验 |
+| [`writing-fragments`](#11-4-4-writing-fragments-探索期只采集有生命力的写作碎片) | 挖掘未结构化写作碎片 | 写作实验 |
+| [`writing-shape`](#11-4-6-writing-shape-从固定素材中逐段塑造一篇文章) | 逐段把原始材料塑造成文章 | 写作实验 |
+| [`chief-of-staff`](#11-4-7-chief-of-staff-在长会话里协调长期目标) | 通过后台子 Agent 与日程建议协调长期目标 | 长会话与运行时相关，仍属实验 |
 
 ### E. 一页选型表
 

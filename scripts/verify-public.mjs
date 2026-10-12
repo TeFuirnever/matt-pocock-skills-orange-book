@@ -376,6 +376,8 @@ for (const siteContract of [
   'id="table-of-contents"',
   'id="menu-button"',
   'id="reading-progress-bar"',
+  'class="chapter-pager"',
+  'class="skill-jump"',
   '<span>当前阅读版</span>',
   `<code>${readingEdition}</code>`,
   `公开材料中文讲解 · ${readingEdition}`,
@@ -384,6 +386,12 @@ for (const siteContract of [
   if (!indexHtml.includes(siteContract)) {
     errors.push(`generated HTML is missing site contract: ${siteContract}`);
   }
+}
+const appendixSkillLinks = [...book.matchAll(/\]\(#11-\d/g)].length;
+if (appendixSkillLinks < expectedSkills.length) {
+  errors.push(
+    `appendix index links fewer Skills than expected: ${appendixSkillLinks} < ${expectedSkills.length}`,
+  );
 }
 const themeContracts = [
   'id="theme-select"',
@@ -459,6 +467,11 @@ for (const [pageName, pageHtml] of generatedThemePages) {
     if (!pageHtml.includes(designContract)) {
       errors.push(`${pageName} is missing design-system contract: ${designContract}`);
     }
+  }
+}
+for (const [pageName, pageHtml] of generatedThemePages.slice(1)) {
+  if (!pageHtml.includes('对应正文：')) {
+    errors.push(`${pageName} is missing the chapter cross-link`);
   }
 }
 for (const mobileUtilityContract of mobileUtilityContracts) {

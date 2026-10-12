@@ -14,7 +14,7 @@ const printButton = document.querySelector('#print-button');
 const backToTopButton = document.querySelector('#back-to-top');
 const chapterLinks = [...document.querySelectorAll('.toc-link')];
 const searchableHeadings = [
-  ...document.querySelectorAll('.book-article h2, .book-article h3'),
+  ...document.querySelectorAll('.book-article h2, .book-article h3, .book-article h4'),
 ];
 
 function setMenu(open) {
@@ -56,7 +56,7 @@ sidebarSearchButton?.addEventListener('click', () => setMobileSearch(true));
 function sectionText(heading) {
   const parts = [];
   let node = heading.nextElementSibling;
-  while (node && !/^H[23]$/.test(node.tagName)) {
+  while (node && !/^H[234]$/.test(node.tagName)) {
     parts.push(node.textContent ?? '');
     node = node.nextElementSibling;
   }

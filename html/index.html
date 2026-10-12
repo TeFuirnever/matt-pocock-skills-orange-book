@@ -1365,6 +1365,64 @@ code {
     padding: 0;
   }
 }
+
+/* Skill handbook quick jump, chapter pager, and practice/chapter cross-links */
+.book-article h4 {
+  padding-left: 10px;
+  border-left: 3px solid var(--practice-border);
+}
+
+.skill-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  margin: 0.8em 0 1.6em;
+  padding: 12px 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.skill-jump a {
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.chapter-pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 2.6em 0 0.6em;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+
+.chapter-pager a {
+  text-decoration: none;
+}
+
+.chapter-pager .pager-next {
+  margin-left: auto;
+  text-align: right;
+}
+
+.practice-standalone-link {
+  font-size: 14px;
+}
+
+.lab-chapter-link {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+@media print {
+  .skill-jump,
+  .chapter-pager {
+    border-color: #cccccc;
+    background: #ffffff;
+  }
+}
 </style>
 </head>
 <body>
@@ -1755,6 +1813,7 @@ code {
 </ul>
 <hr>
 <h2 id="practice-readme" class="practice-heading practice-path-heading" tabindex="-1">橙皮书实践路径<a class="heading-anchor" href="#practice-readme" aria-label="链接到本节">#</a></h2>
+<p class="practice-standalone-link"><a href="labs/index.html">打开此关独立页，方便打印与分享</a></p>
 <p>这不是书外附录。实践路径把正文中的关键判断变成你在自己仓库里可复跑、可交接的动作。</p>
 <aside class="azhou-method-card" aria-labelledby="azhou-method-card-title">
   <p class="azhou-note-kicker" id="azhou-method-card-title">阿舟方法卡</p>
@@ -1796,6 +1855,7 @@ code {
 <h3 id="通过标准" tabindex="-1">通过标准<a class="heading-anchor" href="#通过标准" aria-label="链接到本节">#</a></h3>
 <p>完成六个实践关卡和综合交付，不等于背下所有 Skill 名。你应该能够用一个真实小任务展示：谁负责事实调查、谁做取舍、什么命令能从红变绿、两条 review 轴怎样独立成立、下一位协作者从哪里继续。</p>
 <p><a href="#top">回到全书</a></p>
+<nav class="chapter-pager" aria-label="章节导航"><span></span><a class="pager-next" href="#第-1-章-skill-到底是什么">下一章：第 1 章 · Skill 到底是什么 →</a></nav>
 <h2 id="第-1-章-skill-到底是什么" tabindex="-1">第 1 章 · Skill 到底是什么<a class="heading-anchor" href="#第-1-章-skill-到底是什么" aria-label="链接到本节">#</a></h2>
 <h3 id="1-1-skill-不是更长的-prompt" tabindex="-1">1.1 Skill 不是更长的 Prompt<a class="heading-anchor" href="#1-1-skill-不是更长的-prompt" aria-label="链接到本节">#</a></h3>
 <p>普通 Prompt 往往只描述一次任务：改一个页面、修一个 bug、写一段测试。</p>
@@ -1956,6 +2016,7 @@ code {
 <li>面对任务时先判断失败风险，而不是先选最强、最长的流程。</li>
 </ul>
 <hr>
+<nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-0-章-这本书怎样读">← 上一章：第 0 章 · 这本书怎样读</a><a class="pager-next" href="#第-2-章-先看懂仓库-再安装">下一章：第 2 章 · 先看懂仓库，再安装 →</a></nav>
 <h2 id="第-2-章-先看懂仓库-再安装" tabindex="-1">第 2 章 · 先看懂仓库，再安装<a class="heading-anchor" href="#第-2-章-先看懂仓库-再安装" aria-label="链接到本节">#</a></h2>
 <h3 id="2-1-四个目录-不是同一种稳定性" tabindex="-1">2.1 四个目录，不是同一种稳定性<a class="heading-anchor" href="#2-1-四个目录-不是同一种稳定性" aria-label="链接到本节">#</a></h3>
 <p>固定提交中共有 38 个 <code>SKILL.md</code>：</p>
@@ -2077,6 +2138,7 @@ gemini skills install https://github.com/mattpocock/skills.git --path skills/pro
 <li>遇到选型困难时先用 <code>ask-matt</code>，而不是盲猜。</li>
 </ul>
 <hr>
+<nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-1-章-skill-到底是什么">← 上一章：第 1 章 · Skill 到底是什么</a><a class="pager-next" href="#第-3-章-写代码前-把模糊需求变成工程决策">下一章：第 3 章 · 写代码前：把模糊需求变成工程决策 →</a></nav>
 <h2 id="第-3-章-写代码前-把模糊需求变成工程决策" tabindex="-1">第 3 章 · 写代码前：把模糊需求变成工程决策<a class="heading-anchor" href="#第-3-章-写代码前-把模糊需求变成工程决策" aria-label="链接到本节">#</a></h2>
 <p><img src="assets/azhou/decision-source-router.png" alt="阿舟知识图：事实调查、人类决策与规格的边界"></p>
 <h3 id="3-1-grill-me-答案在你脑子里" tabindex="-1">3.1 <code>grill-me</code>：答案在你脑子里<a class="heading-anchor" href="#3-1-grill-me-答案在你脑子里" aria-label="链接到本节">#</a></h3>
@@ -2171,6 +2233,7 @@ gemini skills install https://github.com/mattpocock/skills.git --path skills/pro
 </ul>
 <hr>
 <h2 id="practice-01-find-the-answer" class="practice-heading practice-gate-heading" tabindex="-1">实践关卡 1 · 先找到答案<a class="heading-anchor" href="#practice-01-find-the-answer" aria-label="链接到本节">#</a></h2>
+<p class="practice-standalone-link"><a href="labs/01-find-the-answer.html">打开此关独立页，方便打印与分享</a></p>
 <p><strong>难度：小白</strong>　<strong>预计：30–45 分钟</strong>　<strong>动作：3</strong>　<strong>主风险：把能查的事实丢回给人</strong></p>
 <blockquote>
 <p><strong>本关完成时：</strong> 你会得到一份能让新会话复述“已确认什么、由谁决定什么、这次做什么”的决策记录。</p>
@@ -2251,6 +2314,7 @@ gemini skills install https://github.com/mattpocock/skills.git --path skills/pro
 <h3 id="停止条件" tabindex="-1">停止条件<a class="heading-anchor" href="#停止条件" aria-label="链接到本节">#</a></h3>
 <p>决策记录被确认后停止。若出现新的业务取舍，不要边查边改；先更新记录，再进入实践关卡 2。</p>
 <p><a href="#practice-02-decision-to-spec">进入实践关卡 2</a> · <a href="#practice-readme">返回实践路径</a></p>
+<nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-2-章-先看懂仓库-再安装">← 上一章：第 2 章 · 先看懂仓库，再安装</a><a class="pager-next" href="#第-4-章-从对话到交付-规格-拆票-实现和评审">下一章：第 4 章 · 从对话到交付：规格、拆票、实现和评审 →</a></nav>
 <h2 id="第-4-章-从对话到交付-规格-拆票-实现和评审" tabindex="-1">第 4 章 · 从对话到交付：规格、拆票、实现和评审<a class="heading-anchor" href="#第-4-章-从对话到交付-规格-拆票-实现和评审" aria-label="链接到本节">#</a></h2>
 <p><img src="assets/diagrams/skills-delivery-feedback-loop.png" alt="Matt Pocock Skills 交付反馈环"></p>
 <h3 id="4-1-to-spec-记录已经做完的决定" tabindex="-1">4.1 <code>to-spec</code>：记录已经做完的决定<a class="heading-anchor" href="#4-1-to-spec-记录已经做完的决定" aria-label="链接到本节">#</a></h3>
@@ -2352,6 +2416,7 @@ gemini skills install https://github.com/mattpocock/skills.git --path skills/pro
 </ul>
 <hr>
 <h2 id="practice-02-decision-to-spec" class="practice-heading practice-gate-heading" tabindex="-1">实践关卡 2 · 把决定写成可施工规格<a class="heading-anchor" href="#practice-02-decision-to-spec" aria-label="链接到本节">#</a></h2>
+<p class="practice-standalone-link"><a href="labs/02-decision-to-spec.html">打开此关独立页，方便打印与分享</a></p>
 <p><strong>难度：小白到中级</strong>　<strong>预计：35–45 分钟</strong>　<strong>动作：3</strong>　<strong>主风险：把访谈、规格和实现混成一段聊天</strong></p>
 <blockquote>
 <p><strong>本关完成时：</strong> 你会得到一份不依赖旧聊天、可交给新会话施工的最小 spec 与第一张垂直 ticket。</p>
@@ -2410,6 +2475,7 @@ gemini skills install https://github.com/mattpocock/skills.git --path skills/pro
 <h3 id="停止条件-2" tabindex="-1">停止条件<a class="heading-anchor" href="#停止条件-2" aria-label="链接到本节">#</a></h3>
 <p>第一张 ticket 足以在一个会话内执行时停止。要做多张 ticket，先确认每张都能独立演示，再进入实践关卡 3。</p>
 <p><a href="#practice-03-red-green-bug">进入实践关卡 3</a> · <a href="#practice-readme">返回实践路径</a></p>
+<nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-3-章-写代码前-把模糊需求变成工程决策">← 上一章：第 3 章 · 写代码前：把模糊需求变成工程决策</a><a class="pager-next" href="#第-5-章-反馈环-原型-tdd-诊断和研究">下一章：第 5 章 · 反馈环：原型、TDD、诊断和研究 →</a></nav>
 <h2 id="第-5-章-反馈环-原型-tdd-诊断和研究" tabindex="-1">第 5 章 · 反馈环：原型、TDD、诊断和研究<a class="heading-anchor" href="#第-5-章-反馈环-原型-tdd-诊断和研究" aria-label="链接到本节">#</a></h2>
 <h3 id="5-1-prototype-写代码只是为了回答问题" tabindex="-1">5.1 <code>prototype</code>：写代码只是为了回答问题<a class="heading-anchor" href="#5-1-prototype-写代码只是为了回答问题" aria-label="链接到本节">#</a></h3>
 <p>原型不是简陋版产品。它的验收标准不是代码质量，而是有没有回答那个设计问题。</p>
@@ -2503,6 +2569,7 @@ gemini skills install https://github.com/mattpocock/skills.git --path skills/pro
 </ul>
 <hr>
 <h2 id="practice-03-red-green-bug" class="practice-heading practice-gate-heading" tabindex="-1">实践关卡 3 · 让一个 bug 先变红<a class="heading-anchor" href="#practice-03-red-green-bug" aria-label="链接到本节">#</a></h2>
+<p class="practice-standalone-link"><a href="labs/03-red-green-bug.html">打开此关独立页，方便打印与分享</a></p>
 <p><strong>难度：中级</strong>　<strong>预计：35–45 分钟</strong>　<strong>动作：3</strong>　<strong>主风险：先改默认值，再声称修复持久化问题</strong></p>
 <blockquote>
 <p><strong>本关完成时：</strong> 你会拿到一条在修改前稳定失败、并明确描述用户症状的目标命令。</p>
@@ -2550,6 +2617,7 @@ gemini skills install https://github.com/mattpocock/skills.git --path skills/pro
 <p>同一条命令稳定变红、候选假设已被收窄且范围没有扩张时停止。若根因超出当前 ticket，写入发现并退回实践关卡 2 更新 spec。</p>
 <p><a href="#practice-04-minimal-fix-evidence">进入实践关卡 4</a> · <a href="#practice-readme">返回实践路径</a></p>
 <h2 id="practice-04-minimal-fix-evidence" class="practice-heading practice-gate-heading" tabindex="-1">实践关卡 4 · 用最小修复闭合证据<a class="heading-anchor" href="#practice-04-minimal-fix-evidence" aria-label="链接到本节">#</a></h2>
+<p class="practice-standalone-link"><a href="labs/04-minimal-fix-evidence.html">打开此关独立页，方便打印与分享</a></p>
 <p><strong>难度：中级</strong>　<strong>预计：25–35 分钟</strong>　<strong>动作：3</strong>　<strong>主风险：扩大改动面后失去因果关系</strong></p>
 <blockquote>
 <p><strong>本关完成时：</strong> 你会用实践关卡 3 的同一条命令证明修复从红变绿，并留下能解释因果的最小 diff。</p>
@@ -2592,6 +2660,7 @@ gemini skills install https://github.com/mattpocock/skills.git --path skills/pro
 <h3 id="停止条件-4" tabindex="-1">停止条件<a class="heading-anchor" href="#停止条件-4" aria-label="链接到本节">#</a></h3>
 <p>同一条命令已绿、回归已固化、临时探针已删除且范围没有扩张时停止。</p>
 <p><a href="#practice-05-two-axis-review">进入实践关卡 5</a> · <a href="#practice-readme">返回实践路径</a></p>
+<nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-4-章-从对话到交付-规格-拆票-实现和评审">← 上一章：第 4 章 · 从对话到交付：规格、拆票、实现和评审</a><a class="pager-next" href="#第-6-章-代码不会自己变好-领域语言-深模块与双轴评审">下一章：第 6 章 · 代码不会自己变好：领域语言、深模块与双轴评审 →</a></nav>
 <h2 id="第-6-章-代码不会自己变好-领域语言-深模块与双轴评审" tabindex="-1">第 6 章 · 代码不会自己变好：领域语言、深模块与双轴评审<a class="heading-anchor" href="#第-6-章-代码不会自己变好-领域语言-深模块与双轴评审" aria-label="链接到本节">#</a></h2>
 <h3 id="6-1-domain-modeling-共同语言不是术语装饰" tabindex="-1">6.1 <code>domain-modeling</code>：共同语言不是术语装饰<a class="heading-anchor" href="#6-1-domain-modeling-共同语言不是术语装饰" aria-label="链接到本节">#</a></h3>
 <p>领域语言会直接影响：</p>
@@ -2668,6 +2737,7 @@ gemini skills install https://github.com/mattpocock/skills.git --path skills/pro
 </ul>
 <hr>
 <h2 id="practice-05-two-axis-review" class="practice-heading practice-gate-heading" tabindex="-1">实践关卡 5 · 分开两条 review 轴<a class="heading-anchor" href="#practice-05-two-axis-review" aria-label="链接到本节">#</a></h2>
+<p class="practice-standalone-link"><a href="labs/05-two-axis-review.html">打开此关独立页，方便打印与分享</a></p>
 <p><strong>难度：中级</strong>　<strong>预计：30–45 分钟</strong>　<strong>动作：3</strong>　<strong>主风险：把“代码干净”误当成“需求做对”</strong></p>
 <blockquote>
 <p><strong>本关完成时：</strong> 你会得到两份互不替代的 review 结论：一份检查工程标准，一份检查用户承诺。</p>
@@ -2711,6 +2781,7 @@ gemini skills install https://github.com/mattpocock/skills.git --path skills/pro
 <h3 id="停止条件-5" tabindex="-1">停止条件<a class="heading-anchor" href="#停止条件-5" aria-label="链接到本节">#</a></h3>
 <p>两条 review 轴均已得到明确结论，且下一步唯一动作可被写成一句话时停止。</p>
 <p><a href="#practice-06-handoff-rehearsal">进入实践关卡 6</a> · <a href="#practice-readme">返回实践路径</a></p>
+<nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-5-章-反馈环-原型-tdd-诊断和研究">← 上一章：第 5 章 · 反馈环：原型、TDD、诊断和研究</a><a class="pager-next" href="#第-7-章-跨人-跨会话与人工步骤">下一章：第 7 章 · 跨人、跨会话与人工步骤 →</a></nav>
 <h2 id="第-7-章-跨人-跨会话与人工步骤" tabindex="-1">第 7 章 · 跨人、跨会话与人工步骤<a class="heading-anchor" href="#第-7-章-跨人-跨会话与人工步骤" aria-label="链接到本节">#</a></h2>
 <h3 id="7-1-handoff-工作真的需要旅行时再用" tabindex="-1">7.1 <code>handoff</code>：工作真的需要旅行时再用<a class="heading-anchor" href="#7-1-handoff-工作真的需要旅行时再用" aria-label="链接到本节">#</a></h3>
 <p><img src="assets/azhou/context-durability.png" alt="阿舟图解：聊天上下文、仓库文档与工程证据"></p>
@@ -2793,6 +2864,7 @@ gemini skills install https://github.com/mattpocock/skills.git --path skills/pro
 </ul>
 <hr>
 <h2 id="practice-06-handoff-rehearsal" class="practice-heading practice-gate-heading" tabindex="-1">实践关卡 6 · 交接前先复述<a class="heading-anchor" href="#practice-06-handoff-rehearsal" aria-label="链接到本节">#</a></h2>
+<p class="practice-standalone-link"><a href="labs/06-handoff-rehearsal.html">打开此关独立页，方便打印与分享</a></p>
 <p><strong>难度：中级</strong>　<strong>预计：25–35 分钟</strong>　<strong>动作：3</strong>　<strong>主风险：把聊天摘要误当作可执行状态</strong></p>
 <blockquote>
 <p><strong>本关完成时：</strong> 一个不了解旧聊天的人只读 handoff，就能准确复述已完成、未完成、风险与唯一下一步。</p>
@@ -2837,6 +2909,7 @@ gemini skills install https://github.com/mattpocock/skills.git --path skills/pro
 <p>独立复述与原状态一致，且唯一下一步已明确时停止。</p>
 <p><a href="#practice-07-capstone-delivery">进入综合交付</a> · <a href="#practice-readme">返回实践路径</a></p>
 <h2 id="practice-07-capstone-delivery" class="practice-heading practice-capstone-heading" tabindex="-1">综合交付 · 完成一次可交接交付<a class="heading-anchor" href="#practice-07-capstone-delivery" aria-label="链接到本节">#</a></h2>
+<p class="practice-standalone-link"><a href="labs/07-capstone-delivery.html">打开此关独立页，方便打印与分享</a></p>
 <p><strong>难度：中级到高阶</strong>　<strong>预计：60–150 分钟</strong>　<strong>动作：5</strong>　<strong>主风险：一个会话里同时重开计划、实现、评审和发布</strong></p>
 <blockquote>
 <p><strong>完成时：</strong> 你会交付一条用户可见的垂直行为，以及一套能被新会话接手的规格、验证、review 与 handoff。</p>
@@ -2883,6 +2956,7 @@ gemini skills install https://github.com/mattpocock/skills.git --path skills/pro
 <h3 id="停止条件-7" tabindex="-1">停止条件<a class="heading-anchor" href="#停止条件-7" aria-label="链接到本节">#</a></h3>
 <p>交付包完整、验证通过且 handoff 已被独立复述时停止。是否合并、发布或执行外部人工步骤，由项目维护者在本关之外决定。</p>
 <p><a href="#practice-readme">返回实践路径</a> · <a href="#top">回到全书</a></p>
+<nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-6-章-代码不会自己变好-领域语言-深模块与双轴评审">← 上一章：第 6 章 · 代码不会自己变好：领域语言、深模块与双轴评审</a><a class="pager-next" href="#第-8-章-七个-ui-客户端实例-从浅到深">下一章：第 8 章 · 七个 UI 客户端实例，从浅到深 →</a></nav>
 <h2 id="第-8-章-七个-ui-客户端实例-从浅到深" tabindex="-1">第 8 章 · 七个 UI 客户端实例，从浅到深<a class="heading-anchor" href="#第-8-章-七个-ui-客户端实例-从浅到深" aria-label="链接到本节">#</a></h2>
 <p>以下案例使用一个教学用桌面 AI 客户端。它有 renderer、preload、main 进程，支持多语言、Provider 配置和定时任务。示例刻意压缩了业务细节，让读者把注意力放在 Skill 选择、操作顺序与验收证据上。</p>
 <p><img src="assets/azhou/ui-task-risk-selector.png" alt="阿舟知识图：按 UI 任务的失败风险选择最小 Skill 链"></p>
@@ -3107,6 +3181,7 @@ gemini skills install https://github.com/mattpocock/skills.git --path skills/pro
 <li>向导文件可审阅、可重跑、可删除。</li>
 </ul>
 <hr>
+<nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-7-章-跨人-跨会话与人工步骤">← 上一章：第 7 章 · 跨人、跨会话与人工步骤</a><a class="pager-next" href="#第-9-章-把-skills-引入自己的仓库">下一章：第 9 章 · 把 Skills 引入自己的仓库 →</a></nav>
 <h2 id="第-9-章-把-skills-引入自己的仓库" tabindex="-1">第 9 章 · 把 Skills 引入自己的仓库<a class="heading-anchor" href="#第-9-章-把-skills-引入自己的仓库" aria-label="链接到本节">#</a></h2>
 <p><img src="assets/azhou/clean-public-history.png" alt="阿舟图解：公开仓库为什么要从干净历史开始"></p>
 <h3 id="9-1-不要一次复制全部-38-个" tabindex="-1">9.1 不要一次复制全部 38 个<a class="heading-anchor" href="#9-1-不要一次复制全部-38-个" aria-label="链接到本节">#</a></h3>
@@ -3209,6 +3284,7 @@ before forming a root-cause theory.
 <li><input disabled="" type="checkbox"> 记录上游更新策略，避免静默漂移。</li>
 </ul>
 <hr>
+<nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-8-章-七个-ui-客户端实例-从浅到深">← 上一章：第 8 章 · 七个 UI 客户端实例，从浅到深</a><a class="pager-next" href="#第-10-章-新人四周训练路线">下一章：第 10 章 · 新人四周训练路线 →</a></nav>
 <h2 id="第-10-章-新人四周训练路线" tabindex="-1">第 10 章 · 新人四周训练路线<a class="heading-anchor" href="#第-10-章-新人四周训练路线" aria-label="链接到本节">#</a></h2>
 <p><img src="assets/azhou/four-week-path.png" alt="阿舟图解：四周新人训练路线"></p>
 <p>这四周不是按自然周强制打卡，而是四个能力台阶。新人可以每周只做一个小任务；已经稳定使用 Agent 的开发者可以直接用每周验收做跳级测试。验收还做不到，就从该周开始，不需要回到第一页重读。</p>
@@ -3281,6 +3357,7 @@ before forming a root-cause theory.
 </ol>
 <p>高阶验收：抽掉一个子 Agent、一个 tracker API 或一个特定终端工具后，流程仍然能以较慢但可验证的方式完成；若不能，其依赖必须被明确写进 Skill 合同。</p>
 <hr>
+<nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-9-章-把-skills-引入自己的仓库">← 上一章：第 9 章 · 把 Skills 引入自己的仓库</a><a class="pager-next" href="#第-11-章-38-个-skills-逐项小白手册">下一章：第 11 章 · 38 个 Skills 逐项小白手册 →</a></nav>
 <h2 id="第-11-章-38-个-skills-逐项小白手册" tabindex="-1">第 11 章 · 38 个 Skills 逐项小白手册<a class="heading-anchor" href="#第-11-章-38-个-skills-逐项小白手册" aria-label="链接到本节">#</a></h2>
 <p>这一章不是把 frontmatter 翻译成中文，而是把每个 Skill 还原成一个新手可以执行的工作单元。建议第一次阅读时只看“什么时候用”和“什么时候别用”；遇到真实任务时，再回来照着“输入、步骤、产物、验收”运行。</p>
 <blockquote>
@@ -3289,6 +3366,7 @@ before forming a root-cause theory.
 客户端变化，但触发条件、步骤顺序和证据要求仍然可以迁移。</p>
 </blockquote>
 <h3 id="11-1-engineering-从想法到交付的-20-个-skill" tabindex="-1">11.1 Engineering：从想法到交付的 20 个 Skill<a class="heading-anchor" href="#11-1-engineering-从想法到交付的-20-个-skill" aria-label="链接到本节">#</a></h3>
+<nav class="skill-jump" aria-label="本节 Skill 速查"><a href="#11-1-1-ask-matt-不知道走哪条路时先路由"><code>ask-matt</code></a><a href="#11-1-2-setup-matt-pocock-skills-第一次使用前对齐仓库现实"><code>setup-matt-pocock-skills</code></a><a href="#11-1-3-grill-with-docs-在真实仓库里把问题问清楚"><code>grill-with-docs</code></a><a href="#11-1-4-triage-先确认来件是什么-再决定谁处理"><code>triage</code></a><a href="#11-1-5-wayfinder-大工程先画决策地图-不急着施工"><code>wayfinder</code></a><a href="#11-1-6-to-spec-把已经讨论清楚的内容固定下来"><code>to-spec</code></a><a href="#11-1-7-to-tickets-把规格切成能独立反馈的纵向薄片"><code>to-tickets</code></a><a href="#11-1-8-implement-按批准的-spec-或-ticket-施工"><code>implement</code></a><a href="#11-1-9-prototype-用可丢弃代码回答一个设计问题"><code>prototype</code></a><a href="#11-1-10-diagnosing-bugs-先制造稳定红色-再形成理论"><code>diagnosing-bugs</code></a><a href="#11-1-11-tdd-一次只推动一个可观察行为"><code>tdd</code></a><a href="#11-1-12-research-外部事实必须回到一手来源"><code>research</code></a><a href="#11-1-13-domain-modeling-先统一词义-再让代码承载词义"><code>domain-modeling</code></a><a href="#11-1-14-codebase-design-用深模块语言讨论代码形状"><code>codebase-design</code></a><a href="#11-1-15-improve-codebase-architecture-先找高价值候选-再讨论接口"><code>improve-codebase-architecture</code></a><a href="#11-1-16-code-review-把-standards-与-spec-分开验收"><code>code-review</code></a><a href="#11-1-17-wizard-把只有人能做的步骤变成可审阅向导"><code>wizard</code></a><a href="#11-1-18-implement-spec-把一份规格汇总到集成分支的并行任务图"><code>implement-spec</code></a><a href="#11-1-19-retro-复盘-agent-环境-而不是评价一次回答好不好"><code>retro</code></a><a href="#11-1-20-pr-用最小图示和证据写清-pr"><code>pr</code></a></nav>
 <h4 id="11-1-1-ask-matt-不知道走哪条路时先路由" tabindex="-1">11.1.1 <code>ask-matt</code>：不知道走哪条路时先路由<a class="heading-anchor" href="#11-1-1-ask-matt-不知道走哪条路时先路由" aria-label="链接到本节">#</a></h4>
 <p><a href="https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/engineering/ask-matt/SKILL.md">固定版本原文</a></p>
 <p><strong>一句话理解：</strong> 它不替你做任务，而是判断当前最接近哪种失败风险，并给出 Skill 链路。</p>
@@ -3671,6 +3749,7 @@ before forming a root-cause theory.
 <p><strong>新手误区：</strong> 用漂亮图示代替证据，或把“可回滚”写成没有依据的低风险保证。</p>
 <p><strong>来源致谢：</strong> 上游注明借鉴 Dex Horthy / Humanlayer 的 <code>show-me</code> Skill；归属与原始链接见上游 <code>CREDITS.md</code>。</p>
 <h3 id="11-2-productivity-思考-交接-教学与-agent-文档的-7-个-skill" tabindex="-1">11.2 Productivity：思考、交接、教学与 Agent 文档的 7 个 Skill<a class="heading-anchor" href="#11-2-productivity-思考-交接-教学与-agent-文档的-7-个-skill" aria-label="链接到本节">#</a></h3>
+<nav class="skill-jump" aria-label="本节 Skill 速查"><a href="#11-2-1-grill-me-没有仓库时-把脑中的想法问清楚"><code>grill-me</code></a><a href="#11-2-2-grilling-用决策树和-frontier-管理追问"><code>grilling</code></a><a href="#11-2-3-handoff-让工作跨会话旅行-但不复制整个世界"><code>handoff</code></a><a href="#11-2-4-teach-把一次问答变成跨会话学习工作区"><code>teach</code></a><a href="#11-2-5-to-questionnaire-把别人脑中的信息异步取回来"><code>to-questionnaire</code></a><a href="#11-2-6-wait-what-上一条没听懂-先退回共同前提"><code>wait-what</code></a><a href="#11-2-7-writing-for-agents-写给-agent-的文档要改变行为"><code>writing-for-agents</code></a></nav>
 <h4 id="11-2-1-grill-me-没有仓库时-把脑中的想法问清楚" tabindex="-1">11.2.1 <code>grill-me</code>：没有仓库时，把脑中的想法问清楚<a class="heading-anchor" href="#11-2-1-grill-me-没有仓库时-把脑中的想法问清楚" aria-label="链接到本节">#</a></h4>
 <p><a href="https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/productivity/grill-me/SKILL.md">固定版本原文</a></p>
 <p><strong>一句话理解：</strong> 这是 <code>grilling</code> 的无仓库入口，适合计划、设计和想法澄清。</p>
@@ -3783,6 +3862,7 @@ before forming a root-cause theory.
 <p><strong>写 Skill 时的验收：</strong> description 能触发正确分支；步骤顺序可执行；边界与完成条件可观察；引用文件有达到条件；删除无行为影响的 no-op 句子。</p>
 <p><strong>新手误区：</strong> 通过加粗“必须”“绝对”来提高权威感。若一句话没有改变 Agent 下一步，语气再强也只是上下文噪音。</p>
 <h3 id="11-3-misc-四个强场景-强工具约束的-skill" tabindex="-1">11.3 Misc：四个强场景、强工具约束的 Skill<a class="heading-anchor" href="#11-3-misc-四个强场景-强工具约束的-skill" aria-label="链接到本节">#</a></h3>
+<nav class="skill-jump" aria-label="本节 Skill 速查"><a href="#11-3-1-git-guardrails-claude-code-在-claude-code-执行前拦截危险-git-命令"><code>git-guardrails-claude-code</code></a><a href="#11-3-2-migrate-to-shoehorn-只在测试里减少大型对象伪造"><code>migrate-to-shoehorn</code></a><a href="#11-3-3-scaffold-exercises-按固定课程结构生成可-lint-的练习骨架"><code>scaffold-exercises</code></a><a href="#11-3-4-setup-pre-commit-为已有-node-仓库接入提交前检查"><code>setup-pre-commit</code></a></nav>
 <p>Misc 不是“低价值”，而是“适用面窄”。使用前先确认仓库、运行时和团队政策真的匹配，不要把作者自己的工具链习惯误当通用工程原则。</p>
 <h4 id="11-3-1-git-guardrails-claude-code-在-claude-code-执行前拦截危险-git-命令" tabindex="-1">11.3.1 <code>git-guardrails-claude-code</code>：在 Claude Code 执行前拦截危险 Git 命令<a class="heading-anchor" href="#11-3-1-git-guardrails-claude-code-在-claude-code-执行前拦截危险-git-命令" aria-label="链接到本节">#</a></h4>
 <p><a href="https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/misc/git-guardrails-claude-code/SKILL.md">固定版本原文</a></p>
@@ -3858,6 +3938,7 @@ before forming a root-cause theory.
 <p><strong>产物与验收：</strong> 不覆盖已有 Prettier 配置（上游的不覆盖保护仅适用于 Prettier，hook 与 lint-staged 文件为直接创建）；使用真实包管理器；缺少脚本时删除对应行并报告；一次实际提交能证明 hook 生效。</p>
 <p><strong>新手误区：</strong> 把“检查越多越安全”当绝对真理。慢到大家绕过的 hook 不是可靠门禁。</p>
 <h3 id="11-4-in-progress-七个实验-skill-先读稳定性再试" tabindex="-1">11.4 In-progress：七个实验 Skill，先读稳定性再试<a class="heading-anchor" href="#11-4-in-progress-七个实验-skill-先读稳定性再试" aria-label="链接到本节">#</a></h3>
+<nav class="skill-jump" aria-label="本节 Skill 速查"><a href="#11-4-1-claude-handoff-把-handoff-直接启动成后台-claude-agent"><code>claude-handoff</code></a><a href="#11-4-2-loop-me-把生活或工作中的重复循环写成可实现-workflow"><code>loop-me</code></a><a href="#11-4-3-setup-ts-deep-modules-用-dependency-cruiser-把深模块边界变成硬检查"><code>setup-ts-deep-modules</code></a><a href="#11-4-4-writing-fragments-探索期只采集有生命力的写作碎片"><code>writing-fragments</code></a><a href="#11-4-5-writing-beats-从固定素材中选择一条可达的叙事路径"><code>writing-beats</code></a><a href="#11-4-6-writing-shape-从固定素材中逐段塑造一篇文章"><code>writing-shape</code></a><a href="#11-4-7-chief-of-staff-在长会话里协调长期目标"><code>chief-of-staff</code></a></nav>
 <p>这一组目录名就是警告。它们可以提供设计灵感，但名称、接口、工具依赖和工作流都可能变化。新人应先掌握前面的稳定 Skill，再在隔离分支或练习仓库里试。</p>
 <h4 id="11-4-1-claude-handoff-把-handoff-直接启动成后台-claude-agent" tabindex="-1">11.4.1 <code>claude-handoff</code>：把 handoff 直接启动成后台 Claude Agent<a class="heading-anchor" href="#11-4-1-claude-handoff-把-handoff-直接启动成后台-claude-agent" aria-label="链接到本节">#</a></h4>
 <p><a href="https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/in-progress/claude-handoff/SKILL.md">固定版本原文</a></p>
@@ -3954,6 +4035,7 @@ before forming a root-cause theory.
 <li><strong>问题必须跨人、跨工具或跨会话吗？</strong> 用 <code>to-questionnaire</code>、<code>wizard</code> 或 <code>handoff</code>，分别对应“答案在别人脑中”“动作只有人能做”“工作需要旅行”。</li>
 </ol>
 <hr>
+<nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-10-章-新人四周训练路线">← 上一章：第 10 章 · 新人四周训练路线</a><a class="pager-next" href="#第-12-章-matt-pocock-本人怎样讲-skills">下一章：第 12 章 · Matt Pocock 本人怎样讲 Skills →</a></nav>
 <h2 id="第-12-章-matt-pocock-本人怎样讲-skills" tabindex="-1">第 12 章 · Matt Pocock 本人怎样讲 Skills<a class="heading-anchor" href="#第-12-章-matt-pocock-本人怎样讲-skills" aria-label="链接到本节">#</a></h2>
 <p>前 11 章主要解释当前固定提交中的 38 个 Skills。本章换一个视角：只看 Matt Pocock 自己的公开仓库和 AI Hero 官网，学习他如何解释 Skills、上下文、反馈环和交接。</p>
 <h3 id="12-1-先分清历史证据与当前基线" tabindex="-1">12.1 先分清历史证据与当前基线<a class="heading-anchor" href="#12-1-先分清历史证据与当前基线" aria-label="链接到本节">#</a></h3>
@@ -4088,6 +4170,7 @@ before forming a root-cause theory.
 <li>不把作者的公开材料写成对本书的认可或效果保证。</li>
 </ul>
 <hr>
+<nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-11-章-38-个-skills-逐项小白手册">← 上一章：第 11 章 · 38 个 Skills 逐项小白手册</a><a class="pager-next" href="#第-13-章-三个端到端操作案例-审报告-迁逻辑-修白屏">下一章：第 13 章 · 三个端到端操作案例：审报告、迁逻辑、修白屏 →</a></nav>
 <h2 id="第-13-章-三个端到端操作案例-审报告-迁逻辑-修白屏" tabindex="-1">第 13 章 · 三个端到端操作案例：审报告、迁逻辑、修白屏<a class="heading-anchor" href="#第-13-章-三个端到端操作案例-审报告-迁逻辑-修白屏" aria-label="链接到本节">#</a></h2>
 <p>第 8 章解决的是「遇到某类任务，应该选哪个 Skill」。这一章再往前一步：把三个真实工程中常见的任务，从收到需求一直走到可验证完成。</p>
 <p>这里不比较 Agent 品牌，也不复盘聊天过程。案例只关心五件事：任务怎样失败、为什么选择这些 Skills、Agent 具体执行什么、哪些失败可以降级、什么证据才允许宣布完成。</p>
@@ -4651,6 +4734,7 @@ Skill 选择：
 <li>能说明当前证据证明了什么，也能说明它没有证明什么。</li>
 </ul>
 <hr>
+<nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-12-章-matt-pocock-本人怎样讲-skills">← 上一章：第 12 章 · Matt Pocock 本人怎样讲 Skills</a><a class="pager-next" href="#第-14-章-附录-38-个-skills-完整索引">下一章：第 14 章 · 附录：38 个 Skills 完整索引 →</a></nav>
 <h2 id="第-14-章-附录-38-个-skills-完整索引" tabindex="-1">第 14 章 · 附录：38 个 Skills 完整索引<a class="heading-anchor" href="#第-14-章-附录-38-个-skills-完整索引" aria-label="链接到本节">#</a></h2>
 <p>下面的列表以本地源提交 <code>49dd158d1076134a641b33efb035946536778336</code> 为准，核对日期为 2026-10-12。稳定分类来自仓库目录；一句话说明综合了上游 README、各 Skill frontmatter 与正文。</p>
 <h3 id="a-engineering-20-个" tabindex="-1">A. Engineering：20 个<a class="heading-anchor" href="#a-engineering-20-个" aria-label="链接到本节">#</a></h3>
@@ -4663,102 +4747,102 @@ Skill 选择：
 </tr>
 </thead>
 <tbody><tr>
-<td><code>ask-matt</code></td>
+<td><a href="#11-1-1-ask-matt-%E4%B8%8D%E7%9F%A5%E9%81%93%E8%B5%B0%E5%93%AA%E6%9D%A1%E8%B7%AF%E6%97%B6%E5%85%88%E8%B7%AF%E7%94%B1"><code>ask-matt</code></a></td>
 <td>用户</td>
 <td>为当前情境选择 Skill 或流程</td>
 </tr>
 <tr>
-<td><code>grill-with-docs</code></td>
+<td><a href="#11-1-3-grill-with-docs-%E5%9C%A8%E7%9C%9F%E5%AE%9E%E4%BB%93%E5%BA%93%E9%87%8C%E6%8A%8A%E9%97%AE%E9%A2%98%E9%97%AE%E6%B8%85%E6%A5%9A"><code>grill-with-docs</code></a></td>
 <td>用户</td>
 <td>在真实仓库里问清需求，同时更新领域词汇与 ADR</td>
 </tr>
 <tr>
-<td><code>triage</code></td>
+<td><a href="#11-1-4-triage-%E5%85%88%E7%A1%AE%E8%AE%A4%E6%9D%A5%E4%BB%B6%E6%98%AF%E4%BB%80%E4%B9%88-%E5%86%8D%E5%86%B3%E5%AE%9A%E8%B0%81%E5%A4%84%E7%90%86"><code>triage</code></a></td>
 <td>用户</td>
 <td>让 issue 和外部 PR 经过状态化分诊、核验与简报</td>
 </tr>
 <tr>
-<td><code>improve-codebase-architecture</code></td>
+<td><a href="#11-1-15-improve-codebase-architecture-%E5%85%88%E6%89%BE%E9%AB%98%E4%BB%B7%E5%80%BC%E5%80%99%E9%80%89-%E5%86%8D%E8%AE%A8%E8%AE%BA%E6%8E%A5%E5%8F%A3"><code>improve-codebase-architecture</code></a></td>
 <td>用户</td>
 <td>调查模块加深机会，生成 HTML 候选报告，再逐项讨论</td>
 </tr>
 <tr>
-<td><code>setup-matt-pocock-skills</code></td>
+<td><a href="#11-1-2-setup-matt-pocock-skills-%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%BF%E7%94%A8%E5%89%8D%E5%AF%B9%E9%BD%90%E4%BB%93%E5%BA%93%E7%8E%B0%E5%AE%9E"><code>setup-matt-pocock-skills</code></a></td>
 <td>用户</td>
 <td>配置 tracker、triage labels 与领域文档布局</td>
 </tr>
 <tr>
-<td><code>to-spec</code></td>
+<td><a href="#11-1-6-to-spec-%E6%8A%8A%E5%B7%B2%E7%BB%8F%E8%AE%A8%E8%AE%BA%E6%B8%85%E6%A5%9A%E7%9A%84%E5%86%85%E5%AE%B9%E5%9B%BA%E5%AE%9A%E4%B8%8B%E6%9D%A5"><code>to-spec</code></a></td>
 <td>用户</td>
 <td>把已完成的对话决策整理成规格并发布到 tracker</td>
 </tr>
 <tr>
-<td><code>to-tickets</code></td>
+<td><a href="#11-1-7-to-tickets-%E6%8A%8A%E8%A7%84%E6%A0%BC%E5%88%87%E6%88%90%E8%83%BD%E7%8B%AC%E7%AB%8B%E5%8F%8D%E9%A6%88%E7%9A%84%E7%BA%B5%E5%90%91%E8%96%84%E7%89%87"><code>to-tickets</code></a></td>
 <td>用户</td>
 <td>把计划拆成声明阻塞关系的 tracer-bullet tickets</td>
 </tr>
 <tr>
-<td><code>implement</code></td>
+<td><a href="#11-1-8-implement-%E6%8C%89%E6%89%B9%E5%87%86%E7%9A%84-spec-%E6%88%96-ticket-%E6%96%BD%E5%B7%A5"><code>implement</code></a></td>
 <td>用户</td>
 <td>按 spec/tickets 实现，在约定 seam 做 TDD 并完成 review</td>
 </tr>
 <tr>
-<td><code>wayfinder</code></td>
+<td><a href="#11-1-5-wayfinder-%E5%A4%A7%E5%B7%A5%E7%A8%8B%E5%85%88%E7%94%BB%E5%86%B3%E7%AD%96%E5%9C%B0%E5%9B%BE-%E4%B8%8D%E6%80%A5%E7%9D%80%E6%96%BD%E5%B7%A5"><code>wayfinder</code></a></td>
 <td>用户</td>
 <td>用决策 tickets 管理一个会话装不下的大型工作</td>
 </tr>
 <tr>
-<td><code>prototype</code></td>
+<td><a href="#11-1-9-prototype-%E7%94%A8%E5%8F%AF%E4%B8%A2%E5%BC%83%E4%BB%A3%E7%A0%81%E5%9B%9E%E7%AD%94%E4%B8%80%E4%B8%AA%E8%AE%BE%E8%AE%A1%E9%97%AE%E9%A2%98"><code>prototype</code></a></td>
 <td>模型</td>
 <td>用可抛弃代码回答状态模型或 UI 结构问题</td>
 </tr>
 <tr>
-<td><code>diagnosing-bugs</code></td>
+<td><a href="#11-1-10-diagnosing-bugs-%E5%85%88%E5%88%B6%E9%80%A0%E7%A8%B3%E5%AE%9A%E7%BA%A2%E8%89%B2-%E5%86%8D%E5%BD%A2%E6%88%90%E7%90%86%E8%AE%BA"><code>diagnosing-bugs</code></a></td>
 <td>模型</td>
 <td>从 red-capable 反馈环开始诊断疑难 bug 与性能退化</td>
 </tr>
 <tr>
-<td><code>research</code></td>
+<td><a href="#11-1-12-research-%E5%A4%96%E9%83%A8%E4%BA%8B%E5%AE%9E%E5%BF%85%E9%A1%BB%E5%9B%9E%E5%88%B0%E4%B8%80%E6%89%8B%E6%9D%A5%E6%BA%90"><code>research</code></a></td>
 <td>模型</td>
 <td>用高可信一手来源调查外部事实并形成引用文档</td>
 </tr>
 <tr>
-<td><code>tdd</code></td>
+<td><a href="#11-1-11-tdd-%E4%B8%80%E6%AC%A1%E5%8F%AA%E6%8E%A8%E5%8A%A8%E4%B8%80%E4%B8%AA%E5%8F%AF%E8%A7%82%E5%AF%9F%E8%A1%8C%E4%B8%BA"><code>tdd</code></a></td>
 <td>模型</td>
 <td>在预先同意的公共 seam 做一行为一循环的红绿开发</td>
 </tr>
 <tr>
-<td><code>domain-modeling</code></td>
+<td><a href="#11-1-13-domain-modeling-%E5%85%88%E7%BB%9F%E4%B8%80%E8%AF%8D%E4%B9%89-%E5%86%8D%E8%AE%A9%E4%BB%A3%E7%A0%81%E6%89%BF%E8%BD%BD%E8%AF%8D%E4%B9%89"><code>domain-modeling</code></a></td>
 <td>模型</td>
 <td>打磨共同语言，及时更新 <code>GLOSSARY.md</code>，谨慎记录 ADR</td>
 </tr>
 <tr>
-<td><code>codebase-design</code></td>
+<td><a href="#11-1-14-codebase-design-%E7%94%A8%E6%B7%B1%E6%A8%A1%E5%9D%97%E8%AF%AD%E8%A8%80%E8%AE%A8%E8%AE%BA%E4%BB%A3%E7%A0%81%E5%BD%A2%E7%8A%B6"><code>codebase-design</code></a></td>
 <td>模型</td>
 <td>提供深模块、接口、seam、adapter 等共享设计词汇</td>
 </tr>
 <tr>
-<td><code>code-review</code></td>
+<td><a href="#11-1-16-code-review-%E6%8A%8A-standards-%E4%B8%8E-spec-%E5%88%86%E5%BC%80%E9%AA%8C%E6%94%B6"><code>code-review</code></a></td>
 <td>模型</td>
 <td>并行或隔离执行 Standards 与 Spec 两轴评审</td>
 </tr>
 <tr>
-<td><code>wizard</code></td>
+<td><a href="#11-1-17-wizard-%E6%8A%8A%E5%8F%AA%E6%9C%89%E4%BA%BA%E8%83%BD%E5%81%9A%E7%9A%84%E6%AD%A5%E9%AA%A4%E5%8F%98%E6%88%90%E5%8F%AF%E5%AE%A1%E9%98%85%E5%90%91%E5%AF%BC"><code>wizard</code></a></td>
 <td>模型</td>
 <td>为只有人能完成的控制台、凭据和迁移步骤生成安全向导</td>
 </tr>
 <tr>
-<td><code>implement-spec</code></td>
+<td><a href="#11-1-18-implement-spec-%E6%8A%8A%E4%B8%80%E4%BB%BD%E8%A7%84%E6%A0%BC%E6%B1%87%E6%80%BB%E5%88%B0%E9%9B%86%E6%88%90%E5%88%86%E6%94%AF%E7%9A%84%E5%B9%B6%E8%A1%8C%E4%BB%BB%E5%8A%A1%E5%9B%BE"><code>implement-spec</code></a></td>
 <td>用户</td>
 <td>按任务图并行实现整份规格，汇总到集成分支并统一评审</td>
 </tr>
 <tr>
-<td><code>retro</code></td>
+<td><a href="#11-1-19-retro-%E5%A4%8D%E7%9B%98-agent-%E7%8E%AF%E5%A2%83-%E8%80%8C%E4%B8%8D%E6%98%AF%E8%AF%84%E4%BB%B7%E4%B8%80%E6%AC%A1%E5%9B%9E%E7%AD%94%E5%A5%BD%E4%B8%8D%E5%A5%BD"><code>retro</code></a></td>
 <td>用户</td>
 <td>从会话证据提出环境改进，机械错误优先转为自动检查</td>
 </tr>
 <tr>
-<td><code>pr</code></td>
+<td><a href="#11-1-20-pr-%E7%94%A8%E6%9C%80%E5%B0%8F%E5%9B%BE%E7%A4%BA%E5%92%8C%E8%AF%81%E6%8D%AE%E5%86%99%E6%B8%85-pr"><code>pr</code></a></td>
 <td>模型</td>
 <td>用最小图示、前后证据与合并影响撰写 PR 正文</td>
 </tr>
@@ -4773,37 +4857,37 @@ Skill 选择：
 </tr>
 </thead>
 <tbody><tr>
-<td><code>grill-me</code></td>
+<td><a href="#11-2-1-grill-me-%E6%B2%A1%E6%9C%89%E4%BB%93%E5%BA%93%E6%97%B6-%E6%8A%8A%E8%84%91%E4%B8%AD%E7%9A%84%E6%83%B3%E6%B3%95%E9%97%AE%E6%B8%85%E6%A5%9A"><code>grill-me</code></a></td>
 <td>用户</td>
 <td>不依赖仓库地把模糊想法问清楚</td>
 </tr>
 <tr>
-<td><code>handoff</code></td>
+<td><a href="#11-2-3-handoff-%E8%AE%A9%E5%B7%A5%E4%BD%9C%E8%B7%A8%E4%BC%9A%E8%AF%9D%E6%97%85%E8%A1%8C-%E4%BD%86%E4%B8%8D%E5%A4%8D%E5%88%B6%E6%95%B4%E4%B8%AA%E4%B8%96%E7%95%8C"><code>handoff</code></a></td>
 <td>用户</td>
 <td>把当前对话压缩为新 Agent 可继续的临时交接文档</td>
 </tr>
 <tr>
-<td><code>teach</code></td>
+<td><a href="#11-2-4-teach-%E6%8A%8A%E4%B8%80%E6%AC%A1%E9%97%AE%E7%AD%94%E5%8F%98%E6%88%90%E8%B7%A8%E4%BC%9A%E8%AF%9D%E5%AD%A6%E4%B9%A0%E5%B7%A5%E4%BD%9C%E5%8C%BA"><code>teach</code></a></td>
 <td>用户</td>
 <td>在持久工作区里跨会话教学，依赖可信资料与学习记录</td>
 </tr>
 <tr>
-<td><code>to-questionnaire</code></td>
+<td><a href="#11-2-5-to-questionnaire-%E6%8A%8A%E5%88%AB%E4%BA%BA%E8%84%91%E4%B8%AD%E7%9A%84%E4%BF%A1%E6%81%AF%E5%BC%82%E6%AD%A5%E5%8F%96%E5%9B%9E%E6%9D%A5"><code>to-questionnaire</code></a></td>
 <td>用户</td>
 <td>把别人掌握的未知信息整理成异步问卷</td>
 </tr>
 <tr>
-<td><code>wait-what</code></td>
+<td><a href="#11-2-6-wait-what-%E4%B8%8A%E4%B8%80%E6%9D%A1%E6%B2%A1%E5%90%AC%E6%87%82-%E5%85%88%E9%80%80%E5%9B%9E%E5%85%B1%E5%90%8C%E5%89%8D%E6%8F%90"><code>wait-what</code></a></td>
 <td>用户</td>
 <td>上一条消息没落地时，用缺失上下文和直白语言重讲</td>
 </tr>
 <tr>
-<td><code>grilling</code></td>
+<td><a href="#11-2-2-grilling-%E7%94%A8%E5%86%B3%E7%AD%96%E6%A0%91%E5%92%8C-frontier-%E7%AE%A1%E7%90%86%E8%BF%BD%E9%97%AE"><code>grilling</code></a></td>
 <td>模型</td>
 <td>用决策树和 frontier 组织多轮追问</td>
 </tr>
 <tr>
-<td><code>writing-for-agents</code></td>
+<td><a href="#11-2-7-writing-for-agents-%E5%86%99%E7%BB%99-agent-%E7%9A%84%E6%96%87%E6%A1%A3%E8%A6%81%E6%94%B9%E5%8F%98%E8%A1%8C%E4%B8%BA"><code>writing-for-agents</code></a></td>
 <td>模型</td>
 <td>设计 context pointer、降低两类负担并删除 no-op 指令</td>
 </tr>
@@ -4818,22 +4902,22 @@ Skill 选择：
 </tr>
 </thead>
 <tbody><tr>
-<td><code>git-guardrails-claude-code</code></td>
+<td><a href="#11-3-1-git-guardrails-claude-code-%E5%9C%A8-claude-code-%E6%89%A7%E8%A1%8C%E5%89%8D%E6%8B%A6%E6%88%AA%E5%8D%B1%E9%99%A9-git-%E5%91%BD%E4%BB%A4"><code>git-guardrails-claude-code</code></a></td>
 <td>需要用 Claude Code hooks 阻止危险 Git 命令</td>
 <td>工具特定，先确认运行时</td>
 </tr>
 <tr>
-<td><code>migrate-to-shoehorn</code></td>
+<td><a href="#11-3-2-migrate-to-shoehorn-%E5%8F%AA%E5%9C%A8%E6%B5%8B%E8%AF%95%E9%87%8C%E5%87%8F%E5%B0%91%E5%A4%A7%E5%9E%8B%E5%AF%B9%E8%B1%A1%E4%BC%AA%E9%80%A0"><code>migrate-to-shoehorn</code></a></td>
 <td>测试项目使用 <code>@total-typescript/shoehorn</code></td>
 <td>作者技术栈特定，不是通用规则</td>
 </tr>
 <tr>
-<td><code>scaffold-exercises</code></td>
+<td><a href="#11-3-3-scaffold-exercises-%E6%8C%89%E5%9B%BA%E5%AE%9A%E8%AF%BE%E7%A8%8B%E7%BB%93%E6%9E%84%E7%94%9F%E6%88%90%E5%8F%AF-lint-%E7%9A%84%E7%BB%83%E4%B9%A0%E9%AA%A8%E6%9E%B6"><code>scaffold-exercises</code></a></td>
 <td>需要课程章节、题目、答案和讲解目录</td>
 <td>面向教学内容生产</td>
 </tr>
 <tr>
-<td><code>setup-pre-commit</code></td>
+<td><a href="#11-3-4-setup-pre-commit-%E4%B8%BA%E5%B7%B2%E6%9C%89-node-%E4%BB%93%E5%BA%93%E6%8E%A5%E5%85%A5%E6%8F%90%E4%BA%A4%E5%89%8D%E6%A3%80%E6%9F%A5"><code>setup-pre-commit</code></a></td>
 <td>需要 Husky、lint-staged、Prettier、类型检查和测试</td>
 <td>先匹配现有包管理器与 CI</td>
 </tr>
@@ -4848,37 +4932,37 @@ Skill 选择：
 </tr>
 </thead>
 <tbody><tr>
-<td><code>claude-handoff</code></td>
+<td><a href="#11-4-1-claude-handoff-%E6%8A%8A-handoff-%E7%9B%B4%E6%8E%A5%E5%90%AF%E5%8A%A8%E6%88%90%E5%90%8E%E5%8F%B0-claude-agent"><code>claude-handoff</code></a></td>
 <td>用后台 Claude Agent 立即接手当前对话</td>
 <td>工具特定，行为可能变化</td>
 </tr>
 <tr>
-<td><code>loop-me</code></td>
+<td><a href="#11-4-2-loop-me-%E6%8A%8A%E7%94%9F%E6%B4%BB%E6%88%96%E5%B7%A5%E4%BD%9C%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E5%BE%AA%E7%8E%AF%E5%86%99%E6%88%90%E5%8F%AF%E5%AE%9E%E7%8E%B0-workflow"><code>loop-me</code></a></td>
 <td>有状态地拷问工作流规格</td>
 <td>实验中</td>
 </tr>
 <tr>
-<td><code>setup-ts-deep-modules</code></td>
+<td><a href="#11-4-3-setup-ts-deep-modules-%E7%94%A8-dependency-cruiser-%E6%8A%8A%E6%B7%B1%E6%A8%A1%E5%9D%97%E8%BE%B9%E7%95%8C%E5%8F%98%E6%88%90%E7%A1%AC%E6%A3%80%E6%9F%A5"><code>setup-ts-deep-modules</code></a></td>
 <td>用 dependency-cruiser 约束 TypeScript 深模块</td>
 <td>工具链侵入较大，先原型验证</td>
 </tr>
 <tr>
-<td><code>writing-beats</code></td>
+<td><a href="#11-4-5-writing-beats-%E4%BB%8E%E5%9B%BA%E5%AE%9A%E7%B4%A0%E6%9D%90%E4%B8%AD%E9%80%89%E6%8B%A9%E4%B8%80%E6%9D%A1%E5%8F%AF%E8%BE%BE%E7%9A%84%E5%8F%99%E4%BA%8B%E8%B7%AF%E5%BE%84"><code>writing-beats</code></a></td>
 <td>把素材组织成逐步展开的叙事 beats</td>
 <td>写作实验</td>
 </tr>
 <tr>
-<td><code>writing-fragments</code></td>
+<td><a href="#11-4-4-writing-fragments-%E6%8E%A2%E7%B4%A2%E6%9C%9F%E5%8F%AA%E9%87%87%E9%9B%86%E6%9C%89%E7%94%9F%E5%91%BD%E5%8A%9B%E7%9A%84%E5%86%99%E4%BD%9C%E7%A2%8E%E7%89%87"><code>writing-fragments</code></a></td>
 <td>挖掘未结构化写作碎片</td>
 <td>写作实验</td>
 </tr>
 <tr>
-<td><code>writing-shape</code></td>
+<td><a href="#11-4-6-writing-shape-%E4%BB%8E%E5%9B%BA%E5%AE%9A%E7%B4%A0%E6%9D%90%E4%B8%AD%E9%80%90%E6%AE%B5%E5%A1%91%E9%80%A0%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0"><code>writing-shape</code></a></td>
 <td>逐段把原始材料塑造成文章</td>
 <td>写作实验</td>
 </tr>
 <tr>
-<td><code>chief-of-staff</code></td>
+<td><a href="#11-4-7-chief-of-staff-%E5%9C%A8%E9%95%BF%E4%BC%9A%E8%AF%9D%E9%87%8C%E5%8D%8F%E8%B0%83%E9%95%BF%E6%9C%9F%E7%9B%AE%E6%A0%87"><code>chief-of-staff</code></a></td>
 <td>通过后台子 Agent 与日程建议协调长期目标</td>
 <td>长会话与运行时相关，仍属实验</td>
 </tr>
@@ -5022,6 +5106,8 @@ Skill 选择：
 </ul>
 <p>最后只留一个记忆点：</p>
 <p><strong>AI 协作开发的速度上限，不是生成代码的速度，而是获得可靠反馈的速度。Skills 的价值，是让你在正确的时刻建立正确的反馈环。</strong></p>
+
+<nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-13-章-三个端到端操作案例-审报告-迁逻辑-修白屏">← 上一章：第 13 章 · 三个端到端操作案例：审报告、迁逻辑、修白屏</a><a class="pager-next" href="#practice-readme">进入实践路径 →</a></nav>
 </article>
     </main>
   </div>
@@ -5105,7 +5191,7 @@ const printButton = document.querySelector('#print-button');
 const backToTopButton = document.querySelector('#back-to-top');
 const chapterLinks = [...document.querySelectorAll('.toc-link')];
 const searchableHeadings = [
-  ...document.querySelectorAll('.book-article h2, .book-article h3'),
+  ...document.querySelectorAll('.book-article h2, .book-article h3, .book-article h4'),
 ];
 
 function setMenu(open) {
@@ -5147,7 +5233,7 @@ sidebarSearchButton?.addEventListener('click', () => setMobileSearch(true));
 function sectionText(heading) {
   const parts = [];
   let node = heading.nextElementSibling;
-  while (node && !/^H[23]$/.test(node.tagName)) {
+  while (node && !/^H[234]$/.test(node.tagName)) {
     parts.push(node.textContent ?? '');
     node = node.nextElementSibling;
   }
