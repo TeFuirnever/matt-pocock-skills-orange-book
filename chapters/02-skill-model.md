@@ -80,7 +80,7 @@ Skill 描述的是可重复使用的工作方法：
 
 ![Matt Pocock Skills 新手地图](assets/diagrams/skills-failure-mode-map.png)
 
-不要先背 37 个名字。先问这次最可能怎样失败。
+不要先背 38 个名字。先问这次最可能怎样失败。
 
 | 失败风险 | 优先考虑 |
 |---|---|

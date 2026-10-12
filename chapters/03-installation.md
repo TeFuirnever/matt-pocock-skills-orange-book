@@ -2,40 +2,64 @@
 
 ### 2.1 四个目录，不是同一种稳定性
 
-固定提交中共有 37 个 `SKILL.md`：
+固定提交中共有 38 个 `SKILL.md`：
 
 | 目录 | 数量 | 定位 | 使用态度 |
 |---|---:|---|---|
-| `engineering` | 18 | 日常软件工程主线 | 重点学习 |
+| `engineering` | 20 | 日常软件工程主线 | 重点学习 |
 | `productivity` | 7 | 通用思考、交接、教学与文档 | 按场景组合 |
 | `misc` | 4 | 作者特定工具与仓库设置 | 先判断是否匹配本项目 |
-| `in-progress` | 8 | 正在演化的实验能力 | 只做试验，不当稳定接口 |
+| `in-progress` | 7 | 正在演化的实验能力 | 只做试验，不当稳定接口 |
 
 一个容易踩的坑，是看到目录里存在 Skill，就默认它已经稳定。`in-progress` 的名字、行为和存在性都可能变化，书中会完整列出，但不会把它们塞进新人主链。
 
-![阿舟图解：29 个稳定 Skill 与 8 个 in-progress Skill](assets/azhou/stable-and-beta.png)
+![历史教学图：旧基线的 29 个非实验 Skill 与 8 个 in-progress Skill](assets/azhou/stable-and-beta.png)
+
+> 上图保留旧版教学图的 29/8 数字，不代表本版清单。本版为 31 个非实验目录 Skill 与 7 个实验 Skill；插件只包含 engineering 与 productivity 共 27 个，misc 的 4 个不随插件分发。
 
 ### 2.2 两种安装哲学
 
 上游提供两条主要路径：
 
-#### Claude Code 插件
+#### 自动更新的插件
+
+固定版本 README 首推插件安装。Claude Code 使用官方 marketplace：
 
 ```bash
-claude plugins install mattpocock-skills
+claude plugin install mattpocock-skills@claude-plugins-official
 ```
 
-它安装整个托管、只读的集合。优点是更新方便，代价是你订阅的是上游版本，不是项目自己的改编版。
+Codex 使用上游自带 marketplace，启动时更新：
 
-#### skills.sh 安装
+```bash
+codex plugin marketplace add mattpocock/skills
+codex plugin add mattpocock-skills@mattpocock
+```
+
+GitHub Copilot CLI 的安装入口为：
+
+```bash
+copilot plugin marketplace add mattpocock/skills
+copilot plugin install mattpocock-skills@mattpocock
+```
+
+Copilot 自动更新还需要 README 给出的 `extraKnownMarketplaces` 配置；VS Code 使用 **Chat: Install Plugin From Source** 输入仓库 URL。不同客户端的自动更新时机并不相同，执行时以本版固定 README 与客户端能力为准。
+
+#### 可编辑文件与手动更新
 
 ```bash
 npx skills@latest add mattpocock/skills
+npx skills@latest update
 ```
 
-它把选中的 Skill 复制到项目里。优点是可以修改、审查和版本化，代价是更新需要自己管理。
+首次选择时包含 `setup-matt-pocock-skills`；新增 Skill 需要重新运行 `add`。这种方式把可编辑文件放进项目，需要自行管理更新。Gemini CLI 则分别安装两个主要目录，并重跑命令更新：
 
-不要同时走两条路径。重复安装会让同名 Skill 出现两份，触发和维护都会变得模糊。
+```bash
+gemini skills install https://github.com/mattpocock/skills.git --path skills/engineering
+gemini skills install https://github.com/mattpocock/skills.git --path skills/productivity
+```
+
+同一个 Agent 选择插件或复制文件中的一种，避免同名 Skill 重复。上述安装入口跟随上游，不会自动锁定本书提交；要复现实验，应核对实际安装文本与本版固定源。
 
 ### 2.3 第一次必须做 setup
 
@@ -45,11 +69,13 @@ npx skills@latest add mattpocock/skills
 /setup-matt-pocock-skills
 ```
 
-它会配置三件事：
+它会配置三件事（领域词汇约定已改为 `GLOSSARY.md`，多上下文为 `GLOSSARY-MAP.md`）：
 
 1. issue tracker 在哪里；
 2. triage 使用哪些标签；
 3. 领域文档放在哪里。
+
+安装了 `triage` 时才配置分诊标签；在 GitHub/GitLab 上还会创建缺失的已配置标签。默认单领域布局无需额外询问，多领域信号存在时再确认布局。
 
 这一步的价值不在生成几个文件，而在把 Skill 与仓库现实连接起来。没有 tracker 配置，`to-spec` 和 `to-tickets` 不知道往哪里发布；没有领域文档位置，`domain-modeling` 和下游任务就没有共同语言。
 
@@ -75,7 +101,7 @@ npx skills@latest add mattpocock/skills
 |---|---|---|
 | 小改动 | 直接实现，按需调用 `tdd` 或 `code-review` | 为改一个字写十页规格 |
 | 中等功能 | `grill-with-docs` → `to-spec` → `implement` | 边写边重新设计 |
-| 大型工作 | `wayfinder` → 决策 tickets → `to-spec` → `to-tickets` → 多次 `implement` | 试图把所有上下文塞进一个会话 |
+| 大型工作 | `wayfinder` → 决策 tickets → `to-spec` → `to-tickets` → `implement-spec`（依赖图并行交付） | 试图把所有上下文塞进一个会话 |
 
 ### 2.6 本章验收
 

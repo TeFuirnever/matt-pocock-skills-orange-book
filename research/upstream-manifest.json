@@ -1,0 +1,235 @@
+{
+  "commit": "49dd158d1076134a641b33efb035946536778336",
+  "packageVersion": "1.3.1",
+  "checkedOn": "2026-10-12",
+  "skills": [
+    {
+      "name": "ask-matt",
+      "bucket": "engineering",
+      "path": "skills/engineering/ask-matt/SKILL.md",
+      "invocation": "user"
+    },
+    {
+      "name": "code-review",
+      "bucket": "engineering",
+      "path": "skills/engineering/code-review/SKILL.md",
+      "invocation": "model"
+    },
+    {
+      "name": "codebase-design",
+      "bucket": "engineering",
+      "path": "skills/engineering/codebase-design/SKILL.md",
+      "invocation": "model"
+    },
+    {
+      "name": "diagnosing-bugs",
+      "bucket": "engineering",
+      "path": "skills/engineering/diagnosing-bugs/SKILL.md",
+      "invocation": "model"
+    },
+    {
+      "name": "domain-modeling",
+      "bucket": "engineering",
+      "path": "skills/engineering/domain-modeling/SKILL.md",
+      "invocation": "model"
+    },
+    {
+      "name": "grill-with-docs",
+      "bucket": "engineering",
+      "path": "skills/engineering/grill-with-docs/SKILL.md",
+      "invocation": "user"
+    },
+    {
+      "name": "implement",
+      "bucket": "engineering",
+      "path": "skills/engineering/implement/SKILL.md",
+      "invocation": "user"
+    },
+    {
+      "name": "implement-spec",
+      "bucket": "engineering",
+      "path": "skills/engineering/implement-spec/SKILL.md",
+      "invocation": "user"
+    },
+    {
+      "name": "improve-codebase-architecture",
+      "bucket": "engineering",
+      "path": "skills/engineering/improve-codebase-architecture/SKILL.md",
+      "invocation": "user"
+    },
+    {
+      "name": "pr",
+      "bucket": "engineering",
+      "path": "skills/engineering/pr/SKILL.md",
+      "invocation": "model"
+    },
+    {
+      "name": "prototype",
+      "bucket": "engineering",
+      "path": "skills/engineering/prototype/SKILL.md",
+      "invocation": "model"
+    },
+    {
+      "name": "research",
+      "bucket": "engineering",
+      "path": "skills/engineering/research/SKILL.md",
+      "invocation": "model"
+    },
+    {
+      "name": "retro",
+      "bucket": "engineering",
+      "path": "skills/engineering/retro/SKILL.md",
+      "invocation": "user"
+    },
+    {
+      "name": "setup-matt-pocock-skills",
+      "bucket": "engineering",
+      "path": "skills/engineering/setup-matt-pocock-skills/SKILL.md",
+      "invocation": "user"
+    },
+    {
+      "name": "tdd",
+      "bucket": "engineering",
+      "path": "skills/engineering/tdd/SKILL.md",
+      "invocation": "model"
+    },
+    {
+      "name": "to-spec",
+      "bucket": "engineering",
+      "path": "skills/engineering/to-spec/SKILL.md",
+      "invocation": "user"
+    },
+    {
+      "name": "to-tickets",
+      "bucket": "engineering",
+      "path": "skills/engineering/to-tickets/SKILL.md",
+      "invocation": "user"
+    },
+    {
+      "name": "triage",
+      "bucket": "engineering",
+      "path": "skills/engineering/triage/SKILL.md",
+      "invocation": "user"
+    },
+    {
+      "name": "wayfinder",
+      "bucket": "engineering",
+      "path": "skills/engineering/wayfinder/SKILL.md",
+      "invocation": "user"
+    },
+    {
+      "name": "wizard",
+      "bucket": "engineering",
+      "path": "skills/engineering/wizard/SKILL.md",
+      "invocation": "model"
+    },
+    {
+      "name": "chief-of-staff",
+      "bucket": "in-progress",
+      "path": "skills/in-progress/chief-of-staff/SKILL.md",
+      "invocation": "user"
+    },
+    {
+      "name": "claude-handoff",
+      "bucket": "in-progress",
+      "path": "skills/in-progress/claude-handoff/SKILL.md",
+      "invocation": "user"
+    },
+    {
+      "name": "loop-me",
+      "bucket": "in-progress",
+      "path": "skills/in-progress/loop-me/SKILL.md",
+      "invocation": "user"
+    },
+    {
+      "name": "setup-ts-deep-modules",
+      "bucket": "in-progress",
+      "path": "skills/in-progress/setup-ts-deep-modules/SKILL.md",
+      "invocation": "user"
+    },
+    {
+      "name": "writing-beats",
+      "bucket": "in-progress",
+      "path": "skills/in-progress/writing-beats/SKILL.md",
+      "invocation": "user"
+    },
+    {
+      "name": "writing-fragments",
+      "bucket": "in-progress",
+      "path": "skills/in-progress/writing-fragments/SKILL.md",
+      "invocation": "user"
+    },
+    {
+      "name": "writing-shape",
+      "bucket": "in-progress",
+      "path": "skills/in-progress/writing-shape/SKILL.md",
+      "invocation": "user"
+    },
+    {
+      "name": "git-guardrails-claude-code",
+      "bucket": "misc",
+      "path": "skills/misc/git-guardrails-claude-code/SKILL.md",
+      "invocation": "model"
+    },
+    {
+      "name": "migrate-to-shoehorn",
+      "bucket": "misc",
+      "path": "skills/misc/migrate-to-shoehorn/SKILL.md",
+      "invocation": "model"
+    },
+    {
+      "name": "scaffold-exercises",
+      "bucket": "misc",
+      "path": "skills/misc/scaffold-exercises/SKILL.md",
+      "invocation": "model"
+    },
+    {
+      "name": "setup-pre-commit",
+      "bucket": "misc",
+      "path": "skills/misc/setup-pre-commit/SKILL.md",
+      "invocation": "model"
+    },
+    {
+      "name": "grill-me",
+      "bucket": "productivity",
+      "path": "skills/productivity/grill-me/SKILL.md",
+      "invocation": "user"
+    },
+    {
+      "name": "grilling",
+      "bucket": "productivity",
+      "path": "skills/productivity/grilling/SKILL.md",
+      "invocation": "model"
+    },
+    {
+      "name": "handoff",
+      "bucket": "productivity",
+      "path": "skills/productivity/handoff/SKILL.md",
+      "invocation": "user"
+    },
+    {
+      "name": "teach",
+      "bucket": "productivity",
+      "path": "skills/productivity/teach/SKILL.md",
+      "invocation": "user"
+    },
+    {
+      "name": "to-questionnaire",
+      "bucket": "productivity",
+      "path": "skills/productivity/to-questionnaire/SKILL.md",
+      "invocation": "user"
+    },
+    {
+      "name": "wait-what",
+      "bucket": "productivity",
+      "path": "skills/productivity/wait-what/SKILL.md",
+      "invocation": "user"
+    },
+    {
+      "name": "writing-for-agents",
+      "bucket": "productivity",
+      "path": "skills/productivity/writing-for-agents/SKILL.md",
+      "invocation": "model"
+    }
+  ]
+}

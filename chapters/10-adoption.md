@@ -2,7 +2,7 @@
 
 ![阿舟图解：公开仓库为什么要从干净历史开始](assets/azhou/clean-public-history.png)
 
-### 9.1 不要一次复制全部 37 个
+### 9.1 不要一次复制全部 38 个
 
 先从团队真正反复遇到的失败开始。一个适合 UI 客户端团队的最小集合通常是：
 
@@ -28,7 +28,7 @@
 ```text
 project/
 ├── AGENTS.md or CLAUDE.md
-├── CONTEXT.md
+├── GLOSSARY.md
 ├── docs/
 │   ├── adr/
 │   └── agents/
@@ -55,7 +55,7 @@ project/
 | 文件路径 | tracker、ADR、领域文档放在哪里 |
 | 安全边界 | 哪些命令、凭据和生产动作不能自动执行 |
 | 完成条件 | 项目真正的测试、类型检查、构建和发布门禁是什么 |
-| 术语 | Skill 是否使用项目的 `CONTEXT.md` 词汇 |
+| 术语 | Skill 是否使用项目的 `GLOSSARY.md` 词汇 |
 
 ### 9.4 根指导文件只做路由
 
@@ -83,7 +83,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 - [ ] 固定并记录上游 commit。
 - [ ] 选择最小 Skill 集合。
 - [ ] 运行仓库 setup。
-- [ ] 建立 `CONTEXT.md` 与 ADR 位置。
+- [ ] 建立 `GLOSSARY.md` 与 ADR 位置。
 - [ ] 把项目真实命令写进完成条件。
 - [ ] 检查 Agent 运行时能力与降级路径。
 - [ ] 用一个小任务跑通。

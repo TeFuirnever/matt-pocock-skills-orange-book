@@ -1430,6 +1430,7 @@ code {
 </ul>
 <h2>操作</h2>
 <h3>1. 用公共 seam 重现症状</h3>
+<p>为候选 seam 写一句「能捕获什么、会漏掉什么」，确认后再写测试。若通过修改代码或 fixture 强制制造红色结果，先与未修改副本做 <code>diff</code>，证明 mutation 已落地。</p>
 <p>不要直接调用私有 helper，也不要从 UI 截图判断。通过用户可见的设置服务、公开 API、IPC 合约或端到端交互建立最小复现。</p>
 <p>写下这句话并让命令证明它：</p>
 <pre><code class="language-text">当 &lt;用户操作&gt; 完成并重建 &lt;公开边界&gt; 后，&lt;可观察结果&gt; 仍应为 &lt;期望值&gt;。

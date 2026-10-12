@@ -249,7 +249,7 @@ grill-with-docs
 
 #### Skill 选择
 
-使用 `resolving-merge-conflicts`，逐 hunk 读取两边意图。
+当前固定版已移除 `resolving-merge-conflicts`；这里按通用合并流程练习，逐 hunk 读取两边意图，不把旧名称当作可调用入口。
 
 #### 意图合并
 

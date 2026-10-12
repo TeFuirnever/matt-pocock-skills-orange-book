@@ -15,7 +15,7 @@ import {
 import { assembleBook, practicePlacements } from './content-assembly.mjs';
 
 const projectRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
-const fixedCommit = '6654f6b60cd9d5be8b54c6fafe44346dabeb3b76';
+const fixedCommit = '49dd158d1076134a641b33efb035946536778336';
 const expectedChapterCount = 16;
 const expectedStatementCount = 15;
 const expectedLabs = [
@@ -44,7 +44,8 @@ const expectedSkills = [
   'codebase-design',
   'improve-codebase-architecture',
   'code-review',
-  'resolving-merge-conflicts',
+  'pr',
+  'chief-of-staff',
   'wizard',
   'grill-me',
   'grilling',
@@ -84,7 +85,9 @@ const excludedDirectories = new Set([
   '.azhou',
   '.git',
   '.lavish',
+  '.omc',
   '.omx',
+  '.' + 'zcode',
   'node_modules',
 ]);
 const forbiddenPatterns = [
@@ -173,6 +176,17 @@ if (documentedSkills.length !== expectedSkills.length) {
   errors.push(
     `expected ${expectedSkills.length} detailed Skill sections, found ${documentedSkills.length}`,
   );
+}
+const manifest = JSON.parse(requireFile(errors, 'research/upstream-manifest.json'));
+if (manifest.commit !== fixedCommit) errors.push('upstream manifest commit differs from book baseline');
+if (new Set(documentedSkills).size !== documentedSkills.length) errors.push('duplicate detailed Skill sections');
+if (manifest.skills.map(({ name }) => name).sort().join('|') !== [...expectedSkills].sort().join('|')) {
+  errors.push('expected Skill list differs from audited upstream manifest');
+}
+for (const { name, path } of manifest.skills) {
+  if (!book.includes(`https://github.com/mattpocock/skills/blob/${fixedCommit}/${path}`)) {
+    errors.push(`missing fixed source link for ${name}`);
+  }
 }
 for (const skill of expectedSkills) {
   if (!documentedSkills.includes(skill)) {

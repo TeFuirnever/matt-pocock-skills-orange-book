@@ -1,6 +1,6 @@
 # Matt Pocock Skills 橙皮书
 
-**从传统开发到 AI 协作开发：37 个 Skills 的心智模型、作者一手材料与 UI 客户端实战**
+**从传统开发到 AI 协作开发：38 个 Skills 的心智模型、作者一手材料与 UI 客户端实战**
 
 > 这不是一份命令清单。真正要学会的是：什么时候应该停下来问问题，什么时候应该做原型，什么时候必须先让测试变红，以及怎样把一次对话变成可跨会话交付的工程证据。
 
@@ -26,12 +26,14 @@
 | 项目 | 本书口径 |
 |---|---|
 | 上游仓库 | [`mattpocock/skills`](https://github.com/mattpocock/skills) |
-| 核验提交 | [`6654f6b60cd9d5be8b54c6fafe44346dabeb3b76`](https://github.com/mattpocock/skills/tree/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76) |
-| 固定时间 | 2026-08-24 |
-| 书稿核验 | 2026-09-01 |
-| Skill 数量 | 37 个：engineering 18、productivity 7、misc 4、in-progress 8 |
+| 核验提交 | [`49dd158d1076134a641b33efb035946536778336`](https://github.com/mattpocock/skills/tree/49dd158d1076134a641b33efb035946536778336) |
+| 提交日期 | 2026-10-09 |
+| 书稿核验 | 2026-10-12（本地源核对） |
+| Skill 数量 | 38 个：engineering 20、productivity 7、misc 4、in-progress 7 |
 | 目标读者 | 刚起步、已经在用、正在设计团队级 AI 工程流程的开发者 |
-| 补充证据 | Matt Pocock 官网一手材料 |
+| 补充证据 | Matt Pocock 官网历史一手材料（保留各自核验日期） |
+
+本次以固定提交的 git 引用逐项核对上游内容（不依赖本地工作区检出）；清单和变化见 `research/upstream-sync-2026-10-12.md`（2026-10-09 及更早历史核对记录保留）。上游包版本为 `1.3.1`，精确行为仍以提交为准。
 
 本书不是 Matt Pocock 官方文档，也不代表原作者背书。Skill 的原始代码与文档采用 MIT License；本书原创讲解、图示和案例采用 CC BY-NC-SA 4.0。
 
@@ -50,7 +52,7 @@
 8. 七个 UI 客户端实例，从浅到深
 9. 把 Skills 引入自己的仓库
 10. 新人四周训练路线
-11. 37 个 Skills 逐项小白手册
+11. 38 个 Skills 逐项小白手册
 12. Matt Pocock 本人怎样讲 Skills
 13. 三个端到端操作案例：审报告、迁逻辑、修白屏
 14. 速查索引与资料声明
@@ -319,7 +321,7 @@ Skill 描述的是可重复使用的工作方法：
 
 ![Matt Pocock Skills 新手地图](assets/diagrams/skills-failure-mode-map.png)
 
-不要先背 37 个名字。先问这次最可能怎样失败。
+不要先背 38 个名字。先问这次最可能怎样失败。
 
 | 失败风险 | 优先考虑 |
 |---|---|
@@ -344,40 +346,64 @@ Skill 描述的是可重复使用的工作方法：
 
 ### 2.1 四个目录，不是同一种稳定性
 
-固定提交中共有 37 个 `SKILL.md`：
+固定提交中共有 38 个 `SKILL.md`：
 
 | 目录 | 数量 | 定位 | 使用态度 |
 |---|---:|---|---|
-| `engineering` | 18 | 日常软件工程主线 | 重点学习 |
+| `engineering` | 20 | 日常软件工程主线 | 重点学习 |
 | `productivity` | 7 | 通用思考、交接、教学与文档 | 按场景组合 |
 | `misc` | 4 | 作者特定工具与仓库设置 | 先判断是否匹配本项目 |
-| `in-progress` | 8 | 正在演化的实验能力 | 只做试验，不当稳定接口 |
+| `in-progress` | 7 | 正在演化的实验能力 | 只做试验，不当稳定接口 |
 
 一个容易踩的坑，是看到目录里存在 Skill，就默认它已经稳定。`in-progress` 的名字、行为和存在性都可能变化，书中会完整列出，但不会把它们塞进新人主链。
 
-![阿舟图解：29 个稳定 Skill 与 8 个 in-progress Skill](assets/azhou/stable-and-beta.png)
+![历史教学图：旧基线的 29 个非实验 Skill 与 8 个 in-progress Skill](assets/azhou/stable-and-beta.png)
+
+> 上图保留旧版教学图的 29/8 数字，不代表本版清单。本版为 31 个非实验目录 Skill 与 7 个实验 Skill；插件只包含 engineering 与 productivity 共 27 个，misc 的 4 个不随插件分发。
 
 ### 2.2 两种安装哲学
 
 上游提供两条主要路径：
 
-#### Claude Code 插件
+#### 自动更新的插件
+
+固定版本 README 首推插件安装。Claude Code 使用官方 marketplace：
 
 ```bash
-claude plugins install mattpocock-skills
+claude plugin install mattpocock-skills@claude-plugins-official
 ```
 
-它安装整个托管、只读的集合。优点是更新方便，代价是你订阅的是上游版本，不是项目自己的改编版。
+Codex 使用上游自带 marketplace，启动时更新：
 
-#### skills.sh 安装
+```bash
+codex plugin marketplace add mattpocock/skills
+codex plugin add mattpocock-skills@mattpocock
+```
+
+GitHub Copilot CLI 的安装入口为：
+
+```bash
+copilot plugin marketplace add mattpocock/skills
+copilot plugin install mattpocock-skills@mattpocock
+```
+
+Copilot 自动更新还需要 README 给出的 `extraKnownMarketplaces` 配置；VS Code 使用 **Chat: Install Plugin From Source** 输入仓库 URL。不同客户端的自动更新时机并不相同，执行时以本版固定 README 与客户端能力为准。
+
+#### 可编辑文件与手动更新
 
 ```bash
 npx skills@latest add mattpocock/skills
+npx skills@latest update
 ```
 
-它把选中的 Skill 复制到项目里。优点是可以修改、审查和版本化，代价是更新需要自己管理。
+首次选择时包含 `setup-matt-pocock-skills`；新增 Skill 需要重新运行 `add`。这种方式把可编辑文件放进项目，需要自行管理更新。Gemini CLI 则分别安装两个主要目录，并重跑命令更新：
 
-不要同时走两条路径。重复安装会让同名 Skill 出现两份，触发和维护都会变得模糊。
+```bash
+gemini skills install https://github.com/mattpocock/skills.git --path skills/engineering
+gemini skills install https://github.com/mattpocock/skills.git --path skills/productivity
+```
+
+同一个 Agent 选择插件或复制文件中的一种，避免同名 Skill 重复。上述安装入口跟随上游，不会自动锁定本书提交；要复现实验，应核对实际安装文本与本版固定源。
 
 ### 2.3 第一次必须做 setup
 
@@ -387,11 +413,13 @@ npx skills@latest add mattpocock/skills
 /setup-matt-pocock-skills
 ```
 
-它会配置三件事：
+它会配置三件事（领域词汇约定已改为 `GLOSSARY.md`，多上下文为 `GLOSSARY-MAP.md`）：
 
 1. issue tracker 在哪里；
 2. triage 使用哪些标签；
 3. 领域文档放在哪里。
+
+安装了 `triage` 时才配置分诊标签；在 GitHub/GitLab 上还会创建缺失的已配置标签。默认单领域布局无需额外询问，多领域信号存在时再确认布局。
 
 这一步的价值不在生成几个文件，而在把 Skill 与仓库现实连接起来。没有 tracker 配置，`to-spec` 和 `to-tickets` 不知道往哪里发布；没有领域文档位置，`domain-modeling` 和下游任务就没有共同语言。
 
@@ -417,7 +445,7 @@ npx skills@latest add mattpocock/skills
 |---|---|---|
 | 小改动 | 直接实现，按需调用 `tdd` 或 `code-review` | 为改一个字写十页规格 |
 | 中等功能 | `grill-with-docs` → `to-spec` → `implement` | 边写边重新设计 |
-| 大型工作 | `wayfinder` → 决策 tickets → `to-spec` → `to-tickets` → 多次 `implement` | 试图把所有上下文塞进一个会话 |
+| 大型工作 | `wayfinder` → 决策 tickets → `to-spec` → `to-tickets` → `implement-spec`（依赖图并行交付） | 试图把所有上下文塞进一个会话 |
 
 ### 2.6 本章验收
 
@@ -466,6 +494,8 @@ npx skills@latest add mattpocock/skills
 
 `grilling` 是 `grill-me`、`grill-with-docs`、`wayfinder` 等 Skill 背后的提问纪律。
 
+每个问题都要给出推荐答案，并把问法写成回答「是」就接受推荐，避免否定问句让选择方向反转。
+
 它有两条重要规则：
 
 - 环境和代码里能查到的事实，由 Agent 自己查；
@@ -477,7 +507,7 @@ npx skills@latest add mattpocock/skills
 
 当问题发生在真实代码库里，优先使用 `grill-with-docs`。它不只提问，还会在决定形成时更新：
 
-- `CONTEXT.md` 中的领域术语；
+- `GLOSSARY.md` 中的领域术语；
 - `docs/adr/` 中少量真正值得长期保存的架构决策。
 
 这里的关键是 inline：术语一旦定下来就立即写，不要等会话结束再凭记忆补。
@@ -519,7 +549,7 @@ npx skills@latest add mattpocock/skills
 
 - 不会让 Agent 问可以从仓库查到的事实。
 - 不会让 Agent 替人做业务取舍。
-- `CONTEXT.md` 只保存术语，不膨胀成规格书。
+- `GLOSSARY.md` 只保存术语，不膨胀成规格书。
 - ADR 只记录高成本、反直觉、存在取舍的决定。
 
 ---
@@ -642,7 +672,7 @@ npx skills@latest add mattpocock/skills
 3. 用户可以设为默认，并在一次真实请求里使用；
 4. 用户可以删除配置，运行时安全回退。
 
-每张票都穿过必要层级，但只做一条细而完整的行为。
+每张票都穿过必要层级，但只做一条细而完整的行为。使用真实 tracker 且来源是已有 issue 时，每张实现票都应成为该 issue 的子 issue；父子关系表达归属，blocking 关系表达先后，两者不能混为一谈。已经设置原生阻塞边时，票正文不再重复列出 Blocked by。
 
 ### 4.3 宽范围机械改动是例外
 
@@ -658,6 +688,7 @@ npx skills@latest add mattpocock/skills
 
 `implement` 接收已经批准的 spec 或 tickets。它应该：
 
+- 用户给出 ticket 引用时，先从 tracker 获取内容并回显标题；引用有歧义则先澄清；
 - 按预先约定的 seam 使用 `tdd`；
 - 一次实现一张 ticket；
 - 持续运行类型检查和目标测试；
@@ -665,6 +696,12 @@ npx skills@latest add mattpocock/skills
 - 在当前分支提交结果。
 
 它不应该边实现边 redesign。出现新的产品决策时，应停下来上报，而不是悄悄选一个答案继续写。
+
+#### 整份规格交给 `implement-spec`
+
+当前固定版的 `implement-spec` 已从 `in-progress` 移到 engineering。它把 tickets 当作带阻塞关系的任务图：先建 integration branch，只启动当前前沿上已解阻塞的票；各 implementer 在独立 worktree/branch 上工作，开始前确认基于 integration branch，完成前合入最新集成分支，再由 merger 汇入。
+
+如果 tracker 通过 PR 关闭工作，或用户要求 PR，则在第一次合入后创建 draft PR；全部票完成后，对集成分支执行双轴 review，由一个 implementer 集中修复。最后把已有 draft PR 标为可评审，或按 tracker 工作流关闭 tickets，并清理 implementer worktrees。具体提交、远程写入仍服从当前会话授权。
 
 ### 4.5 `code-review`：规范正确与需求正确是两件事
 
@@ -677,6 +714,8 @@ npx skills@latest add mattpocock/skills
 | Standards | 代码是否遵守仓库规范与坏味道基线 | 编码规范、diff、测试与设计信号 |
 | Spec | 代码是否实现了原始需求 | issue/spec、验收标准、行为证据 |
 
+执行前先确认固定比较点能解析，并搜索仓库内所有编码规范文件；存在的 `CODING_STANDARDS.md` 和 `CONTRIBUTING.md` 必须纳入。两条轴要同时以前台子 Agent 启动，再汇总返回报告；没有 spec 时明确报告 Spec 轴跳过，不能凭空补需求。
+
 一段代码完全可能写得优雅，却解决了错误的问题；也可能功能正确，却以高耦合和重复代码实现。两条轴不能揉成一个模糊的总分。
 
 ### 4.6 `wayfinder`：一个会话装不下时，先画决策地图
@@ -688,7 +727,13 @@ npx skills@latest add mattpocock/skills
 - research ticket：需要一手资料；
 - task ticket：需要人完成外部动作。
 
+地图与决策票只使用 `wayfinder:` 标签，不混入 `ready-for-agent` 等实现分诊标签。执行时先读类型标签，再选择对应流程；先创建 issues 拿到真实 id，再补阻塞与交叉引用，避免占位编号误链。research 票的上游流程把证据推到一次性研究分支，但不创建 PR，也不合并该分支；这类远程动作必须服从当前会话的授权边界。
+
 地图清空以后，再用 `to-spec` 把散落的决定收拢成统一规格。它不是直接把地图变成实现票。
+
+#### `pr`：让评审者看见改动与证据
+
+新增的 `pr` 专门负责 PR 正文，使用 `GLOSSARY.md` 里的领域语言。Summary 用最小图、树、伪代码或 diff 草图解释关键变化；Evidence 给出真实的 Before/After；Merge Danger 说明回退难度与影响范围。视觉改动适合截图，执行逻辑适合失败与通过的命令证据。写正文不等于获准发布 PR。该 Skill 标注借鉴 Dex Horthy / Humanlayer 的 [show-me](https://github.com/humanlayer/skills/blob/main/plugins/show-me/skills/show-me/SKILL.md)，应保留归属。
 
 ### 4.7 本章验收
 
@@ -794,6 +839,8 @@ spec 至少回答五件事：
 
 ### 5.2 `tdd`：红到绿，不是先写一堆测试
 
+先列出拟测试的公共 seam，请用户确认；每条 seam 用一句话说明「能捕获什么、会漏掉什么」。例如设置服务能验证持久化语义，却覆盖不到 renderer 到 IPC 的接线；端到端 UI 能覆盖这条链，但定位失败的成本更高。
+
 这套 TDD 的循环非常窄：
 
 1. 在预先同意的公共 seam 写一个失败测试；
@@ -839,6 +886,8 @@ Mock 只应该放在系统边界，例如外部 API、时钟、随机数。不�
 3. 每次只改变一个变量进行 instrument；
 4. 修复并把最小复现固化成回归测试；
 5. 清理临时日志和辅助代码。
+
+如果为了证明测试能变红而修改代码或 fixture，必须先与未修改副本做 `diff`，证明 mutation 确实落地，再信任失败结果。补丁没打上、运行了另一份 fixture，都不能算捕获了目标 bug。修复后还要重跑最初未最小化的场景。
 
 ### 5.4 隐私与调试证据
 
@@ -895,6 +944,8 @@ Mock 只应该放在系统边界，例如外部 API、时钟、随机数。不�
 ### 操作
 
 #### 1. 用公共 seam 重现症状
+
+为候选 seam 写一句「能捕获什么、会漏掉什么」，确认后再写测试。若通过修改代码或 fixture 强制制造红色结果，先与未修改副本做 `diff`，证明 mutation 已落地。
 
 不要直接调用私有 helper，也不要从 UI 截图判断。通过用户可见的设置服务、公开 API、IPC 合约或端到端交互建立最小复现。
 
@@ -1000,7 +1051,7 @@ Mock 只应该放在系统边界，例如外部 API、时钟、随机数。不�
 - 测试描述是否表达真实行为；
 - spec 和代码之间是否存在翻译损耗。
 
-`CONTEXT.md` 应该像词典：每个词一两句话，必要时记录废弃同义词。它不保存实现细节，不承担规格书、scratchpad 或会议纪要的职责。
+`GLOSSARY.md` 应该像词典：每个词一两句话，必要时记录废弃同义词。它不保存实现细节，不承担规格书、scratchpad 或会议纪要的职责。
 
 ### 6.2 `codebase-design`：深模块的共享词汇
 
@@ -1033,7 +1084,7 @@ Mock 只应该放在系统边界，例如外部 API、时钟、随机数。不�
 
 这个流程会：
 
-1. 读取 `CONTEXT.md` 和相关 ADR；
+1. 读取 `GLOSSARY.md` 和相关 ADR；
 2. 寻找浅模块、泄漏 seam、重复知识和难测试区域；
 3. 生成可视化 HTML 候选报告；
 4. 让用户选择一个候选；
@@ -1054,7 +1105,9 @@ Mock 只应该放在系统边界，例如外部 API、时钟、随机数。不�
 
 「代码可以更优雅」不是 finding。「删除 Provider 后默认选择仍指向不存在的 id，下一次启动会进入不可恢复状态」才是可行动问题。
 
-### 6.5 `resolving-merge-conflicts`：解决意图，不是选择文本
+### 6.5 合并冲突：保留两侧意图
+
+当前固定版已删除 `resolving-merge-conflicts` 的 Skill 目录；残留的 docs 页面不能作为可安装入口。以下保留为通用工程练习，不再要求调用这个 Skill。
 
 冲突两侧都可能是正确改动。处理每个 hunk 前应该读取：
 
@@ -1067,9 +1120,13 @@ Mock 只应该放在系统边界，例如外部 API、时钟、随机数。不�
 
 冲突解决完成后，要继续完成 merge/rebase，并运行项目的类型检查、测试和格式化。冲突消失不等于合并正确。
 
+#### `retro`：复盘环境，而不是责备一次回答
+
+`retro` 已从实验目录进入 engineering。它检查导航、自动检查、编码规范、常驻指令、工具成本、无效规则与信息访问。先读项目已有 lint/check 和 CI，优先发现未接通或失效的检查；没有 pre-commit 或 CI 护栏本身也值得报告。机械规则应落成确定性检查，只有必须依赖判断的约束才写入编码规范。输出按严重程度排序的改进候选，不能把复盘自动扩大为修改环境的授权。
+
 ### 6.6 本章验收
 
-- `CONTEXT.md` 保持词典边界。
+- `GLOSSARY.md` 保持词典边界。
 - 能用 module、interface、depth、seam 等精确词讨论设计。
 - 只有真实摩擦才进入架构候选，不做理论重构。
 - review finding 能指向具体行为和证据。
@@ -1103,7 +1160,9 @@ Mock 只应该放在系统边界，例如外部 API、时钟、随机数。不�
 
 #### 1. 固定 review 输入
 
-把 spec、ticket、diff、目标命令和本次结果排在一起。缺少任一项时，先补输入而不是开始评论代码风格。
+确认 review 的固定比较点可解析，搜索仓库内全部编码规范；存在 `CODING_STANDARDS.md` 或 `CONTRIBUTING.md` 时必须纳入。把 spec、ticket、diff、目标命令和本次结果排在一起。缺少任一项时，先补输入而不是开始评论代码风格。
+
+同时以前台子 Agent 启动下面两条轴，再汇总报告；下面的编号表示检查维度，不表示先后串行执行。环境不支持子 Agent 时，可以明确标记为教学降级练习，但不能声称完成了上游的并行流程。
 
 #### 2. 完成 Standards review
 
@@ -1139,7 +1198,7 @@ Mock 只应该放在系统边界，例如外部 API、时钟、随机数。不�
 
 ![阿舟图解：聊天上下文、仓库文档与工程证据](assets/azhou/context-durability.png)
 
-`handoff` 把当前对话压缩成临时目录中的交接文档，供新 Agent 或新工具接手。
+`handoff` 把当前对话压缩成临时目录中的交接文档，供新 Agent 或新工具接手。保存位置为操作系统临时目录：优先 `$TMPDIR`，否则 `/tmp`；Windows 使用 `%TEMP%`，不是当前仓库。
 
 它只保留活着的线索：
 
@@ -1188,6 +1247,8 @@ Mock 只应该放在系统边界，例如外部 API、时钟、随机数。不�
 - `lessons/` 保存每节 HTML 课程；
 - `reference/` 保存真正会反复查的速查材料；
 - `learning-records/` 决定下一节教什么。
+
+这些工作区路径相对于启动 `teach` 时的目录，只有 `*-FORMAT.md` 模板链接相对于 Skill 自身目录。测验除了保持选项长度相近，还要变化正确答案的位置，避免位置规律泄露答案。
 
 它区分阅读时的流畅感与长期存储强度，通过检索练习、间隔和交错来建立后者。课程内容不应该只依赖模型记忆，而要被可信资料和引用约束。
 
@@ -1245,6 +1306,8 @@ Mock 只应该放在系统边界，例如外部 API、时钟、随机数。不�
 ### 操作
 
 #### 1. 写最小 handoff
+
+将文档保存到操作系统临时目录：优先 `$TMPDIR`，否则 `/tmp`；Windows 使用 `%TEMP%`，不放进当前仓库。
 
 使用固定区块：当前目标、已确认决定、已改文件、当前验证、review 结论、未决风险、下一步唯一动作。每项只链接或概括可复查的资料。
 
@@ -1591,7 +1654,7 @@ grill-with-docs
 
 #### Skill 选择
 
-使用 `resolving-merge-conflicts`，逐 hunk 读取两边意图。
+当前固定版已移除 `resolving-merge-conflicts`；这里按通用合并流程练习，逐 hunk 读取两边意图，不把旧名称当作可调用入口。
 
 #### 意图合并
 
@@ -1640,7 +1703,7 @@ grill-with-docs
 
 ![阿舟图解：公开仓库为什么要从干净历史开始](assets/azhou/clean-public-history.png)
 
-### 9.1 不要一次复制全部 37 个
+### 9.1 不要一次复制全部 38 个
 
 先从团队真正反复遇到的失败开始。一个适合 UI 客户端团队的最小集合通常是：
 
@@ -1666,7 +1729,7 @@ grill-with-docs
 ```text
 project/
 ├── AGENTS.md or CLAUDE.md
-├── CONTEXT.md
+├── GLOSSARY.md
 ├── docs/
 │   ├── adr/
 │   └── agents/
@@ -1693,7 +1756,7 @@ project/
 | 文件路径 | tracker、ADR、领域文档放在哪里 |
 | 安全边界 | 哪些命令、凭据和生产动作不能自动执行 |
 | 完成条件 | 项目真正的测试、类型检查、构建和发布门禁是什么 |
-| 术语 | Skill 是否使用项目的 `CONTEXT.md` 词汇 |
+| 术语 | Skill 是否使用项目的 `GLOSSARY.md` 词汇 |
 
 ### 9.4 根指导文件只做路由
 
@@ -1721,7 +1784,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 - [ ] 固定并记录上游 commit。
 - [ ] 选择最小 Skill 集合。
 - [ ] 运行仓库 setup。
-- [ ] 建立 `CONTEXT.md` 与 ADR 位置。
+- [ ] 建立 `GLOSSARY.md` 与 ADR 位置。
 - [ ] 把项目真实命令写进完成条件。
 - [ ] 检查 Agent 运行时能力与降级路径。
 - [ ] 用一个小任务跑通。
@@ -1746,7 +1809,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 1. 用 `grill-me` 澄清一个不依赖代码的想法；
 2. 用 `ask-matt` 为三个不同规模任务选流程；
 3. 每次 Agent 解释没落地时使用 `wait-what`；
-4. 为一个项目建立 10 个以内的 `CONTEXT.md` 术语。
+4. 为一个项目建立 10 个以内的 `GLOSSARY.md` 术语。
 
 验收：能区分事实问题、产品决定和需要外部专家回答的问题。
 
@@ -1791,7 +1854,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 
 ### 毕业标准
 
-一个新人不需要背完 37 个 Skill。能做到下面五件事，就已经跨过最关键的门槛：
+一个新人不需要背完 38 个 Skill。能做到下面五件事，就已经跨过最关键的门槛：
 
 1. 模糊时先澄清，明确时不重复讨论；
 2. 大任务留下 spec、tickets 和 handoff；
@@ -1824,25 +1887,27 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 
 ---
 
-## 第 11 章 · 37 个 Skills 逐项小白手册
+## 第 11 章 · 38 个 Skills 逐项小白手册
 
 这一章不是把 frontmatter 翻译成中文，而是把每个 Skill 还原成一个新手可以执行的工作单元。建议第一次阅读时只看“什么时候用”和“什么时候别用”；遇到真实任务时，再回来照着“输入、步骤、产物、验收”运行。
 
 > **固定版本说明：** 本章只对固定提交
-> `6654f6b60cd9d5be8b54c6fafe44346dabeb3b76` 负责。调用语法会随 Agent
+> `49dd158d1076134a641b33efb035946536778336` 负责，按 2026-10-12 的本地源核对。调用语法会随 Agent
 > 客户端变化，但触发条件、步骤顺序和证据要求仍然可以迁移。
 
-### 11.1 Engineering：从想法到交付的 18 个 Skill
+### 11.1 Engineering：从想法到交付的 20 个 Skill
 
 #### 11.1.1 `ask-matt`：不知道走哪条路时先路由
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/ask-matt/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/engineering/ask-matt/SKILL.md)
 
 **一句话理解：** 它不替你做任务，而是判断当前最接近哪种失败风险，并给出 Skill 链路。
 
 **什么时候用：** 你知道要解决什么，但不知道应该先澄清、原型、写规格、拆票、诊断还是直接实现。
 
 **什么时候别用：** 当前动作已经明确，例如“这个测试已经稳定复现，请按 `diagnosing-bugs` 继续”。这时再次路由只会增加一层转述。
+
+**先读再推荐：** 在解释任何 Skill 或建议跳过某一步前，先读取对应 `SKILL.md`；路由摘要只能用于定位。
 
 **它会怎样判断：**
 
@@ -1864,13 +1929,13 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 请判断应该先用哪些 Skill，并说明每次切换的条件。
 ```
 
-**产物与验收：** 至少得到“当前阶段、推荐 Skill、为什么、何时切到下一 Skill、哪些 Skill 暂时不要用”。如果回答只是列出 37 个名字，路由没有完成。
+**产物与验收：** 至少得到“当前阶段、推荐 Skill、为什么、何时切到下一 Skill、哪些 Skill 暂时不要用”。如果回答只是列出 38 个名字，路由没有完成。
 
 **新手误区：** 把它当总控 Agent，一旦调用就让它包办所有阶段。它的职责是给路线，不是无限接管。
 
 #### 11.1.2 `setup-matt-pocock-skills`：第一次使用前对齐仓库现实
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/setup-matt-pocock-skills/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/engineering/setup-matt-pocock-skills/SKILL.md)
 
 **一句话理解：** 这是工程 Skills 的一次性仓库配置，把 tracker、triage 词汇和领域文档位置写清楚。
 
@@ -1883,7 +1948,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 - 仓库现有 issue/PR 管理方式；
 - 已有标签或状态；
 - 根指导文件；
-- `CONTEXT.md`、ADR、docs 的当前位置；
+- `GLOSSARY.md`、ADR、docs 的当前位置；
 - 团队愿意接受的最小改动。
 
 **执行顺序：**
@@ -1902,7 +1967,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 
 #### 11.1.3 `grill-with-docs`：在真实仓库里把问题问清楚
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/grill-with-docs/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/engineering/grill-with-docs/SKILL.md)
 
 **一句话理解：** 它把 `grilling` 的决策树与 `domain-modeling` 的共同语言结合起来，边讨论边留下仓库证据。
 
@@ -1932,7 +1997,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 
 #### 11.1.4 `triage`：先确认来件是什么，再决定谁处理
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/triage/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/engineering/triage/SKILL.md)
 
 **一句话理解：** 它把外部 issue 和 PR 推进一套状态机，不让未经核验的描述直接变成实现任务。
 
@@ -1957,7 +2022,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 
 #### 11.1.5 `wayfinder`：大工程先画决策地图，不急着施工
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/wayfinder/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/engineering/wayfinder/SKILL.md)
 
 **一句话理解：** 当目标远到一个会话看不清路线时，用 decision tickets 逐步驱散 fog of war。
 
@@ -1973,6 +2038,8 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 - Out of scope：这张地图不处理什么；
 - Decision tickets：每张只解决一个决定，并声明依赖。
 
+**tracker 纪律：** 地图与 decision tickets 只使用 `wayfinder:` 标签，不混用 `ready-for-agent`。先创建真实 issue，再补阻塞边和交叉引用；执行时按类型标签读取职责。研究成果留在不合并的 `research/<name>` 分支，上游要求推送但不开 PR；实际执行仍受当前用户授权约束。
+
 **ticket 类型：** 可以通过讨论解决的 grilling ticket；必须看到可运行结果的 prototype ticket；依赖一手资料的 research ticket；必须由人完成外部动作的 task ticket。
 
 **UI 客户端操作例：** “重做插件系统”同时涉及权限、安装、版本、沙箱、UI、迁移和回滚。先建地图；“插件权限模型”阻塞“安装确认 UI”，“版本兼容策略”阻塞“自动更新”。地图清晰后再 `to-spec`，不要直接 `implement`。
@@ -1983,7 +2050,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 
 #### 11.1.6 `to-spec`：把已经讨论清楚的内容固定下来
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/to-spec/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/engineering/to-spec/SKILL.md)
 
 **一句话理解：** 它只做 synthesis，不做 interview；把当前对话中的已决内容变成一份可交付规格。
 
@@ -2018,7 +2085,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 
 #### 11.1.7 `to-tickets`：把规格切成能独立反馈的纵向薄片
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/to-tickets/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/engineering/to-tickets/SKILL.md)
 
 **一句话理解：** 每张 ticket 都穿过必要层级，交付一条可观察行为，并显式声明 blocked-by 边。
 
@@ -2041,13 +2108,13 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 
 **不好的切法：** “先写类型”“再写 IPC”“再写页面”“最后补测试”。关闭前三张票时用户仍得不到可用行为。
 
-**产物与验收：** 每张票有 Parent、What to build、Acceptance criteria、Blocked by；依赖图没有循环；除宽范围机械迁移外，默认使用 tracer-bullet。
+**产物与验收：** 每张票有 Parent、What to build、Acceptance criteria；阻塞已用原生关系表达时省略正文 Blocked by，否则明确列出；来源是已有 issue 时将票挂为其 sub-issue；依赖图没有循环；除宽范围机械迁移外，默认使用 tracer-bullet。
 
 **新手误区：** 为了看起来并行，把真实依赖删掉；或者把所有票都标成阻塞，失去 frontier。
 
 #### 11.1.8 `implement`：按批准的 spec 或 ticket 施工
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/implement/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/engineering/implement/SKILL.md)
 
 **一句话理解：** 这是施工入口：按预先批准的工作说明实现，在约定 seam 做 TDD，持续验证，最后 review 并提交。
 
@@ -2055,7 +2122,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 
 **执行顺序：**
 
-1. 读清当前票和所有阻塞项；
+1. 用户给出票引用时，先从 tracker 读取并说出标题；引用含糊时先澄清，再读清阻塞项；
 2. 在约定 seam 尽可能使用 `tdd`；
 3. 经常运行单测文件和 typecheck；
 4. 只做当前票，不顺手扩范围；
@@ -2071,7 +2138,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 
 #### 11.1.9 `prototype`：用可丢弃代码回答一个设计问题
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/prototype/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/engineering/prototype/SKILL.md)
 
 **一句话理解：** 原型的交付物不是产品代码，而是一个被真实运行回答掉的问题。
 
@@ -2090,7 +2157,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 
 #### 11.1.10 `diagnosing-bugs`：先制造稳定红色，再形成理论
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/diagnosing-bugs/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/engineering/diagnosing-bugs/SKILL.md)
 
 **一句话理解：** 疑难 bug 的第一产物是一条能捕获精确症状的 red-capable 命令，而不是一篇根因猜测。
 
@@ -2115,13 +2182,13 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 先建立能在当前分支稳定变红的最小命令；在看到红色前不要给根因结论。
 ```
 
-**产物与验收：** 同一条命令在修复前红、修复后绿；回归测试位于公共 seam；临时埋点被移除；日志已脱敏。
+**产物与验收：** 同一条命令在修复前红、修复后绿；回归测试位于公共 seam；临时埋点被移除；日志已脱敏。若通过修改代码或 fixture 制造红色，还要与原始副本做 diff，证明修改确实生效。
 
 **新手误区：** 先写“深度根因分析”，最后才发现症状根本不能稳定复现。
 
 #### 11.1.11 `tdd`：一次只推动一个可观察行为
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/tdd/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/engineering/tdd/SKILL.md)
 
 **一句话理解：** 在预先同意的公共 seam 上，写一个因为目标行为缺失而失败的测试，只实现足够让它变绿的代码。
 
@@ -2131,7 +2198,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 2. 重构内部实现时它仍应成立吗；
 3. 失败时能说明哪条行为被破坏吗。
 
-**seam 选择：** 优先最高层、最少数量、稳定的公共接口。外部 API、时钟、随机数可以 mock；不要 mock 自己的模块来模拟成功。
+**seam 选择：** 每个候选先用一句话说明能捕获什么、会漏掉什么，再确认测试边界。优先最高层、最少数量、稳定的公共接口。外部 API、时钟、随机数可以 mock；不要 mock 自己的模块来模拟成功。
 
 **UI 客户端操作例：** 对“保存设置后重启仍保留”写一条穿过公共设置接口的测试，而不是分别测试序列化函数、文件函数和状态 reducer 的内部调用顺序。
 
@@ -2149,7 +2216,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 
 #### 11.1.12 `research`：外部事实必须回到一手来源
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/research/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/engineering/research/SKILL.md)
 
 **一句话理解：** 把外部阅读交给后台 Agent，沿官方文档、规范、源码或第一方 API 追溯每项关键事实，并保存带引用的 Markdown。
 
@@ -2167,9 +2234,9 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 
 #### 11.1.13 `domain-modeling`：先统一词义，再让代码承载词义
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/domain-modeling/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/engineering/domain-modeling/SKILL.md)
 
-**一句话理解：** 用具体场景把模糊、重载或冲突的领域词压实，并立即更新 `CONTEXT.md`。
+**一句话理解：** 用具体场景把模糊、重载或冲突的领域词压实，并立即更新 `GLOSSARY.md`。
 
 **重点动作：**
 
@@ -2184,11 +2251,11 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 
 **产物与验收：** glossary 词条有定义、正例、反例和代码指针；后续 spec、ticket、测试和界面文案使用同一词义；ADR 数量保持克制。
 
-**新手误区：** 把 `CONTEXT.md` 写成百科全书。它首先是共同语言和导航，不是整个系统的复制品。
+**新手误区：** 把 `GLOSSARY.md` 写成百科全书。它首先是共同语言和导航，不是整个系统的复制品。
 
 #### 11.1.14 `codebase-design`：用深模块语言讨论代码形状
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/codebase-design/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/engineering/codebase-design/SKILL.md)
 
 **一句话理解：** 它提供一组精确词汇，帮助团队判断复杂度是否被藏在小接口后面。
 
@@ -2214,14 +2281,14 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 
 #### 11.1.15 `improve-codebase-architecture`：先找高价值候选，再讨论接口
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/improve-codebase-architecture/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/engineering/improve-codebase-architecture/SKILL.md)
 
 **一句话理解：** 它先调查最近常改、理解成本高的区域，生成视觉 HTML 候选报告；用户选中后才进入 grilling。
 
 **执行顺序：**
 
 1. 如果用户没给范围，先从一段 git 历史找热点；
-2. 读取 `CONTEXT.md` 和相关 ADR；
+2. 读取 `GLOSSARY.md` 和相关 ADR；
 3. 用 `codebase-design` 词汇调查浅模块、低 locality 和不真实 seam；
 4. 对候选做删除测试；
 5. 在系统临时目录生成带 before/after 的 HTML 报告；
@@ -2236,7 +2303,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 
 #### 11.1.16 `code-review`：把 Standards 与 Spec 分开验收
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/code-review/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/engineering/code-review/SKILL.md)
 
 **一句话理解：** 钉住一个 fixed point，再分别回答“代码是否符合仓库规范”和“代码是否完成原始需求”。
 
@@ -2247,6 +2314,8 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 - standards source：仓库指导文件、编码标准和相关文档；
 - 当前 diff 与验证输出。
 
+**执行纪律：** 全仓搜索标准来源，已有 `CODING_STANDARDS.md` 和 `CONTRIBUTING.md` 必须纳入；两轴子 Agent 在前台同时发起，再聚合返回的报告。找不到规格并经用户确认没有规格时，Spec 轴标记跳过，不能记为通过。
+
 **两个隔离问题：**
 
 - Standards 轴：设计、可读性、安全、测试、仓库规则是否满足；
@@ -2254,35 +2323,14 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 
 **UI 客户端操作例：** 新的错误提示组件结构清晰、测试完整，但漏掉“离线时不显示重试按钮”的需求。Standards 可通过，Spec 仍失败；总评不能用代码质量把需求缺口平均掉。
 
-**产物与验收：** 两条轴分别列 finding、证据、严重度和最小修复；聚合时保留来源；只有两轴都通过才能收口。
+**产物与验收：** 两条轴分别列 finding、证据、严重度和最小修复；聚合时保留来源；有规格时两轴都通过才能收口；缺规格时明确报告未验证需求符合性。
 
 **新手误区：** 只做 lint 风格检查；或者只照需求点功能，忽略测试泄漏内部实现和越界依赖。
 
-#### 11.1.17 `resolving-merge-conflicts`：解决两侧意图，不是选一侧文本
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/resolving-merge-conflicts/SKILL.md)
+#### 11.1.17 `wizard`：把只有人能做的步骤变成可审阅向导
 
-**一句话理解：** 对每个冲突 hunk 追溯两侧提交、issue 和 PR 的原始意图，尽可能同时保留，再完成 merge/rebase。
-
-**执行顺序：**
-
-1. 查看当前 merge/rebase 状态和历史；
-2. 找到每侧改动的 primary source；
-3. 逐 hunk 解释两侧意图；
-4. 能兼容就合并，不能兼容就按本次合并目标选择并记录取舍；
-5. 不发明新行为；
-6. 运行项目检查；
-7. stage 并继续操作直到结束。
-
-**UI 客户端操作例：** 一侧给设置项增加禁用态，另一侧把同一区域改成异步加载。正确结果应同时保留加载态和禁用规则，而不是接受“ours”或“theirs”。
-
-**产物与验收：** 工作树没有未解决冲突；项目验证通过；merge/rebase 完成；每个不兼容取舍能解释来源。上游 Skill 明确要求总是解决，不执行 `--abort`。
-
-**新手误区：** 看到冲突标记就按“较新的代码”选择。时间不能说明产品和架构意图。
-
-#### 11.1.18 `wizard`：把只有人能做的步骤变成可审阅向导
-
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering/wizard/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/engineering/wizard/SKILL.md)
 
 **一句话理解：** 当 Agent 确实无法代替人点击控制台、处理密钥或确认不可逆动作时，生成一份阶段化 Bash 向导。
 
@@ -2295,7 +2343,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 1. 读仓库，列出全部人工阶段和每个阶段产生的值；
 2. 确认值从哪里取得、写到哪里、是否为 secret；
 3. 为每阶段写精确点击路径和 URL，不知道就查官方文档，不能编；
-4. 复制稳定模板，只编写 stages；
+4. 复制本版模板，只编写 stages；新模板会转义环境值、以 0600 创建新环境文件，并保留既有文件权限及符号链接目标；
 5. secret 使用隐藏输入，写入时幂等；
 6. 不可逆动作前显式确认；
 7. 用 `bash -n`，可用时再跑 shellcheck；不要由 Agent 代替用户完整执行。
@@ -2306,11 +2354,78 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 
 **新手误区：** 把真实 secret 粘贴进对话，或者让 Agent 猜控制台按钮名称。
 
+#### 11.1.18 `implement-spec`：把一份规格汇总到集成分支的并行任务图
+
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/engineering/implement-spec/SKILL.md)
+
+**一句话理解：** 读取 spec 与 ticket 依赖图，持续抓取当前 frontier，通过多个 worktree/branch 并行实现，最终汇总到一个 integration branch。
+
+**与 `implement` 的差别：** `implement` 处理一块已定义工作；`implement-spec` 已移入 Engineering，是整份规格的编排器，负责 draft PR、多个 implementer、merger、frontier 更新和收尾 review。
+
+**执行顺序：**
+
+1. 读 spec 和 tickets，理解 task graph；
+2. 必要时先让 exploration Agent 把共享研究保存到 repo 外；
+3. 创建集成分支；tracker 以 PR 关闭工作或用户要求 PR 时，在首次合入后才创建 draft PR；
+4. 为当前 frontier 的 tickets 分配独立 worktree/branch，确认基于集成分支；每个 implementer 调用 `tdd`，汇报前合入集成分支最新提交；
+5. 完成后由 merger 合入集成分支；
+6. 依赖解除后启动下一批；
+7. 全部完成后运行 code review 并集中修复；
+8. 有 draft PR 则标记 ready；否则按 tracker 规则关闭工作并报告集成分支；清理 worktrees。
+
+**UI 客户端操作例：** “账号配置”有四张票，其中 UI 文案与配置存储可并行，真实请求依赖两者。task graph 应让前两张同时开始，不能按票号盲目串行。
+
+**产物与验收：** 所有 tickets 在同一集成分支可追溯；依赖得到尊重；subagent 通过 context pointers 共享资料；worktree 清理完成；最终 review 有证据。
+
+**新手误区：** 把票当顺序清单，或在无新增提交时创建 PR。它需要可靠的子 Agent 与 worktree 能力；缺少能力时应说明限制，再选择逐票 `implement`。
+
+#### 11.1.19 `retro`：复盘 Agent 环境，而不是评价一次回答好不好
+
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/engineering/retro/SKILL.md)
+
+**一句话理解：** 从真实会话一手记录寻找环境改进，让下一次 Agent 更容易找到信息、得到反馈并少走弯路。
+
+**执行顺序：** 先读取 `writing-for-agents`，再读指定会话的一手记录；未指定时默认当前会话。最好在清空上下文前复盘，清空后则提供原会话日志指针。
+
+**候选类别：** Navigation、Automated checks、Coding standards、Global guidance、Tool economy、No-ops、Information access。
+
+**检查优先：** 先读仓库检查命令与 CI。已有检查未接入、静默失效，或没有 pre-commit/CI guardrail，本身就是发现。固定语法、禁用 API、导入形状等机械错误应优先成为确定性检查；只有跨文件一致性等判断题才放进编码标准。
+
+**关键分工：** 实现 Agent 上下文压力最大，应少背规范；review Agent 只需读 diff，更适合执行细致标准。根指导文件应该保留导航指针，具体标准放到 review 或自动检查。
+
+**UI 客户端操作例：** Agent 三次才找到设置迁移入口。retro 可以建议在领域文档加导航指针；若错误可被静态测试捕获，则优先新增自动检查，而不是再写一句“请小心”。
+
+**产物与验收：** 候选按严重度排列；每项都有会话证据、建议放置位置和预期行为变化；不会把偶发偏好升级成全局规则。
+
+**新手误区：** 复盘只追加“下次注意”的指导文字，忽略可以自动检查的错误。该 Skill 交付的是按严重度排列的环境改进候选；会话日志中的隐私不能进入公开文档。
+
+#### 11.1.20 `pr`：用最小图示和证据写清 PR
+
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/engineering/pr/SKILL.md)
+
+**一句话理解：** 写 PR 正文时加载，用共同语言说明改变、前后证据和合并影响。
+
+**什么时候用：** 需要撰写或更新 PR body；它是模型调用的写作参考，不是自动推送或合并命令。
+
+**三个固定区块：**
+
+1. Summary：选择最小的伪代码、调用树、组件树、文件树、Mermaid 或 diff 草图；
+2. Evidence：并列 Before 与 After，提供截图、命令输出或失败到通过的测试证据；
+3. Merge Danger：判断 Door 是单向还是双向，并描述 Blast Radius，即可能影响的范围。
+
+**UI 客户端操作例：** 为“切换工作区后刷新标题”写 PR，用短调用树标出刷新发生的位置，用相同切换步骤的前后截图说明行为，再说明回滚成本与受影响窗口。
+
+**产物与验收：** 图示足以解释核心变化；证据来自实际运行；使用 `GLOSSARY.md` 词汇；合并影响与真实改动匹配。
+
+**新手误区：** 用漂亮图示代替证据，或把“可回滚”写成没有依据的低风险保证。
+
+**来源致谢：** 上游注明借鉴 Dex Horthy / Humanlayer 的 `show-me` Skill；归属与原始链接见上游 `CREDITS.md`。
+
 ### 11.2 Productivity：思考、交接、教学与 Agent 文档的 7 个 Skill
 
 #### 11.2.1 `grill-me`：没有仓库时，把脑中的想法问清楚
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/productivity/grill-me/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/productivity/grill-me/SKILL.md)
 
 **一句话理解：** 这是 `grilling` 的无仓库入口，适合计划、设计和想法澄清。
 
@@ -2337,7 +2452,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 
 #### 11.2.2 `grilling`：用决策树和 frontier 管理追问
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/productivity/grilling/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/productivity/grilling/SKILL.md)
 
 **一句话理解：** 把一个设计建模成决策树，每一轮只问前置条件已经稳定的 frontier，并给每题一个推荐答案。
 
@@ -2347,7 +2462,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 - Prerequisite：回答当前问题前必须先稳定的上游决定；
 - Frontier：此刻无需猜测就能回答的全部问题。
 
-**一轮的正确形状：** 同时询问当前 frontier 上的所有独立问题；每题编号，说明为什么要问，并给出推荐答案；然后等待用户回答，重新计算下一轮。
+**一轮的正确形状：** 同时询问当前 frontier 上的所有独立问题；每题编号，说明为什么要问，并给出推荐答案；然后等待用户回答，重新计算下一轮。用户只回答“yes”“go ahead”或同义确认时，表示接受该轮全部推荐答案，不要重复提问。
 
 **事实与决定的边界：** “当前框架支持什么”由 Agent 查；“团队愿意承担哪种兼容成本”由用户定。一个好的 grilling 会减少用户负担，而不是把代码库调查伪装成访谈。
 
@@ -2359,7 +2474,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 
 #### 11.2.3 `handoff`：让工作跨会话旅行，但不复制整个世界
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/productivity/handoff/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/productivity/handoff/SKILL.md)
 
 **一句话理解：** 把当前会话压缩成一份放在系统临时目录的交接文档，让新 Agent 从权威产物继续。
 
@@ -2385,7 +2500,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 
 #### 11.2.4 `teach`：把一次问答变成跨会话学习工作区
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/productivity/teach/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/productivity/teach/SKILL.md)
 
 **一句话理解：** 围绕学习使命建立持久目录，用短课、参考材料、学习记录和反馈练习提升长期掌握。
 
@@ -2399,6 +2514,8 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 - `assets/*`：课程复用组件；
 - `NOTES.md`：教学偏好和工作笔记。
 
+**路径与练习：** `lessons/` 等学习产物相对调用 `teach` 的工作目录，格式参考文件才相对 Skill 目录。选择题正确答案的位置要变化，不能靠固定顺序泄露答案。
+
 **学习原则：** 知识获取阶段降低无关难度；技能训练阶段通过检索练习、间隔和交错增加“有益难度”；不要把当下答得快误认为长期记得住。
 
 **UI 客户端操作例：** 新人要学会诊断跨层 bug。第一课只练“构造 red-capable 命令”，第二课再练最小化，第三课混入事件乱序案例；每课都能在十几分钟内完成并得到即时反馈。
@@ -2409,7 +2526,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 
 #### 11.2.5 `to-questionnaire`：把别人脑中的信息异步取回来
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/productivity/to-questionnaire/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/productivity/to-questionnaire/SKILL.md)
 
 **一句话理解：** 当用户无法回答主题本身时，只采访“发给谁、需要拿回什么”，再为真正知情者写问卷。
 
@@ -2434,7 +2551,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 
 #### 11.2.6 `wait-what`：上一条没听懂，先退回共同前提
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/productivity/wait-what/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/productivity/wait-what/SKILL.md)
 
 **一句话理解：** 它要求 Agent 为上一条回复补少量背景，用 ASD-STE100 风格的简明英语和项目共同语言重新表达。
 
@@ -2442,7 +2559,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 
 **什么时候别用：** 需要修改事实或方案；这不是“说得更简单就算修复”的替代品。
 
-**UI 客户端操作例：** Agent 突然说“把该 adapter 设为 seam 可以提高 locality”。调用后，它应先解释调用方目前被迫知道哪些内部步骤，再用 `CONTEXT.md` 已有词汇重讲 adapter、seam 与 locality。
+**UI 客户端操作例：** Agent 突然说“把该 adapter 设为 seam 可以提高 locality”。调用后，它应先解释调用方目前被迫知道哪些内部步骤，再用 `GLOSSARY.md` 已有词汇重讲 adapter、seam 与 locality。
 
 **可直接使用的输入：**
 
@@ -2456,7 +2573,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 
 #### 11.2.7 `writing-for-agents`：写给 Agent 的文档要改变行为
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/productivity/writing-for-agents/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/productivity/writing-for-agents/SKILL.md)
 
 **一句话理解：** 用 context pointer、信息层级、明确步骤和完成条件，让 Agent 每次运行采取同一过程，而不是生成同一句输出。
 
@@ -2485,7 +2602,7 @@ Misc 不是“低价值”，而是“适用面窄”。使用前先确认仓库
 
 #### 11.3.1 `git-guardrails-claude-code`：在 Claude Code 执行前拦截危险 Git 命令
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/misc/git-guardrails-claude-code/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/misc/git-guardrails-claude-code/SKILL.md)
 
 **一句话理解：** 安装 Claude Code `PreToolUse` hook，在 Bash 命令真正执行前阻止 push、hard reset、强制 clean 等动作。
 
@@ -2511,7 +2628,7 @@ Misc 不是“低价值”，而是“适用面窄”。使用前先确认仓库
 
 #### 11.3.2 `migrate-to-shoehorn`：只在测试里减少大型对象伪造
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/misc/migrate-to-shoehorn/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/misc/migrate-to-shoehorn/SKILL.md)
 
 **一句话理解：** 在 TypeScript 测试中，用 `@total-typescript/shoehorn` 的 helper 替换脆弱的 `as Type` 和双重断言。
 
@@ -2535,7 +2652,7 @@ Misc 不是“低价值”，而是“适用面窄”。使用前先确认仓库
 
 #### 11.3.3 `scaffold-exercises`：按固定课程结构生成可 lint 的练习骨架
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/misc/scaffold-exercises/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/misc/scaffold-exercises/SKILL.md)
 
 **一句话理解：** 为特定课程仓库创建编号 section、exercise，以及 problem/solution/explainer 目录，并通过专用 lint。
 
@@ -2553,7 +2670,7 @@ Misc 不是“低价值”，而是“适用面窄”。使用前先确认仓库
 
 #### 11.3.4 `setup-pre-commit`：为已有 Node 仓库接入提交前检查
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/misc/setup-pre-commit/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/misc/setup-pre-commit/SKILL.md)
 
 **一句话理解：** 检测包管理器，安装 Husky、lint-staged 和 Prettier，把格式化、typecheck 和测试接入 pre-commit。
 
@@ -2576,13 +2693,13 @@ Misc 不是“低价值”，而是“适用面窄”。使用前先确认仓库
 
 **新手误区：** 把“检查越多越安全”当绝对真理。慢到大家绕过的 hook 不是可靠门禁。
 
-### 11.4 In-progress：八个实验 Skill，先读稳定性再试
+### 11.4 In-progress：七个实验 Skill，先读稳定性再试
 
 这一组目录名就是警告。它们可以提供设计灵感，但名称、接口、工具依赖和工作流都可能变化。新人应先掌握前面的稳定 Skill，再在隔离分支或练习仓库里试。
 
 #### 11.4.1 `claude-handoff`：把 handoff 直接启动成后台 Claude Agent
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/in-progress/claude-handoff/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/in-progress/claude-handoff/SKILL.md)
 
 **一句话理解：** 它不把交接只保存成文件，而是把脱敏摘要作为 prompt 传给 `claude --bg --name`，让后台 Agent 立即在当前目录接手。
 
@@ -2596,34 +2713,10 @@ Misc 不是“低价值”，而是“适用面窄”。使用前先确认仓库
 
 **实验风险：** CLI 参数、后台 Agent 能力和会话管理均为工具特定，不能当成跨 Agent 标准。
 
-#### 11.4.2 `implement-spec`：把一份规格实现为单分支 PR 的并行任务图
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/in-progress/implement-spec/SKILL.md)
+#### 11.4.2 `loop-me`：把生活或工作中的重复循环写成可实现 workflow
 
-**一句话理解：** 读取 spec 与 ticket 依赖图，持续抓取当前 frontier，通过多个 worktree/branch 并行实现，最终汇总到一个 PR。
-
-**与稳定 `implement` 的差别：** 稳定版处理一块已定义工作；实验版是高并发编排器，负责 draft PR、多个 implementer、merger、frontier 更新和收尾 review。
-
-**执行顺序：**
-
-1. 读 spec 和 tickets，理解 task graph；
-2. 必要时先让 exploration Agent 把共享研究保存到 repo 外；
-3. 创建分支和 draft PR；
-4. 为当前 frontier 的 tickets 分配独立 worktree；
-5. 完成后由 merger 合入 PR 分支；
-6. 依赖解除后启动下一批；
-7. 全部完成后运行 code review 并集中修复；
-8. 标记 ready，清理 worktrees。
-
-**UI 客户端操作例：** “账号配置”有四张票，其中 UI 文案与配置存储可并行，真实请求依赖两者。task graph 应让前两张同时开始，不能按票号盲目串行。
-
-**产物与验收：** 所有 tickets 在同一 PR 可追溯；依赖得到尊重；subagent 通过 context pointers 共享资料；worktree 清理完成；最终 review 有证据。
-
-**实验风险：** 需要可靠的并行 Agent、worktree 和 PR 权限；缺任一项都应降级到稳定 `implement`，不能伪造并行完成。
-
-#### 11.4.3 `loop-me`：把生活或工作中的重复循环写成可实现 workflow
-
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/in-progress/loop-me/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/in-progress/loop-me/SKILL.md)
 
 **一句话理解：** 用 stateful grilling 发现重复 loop，并把它们变成 `workflows/*.md` 中实现者无需再问问题的规格。
 
@@ -2640,25 +2733,10 @@ Misc 不是“低价值”，而是“适用面窄”。使用前先确认仓库
 
 **实验风险：** 不要为了“自动化”强加 AI、定时器或 checkpoint。原文明确要求只有 grilling 证明需要时才加入结构。
 
-#### 11.4.4 `retro`：复盘 Agent 环境，而不是评价一次回答好不好
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/in-progress/retro/SKILL.md)
+#### 11.4.3 `setup-ts-deep-modules`：用 dependency-cruiser 把深模块边界变成硬检查
 
-**一句话理解：** 从真实会话一手记录寻找环境改进，让下一次 Agent 更容易找到信息、得到反馈并少走弯路。
-
-**候选类别：** Navigation、Automated checks、Coding standards、Global guidance、Tool economy、No-ops、Information access。
-
-**关键分工：** 实现 Agent 上下文压力最大，应少背规范；review Agent 只需读 diff，更适合执行细致标准。根指导文件应该保留导航指针，具体标准放到 review 或自动检查。
-
-**UI 客户端操作例：** Agent 三次才找到设置迁移入口。retro 可以建议在领域文档加导航指针；若错误可被静态测试捕获，则优先新增自动检查，而不是再写一句“请小心”。
-
-**产物与验收：** 候选按严重度排列；每项都有会话证据、建议放置位置和预期行为变化；不会把偶发偏好升级成全局规则。
-
-**实验风险：** 会话日志可能含隐私，读取、摘录和发布前必须单独脱敏；改环境前仍需维护者确认。
-
-#### 11.4.5 `setup-ts-deep-modules`：用 dependency-cruiser 把深模块边界变成硬检查
-
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/in-progress/setup-ts-deep-modules/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/in-progress/setup-ts-deep-modules/SKILL.md)
 
 **一句话理解：** 在 TypeScript 仓库中规定包根文件是公开入口，任意子目录都是私有实现，并用 dependency-cruiser 证明违规会失败。
 
@@ -2677,9 +2755,9 @@ Misc 不是“低价值”，而是“适用面窄”。使用前先确认仓库
 
 **实验风险：** 这是侵入性工具链改动。大型既有仓库应先在一个包或分支试验，评估历史 deep import 的迁移成本。
 
-#### 11.4.6 `writing-fragments`：探索期只采集有生命力的写作碎片
+#### 11.4.4 `writing-fragments`：探索期只采集有生命力的写作碎片
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/in-progress/writing-fragments/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/in-progress/writing-fragments/SKILL.md)
 
 **一句话理解：** 写作 explore 阶段不排结构，只把可能进入成稿的句子、论点、片段、类比和 leading word 追加到 Markdown。
 
@@ -2693,9 +2771,9 @@ Misc 不是“低价值”，而是“适用面窄”。使用前先确认仓库
 
 **实验风险：** 这是写作能力，不是工程需求 Skill；不要在产品实现流程里自动触发。
 
-#### 11.4.7 `writing-beats`：从固定素材中选择一条可达的叙事路径
+#### 11.4.5 `writing-beats`：从固定素材中选择一条可达的叙事路径
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/in-progress/writing-beats/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/in-progress/writing-beats/SKILL.md)
 
 **一句话理解：** 写作 exploit 阶段把素材当成固定矿堆，先确定读者已知概念，再逐 beat 选择下一步，每个 beat 只能依赖已经 grounded 的概念。
 
@@ -2714,9 +2792,9 @@ Misc 不是“低价值”，而是“适用面窄”。使用前先确认仓库
 
 **实验风险：** 逐 beat 需要频繁人机选择，不适合用户想一次性自动生成完整文章的场景。
 
-#### 11.4.8 `writing-shape`：从固定素材中逐段塑造一篇文章
+#### 11.4.6 `writing-shape`：从固定素材中逐段塑造一篇文章
 
-[固定版本原文](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/in-progress/writing-shape/SKILL.md)
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/in-progress/writing-shape/SKILL.md)
 
 **一句话理解：** 同样属于 exploit，但粒度从“叙事 beat”变成“段落或内容块”，并要求每种格式都有理由。
 
@@ -2736,15 +2814,31 @@ Misc 不是“低价值”，而是“适用面窄”。使用前先确认仓库
 
 **实验风险：** 它不是发布、平台排版或事实研究工具；这些必须由其他流程承担。
 
-### 11.5 把 37 个名字压缩成 6 个新手问题
+#### 11.4.7 `chief-of-staff`：在长会话里协调长期目标
+
+[固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/in-progress/chief-of-staff/SKILL.md)
+
+**一句话理解：** 让主会话持续与人讨论，把执行交给后台子 Agent，同时考虑当前任务与下一次任务的环境。
+
+**工作方式：** 主会话承担目标责任，通过研究笔记、commit 等 context pointers 协调子 Agent；运行时支持时建议周期日程。每次工作前先考虑受约束接口、lint、review 标准和必要数据源怎样减少下次失败。
+
+**UI 客户端操作例：** 长期改善匿名桌面客户端的可靠性时，分别委派日志调查、回归验证和文档核对，主会话汇总需要用户决定的优先级。
+
+**产物与验收：** 子任务与长期目标有明确关系；证据可通过指针回读；环境改进有具体问题来源；没有把子 Agent 的口头完成当验证。
+
+**实验风险：** 原文要求全部工作交给子 Agent，并积极修复约定偏离，容易扩大任务范围。它仍在 `in-progress`，运行时能力、用户授权和数据访问边界必须先匹配，不能视为稳定总控接口。
+
+### 11.5 把 38 个名字压缩成 6 个新手问题
 
 当你不确定时，不必从头翻这一章。只回答下面六问：
 
-![阿舟知识图：37 个 Skills 的六个新手问题路由](assets/azhou/six-questions-skill-router.png)
+![阿舟知识图：六个新手问题路由（旧版示意）](assets/azhou/six-questions-skill-router.png)
+
+> 图为旧版教学示意；图内旧数量和旧入口不构成本版清单。当前 38 项与新增入口以本章正文和附录为准。
 
 1. **需求还没问清吗？** 无仓库用 `grill-me`，有仓库用 `grill-with-docs`，超出一个会话用 `wayfinder`。
 2. **决定已经清楚了吗？** 写 `to-spec`；需要多人或多会话交付，再用 `to-tickets`。
-3. **现在已经进入施工了吗？** 用 `implement`，在预定 seam 内按需加载 `tdd`，结束前 `code-review`。
+3. **现在已经进入施工了吗？** 逐票用 `implement`，整份规格的任务图用 `implement-spec`；在预定 seam 内按需加载 `tdd`，结束前 `code-review`，写 PR 时用 `pr`，会话结束前用 `retro` 提炼环境改进。
 4. **是一个难 bug 吗？** 用 `diagnosing-bugs`，先拿到稳定红色。
 5. **复杂度或词义正在泄漏吗？** 词义用 `domain-modeling`，模块形状用 `codebase-design`，候选调查用 `improve-codebase-architecture`。
 6. **问题必须跨人、跨工具或跨会话吗？** 用 `to-questionnaire`、`wizard` 或 `handoff`，分别对应“答案在别人脑中”“动作只有人能做”“工作需要旅行”。
@@ -2753,13 +2847,14 @@ Misc 不是“低价值”，而是“适用面窄”。使用前先确认仓库
 
 ## 第 12 章 · Matt Pocock 本人怎样讲 Skills
 
-前 11 章主要解释固定提交中的 37 个 Skills。本章换一个视角：只看 Matt Pocock 自己的公开仓库和 AI Hero 官网，学习他如何解释 Skills、上下文、反馈环和交接。
+前 11 章主要解释当前固定提交中的 38 个 Skills。本章换一个视角：只看 Matt Pocock 自己的公开仓库和 AI Hero 官网，学习他如何解释 Skills、上下文、反馈环和交接。
 
-### 12.1 先分清两条时间线
+### 12.1 先分清历史证据与当前基线
 
 | 时间线 | 本书怎样使用 | 不得怎样使用 |
 |---|---|---|
-| 2026-08-24 的固定提交 | 证明 37 个 Skills 当时的数量、分类、文件和明文规则 | 不代表后续仓库仍然不变 |
+| 2026-10-12 核对的本地提交 `49dd158` | 证明本版 38 个 Skills 的当前文本与分类 | 不把历史官网材料升级为当前行为证明 |
+| 2026-08-24 的历史固定提交 | 证明 37 个 Skills 当时的数量、分类、文件和明文规则 | 不代表后续仓库仍然不变 |
 | 2026-09-01 检索到的官网页面 | 补充作者当时的公开教学表述 | 不反向改写固定提交，也不代表作者为本书背书 |
 
 这一区分很重要。「作者今天如何讲」和「固定版本当时包含什么」是两个问题。把它们混在一起，就会让版本化教材失去可核验性。
@@ -2844,7 +2939,9 @@ Matt 在 cohort 页面上把 feedback loops 放在核心位置；在 [Day 4: Fee
 
 在 [The /wizard Skill](https://www.aihero.dev/skills-wizard) 中，外部控制台、凭据录入等人工操作被转化为交互式 Bash 向导。教学重点不是「自动化一切」，而是让不能自动化的部分也拥有顺序、安全输入、恢复点和最终摘要。
 
-### 12.4 固定提交里的五个可观察事实
+### 12.4 初版固定提交里的五个可观察事实
+
+本节保留初版 `6654f6b` 的历史证据链接，不把当时的网页与仓库表述改写为新版本原话。当前行为以本书新版基线 `49dd158` 为准：词典已改名为 `GLOSSARY.md`，`retro` 已进入 engineering，TDD 增加 seam 捕获与遗漏的取舍说明。
 
 #### 12.4.1 仓库定位是真实工程，不是 vibe coding
 
@@ -3404,11 +3501,11 @@ Skill 选择：
 
 ---
 
-## 第 14 章 · 附录：37 个 Skills 完整索引
+## 第 14 章 · 附录：38 个 Skills 完整索引
 
-下面的列表以固定提交为准。稳定分类来自仓库目录；一句话说明综合了上游 README、各 Skill frontmatter 与正文。
+下面的列表以本地源提交 `49dd158d1076134a641b33efb035946536778336` 为准，核对日期为 2026-10-12。稳定分类来自仓库目录；一句话说明综合了上游 README、各 Skill frontmatter 与正文。
 
-### A. Engineering：18 个
+### A. Engineering：20 个
 
 | Skill | 调用倾向 | 解决的问题 |
 |---|---|---|
@@ -3425,11 +3522,13 @@ Skill 选择：
 | `diagnosing-bugs` | 模型 | 从 red-capable 反馈环开始诊断疑难 bug 与性能退化 |
 | `research` | 模型 | 用高可信一手来源调查外部事实并形成引用文档 |
 | `tdd` | 模型 | 在预先同意的公共 seam 做一行为一循环的红绿开发 |
-| `domain-modeling` | 模型 | 打磨共同语言，及时更新 `CONTEXT.md`，谨慎记录 ADR |
+| `domain-modeling` | 模型 | 打磨共同语言，及时更新 `GLOSSARY.md`，谨慎记录 ADR |
 | `codebase-design` | 模型 | 提供深模块、接口、seam、adapter 等共享设计词汇 |
 | `code-review` | 模型 | 并行或隔离执行 Standards 与 Spec 两轴评审 |
-| `resolving-merge-conflicts` | 模型 | 按两侧一手意图逐 hunk 解决 merge/rebase 冲突 |
 | `wizard` | 模型 | 为只有人能完成的控制台、凭据和迁移步骤生成安全向导 |
+| `implement-spec` | 用户 | 按任务图并行实现整份规格，汇总到集成分支并统一评审 |
+| `retro` | 用户 | 从会话证据提出环境改进，机械错误优先转为自动检查 |
+| `pr` | 模型 | 用最小图示、前后证据与合并影响撰写 PR 正文 |
 
 ### B. Productivity：7 个
 
@@ -3452,18 +3551,17 @@ Skill 选择：
 | `scaffold-exercises` | 需要课程章节、题目、答案和讲解目录 | 面向教学内容生产 |
 | `setup-pre-commit` | 需要 Husky、lint-staged、Prettier、类型检查和测试 | 先匹配现有包管理器与 CI |
 
-### D. In-progress：8 个
+### D. In-progress：7 个
 
 | Skill | 当前方向 | 稳定性提醒 |
 |---|---|---|
 | `claude-handoff` | 用后台 Claude Agent 立即接手当前对话 | 工具特定，行为可能变化 |
-| `implement-spec` | 实现一份规格 | 与稳定 `implement` 重叠，先看当前文本 |
 | `loop-me` | 多会话拷问工作流规格 | 实验中 |
-| `retro` | 对一次编码会话做 retrospective | 实验中 |
 | `setup-ts-deep-modules` | 用 dependency-cruiser 约束 TypeScript 深模块 | 工具链侵入较大，先原型验证 |
 | `writing-beats` | 把素材组织成逐步展开的叙事 beats | 写作实验 |
 | `writing-fragments` | 挖掘未结构化写作碎片 | 写作实验 |
 | `writing-shape` | 逐段把原始材料塑造成文章 | 写作实验 |
+| `chief-of-staff` | 通过后台子 Agent 与日程建议协调长期目标 | 长会话与运行时相关，仍属实验 |
 
 ### E. 一页选型表
 
@@ -3476,6 +3574,9 @@ Skill 选择：
 | 决策已完成，需要规格 | `to-spec` |
 | 规格需要拆成可交付任务 | `to-tickets` |
 | 有批准的 ticket，需要施工 | `implement` |
+| 要一次协调整份规格的任务图 | `implement-spec` |
+| 需要写 PR 正文 | `pr` |
+| 要从会话里改进 Agent 环境 | `retro` |
 | UI/状态模型必须看见才能决定 | `prototype` |
 | 新功能或 bug 要测试先行 | `tdd` |
 | bug 难复现或跨多层 | `diagnosing-bugs` |
@@ -3484,12 +3585,13 @@ Skill 选择：
 | 模块接口浅、复杂度泄漏 | `codebase-design` |
 | 想找真实架构改进候选 | `improve-codebase-architecture` |
 | 要评审实现 | `code-review` |
-| merge/rebase 冲突 | `resolving-merge-conflicts` |
 | 只有人能完成外部步骤 | `wizard` |
 | 工作要跨 Agent/工具旅行 | `handoff` |
 | 决定在另一位专家脑中 | `to-questionnaire` |
 | 上一条解释没听懂 | `wait-what` |
 | 要写 Skill 或 Agent 指导文档 | `writing-for-agents` |
+
+**版本迁移提示：** `implement-spec` 与 `retro` 已从实验目录移入 Engineering；新增 `pr` 与实验性 `chief-of-staff`。`resolving-merge-conflicts` 的 Skill 文件已删除，源仓库仍有历史说明页，但不再是本版可调用条目。
 
 ---
 
@@ -3497,11 +3599,11 @@ Skill 选择：
 
 ### 上游一手材料
 
-- [仓库 README（固定提交）](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/README.md)
-- [engineering 目录](https://github.com/mattpocock/skills/tree/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering)
-- [productivity 目录](https://github.com/mattpocock/skills/tree/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/productivity)
-- [misc 目录](https://github.com/mattpocock/skills/tree/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/misc)
-- [in-progress 目录](https://github.com/mattpocock/skills/tree/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/in-progress)
+- [仓库 README（固定提交）](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/README.md)
+- [engineering 目录](https://github.com/mattpocock/skills/tree/49dd158d1076134a641b33efb035946536778336/skills/engineering)
+- [productivity 目录](https://github.com/mattpocock/skills/tree/49dd158d1076134a641b33efb035946536778336/skills/productivity)
+- [misc 目录](https://github.com/mattpocock/skills/tree/49dd158d1076134a641b33efb035946536778336/skills/misc)
+- [in-progress 目录](https://github.com/mattpocock/skills/tree/49dd158d1076134a641b33efb035946536778336/skills/in-progress)
 - [AI Skills for Real Engineers](https://www.aihero.dev/skills)
 - [The /grilling Skill](https://www.aihero.dev/skills-grilling)
 - [The /implement Skill](https://www.aihero.dev/skills-implement)
@@ -3509,7 +3611,7 @@ Skill 选择：
 - [The /wizard Skill](https://www.aihero.dev/skills-wizard)
 - [Skills Changelog: /handoff, /prototype, /review and /writing](https://www.aihero.dev/skills/skills-changelog-handoff-prototype-review-and-writing)
 
-官网页面以 2026-09-01 的检索结果为准，只补充作者当时的公开表述，不用来改写 2026-08-24 的固定仓库基线。完整的 15 条证据记录位于 `research/matt-pocock-public-statements.md`。
+官网页面以 2026-09-01 的检索结果为准，只补充作者当时的公开表述，不用来改写本版的本地固定仓库基线。完整的 15 条证据记录位于 `research/matt-pocock-public-statements.md`。
 
 ### 业界方法来源
 
@@ -3525,7 +3627,7 @@ Skill 选择：
 
 ### 已知限制
 
-- 本书没有声称 37 个 Skills 都适合每个 Agent 运行时。
+- 本书没有声称 38 个 Skills 都适合每个 Agent 运行时。
 - 上游仓库会变化，尤其是 `in-progress`。
 - 教学案例不证明任何私有产品已经实现或通过测试。
 - HTML 是由本书 Markdown 生成的阅读版，不是独立事实源。

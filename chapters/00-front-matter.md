@@ -1,6 +1,6 @@
 # Matt Pocock Skills 橙皮书
 
-**从传统开发到 AI 协作开发：37 个 Skills 的心智模型、作者一手材料与 UI 客户端实战**
+**从传统开发到 AI 协作开发：38 个 Skills 的心智模型、作者一手材料与 UI 客户端实战**
 
 > 这不是一份命令清单。真正要学会的是：什么时候应该停下来问问题，什么时候应该做原型，什么时候必须先让测试变红，以及怎样把一次对话变成可跨会话交付的工程证据。
 
@@ -26,12 +26,14 @@
 | 项目 | 本书口径 |
 |---|---|
 | 上游仓库 | [`mattpocock/skills`](https://github.com/mattpocock/skills) |
-| 核验提交 | [`6654f6b60cd9d5be8b54c6fafe44346dabeb3b76`](https://github.com/mattpocock/skills/tree/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76) |
-| 固定时间 | 2026-08-24 |
-| 书稿核验 | 2026-09-01 |
-| Skill 数量 | 37 个：engineering 18、productivity 7、misc 4、in-progress 8 |
+| 核验提交 | [`49dd158d1076134a641b33efb035946536778336`](https://github.com/mattpocock/skills/tree/49dd158d1076134a641b33efb035946536778336) |
+| 提交日期 | 2026-10-09 |
+| 书稿核验 | 2026-10-12（本地源核对） |
+| Skill 数量 | 38 个：engineering 20、productivity 7、misc 4、in-progress 7 |
 | 目标读者 | 刚起步、已经在用、正在设计团队级 AI 工程流程的开发者 |
-| 补充证据 | Matt Pocock 官网一手材料 |
+| 补充证据 | Matt Pocock 官网历史一手材料（保留各自核验日期） |
+
+本次以固定提交的 git 引用逐项核对上游内容（不依赖本地工作区检出）；清单和变化见 `research/upstream-sync-2026-10-12.md`（2026-10-09 及更早历史核对记录保留）。上游包版本为 `1.3.1`，精确行为仍以提交为准。
 
 本书不是 Matt Pocock 官方文档，也不代表原作者背书。Skill 的原始代码与文档采用 MIT License；本书原创讲解、图示和案例采用 CC BY-NC-SA 4.0。
 
@@ -50,7 +52,7 @@
 8. 七个 UI 客户端实例，从浅到深
 9. 把 Skills 引入自己的仓库
 10. 新人四周训练路线
-11. 37 个 Skills 逐项小白手册
+11. 38 个 Skills 逐项小白手册
 12. Matt Pocock 本人怎样讲 Skills
 13. 三个端到端操作案例：审报告、迁逻辑、修白屏
 14. 速查索引与资料声明

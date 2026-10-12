@@ -14,7 +14,8 @@ public Skills repository. Keep changes documentation-focused and reviewable.
 - `research/` holds bounded evidence notes. Claims in the book must preserve
   each note's source, date/version, and inference limits.
 - Upstream behavior is fixed to commit
-  `6654f6b60cd9d5be8b54c6fafe44346dabeb3b76`.
+  `49dd158d1076134a641b33efb035946536778336`.
+- For baseline changes, consult `research/upstream-sync-2026-10-12.md`; retain historical evidence dates and commits.
 - Treat `in-progress` Skills as experimental, not stable interfaces.
 
 ## Public Boundary

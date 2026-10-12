@@ -3,7 +3,7 @@
 ## Matt Pocock Skills
 
 This book explains the public repository `mattpocock/skills` at commit
-`6654f6b60cd9d5be8b54c6fafe44346dabeb3b76`.
+`b0618bc436ad893b3c5e84e55fba86586d34a404`.
 
 - Upstream repository: <https://github.com/mattpocock/skills>
 - Upstream license: MIT
@@ -37,3 +37,7 @@ diagrams for this book. SVG exports embed subsets of these fonts:
 
 License copies are provided under `LICENSES/`. The standalone PNG images are
 rendered documents; the embedded font software retains its own license.
+
+## PR visual guidance attribution
+
+The upstream `pr` Skill credits Dex Horthy’s `show-me` visual menu and placement guidance. See [upstream CREDITS.md](https://github.com/mattpocock/skills/blob/b0618bc436ad893b3c5e84e55fba86586d34a404/skills/engineering/pr/CREDITS.md). This handbook paraphrases that workflow; `show-me` is not a dependency of the upstream plugin.

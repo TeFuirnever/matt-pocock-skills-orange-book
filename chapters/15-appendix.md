@@ -1,8 +1,8 @@
-## 第 14 章 · 附录：37 个 Skills 完整索引
+## 第 14 章 · 附录：38 个 Skills 完整索引
 
-下面的列表以固定提交为准。稳定分类来自仓库目录；一句话说明综合了上游 README、各 Skill frontmatter 与正文。
+下面的列表以本地源提交 `49dd158d1076134a641b33efb035946536778336` 为准，核对日期为 2026-10-12。稳定分类来自仓库目录；一句话说明综合了上游 README、各 Skill frontmatter 与正文。
 
-### A. Engineering：18 个
+### A. Engineering：20 个
 
 | Skill | 调用倾向 | 解决的问题 |
 |---|---|---|
@@ -19,11 +19,13 @@
 | `diagnosing-bugs` | 模型 | 从 red-capable 反馈环开始诊断疑难 bug 与性能退化 |
 | `research` | 模型 | 用高可信一手来源调查外部事实并形成引用文档 |
 | `tdd` | 模型 | 在预先同意的公共 seam 做一行为一循环的红绿开发 |
-| `domain-modeling` | 模型 | 打磨共同语言，及时更新 `CONTEXT.md`，谨慎记录 ADR |
+| `domain-modeling` | 模型 | 打磨共同语言，及时更新 `GLOSSARY.md`，谨慎记录 ADR |
 | `codebase-design` | 模型 | 提供深模块、接口、seam、adapter 等共享设计词汇 |
 | `code-review` | 模型 | 并行或隔离执行 Standards 与 Spec 两轴评审 |
-| `resolving-merge-conflicts` | 模型 | 按两侧一手意图逐 hunk 解决 merge/rebase 冲突 |
 | `wizard` | 模型 | 为只有人能完成的控制台、凭据和迁移步骤生成安全向导 |
+| `implement-spec` | 用户 | 按任务图并行实现整份规格，汇总到集成分支并统一评审 |
+| `retro` | 用户 | 从会话证据提出环境改进，机械错误优先转为自动检查 |
+| `pr` | 模型 | 用最小图示、前后证据与合并影响撰写 PR 正文 |
 
 ### B. Productivity：7 个
 
@@ -46,18 +48,17 @@
 | `scaffold-exercises` | 需要课程章节、题目、答案和讲解目录 | 面向教学内容生产 |
 | `setup-pre-commit` | 需要 Husky、lint-staged、Prettier、类型检查和测试 | 先匹配现有包管理器与 CI |
 
-### D. In-progress：8 个
+### D. In-progress：7 个
 
 | Skill | 当前方向 | 稳定性提醒 |
 |---|---|---|
 | `claude-handoff` | 用后台 Claude Agent 立即接手当前对话 | 工具特定，行为可能变化 |
-| `implement-spec` | 实现一份规格 | 与稳定 `implement` 重叠，先看当前文本 |
 | `loop-me` | 多会话拷问工作流规格 | 实验中 |
-| `retro` | 对一次编码会话做 retrospective | 实验中 |
 | `setup-ts-deep-modules` | 用 dependency-cruiser 约束 TypeScript 深模块 | 工具链侵入较大，先原型验证 |
 | `writing-beats` | 把素材组织成逐步展开的叙事 beats | 写作实验 |
 | `writing-fragments` | 挖掘未结构化写作碎片 | 写作实验 |
 | `writing-shape` | 逐段把原始材料塑造成文章 | 写作实验 |
+| `chief-of-staff` | 通过后台子 Agent 与日程建议协调长期目标 | 长会话与运行时相关，仍属实验 |
 
 ### E. 一页选型表
 
@@ -70,6 +71,9 @@
 | 决策已完成，需要规格 | `to-spec` |
 | 规格需要拆成可交付任务 | `to-tickets` |
 | 有批准的 ticket，需要施工 | `implement` |
+| 要一次协调整份规格的任务图 | `implement-spec` |
+| 需要写 PR 正文 | `pr` |
+| 要从会话里改进 Agent 环境 | `retro` |
 | UI/状态模型必须看见才能决定 | `prototype` |
 | 新功能或 bug 要测试先行 | `tdd` |
 | bug 难复现或跨多层 | `diagnosing-bugs` |
@@ -78,12 +82,13 @@
 | 模块接口浅、复杂度泄漏 | `codebase-design` |
 | 想找真实架构改进候选 | `improve-codebase-architecture` |
 | 要评审实现 | `code-review` |
-| merge/rebase 冲突 | `resolving-merge-conflicts` |
 | 只有人能完成外部步骤 | `wizard` |
 | 工作要跨 Agent/工具旅行 | `handoff` |
 | 决定在另一位专家脑中 | `to-questionnaire` |
 | 上一条解释没听懂 | `wait-what` |
 | 要写 Skill 或 Agent 指导文档 | `writing-for-agents` |
+
+**版本迁移提示：** `implement-spec` 与 `retro` 已从实验目录移入 Engineering；新增 `pr` 与实验性 `chief-of-staff`。`resolving-merge-conflicts` 的 Skill 文件已删除，源仓库仍有历史说明页，但不再是本版可调用条目。
 
 ---
 
@@ -91,11 +96,11 @@
 
 ### 上游一手材料
 
-- [仓库 README（固定提交）](https://github.com/mattpocock/skills/blob/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/README.md)
-- [engineering 目录](https://github.com/mattpocock/skills/tree/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/engineering)
-- [productivity 目录](https://github.com/mattpocock/skills/tree/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/productivity)
-- [misc 目录](https://github.com/mattpocock/skills/tree/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/misc)
-- [in-progress 目录](https://github.com/mattpocock/skills/tree/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76/skills/in-progress)
+- [仓库 README（固定提交）](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/README.md)
+- [engineering 目录](https://github.com/mattpocock/skills/tree/49dd158d1076134a641b33efb035946536778336/skills/engineering)
+- [productivity 目录](https://github.com/mattpocock/skills/tree/49dd158d1076134a641b33efb035946536778336/skills/productivity)
+- [misc 目录](https://github.com/mattpocock/skills/tree/49dd158d1076134a641b33efb035946536778336/skills/misc)
+- [in-progress 目录](https://github.com/mattpocock/skills/tree/49dd158d1076134a641b33efb035946536778336/skills/in-progress)
 - [AI Skills for Real Engineers](https://www.aihero.dev/skills)
 - [The /grilling Skill](https://www.aihero.dev/skills-grilling)
 - [The /implement Skill](https://www.aihero.dev/skills-implement)
@@ -103,7 +108,7 @@
 - [The /wizard Skill](https://www.aihero.dev/skills-wizard)
 - [Skills Changelog: /handoff, /prototype, /review and /writing](https://www.aihero.dev/skills/skills-changelog-handoff-prototype-review-and-writing)
 
-官网页面以 2026-09-01 的检索结果为准，只补充作者当时的公开表述，不用来改写 2026-08-24 的固定仓库基线。完整的 15 条证据记录位于 `research/matt-pocock-public-statements.md`。
+官网页面以 2026-09-01 的检索结果为准，只补充作者当时的公开表述，不用来改写本版的本地固定仓库基线。完整的 15 条证据记录位于 `research/matt-pocock-public-statements.md`。
 
 ### 业界方法来源
 
@@ -119,7 +124,7 @@
 
 ### 已知限制
 
-- 本书没有声称 37 个 Skills 都适合每个 Agent 运行时。
+- 本书没有声称 38 个 Skills 都适合每个 Agent 运行时。
 - 上游仓库会变化，尤其是 `in-progress`。
 - 教学案例不证明任何私有产品已经实现或通过测试。
 - HTML 是由本书 Markdown 生成的阅读版，不是独立事实源。

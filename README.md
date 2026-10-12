@@ -33,7 +33,7 @@ to the fixed upstream commit and the evidence records under `research/`.
 
 ## What this repository contains
 
-- A fixed-version explanation of all 37 upstream Skills.
+- A fixed-version explanation of all 38 upstream Skills.
 - A step-by-step field guide for each Skill: trigger, input, process, boundary,
   teaching desktop UI example, output, verification, and beginner mistakes.
 - Three explicit reading paths for beginner, intermediate, and advanced users.
@@ -47,8 +47,8 @@ to the fixed upstream commit and the evidence records under `research/`.
 - Ten editable Excalidraw scenes with SVG and PNG exports.
 
 The current reading edition is `v0.1.0`. Its evidence baseline is upstream commit
-[`6654f6b60cd9d5be8b54c6fafe44346dabeb3b76`](https://github.com/mattpocock/skills/tree/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76):
-18 engineering, 7 productivity, 4 misc, and 8 in-progress Skills.
+[`49dd158d1076134a641b33efb035946536778336`](https://github.com/mattpocock/skills/tree/49dd158d1076134a641b33efb035946536778336):
+20 engineering, 7 productivity, 4 misc, and 7 in-progress Skills.
 
 ## Public boundary
 
@@ -70,14 +70,14 @@ practice pages under `html/labs/`, and copies every referenced PNG into
 `html/assets/`.
 The verifier checks the fixed upstream commit, the Pages workflow, and common
 public-repository secret/path patterns. Its current verified snapshot
-(`2026-09-01`) is:
+(`2026-10-12`) is:
 
 | Surface | Verified count |
 |---|---:|
 | Numbered chapter sources | 16 |
 | Practice gates | 6 |
 | Capstones | 1 |
-| Detailed Skill sections | 37 |
+| Detailed Skill sections | 38 |
 | First-party evidence records | 15 |
 | Referenced book images | 25 |
 | Final Azhou PNG diagrams | 15 |
@@ -98,3 +98,5 @@ examples, and diagrams are licensed under CC BY-NC-SA 4.0. Embedded font
 subsets retain their own licenses. See [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md)
 and [LICENSES](LICENSES). Project copyright and attribution scope are recorded
 in [NOTICE.md](NOTICE.md).
+
+See the [local upstream audit](research/upstream-sync-2026-10-12.md) for changes and historical evidence boundaries.

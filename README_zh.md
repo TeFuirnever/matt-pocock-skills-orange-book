@@ -2,7 +2,7 @@
 
 ![阿舟图解：Skill 不是更长的 Prompt](assets/azhou/skill-not-prompt.png)
 
-> 不是背 37 个命令，而是学会在 AI 写代码之前、之中和之后，建立可复用的决策与反馈环。
+> 不是背 38 个命令，而是学会在 AI 写代码之前、之中和之后，建立可复用的决策与反馈环。
 
 这本橙皮书以 Matt Pocock 的公开仓库
 [`mattpocock/skills`](https://github.com/mattpocock/skills) 为唯一主线，
@@ -39,7 +39,7 @@
 
 ## 这次不再只做索引
 
-正文逐项讲解固定版本中的 37 个 Skill。每个 Skill 都尽量回答：
+正文逐项讲解固定版本中的 38 个 Skill。每个 Skill 都尽量回答：
 
 1. 一句话应该怎样理解；
 2. 什么时候用，什么时候不要用；
@@ -60,16 +60,16 @@
 
 第 12 章吸收 15 条 Matt Pocock 公开一手材料，区分固定仓库事实、后续官方站表述
 和本书的工程推论。第 13 章给出审报告、迁逻辑、修白屏三个端到端操作案例，
-第 14 章提供 37 个 Skills 的完整索引、资料来源与适用边界。
+第 14 章提供 38 个 Skills 的完整索引、资料来源与适用边界。
 
 ## 材料基准
 
 - 当前阅读版：`v0.1.0`
 - 上游仓库：[`mattpocock/skills`](https://github.com/mattpocock/skills)
-- 固定提交：[`6654f6b60cd9d5be8b54c6fafe44346dabeb3b76`](https://github.com/mattpocock/skills/tree/6654f6b60cd9d5be8b54c6fafe44346dabeb3b76)
-- 提交时间：2026-08-24
-- 书稿核验日期：2026-09-01
-- 范围：18 个 engineering、7 个 productivity、4 个 misc、8 个 in-progress
+- 固定提交：[`49dd158d1076134a641b33efb035946536778336`](https://github.com/mattpocock/skills/tree/49dd158d1076134a641b33efb035946536778336)
+- 提交时间：2026-10-09
+- 书稿核验日期：2026-10-12
+- 范围：20 个 engineering、7 个 productivity、4 个 misc、7 个 in-progress
 
 仓库后续会变化，尤其是 `in-progress`。本书只对固定提交负责，不把实验目录写成稳定接口。
 页面只会在存在至少两份真实发布版时显示版本选择器；当前显示本版标签，未来历史版会保持可读并标注为历史快照。
@@ -96,14 +96,14 @@ npm run check
 `html/labs/` 下的独立实践页面，并复制全部 PNG 到 `html/assets/`。公开审计会检查固定
 上游 commit、GitHub Pages 工作流以及常见本机路径、会话目录、token 和私钥模式是否泄漏。
 
-当前核验快照（`2026-09-01`）：
+当前核验快照（`2026-10-12`）：
 
 | 维度 | 已核验数量 |
 |---|---:|
 | 编号章节源 | 16 |
 | 实践关卡 | 6 |
 | 综合交付 | 1 |
-| 逐项讲解的 Skill | 37 |
+| 逐项讲解的 Skill | 38 |
 | 一手材料记录 | 15 |
 | 正文引用图片 | 25 |
 | 阿舟最终 PNG 图解 | 15 |
@@ -123,3 +123,5 @@ npm run check
 - 本橙皮书原创讲解、教学实例、HTML 和图示采用 CC BY-NC-SA 4.0。
 - 当前项目版权与归属范围见 [NOTICE.md](NOTICE.md)。
 - 本书不是 Matt Pocock 官方文档，不代表原作者背书。
+
+本次本地源核对与历史证据边界见 [版本核对记录](research/upstream-sync-2026-10-12.md)。
