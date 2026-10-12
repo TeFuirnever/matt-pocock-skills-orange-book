@@ -53,7 +53,7 @@
 | Skill | 当前方向 | 稳定性提醒 |
 |---|---|---|
 | `claude-handoff` | 用后台 Claude Agent 立即接手当前对话 | 工具特定，行为可能变化 |
-| `loop-me` | 多会话拷问工作流规格 | 实验中 |
+| `loop-me` | 有状态地拷问工作流规格 | 实验中 |
 | `setup-ts-deep-modules` | 用 dependency-cruiser 约束 TypeScript 深模块 | 工具链侵入较大，先原型验证 |
 | `writing-beats` | 把素材组织成逐步展开的叙事 beats | 写作实验 |
 | `writing-fragments` | 挖掘未结构化写作碎片 | 写作实验 |

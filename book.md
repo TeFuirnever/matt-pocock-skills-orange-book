@@ -723,9 +723,9 @@ gemini skills install https://github.com/mattpocock/skills.git --path skills/pro
 大工程的瓶颈通常不是代码量，而是未决问题太多。`wayfinder` 会建立一张由决策 tickets 组成的地图：
 
 - grilling ticket：通过讨论决定；
-- prototype ticket：必须做出可交互东西才能决定；
+- prototype ticket：做一个廉价粗糙的具体工件（大纲、草稿、stub 或 UI/逻辑代码）来提高讨论保真度；
 - research ticket：需要一手资料；
-- task ticket：需要人完成外部动作。
+- task ticket：决策前必须完成的杂务，Agent 能独立完成的直接做（AFK），否则交给人一份精确清单（HITL）。
 
 地图与决策票只使用 `wayfinder:` 标签，不混入 `ready-for-agent` 等实现分诊标签。执行时先读类型标签，再选择对应流程；先创建 issues 拿到真实 id，再补阻塞与交叉引用，避免占位编号误链。research 票的上游流程把证据推到一次性研究分支，但不创建 PR，也不合并该分支；这类远程动作必须服从当前会话的授权边界。
 
@@ -866,7 +866,7 @@ Mock 只应该放在系统边界，例如外部 API、时钟、随机数。不�
 
 面对疑难 bug，很多 Agent 会先读代码，十分钟后列出一个听起来合理的根因。`diagnosing-bugs` 强行把顺序反过来：先找到一条能够捕获用户精确症状的命令。
 
-反馈环可以是：
+反馈环可以是（按上游大致顺序，共十种）：
 
 1. failing test；
 2. curl 脚本；
@@ -874,8 +874,10 @@ Mock 只应该放在系统边界，例如外部 API、时钟、随机数。不�
 4. 无头浏览器；
 5. 捕获并重放请求或事件；
 6. throwaway harness；
-7. `git bisect run`；
-8. 最后才是结构化的人机协作脚本。
+7. property/fuzz 循环：「有时输出不对」类 bug 用上千个随机输入找失败模式；
+8. `git bisect run` 二分 harness；
+9. differential 循环：同一输入跑新旧两版或两种配置，对比输出；
+10. 最后才是结构化的人机协作脚本。
 
 进入下一阶段前，这条命令必须已经实际运行过，并且具备 red-capable：它能因为这个具体 bug 失败，而不是只证明程序没有崩溃。
 
@@ -1248,7 +1250,7 @@ Mock 只应该放在系统边界，例如外部 API、时钟、随机数。不�
 - `reference/` 保存真正会反复查的速查材料；
 - `learning-records/` 决定下一节教什么。
 
-这些工作区路径相对于启动 `teach` 时的目录，只有 `*-FORMAT.md` 模板链接相对于 Skill 自身目录。测验除了保持选项长度相近，还要变化正确答案的位置，避免位置规律泄露答案。
+这些工作区路径相对于启动 `teach` 时的目录，只有 `*-FORMAT.md` 模板链接相对于 Skill 自身目录。测验选项的字数应完全相同（尽量连字符数也一致），还要变化正确答案的位置，避免长度或位置规律泄露答案。
 
 它区分阅读时的流畅感与长期存储强度，通过检索练习、间隔和交错来建立后者。课程内容不应该只依赖模型记忆，而要被可信资料和引用约束。
 
@@ -1736,7 +1738,9 @@ project/
 └── .agents/
     └── skills/
         ├── diagnosing-bugs/
-        │   └── SKILL.md
+        │   ├── SKILL.md
+        │   └── scripts/
+        │       └── hitl-loop.template.sh
         ├── tdd/
         │   └── SKILL.md
         └── code-review/
@@ -1999,9 +2003,9 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 
 [固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/engineering/triage/SKILL.md)
 
-**一句话理解：** 它把外部 issue 和 PR 推进一套状态机，不让未经核验的描述直接变成实现任务。
+**一句话理解：** 它把 issue 和外部 PR 推进一套状态机，不让未经核验的描述直接变成实现任务。
 
-**适合处理：** 未分类 issue、`needs-triage`、补充信息后重新活跃的 `needs-info`，以及明确点名的外部 PR。
+**适合处理：** 未分类 issue、`needs-triage`、补充信息后重新活跃的 `needs-info`，以及明确点名的 PR（不论作者是否外部）。
 
 **不适合处理：** `to-tickets` 刚生成的实现票。那些票已经是 agent-ready，再 triage 一次属于重复流程。
 
@@ -2040,7 +2044,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 
 **tracker 纪律：** 地图与 decision tickets 只使用 `wayfinder:` 标签，不混用 `ready-for-agent`。先创建真实 issue，再补阻塞边和交叉引用；执行时按类型标签读取职责。研究成果留在不合并的 `research/<name>` 分支，上游要求推送但不开 PR；实际执行仍受当前用户授权约束。
 
-**ticket 类型：** 可以通过讨论解决的 grilling ticket；必须看到可运行结果的 prototype ticket；依赖一手资料的 research ticket；必须由人完成外部动作的 task ticket。
+**ticket 类型：** 可以通过讨论解决的 grilling ticket；做一个廉价粗糙的具体工件（大纲、草稿、stub 或 UI/逻辑代码）来提高讨论保真度的 prototype ticket；依赖一手资料的 research ticket；决策前必须完成的杂务 task ticket（Agent 能独立完成则 AFK 直接做，否则交给人一份精确清单 HITL）。
 
 **UI 客户端操作例：** “重做插件系统”同时涉及权限、安装、版本、沙箱、UI、迁移和回滚。先建地图；“插件权限模型”阻塞“安装确认 UI”，“版本兼容策略”阻塞“自动更新”。地图清晰后再 `to-spec`，不要直接 `implement`。
 
@@ -2108,7 +2112,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 
 **不好的切法：** “先写类型”“再写 IPC”“再写页面”“最后补测试”。关闭前三张票时用户仍得不到可用行为。
 
-**产物与验收：** 每张票有 Parent、What to build、Acceptance criteria；阻塞已用原生关系表达时省略正文 Blocked by，否则明确列出；来源是已有 issue 时将票挂为其 sub-issue；依赖图没有循环；除宽范围机械迁移外，默认使用 tracer-bullet。
+**产物与验收：** 每张票有 What to build 和 Acceptance criteria；issue 形式的票在来源是已有 issue 时带 Parent 段并挂为其 sub-issue（本地文件票没有 Parent 段）；阻塞已用原生关系表达时省略正文 Blocked by，否则明确列出；依赖图没有循环；除宽范围机械迁移外，默认使用 tracer-bullet。
 
 **新手误区：** 为了看起来并行，把真实依赖删掉；或者把所有票都标成阻塞，失去 frontier。
 
@@ -2182,7 +2186,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 先建立能在当前分支稳定变红的最小命令；在看到红色前不要给根因结论。
 ```
 
-**产物与验收：** 同一条命令在修复前红、修复后绿；回归测试位于公共 seam；临时埋点被移除；日志已脱敏。若通过修改代码或 fixture 制造红色，还要与原始副本做 diff，证明修改确实生效。
+**产物与验收：** 同一条命令在修复前红、修复后绿；回归测试位于能在调用点复现真实 bug 模式的正确 seam（不存在这样的 seam 时如实记录，这本身就是发现）；临时埋点被移除；日志已脱敏。若通过修改代码或 fixture 制造红色，还要与原始副本做 diff，证明修改确实生效。
 
 **新手误区：** 先写“深度根因分析”，最后才发现症状根本不能稳定复现。
 
@@ -2245,11 +2249,11 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 - 区分同一个词承担的多个概念；
 - 把术语和真实代码位置交叉引用；
 - 决定形成时 inline 更新；
-- 只有难以逆转且不记录会令人意外时才建议 ADR。
+- 只有同时满足三个条件才建议 ADR：难以逆转、不记录会令人意外、存在真实取舍（有真正备选方案并因具体理由择一）；缺一即跳过。
 
 **UI 客户端操作例：** “连接”可能指保存凭据、验证凭据、建立长连接或启用账号。把它们统一叫连接会让 UI 文案和函数名不断漂移。领域建模应给每个行为一个能用例子反证的名字。
 
-**产物与验收：** glossary 词条有定义、正例、反例和代码指针；后续 spec、ticket、测试和界面文案使用同一词义；ADR 数量保持克制。
+**产物与验收：** glossary 词条只有一到两句定义（说清它是什么而非做什么）和 `_Avoid_` 废弃同义词，不含实现细节；后续 spec、ticket、测试和界面文案使用同一词义；ADR 数量保持克制。
 
 **新手误区：** 把 `GLOSSARY.md` 写成百科全书。它首先是共同语言和导航，不是整个系统的复制品。
 
@@ -2310,7 +2314,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 **前置证据：**
 
 - fixed point：commit、branch、tag 或 merge-base；
-- spec source：issue、规格或验收清单；
+- spec source：commit message 引用的 issue、用户指定的路径，或 `docs/`、`specs/`、`.scratch/` 下的规格文件；
 - standards source：仓库指导文件、编码标准和相关文档；
 - 当前 diff 与验证输出。
 
@@ -2318,7 +2322,7 @@ Skill 里写了并行子 Agent，不代表当前运行时一定有该能力；�
 
 **两个隔离问题：**
 
-- Standards 轴：设计、可读性、安全、测试、仓库规则是否满足；
+- Standards 轴：仓库成文规范是否满足（对照 Fowler 坏味道基线，工具已强制的内容跳过）；
 - Spec 轴：用户故事、非目标、边界案例、验收是否满足。
 
 **UI 客户端操作例：** 新的错误提示组件结构清晰、测试完整，但漏掉“离线时不显示重试按钮”的需求。Standards 可通过，Spec 仍失败；总评不能用代码质量把需求缺口平均掉。
@@ -2682,14 +2686,14 @@ Misc 不是“低价值”，而是“适用面窄”。使用前先确认仓库
 2. 安装 devDependencies；
 3. 初始化 Husky；
 4. 写 `.husky/pre-commit`；
-5. 写或合并 lint-staged；
+5. 写 lint-staged；
 6. 仅在不存在时创建 Prettier 配置；
 7. 验证 hook、prepare、执行权限和实际命令；
 8. 用一次提交作为烟雾测试。
 
 **UI 客户端操作例：** 大型桌面客户端完整测试需要十分钟，直接塞进 pre-commit 会伤害反馈。此时应先讨论把快速目标检查放 pre-commit、完整检查放 CI，而不是机械照抄。
 
-**产物与验收：** 不覆盖已有配置；使用真实包管理器；缺少脚本时删除对应行并报告；一次实际提交能证明 hook 生效。
+**产物与验收：** 不覆盖已有 Prettier 配置（上游的不覆盖保护仅适用于 Prettier，hook 与 lint-staged 文件为直接创建）；使用真实包管理器；缺少脚本时删除对应行并报告；一次实际提交能证明 hook 生效。
 
 **新手误区：** 把“检查越多越安全”当绝对真理。慢到大家绕过的 hook 不是可靠门禁。
 
@@ -2729,7 +2733,7 @@ Misc 不是“低价值”，而是“适用面窄”。使用前先确认仓库
 
 **UI 客户端操作例：** 每周整理崩溃报告是一个 loop。workflow 可以在新报告到达时触发，自动聚类并生成 brief，只在需要决定优先级时设置一次 checkpoint。
 
-**产物与验收：** `NOTES.md` 记录用户世界和术语；每个 workflow 有触发、步骤、外部系统、checkpoint、brief 和完成状态；实现者无需追加问题。
+**产物与验收：** `NOTES.md` 记录用户世界和术语；每个 workflow 写到实现者无需追加任何一个问题为止，触发、步骤、外部系统、checkpoint、brief 等结构按需覆盖，checkpoint 可有可无（有些 workflow 全自动运行，甚至不用 AI）。
 
 **实验风险：** 不要为了“自动化”强加 AI、定时器或 checkpoint。原文明确要求只有 grilling 证明需要时才加入结构。
 
@@ -2798,7 +2802,7 @@ Misc 不是“低价值”，而是“适用面窄”。使用前先确认仓库
 
 **一句话理解：** 同样属于 exploit，但粒度从“叙事 beat”变成“段落或内容块”，并要求每种格式都有理由。
 
-**工作循环：** 通读素材；确认 reader prerequisites；给 2–3 个不同论点的开头；用户选择；逐段追问“读者下一步必须知道什么”；决定用 prose、list、table、callout、quote 还是 code；每次写后重读磁盘。
+**工作循环：** 通读素材；确认 reader prerequisites；给 2–3 个不同论点的开头；用户选择；逐段追问“读者下一步必须知道什么”；决定用 prose、list、table、callout、quote 还是 code；每次写入前先重读磁盘上的文件，不盲写覆盖。
 
 **格式判断：**
 
@@ -3050,7 +3054,7 @@ research
 ```
 
 - `research` 负责为每条断言找到真正拥有答案的一手来源；
-- `code-review` 把事实错误与表达规范问题分开；
+- `code-review` 把规格符合性与成文规范问题分成两条轴；
 - `writing-for-agents` 把容易漂移的绝对表述改成能指导后续 Agent 回到证据的写法。
 
 需求本身已经清楚，不需要重新 `grill`。报告也不是功能规格，不应该进入 `implement`。
@@ -3556,7 +3560,7 @@ Skill 选择：
 | Skill | 当前方向 | 稳定性提醒 |
 |---|---|---|
 | `claude-handoff` | 用后台 Claude Agent 立即接手当前对话 | 工具特定，行为可能变化 |
-| `loop-me` | 多会话拷问工作流规格 | 实验中 |
+| `loop-me` | 有状态地拷问工作流规格 | 实验中 |
 | `setup-ts-deep-modules` | 用 dependency-cruiser 约束 TypeScript 深模块 | 工具链侵入较大，先原型验证 |
 | `writing-beats` | 把素材组织成逐步展开的叙事 beats | 写作实验 |
 | `writing-fragments` | 挖掘未结构化写作碎片 | 写作实验 |

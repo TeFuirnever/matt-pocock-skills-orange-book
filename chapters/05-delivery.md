@@ -89,9 +89,9 @@
 大工程的瓶颈通常不是代码量，而是未决问题太多。`wayfinder` 会建立一张由决策 tickets 组成的地图：
 
 - grilling ticket：通过讨论决定；
-- prototype ticket：必须做出可交互东西才能决定；
+- prototype ticket：做一个廉价粗糙的具体工件（大纲、草稿、stub 或 UI/逻辑代码）来提高讨论保真度；
 - research ticket：需要一手资料；
-- task ticket：需要人完成外部动作。
+- task ticket：决策前必须完成的杂务，Agent 能独立完成的直接做（AFK），否则交给人一份精确清单（HITL）。
 
 地图与决策票只使用 `wayfinder:` 标签，不混入 `ready-for-agent` 等实现分诊标签。执行时先读类型标签，再选择对应流程；先创建 issues 拿到真实 id，再补阻塞与交叉引用，避免占位编号误链。research 票的上游流程把证据推到一次性研究分支，但不创建 PR，也不合并该分支；这类远程动作必须服从当前会话的授权边界。
 

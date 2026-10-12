@@ -62,7 +62,7 @@ research
 ```
 
 - `research` 负责为每条断言找到真正拥有答案的一手来源；
-- `code-review` 把事实错误与表达规范问题分开；
+- `code-review` 把规格符合性与成文规范问题分成两条轴；
 - `writing-for-agents` 把容易漂移的绝对表述改成能指导后续 Agent 回到证据的写法。
 
 需求本身已经清楚，不需要重新 `grill`。报告也不是功能规格，不应该进入 `implement`。

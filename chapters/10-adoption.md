@@ -35,7 +35,9 @@ project/
 └── .agents/
     └── skills/
         ├── diagnosing-bugs/
-        │   └── SKILL.md
+        │   ├── SKILL.md
+        │   └── scripts/
+        │       └── hitl-loop.template.sh
         ├── tdd/
         │   └── SKILL.md
         └── code-review/
