@@ -9,7 +9,7 @@ import {
 
 test('accepts the expected public source hosts and repository path', () => {
   const urls = collectMarkdownUrls(`
-[Repository](https://github.com/mattpocock/skills/tree/6654f6b)
+[Repository](https://github.com/mattpocock/skills/tree/49dd158)
 [Article](https://www.aihero.dev/skills)
 `);
 

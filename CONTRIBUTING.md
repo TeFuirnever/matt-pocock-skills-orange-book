@@ -6,7 +6,7 @@ or fixed-version traceability are welcome.
 ## Content rules
 
 - Treat upstream commit
-  `6654f6b60cd9d5be8b54c6fafe44346dabeb3b76` as the factual baseline.
+  `49dd158d1076134a641b33efb035946536778336` as the factual baseline.
 - Distinguish upstream behavior, teaching interpretation, and synthetic example.
 - Use public, anonymous desktop UI examples. Do not submit private project names,
   private code, local user paths, credentials, or raw chat transcripts.
