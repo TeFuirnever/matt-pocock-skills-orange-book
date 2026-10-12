@@ -99,4 +99,8 @@ subsets retain their own licenses. See [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTI
 and [LICENSES](LICENSES). Project copyright and attribution scope are recorded
 in [NOTICE.md](NOTICE.md).
 
+This is an independent third-party reading guide: it is not Matt Pocock's
+official documentation, and it is not affiliated with or endorsed by any other
+publication using the "orange book" name.
+
 See the [local upstream audit](research/upstream-sync-2026-10-12.md) for changes and historical evidence boundaries.

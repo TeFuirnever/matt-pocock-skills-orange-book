@@ -123,5 +123,6 @@ npm run check
 - 本橙皮书原创讲解、教学实例、HTML 和图示采用 CC BY-NC-SA 4.0。
 - 当前项目版权与归属范围见 [NOTICE.md](NOTICE.md)。
 - 本书不是 Matt Pocock 官方文档，不代表原作者背书。
+- 本书是独立第三方中文导读，与其他使用「橙皮书」名称的出版物无关。
 
 本次本地源核对与历史证据边界见 [版本核对记录](research/upstream-sync-2026-10-12.md)。

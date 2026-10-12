@@ -21,3 +21,9 @@ jobs:
       - run: npm ci
       - run: npm run check
       - run: git diff --exit-code
+      - name: Fail on untracked build artifacts
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git status --porcelain
+            exit 1
+          fi

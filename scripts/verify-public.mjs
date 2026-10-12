@@ -4,6 +4,7 @@ import {
   readdirSync,
   statSync,
 } from 'node:fs';
+import { execFileSync } from 'node:child_process';
 import { extname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -12,7 +13,7 @@ import {
   hasAiHeroSource,
   hasMattPocockSkillsSource,
 } from './source-url-contract.mjs';
-import { assembleBook, practicePlacements } from './content-assembly.mjs';
+import { assembleBook, practiceAnchor, practicePlacements } from './content-assembly.mjs';
 
 const projectRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const fixedCommit = '49dd158d1076134a641b33efb035946536778336';
@@ -99,6 +100,10 @@ const forbiddenPatterns = [
   { label: 'private project shorthand', pattern: /\bMA\s*(?:项目|project|case)\b/i },
   { label: 'GitHub token', pattern: /(?:github_pat_|gh[opsu]_)\w{20,}/ },
   { label: 'OpenAI-style secret', pattern: /\bsk-[A-Za-z0-9_-]{20,}\b/ },
+  { label: 'AWS access key', pattern: /\bAKIA[0-9A-Z]{16}\b/ },
+  { label: 'JWT token', pattern: /\beyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}/ },
+  { label: 'Slack token', pattern: /\bxox[baprs]-[A-Za-z0-9-]{10,}/ },
+  { label: 'absolute Windows user path', pattern: /[A-Z]:\\Users\\[^\s\\]+\\/i },
   { label: 'private key material', pattern: /-----BEGIN [A-Z ]*PRIVATE KEY-----/ },
 ];
 
@@ -167,6 +172,10 @@ const readingEdition = `v${JSON.parse(requireFile(errors, 'package.json')).versi
 if (!book.includes(`当前阅读版：${readingEdition}`)) {
   errors.push(`book.md does not declare the current reading edition: ${readingEdition}`);
 }
+const changelog = requireFile(errors, 'CHANGELOG.md');
+if (!changelog.includes(`## ${readingEdition}`)) {
+  errors.push(`CHANGELOG.md does not record the current reading edition: ${readingEdition}`);
+}
 
 const detailedSkillPattern = /^#### 11\.[1-4]\.\d+ \`([^\`]+)\`/gm;
 const documentedSkills = [...book.matchAll(detailedSkillPattern)].map(
@@ -191,6 +200,64 @@ for (const { name, path } of manifest.skills) {
 for (const skill of expectedSkills) {
   if (!documentedSkills.includes(skill)) {
     errors.push(`missing detailed Skill section: ${skill}`);
+  }
+}
+
+const practiceAnchorByTitle = new Map(
+  practicePlacements.map(({ sourceName }) => {
+    const source = practiceSources.find((practice) => practice.name === sourceName).source;
+    return [source.match(/^#\s+(.+)$/m)?.[1]?.trim() ?? '', practiceAnchor(sourceName)];
+  }),
+);
+const slugCounts = new Map();
+const bookAnchors = new Set(['top']);
+{
+  let inCodeFence = false;
+  for (const line of assembledBook.split('\n')) {
+    if (/^(```|~~~)/.test(line)) {
+      inCodeFence = !inCodeFence;
+      continue;
+    }
+    if (inCodeFence) continue;
+    const headingText = line.match(/^#{1,6}\s+(.+?)\s*$/)?.[1];
+    if (!headingText) continue;
+    const practiceId = practiceAnchorByTitle.get(headingText);
+    if (practiceId) {
+      bookAnchors.add(practiceId);
+      continue;
+    }
+    const base = headingText
+      .normalize('NFKC')
+      .toLowerCase()
+      .replace(/[^\p{Letter}\p{Number}]+/gu, '-')
+      .replace(/^-+|-+$/g, '') || 'section';
+    const count = slugCounts.get(base) ?? 0;
+    slugCounts.set(base, count + 1);
+    bookAnchors.add(count === 0 ? base : `${base}-${count + 1}`);
+  }
+}
+for (const match of assembledBook.matchAll(/\]\(#([^)\s]+)\)/g)) {
+  if (!bookAnchors.has(match[1])) {
+    errors.push(`book.md links to a missing anchor: #${match[1]}`);
+  }
+}
+const buildScript = readFileSync(
+  resolve(projectRoot, 'scripts/build-html.mjs'),
+  'utf8',
+);
+const readerLinksBlock = buildScript.match(
+  /<nav class="reader-links"[\s\S]*?<\/nav>/,
+)?.[0] ?? '';
+if (!readerLinksBlock) {
+  errors.push('build-html.mjs is missing the reader-links navigation block');
+}
+for (const match of readerLinksBlock.matchAll(/href="#([^"]*)"/g)) {
+  const raw = match[1];
+  const anchor = raw.startsWith('${practiceAnchor(')
+    ? practiceAnchor(raw.match(/'([^']+)'/)?.[1] ?? '')
+    : raw;
+  if (!indexHtml.includes(`id="${anchor}"`)) {
+    errors.push(`reader-path link has no matching heading in generated HTML: #${anchor}`);
   }
 }
 
@@ -455,6 +522,31 @@ for (const path of listFiles(projectRoot)) {
     if (pattern.test(content)) {
       errors.push(`${label}: ${path.slice(projectRoot.length + 1)}`);
     }
+  }
+}
+
+const gitignore = requireFile(errors, '.gitignore');
+const localOnlyDirectories = ['.azhou/', '.omx/', '.' + 'zcode/'];
+for (const directory of localOnlyDirectories) {
+  if (!gitignore.split('\n').map((line) => line.trim()).includes(directory)) {
+    errors.push(`.gitignore does not exclude local-only directory: ${directory}`);
+  }
+}
+let trackedFiles = '';
+try {
+  trackedFiles = execFileSync('git', ['ls-files'], {
+    cwd: projectRoot,
+    encoding: 'utf8',
+  });
+} catch {
+  trackedFiles = '';
+}
+for (const trackedFile of trackedFiles.split('\n')) {
+  if (
+    /^\.(azhou|omx)\//.test(trackedFile)
+    || trackedFile.startsWith('.' + 'zcode/')
+  ) {
+    errors.push(`local-only directory is tracked by git: ${trackedFile}`);
   }
 }
 
