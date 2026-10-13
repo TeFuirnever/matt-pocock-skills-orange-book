@@ -498,7 +498,7 @@
 
 **执行顺序：** 先读取 `writing-for-agents`，再读指定会话的一手记录；未指定时默认当前会话。最好在清空上下文前复盘，清空后则提供原会话日志指针。
 
-**候选类别：** Navigation、Automated checks、Coding standards、Global guidance、Tool economy、No-ops、Information access。
+**候选类别：** Navigation、Automated checks、Coding standards、Global AGENTS.md、Tool economy、No-ops、Information access。
 
 **检查优先：** 先读仓库检查命令与 CI。已有检查未接入、静默失效，或没有 pre-commit/CI guardrail，本身就是发现。固定语法、禁用 API、导入形状等机械错误应优先成为确定性检查；只有跨文件一致性等判断题才放进编码标准。
 
