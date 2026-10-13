@@ -23,6 +23,10 @@ function setMenu(open) {
   menuButton.setAttribute('aria-expanded', String(open));
   menuButton.setAttribute('aria-label', open ? '关闭目录' : '打开目录');
   sidebarOverlay.hidden = !open;
+  if (open) sidebar.querySelector('a')?.focus();
+  else if (document.activeElement && sidebar.contains(document.activeElement)) {
+    menuButton.focus();
+  }
 }
 
 function setMobileSearch(open) {
@@ -135,7 +139,7 @@ document.addEventListener('click', (event) => {
 
 document.addEventListener('keydown', (event) => {
   const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName);
-  if (event.key === '/' && !typing) {
+  if (event.key === '/' && !typing && !event.isComposing) {
     event.preventDefault();
     if (window.innerWidth <= 780) setMobileSearch(true);
     else searchInput.focus();
@@ -147,6 +151,28 @@ document.addEventListener('keydown', (event) => {
     searchInput.blur();
   }
 });
+
+function moveSearchResult(step) {
+  const results = [...searchResults.querySelectorAll('.search-result')];
+  if (!results.length) return;
+  const current = results.indexOf(document.activeElement);
+  const next = current === -1
+    ? (step > 0 ? 0 : results.length - 1)
+    : (current + step + results.length) % results.length;
+  results[next].focus();
+}
+
+for (const target of [searchInput, searchResults]) {
+  target.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      moveSearchResult(1);
+    } else if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      moveSearchResult(-1);
+    }
+  });
+}
 
 function updateScrollState() {
   const scrollable = document.documentElement.scrollHeight - window.innerHeight;

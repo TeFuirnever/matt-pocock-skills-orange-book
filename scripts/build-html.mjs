@@ -281,6 +281,11 @@ function createLabPage({ title, description, body, labLinks, canonicalHref, main
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Matt Pocock Skills 橙皮书实践路径：六个实践关卡与一个综合交付，用可验证产物完成从调查到交接。">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="${escapeHtml(pageTitle)}">
+  <meta property="og:description" content="橙皮书实践路径：六个实践关卡与一个综合交付，把阅读变成可验证的工程练习。">
+  <meta property="og:image" content="https://tefuirnever.github.io/matt-pocock-skills-orange-book/assets/azhou/skill-not-prompt.png">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#f8f7f4">
   <script>${themeBootstrap}</script>
   <link rel="icon" href="${faviconHref}">
@@ -320,6 +325,11 @@ function createLabPage({ title, description, body, labLinks, canonicalHref, main
       ${body}
     </article>
   </main>
+  <footer class="site-footer">
+    <span>Skills 橙皮书实践路径 · ${readingEdition}</span>
+    <a href="${mainHref}">回到橙皮书</a>
+    <a href="https://github.com/TeFuirnever/matt-pocock-skills-orange-book/issues" target="_blank" rel="noreferrer">反馈 Issue</a>
+  </footer>
   <script>${themeScript}</script>
 </body>
 </html>
@@ -332,6 +342,12 @@ const html = `<!doctype html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="面向 AI 协作开发者的 Matt Pocock Skills 中文橙皮书，含 38 个 Skill 讲解、实践关卡与端到端操作案例。">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Matt Pocock Skills 橙皮书">
+  <meta property="og:description" content="固定版本中文导读：38 个 Skill 逐项讲解、六个实践关卡、三个端到端操作案例。">
+  <meta property="og:url" content="https://tefuirnever.github.io/matt-pocock-skills-orange-book/">
+  <meta property="og:image" content="https://tefuirnever.github.io/matt-pocock-skills-orange-book/assets/azhou/skill-not-prompt.png">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#f8f7f4">
   <script>${themeBootstrap}</script>
   <link rel="icon" href="${faviconHref}">
@@ -344,7 +360,7 @@ const html = `<!doctype html>
   <div class="reading-progress" aria-hidden="true"><span id="reading-progress-bar"></span></div>
   <header class="topbar">
     <div class="topbar-inner">
-      <button class="icon-button menu-button" id="menu-button" type="button" aria-label="打开目录" aria-expanded="false" title="打开目录">${icons.menu}</button>
+      <button class="icon-button menu-button" id="menu-button" type="button" aria-label="打开目录" aria-expanded="false" aria-controls="sidebar" title="打开目录">${icons.menu}</button>
       <a class="brand" href="#top" aria-label="回到页首">
         <span class="brand-mark" aria-hidden="true">M</span>
         <span><strong>Skills 橙皮书</strong><small>Matt Pocock 公开材料中文讲解 · ${readingEdition}</small></span>
@@ -353,7 +369,7 @@ const html = `<!doctype html>
         <label class="visually-hidden" for="site-search">搜索全书</label>
         <input id="site-search" type="search" placeholder="搜索章节、Skill 或问题…" autocomplete="off" aria-controls="search-results" aria-expanded="false">
         <kbd aria-hidden="true">/</kbd>
-        <div class="search-results" id="search-results" hidden></div>
+        <div class="search-results" id="search-results" role="list" aria-live="polite" aria-label="搜索结果" hidden></div>
       </div>
       <nav class="topbar-actions" aria-label="页面操作">
         ${themeControl}
@@ -396,6 +412,13 @@ const html = `<!doctype html>
       <article class="book-article">${enrichedBody}</article>
     </main>
   </div>
+  <footer class="site-footer">
+    <span>Matt Pocock Skills 橙皮书 · 当前阅读版 ${readingEdition}</span>
+    <span>证据基线：上游固定提交 <code>49dd158</code></span>
+    <a href="https://github.com/TeFuirnever/matt-pocock-skills-orange-book" target="_blank" rel="noreferrer">GitHub</a>
+    <a href="https://github.com/TeFuirnever/matt-pocock-skills-orange-book/issues" target="_blank" rel="noreferrer">反馈 Issue</a>
+    <a href="https://github.com/TeFuirnever/matt-pocock-skills-orange-book/blob/main/LICENSE" target="_blank" rel="noreferrer">CC BY-NC-SA 4.0</a>
+  </footer>
   <button class="back-to-top icon-button" id="back-to-top" type="button" aria-label="回到顶部" title="回到顶部" hidden>${icons.up}</button>
   <script>${themeScript}</script>
   <script>${siteScript}</script>
@@ -477,6 +500,51 @@ for (const lab of labSources) {
     }),
   );
 }
+
+const siteBase = 'https://tefuirnever.github.io/matt-pocock-skills-orange-book';
+writeFileSync(
+  resolve(htmlDir, '404.html'),
+  `<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f7f4">
+  <script>${themeBootstrap}</script>
+  <link rel="icon" href="${faviconHref}">
+  <title>页面不存在 · Matt Pocock Skills 橙皮书</title>
+  <style>${css}</style>
+</head>
+<body class="lab-page">
+  <main id="lab-content" class="lab-layout">
+    <article class="book-article lab-article">
+      <p class="lab-kicker">404</p>
+      <h1>这个页面不存在</h1>
+      <p class="lab-description">链接可能来自旧版阅读版。全书与实践路径的当前入口如下。</p>
+      <p><a href="${siteBase}/">回到橙皮书首页</a> · <a href="${siteBase}/labs/">进入实践路径</a> · <a href="https://github.com/TeFuirnever/matt-pocock-skills-orange-book/issues" target="_blank" rel="noreferrer">报告坏链</a></p>
+    </article>
+  </main>
+  <script>${themeScript}</script>
+</body>
+</html>
+`,
+);
+writeFileSync(
+  resolve(htmlDir, 'sitemap.xml'),
+  `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>${siteBase}/</loc></url>
+  <url><loc>${siteBase}/labs/</loc></url>
+${labSources
+  .map((lab) => `  <url><loc>${siteBase}/labs/${lab.outputName}</loc></url>`)
+  .join('\n')}
+</urlset>
+`,
+);
+writeFileSync(
+  resolve(htmlDir, 'robots.txt'),
+  `User-agent: *\nAllow: /\nSitemap: ${siteBase}/sitemap.xml\n`,
+);
 
 console.log(`[build] assembled ${chapterNames.length} chapter sources into ${bookPath}`);
 console.log(`[build] ${resolve(htmlDir, 'index.html')}`);

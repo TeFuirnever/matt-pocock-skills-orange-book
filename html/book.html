@@ -4,6 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="面向 AI 协作开发者的 Matt Pocock Skills 中文橙皮书，含 38 个 Skill 讲解、实践关卡与端到端操作案例。">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Matt Pocock Skills 橙皮书">
+  <meta property="og:description" content="固定版本中文导读：38 个 Skill 逐项讲解、六个实践关卡、三个端到端操作案例。">
+  <meta property="og:url" content="https://tefuirnever.github.io/matt-pocock-skills-orange-book/">
+  <meta property="og:image" content="https://tefuirnever.github.io/matt-pocock-skills-orange-book/assets/azhou/skill-not-prompt.png">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#f8f7f4">
   <script>(() => {
   const root = document.documentElement;
@@ -1058,8 +1064,9 @@ code {
     width: min(86vw, 320px);
     border-right: 1px solid var(--line);
     background: var(--surface);
+    visibility: hidden;
     transform: translateX(-105%);
-    transition: transform 160ms ease;
+    transition: transform 160ms ease, visibility 0s linear 160ms;
   }
 
   body.menu-open {
@@ -1067,7 +1074,9 @@ code {
   }
 
   body.menu-open .sidebar {
+    visibility: visible;
     transform: translateX(0);
+    transition: transform 160ms ease, visibility 0s;
   }
 
   .sidebar-inner {
@@ -1423,6 +1432,41 @@ code {
     background: #ffffff;
   }
 }
+
+/* Print: keep external link targets visible; site footer */
+@media print {
+  .book-article a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.78em;
+    color: #444444;
+    word-break: break-all;
+  }
+
+  .site-footer {
+    display: none;
+  }
+}
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  align-items: baseline;
+  padding: 18px 24px 30px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.site-footer a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
 </style>
 </head>
 <body>
@@ -1430,7 +1474,7 @@ code {
   <div class="reading-progress" aria-hidden="true"><span id="reading-progress-bar"></span></div>
   <header class="topbar">
     <div class="topbar-inner">
-      <button class="icon-button menu-button" id="menu-button" type="button" aria-label="打开目录" aria-expanded="false" title="打开目录"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <button class="icon-button menu-button" id="menu-button" type="button" aria-label="打开目录" aria-expanded="false" aria-controls="sidebar" title="打开目录"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
       <a class="brand" href="#top" aria-label="回到页首">
         <span class="brand-mark" aria-hidden="true">M</span>
         <span><strong>Skills 橙皮书</strong><small>Matt Pocock 公开材料中文讲解 · v0.1.0</small></span>
@@ -1439,7 +1483,7 @@ code {
         <label class="visually-hidden" for="site-search">搜索全书</label>
         <input id="site-search" type="search" placeholder="搜索章节、Skill 或问题…" autocomplete="off" aria-controls="search-results" aria-expanded="false">
         <kbd aria-hidden="true">/</kbd>
-        <div class="search-results" id="search-results" hidden></div>
+        <div class="search-results" id="search-results" role="list" aria-live="polite" aria-label="搜索结果" hidden></div>
       </div>
       <nav class="topbar-actions" aria-label="页面操作">
         <label class="theme-control" for="theme-select">
@@ -5478,6 +5522,13 @@ Skill 选择：
 </article>
     </main>
   </div>
+  <footer class="site-footer">
+    <span>Matt Pocock Skills 橙皮书 · 当前阅读版 v0.1.0</span>
+    <span>证据基线：上游固定提交 <code>49dd158</code></span>
+    <a href="https://github.com/TeFuirnever/matt-pocock-skills-orange-book" target="_blank" rel="noreferrer">GitHub</a>
+    <a href="https://github.com/TeFuirnever/matt-pocock-skills-orange-book/issues" target="_blank" rel="noreferrer">反馈 Issue</a>
+    <a href="https://github.com/TeFuirnever/matt-pocock-skills-orange-book/blob/main/LICENSE" target="_blank" rel="noreferrer">CC BY-NC-SA 4.0</a>
+  </footer>
   <button class="back-to-top icon-button" id="back-to-top" type="button" aria-label="回到顶部" title="回到顶部" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg></button>
   <script>'use strict';
 
@@ -5567,6 +5618,10 @@ function setMenu(open) {
   menuButton.setAttribute('aria-expanded', String(open));
   menuButton.setAttribute('aria-label', open ? '关闭目录' : '打开目录');
   sidebarOverlay.hidden = !open;
+  if (open) sidebar.querySelector('a')?.focus();
+  else if (document.activeElement && sidebar.contains(document.activeElement)) {
+    menuButton.focus();
+  }
 }
 
 function setMobileSearch(open) {
@@ -5679,7 +5734,7 @@ document.addEventListener('click', (event) => {
 
 document.addEventListener('keydown', (event) => {
   const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName);
-  if (event.key === '/' && !typing) {
+  if (event.key === '/' && !typing && !event.isComposing) {
     event.preventDefault();
     if (window.innerWidth <= 780) setMobileSearch(true);
     else searchInput.focus();
@@ -5691,6 +5746,28 @@ document.addEventListener('keydown', (event) => {
     searchInput.blur();
   }
 });
+
+function moveSearchResult(step) {
+  const results = [...searchResults.querySelectorAll('.search-result')];
+  if (!results.length) return;
+  const current = results.indexOf(document.activeElement);
+  const next = current === -1
+    ? (step > 0 ? 0 : results.length - 1)
+    : (current + step + results.length) % results.length;
+  results[next].focus();
+}
+
+for (const target of [searchInput, searchResults]) {
+  target.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      moveSearchResult(1);
+    } else if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      moveSearchResult(-1);
+    }
+  });
+}
 
 function updateScrollState() {
   const scrollable = document.documentElement.scrollHeight - window.innerHeight;

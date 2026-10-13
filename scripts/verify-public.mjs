@@ -147,6 +147,12 @@ const book = requireFile(errors, 'book.md');
 const indexHtml = requireFile(errors, 'html/index.html');
 const bookHtml = requireFile(errors, 'html/book.html');
 const labsIndexHtml = requireFile(errors, 'html/labs/index.html');
+requireFile(errors, 'html/404.html');
+const sitemap = requireFile(errors, 'html/sitemap.xml');
+requireFile(errors, 'html/robots.txt');
+if (!sitemap.includes('<loc>')) {
+  errors.push('sitemap.xml contains no URLs');
+}
 const pagesWorkflow = requireFile(errors, '.github/workflows/pages.yml');
 const statementResearch = requireFile(
   errors,
@@ -378,6 +384,10 @@ for (const siteContract of [
   'id="reading-progress-bar"',
   'class="chapter-pager"',
   'class="skill-jump"',
+  'property="og:title"',
+  'name="twitter:card"',
+  '<footer class="site-footer"',
+  'aria-live="polite"',
   '<span>当前阅读版</span>',
   `<code>${readingEdition}</code>`,
   `公开材料中文讲解 · ${readingEdition}`,
@@ -411,6 +421,7 @@ const printContracts = [
   'background: #ffffff;',
   'text-decoration: underline;',
   'display: table-header-group;',
+  'attr(href)',
 ];
 const headerContracts = [
   'grid-template-columns: minmax(248px, var(--sidebar-width)) minmax(280px, 1fr) max-content;',

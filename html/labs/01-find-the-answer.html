@@ -4,6 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Matt Pocock Skills 橙皮书实践路径：六个实践关卡与一个综合交付，用可验证产物完成从调查到交接。">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="实践关卡 1 · 先找到答案 · Skills 橙皮书实践路径">
+  <meta property="og:description" content="橙皮书实践路径：六个实践关卡与一个综合交付，把阅读变成可验证的工程练习。">
+  <meta property="og:image" content="https://tefuirnever.github.io/matt-pocock-skills-orange-book/assets/azhou/skill-not-prompt.png">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#f8f7f4">
   <script>(() => {
   const root = document.documentElement;
@@ -1058,8 +1063,9 @@ code {
     width: min(86vw, 320px);
     border-right: 1px solid var(--line);
     background: var(--surface);
+    visibility: hidden;
     transform: translateX(-105%);
-    transition: transform 160ms ease;
+    transition: transform 160ms ease, visibility 0s linear 160ms;
   }
 
   body.menu-open {
@@ -1067,7 +1073,9 @@ code {
   }
 
   body.menu-open .sidebar {
+    visibility: visible;
     transform: translateX(0);
+    transition: transform 160ms ease, visibility 0s;
   }
 
   .sidebar-inner {
@@ -1423,6 +1431,41 @@ code {
     background: #ffffff;
   }
 }
+
+/* Print: keep external link targets visible; site footer */
+@media print {
+  .book-article a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.78em;
+    color: #444444;
+    word-break: break-all;
+  }
+
+  .site-footer {
+    display: none;
+  }
+}
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  align-items: baseline;
+  padding: 18px 24px 30px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.site-footer a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
 </style>
 </head>
 <body class="lab-page">
@@ -1552,6 +1595,11 @@ code {
 
     </article>
   </main>
+  <footer class="site-footer">
+    <span>Skills 橙皮书实践路径 · v0.1.0</span>
+    <a href="../#practice-01-find-the-answer">回到橙皮书</a>
+    <a href="https://github.com/TeFuirnever/matt-pocock-skills-orange-book/issues" target="_blank" rel="noreferrer">反馈 Issue</a>
+  </footer>
   <script>'use strict';
 
 const themeStorageKey = 'orange-book-theme';
