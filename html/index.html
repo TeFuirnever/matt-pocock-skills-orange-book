@@ -1707,6 +1707,14 @@ code {
 </tr>
 </tbody></table>
 <p>第一次读本书时，可以按“读第 3 章 → 做实践关卡 1 → 读第 4 章 → 做实践关卡 2”的节奏前进。任何一关卡住，不要跳到更复杂的 Skill；先修复该关缺失的事实、决定或验证。</p>
+<h3 id="0-1-3-预备知识" tabindex="-1">0.1.3 预备知识<a class="heading-anchor" href="#0-1-3-预备知识" aria-label="链接到本节">#</a></h3>
+<p>开始之前，你只需要：</p>
+<ul>
+<li>会在自己的仓库里使用 git 基本命令（分支、提交、查看 diff）；</li>
+<li>知道项目自己的构建、测试和类型检查命令；</li>
+<li>有一个可用的 Agent 客户端（插件或手动安装均可，第 2 章给出对照）。</li>
+</ul>
+<p>不需要的：任何特定 Agent 客户端的深入经验、对 38 个 Skill 的预先了解、Electron 或桌面开发经验——书中所有 UI 客户端例子都是为教学构造的最小示例。</p>
 <h3 id="0-2-按问题直达章节" tabindex="-1">0.2 按问题直达章节<a class="heading-anchor" href="#0-2-按问题直达章节" aria-label="链接到本节">#</a></h3>
 <table>
 <thead>
@@ -2034,7 +2042,17 @@ code {
 </tr>
 </tbody></table>
 <p><img src="assets/azhou/skill-selection.png" alt="阿舟图解：从失败风险选择 Skill"></p>
-<h3 id="1-6-本章验收" tabindex="-1">1.6 本章验收<a class="heading-anchor" href="#1-6-本章验收" aria-label="链接到本节">#</a></h3>
+<h3 id="1-6-agent-运行时小白词典" tabindex="-1">1.6 Agent 运行时小白词典<a class="heading-anchor" href="#1-6-agent-运行时小白词典" aria-label="链接到本节">#</a></h3>
+<p>后面章节会反复用到这些词，先各用一句话说清：</p>
+<ul>
+<li><strong>会话（session）：</strong> 你与 Agent 的一次连续对话；它有长度上限，接近上限时推理质量会下降。</li>
+<li><strong>上下文（context）：</strong> Agent 当前能看到的一切——对话、被读取的文件、工具结果。没进上下文的事实，Agent 不知道。</li>
+<li><strong>子 Agent（subagent）：</strong> 由当前会话派生的独立执行单元，有自己的上下文窗口，完成后只带回结论。</li>
+<li><strong>worktree：</strong> 同一仓库的一份独立工作目录，让两份改动互不踩踏，并行实现票常用它。</li>
+<li><strong>hook：</strong> 在 Agent 动作前后自动触发的检查或命令，把纪律变成机械执行。</li>
+<li><strong>tracker：</strong> issue/ticket 系统（GitHub Issues 或本地 Markdown），存放规格、票和阻塞关系。</li>
+</ul>
+<h3 id="1-7-本章验收" tabindex="-1">1.7 本章验收<a class="heading-anchor" href="#1-7-本章验收" aria-label="链接到本节">#</a></h3>
 <ul>
 <li>能用自己的话解释 Skill 与一次性 Prompt 的区别。</li>
 <li>能区分 user-invoked 与 model-invoked。</li>
@@ -2079,11 +2097,7 @@ code {
 <td>只做试验，不当稳定接口</td>
 </tr>
 </tbody></table>
-<p>一个容易踩的坑，是看到目录里存在 Skill，就默认它已经稳定。<code>in-progress</code> 的名字、行为和存在性都可能变化，书中会完整列出，但不会把它们塞进新人主链。</p>
-<p><img src="assets/azhou/stable-and-beta.png" alt="历史教学图：旧基线的 29 个非实验 Skill 与 8 个 in-progress Skill"></p>
-<blockquote>
-<p>上图保留旧版教学图的 29/8 数字，不代表本版清单。本版为 31 个非实验目录 Skill 与 7 个实验 Skill；插件只包含 engineering 与 productivity 共 27 个，misc 的 4 个不随插件分发。</p>
-</blockquote>
+<p>一个容易踩的坑，是看到目录里存在 Skill，就默认它已经稳定。<code>in-progress</code> 的名字、行为和存在性都可能变化，书中会完整列出，但不会把它们塞进新人主链。本版为 31 个非实验目录 Skill 与 7 个实验 Skill；插件只包含 engineering 与 productivity 共 27 个，misc 的 4 个不随插件分发。更早阅读版使用过的旧数字教学图已移入<a href="#h-%E7%89%88%E6%9C%AC%E6%B2%BF%E9%9D%A9%E5%9B%BE-%E5%8E%86%E5%8F%B2%E6%95%99%E5%AD%A6%E5%9B%BE">附录 H</a>。</p>
 <h3 id="2-2-两种安装哲学" tabindex="-1">2.2 两种安装哲学<a class="heading-anchor" href="#2-2-两种安装哲学" aria-label="链接到本节">#</a></h3>
 <p>上游提供两条主要路径：</p>
 <h4 id="自动更新的插件" tabindex="-1">自动更新的插件<a class="heading-anchor" href="#自动更新的插件" aria-label="链接到本节">#</a></h4>
@@ -4148,11 +4162,7 @@ before forming a root-cause theory.
 <p><strong>产物与验收：</strong> 子任务与长期目标有明确关系；证据可通过指针回读；环境改进有具体问题来源；没有把子 Agent 的口头完成当验证。</p>
 <p><strong>实验风险：</strong> 原文要求全部工作交给子 Agent，并积极修复约定偏离，容易扩大任务范围。它仍在 <code>in-progress</code>，运行时能力、用户授权和数据访问边界必须先匹配，不能视为稳定总控接口。</p>
 <h3 id="11-5-把-38-个名字压缩成-6-个新手问题" tabindex="-1">11.5 把 38 个名字压缩成 6 个新手问题<a class="heading-anchor" href="#11-5-把-38-个名字压缩成-6-个新手问题" aria-label="链接到本节">#</a></h3>
-<p>当你不确定时，不必从头翻这一章。只回答下面六问：</p>
-<p><img src="assets/azhou/six-questions-skill-router.png" alt="阿舟知识图：六个新手问题路由（旧版示意）"></p>
-<blockquote>
-<p>图为旧版教学示意；图内旧数量和旧入口不构成本版清单。当前 38 项与新增入口以本章正文和附录为准。</p>
-</blockquote>
+<p>当你不确定时，不必从头翻这一章。只回答下面六问（早期阅读版使用过的旧版路由示意图已移入<a href="#h-%E7%89%88%E6%9C%AC%E6%B2%BF%E9%9D%A9%E5%9B%BE-%E5%8E%86%E5%8F%B2%E6%95%99%E5%AD%A6%E5%9B%BE">附录 H</a>）：</p>
 <ol>
 <li><strong>需求还没问清吗？</strong> 无仓库用 <code>grill-me</code>，有仓库用 <code>grill-with-docs</code>，超出一个会话用 <code>wayfinder</code>。</li>
 <li><strong>决定已经清楚了吗？</strong> 写 <code>to-spec</code>；需要多人或多会话交付，再用 <code>to-tickets</code>。</li>
@@ -4200,7 +4210,16 @@ before forming a root-cause theory.
   <img src="assets/azhou/matt-method-04-answers.png" alt="阅读卡四：答案在哪，决定谁来回答" loading="lazy">
   <img src="assets/azhou/matt-method-05-feedback.png" alt="阅读卡五：反馈环不是交付后的装饰" loading="lazy">
   <img src="assets/azhou/matt-method-06-handoff.png" alt="阅读卡六：计划稳定后才进入实现" loading="lazy">
-</div><h3 id="12-3-十条作者公开表述" tabindex="-1">12.3 十条作者公开表述<a class="heading-anchor" href="#12-3-十条作者公开表述" aria-label="链接到本节">#</a></h3>
+</div><p>只看文字版的读者，六张卡的核心句如下：</p>
+<ol>
+<li><strong>Skill 不该接管整条工程链：</strong> 它约束一个环节的过程质量，不包办从想法到交付。</li>
+<li><strong>工作流不是一串命令：</strong> Skills 之间由产物和决定连接，顺序随失败风险变化。</li>
+<li><strong>聊天不是项目记忆：</strong> 决定、术语和证据要落到仓库文件，会话结束后仍然可读。</li>
+<li><strong>答案在哪，决定谁来回答：</strong> 仓库能查的 Agent 查，取舍由人定，别人脑子里的发问卷。</li>
+<li><strong>反馈环不是交付后的装饰：</strong> 先建立能变红的命令，再允许实现。</li>
+<li><strong>计划稳定后才进入实现：</strong> 规格与拆票完成前，不写产品代码。</li>
+</ol>
+<h3 id="12-3-十条作者公开表述" tabindex="-1">12.3 十条作者公开表述<a class="heading-anchor" href="#12-3-十条作者公开表述" aria-label="链接到本节">#</a></h3>
 <h4 id="12-3-1-skill-是过程级约束-不是平台魔法" tabindex="-1">12.3.1 Skill 是过程级约束，不是平台魔法<a class="heading-anchor" href="#12-3-1-skill-是过程级约束-不是平台魔法" aria-label="链接到本节">#</a></h4>
 <p>在 <a href="https://www.aihero.dev/skills">AI Skills for Real Engineers</a> 中，Matt 把 Skills 描述为交给编码 Agent 的小型、聚焦指令，目的是让 Agent 按资深工程师式的工作方法执行。</p>
 <p>同一页还强调 Skills 可以组成链路：前一个的产出会成为后一个的输入。</p>
@@ -5197,6 +5216,123 @@ Skill 选择：
 </tbody></table>
 <p><strong>版本迁移提示：</strong> <code>implement-spec</code> 与 <code>retro</code> 已从实验目录移入 Engineering；新增 <code>pr</code> 与实验性 <code>chief-of-staff</code>。<code>resolving-merge-conflicts</code> 的 Skill 文件已删除，源仓库仍有历史说明页，但不再是本版可调用条目。</p>
 <hr>
+<h3 id="f-全书术语表" tabindex="-1">F. 全书术语表<a class="heading-anchor" href="#f-全书术语表" aria-label="链接到本节">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>一句话定义</th>
+<th>系统讲解</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>seam（测试接缝）</td>
+<td>预先约定、用来挂测试的公共边界，优先复用而不是新切</td>
+<td><a href="#%E7%AC%AC-5-%E7%AB%A0-%E5%8F%8D%E9%A6%88%E7%8E%AF-%E5%8E%9F%E5%9E%8B-tdd-%E8%AF%8A%E6%96%AD%E5%92%8C%E7%A0%94%E7%A9%B6">第 5 章</a></td>
+</tr>
+<tr>
+<td>red-capable</td>
+<td>一条能因为目标 bug 本身而失败的命令，不只证明程序没崩溃</td>
+<td><a href="#%E7%AC%AC-5-%E7%AB%A0-%E5%8F%8D%E9%A6%88%E7%8E%AF-%E5%8E%9F%E5%9E%8B-tdd-%E8%AF%8A%E6%96%AD%E5%92%8C%E7%A0%94%E7%A9%B6">第 5 章</a></td>
+</tr>
+<tr>
+<td>tracer-bullet ticket</td>
+<td>穿过所有层、但只做一条细而完整行为的垂直切片票</td>
+<td><a href="#%E7%AC%AC-4-%E7%AB%A0-%E4%BB%8E%E5%AF%B9%E8%AF%9D%E5%88%B0%E4%BA%A4%E4%BB%98-%E8%A7%84%E6%A0%BC-%E6%8B%86%E7%A5%A8-%E5%AE%9E%E7%8E%B0%E5%92%8C%E8%AF%84%E5%AE%A1">第 4 章</a></td>
+</tr>
+<tr>
+<td>frontier（前沿）</td>
+<td>任务图中当前已解阻塞、可以开工的票集合</td>
+<td><a href="#%E7%AC%AC-4-%E7%AB%A0-%E4%BB%8E%E5%AF%B9%E8%AF%9D%E5%88%B0%E4%BA%A4%E4%BB%98-%E8%A7%84%E6%A0%BC-%E6%8B%86%E7%A5%A8-%E5%AE%9E%E7%8E%B0%E5%92%8C%E8%AF%84%E5%AE%A1">第 4 章</a></td>
+</tr>
+<tr>
+<td>blocking edge</td>
+<td>ticket 之间声明的「先完成谁」关系</td>
+<td><a href="#%E7%AC%AC-4-%E7%AB%A0-%E4%BB%8E%E5%AF%B9%E8%AF%9D%E5%88%B0%E4%BA%A4%E4%BB%98-%E8%A7%84%E6%A0%BC-%E6%8B%86%E7%A5%A8-%E5%AE%9E%E7%8E%B0%E5%92%8C%E8%AF%84%E5%AE%A1">第 4 章</a></td>
+</tr>
+<tr>
+<td>integration branch</td>
+<td><code>implement-spec</code> 汇总各实现票成果的集成分支</td>
+<td><a href="#%E7%AC%AC-4-%E7%AB%A0-%E4%BB%8E%E5%AF%B9%E8%AF%9D%E5%88%B0%E4%BA%A4%E4%BB%98-%E8%A7%84%E6%A0%BC-%E6%8B%86%E7%A5%A8-%E5%AE%9E%E7%8E%B0%E5%92%8C%E8%AF%84%E5%AE%A1">第 4 章</a></td>
+</tr>
+<tr>
+<td>双轴评审</td>
+<td>Standards 与 Spec 分开启动、分开下结论的 review</td>
+<td><a href="#%E7%AC%AC-4-%E7%AB%A0-%E4%BB%8E%E5%AF%B9%E8%AF%9D%E5%88%B0%E4%BA%A4%E4%BB%98-%E8%A7%84%E6%A0%BC-%E6%8B%86%E7%A5%A8-%E5%AE%9E%E7%8E%B0%E5%92%8C%E8%AF%84%E5%AE%A1">第 4 章</a></td>
+</tr>
+<tr>
+<td>HITL / AFK</td>
+<td>必须由人完成的步骤 / Agent 可独立完成的步骤</td>
+<td><a href="#%E7%AC%AC-4-%E7%AB%A0-%E4%BB%8E%E5%AF%B9%E8%AF%9D%E5%88%B0%E4%BA%A4%E4%BB%98-%E8%A7%84%E6%A0%BC-%E6%8B%86%E7%A5%A8-%E5%AE%9E%E7%8E%B0%E5%92%8C%E8%AF%84%E5%AE%A1">第 4 章</a></td>
+</tr>
+<tr>
+<td>深模块（depth）</td>
+<td>用小接口隐藏大量复杂行为的模块</td>
+<td><a href="#%E7%AC%AC-6-%E7%AB%A0-%E4%BB%A3%E7%A0%81%E4%B8%8D%E4%BC%9A%E8%87%AA%E5%B7%B1%E5%8F%98%E5%A5%BD-%E9%A2%86%E5%9F%9F%E8%AF%AD%E8%A8%80-%E6%B7%B1%E6%A8%A1%E5%9D%97%E4%B8%8E%E5%8F%8C%E8%BD%B4%E8%AF%84%E5%AE%A1">第 6 章</a></td>
+</tr>
+<tr>
+<td>handoff</td>
+<td>把会话状态压缩成交接文档，让新会话只读产物继续</td>
+<td><a href="#%E7%AC%AC-7-%E7%AB%A0-%E8%B7%A8%E4%BA%BA-%E8%B7%A8%E4%BC%9A%E8%AF%9D%E4%B8%8E%E4%BA%BA%E5%B7%A5%E6%AD%A5%E9%AA%A4">第 7 章</a></td>
+</tr>
+<tr>
+<td>context pointer</td>
+<td>根指导文件里一行说明资料是什么、何时必须读的指针</td>
+<td><a href="#%E7%AC%AC-7-%E7%AB%A0-%E8%B7%A8%E4%BA%BA-%E8%B7%A8%E4%BC%9A%E8%AF%9D%E4%B8%8E%E4%BA%BA%E5%B7%A5%E6%AD%A5%E9%AA%A4">第 7 章</a></td>
+</tr>
+<tr>
+<td>断言账本</td>
+<td>对技术文档逐条记录「声称、证据、核验日期」的核对表</td>
+<td><a href="#%E7%AC%AC-13-%E7%AB%A0-%E4%B8%89%E4%B8%AA%E7%AB%AF%E5%88%B0%E7%AB%AF%E6%93%8D%E4%BD%9C%E6%A1%88%E4%BE%8B-%E5%AE%A1%E6%8A%A5%E5%91%8A-%E8%BF%81%E9%80%BB%E8%BE%91-%E4%BF%AE%E7%99%BD%E5%B1%8F">第 13 章</a></td>
+</tr>
+<tr>
+<td>降级路径</td>
+<td>工具能力缺失时保留方法核心的替代流程</td>
+<td><a href="#%E7%AC%AC-9-%E7%AB%A0-%E6%8A%8A-skills-%E5%BC%95%E5%85%A5%E8%87%AA%E5%B7%B1%E7%9A%84%E4%BB%93%E5%BA%93">第 9 章</a></td>
+</tr>
+<tr>
+<td>阅读版 / 证据基线</td>
+<td>读者看到的发布版本 / 内部钉住的上游快照与证据记录</td>
+<td><a href="#%E7%AC%AC-0-%E7%AB%A0-%E8%BF%99%E6%9C%AC%E4%B9%A6%E6%80%8E%E6%A0%B7%E8%AF%BB">第 0 章</a></td>
+</tr>
+</tbody></table>
+<h3 id="g-三档就绪自检表" tabindex="-1">G. 三档就绪自检表<a class="heading-anchor" href="#g-三档就绪自检表" aria-label="链接到本节">#</a></h3>
+<p>读完全书后，用这张表定位自己。哪条做不到，按右列回炉。</p>
+<p><strong>小白就绪：</strong></p>
+<table>
+<thead>
+<tr>
+<th>我能做到</th>
+<th>做不到时回炉</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>模糊时先澄清，明确时不重复讨论</td>
+<td><a href="#%E7%AC%AC-3-%E7%AB%A0-%E5%86%99%E4%BB%A3%E7%A0%81%E5%89%8D-%E6%8A%8A%E6%A8%A1%E7%B3%8A%E9%9C%80%E6%B1%82%E5%8F%98%E6%88%90%E5%B7%A5%E7%A8%8B%E5%86%B3%E7%AD%96">第 3 章</a> → <a href="#practice-01-find-the-answer">关卡 1</a></td>
+</tr>
+<tr>
+<td>大任务留下 spec、tickets 和 handoff</td>
+<td><a href="#%E7%AC%AC-4-%E7%AB%A0-%E4%BB%8E%E5%AF%B9%E8%AF%9D%E5%88%B0%E4%BA%A4%E4%BB%98-%E8%A7%84%E6%A0%BC-%E6%8B%86%E7%A5%A8-%E5%AE%9E%E7%8E%B0%E5%92%8C%E8%AF%84%E5%AE%A1">第 4 章</a> → <a href="#practice-02-decision-to-spec">关卡 2</a>、<a href="#practice-06-handoff-rehearsal">关卡 6</a></td>
+</tr>
+<tr>
+<td>bug 先建反馈环，再谈理论</td>
+<td><a href="#%E7%AC%AC-5-%E7%AB%A0-%E5%8F%8D%E9%A6%88%E7%8E%AF-%E5%8E%9F%E5%9E%8B-tdd-%E8%AF%8A%E6%96%AD%E5%92%8C%E7%A0%94%E7%A9%B6">第 5 章</a> → <a href="#practice-03-red-green-bug">关卡 3</a></td>
+</tr>
+<tr>
+<td>测试放在公共 seam，不锁死内部实现</td>
+<td><a href="#%E7%AC%AC-5-%E7%AB%A0-%E5%8F%8D%E9%A6%88%E7%8E%AF-%E5%8E%9F%E5%9E%8B-tdd-%E8%AF%8A%E6%96%AD%E5%92%8C%E7%A0%94%E7%A9%B6">第 5 章</a> → <a href="#practice-04-minimal-fix-evidence">关卡 4</a></td>
+</tr>
+<tr>
+<td>完成声明只引用当前验证，不引用历史印象</td>
+<td><a href="#%E7%AC%AC-4-%E7%AB%A0-%E4%BB%8E%E5%AF%B9%E8%AF%9D%E5%88%B0%E4%BA%A4%E4%BB%98-%E8%A7%84%E6%A0%BC-%E6%8B%86%E7%A5%A8-%E5%AE%9E%E7%8E%B0%E5%92%8C%E8%AF%84%E5%AE%A1">第 4 章</a> → <a href="#practice-05-two-axis-review">关卡 5</a></td>
+</tr>
+</tbody></table>
+<p><strong>中级就绪：</strong> 任意抽掉一段原始聊天，后续工作仍能从 spec、ticket、测试和 handoff 恢复。达不到就做 <a href="#%E7%AC%AC-10-%E7%AB%A0-%E6%96%B0%E4%BA%BA%E5%9B%9B%E5%91%A8%E8%AE%AD%E7%BB%83%E8%B7%AF%E7%BA%BF">第 10 章</a>的四个中级挑战，再用<a href="#practice-07-capstone-delivery">综合交付</a>验收。</p>
+<p><strong>高阶就绪：</strong> 抽掉一个子 Agent、一个 tracker API 或一个特定终端工具后，流程仍能以较慢但可验证的方式完成；不能的依赖已写进 Skill 合同。达不到就回到 <a href="#%E7%AC%AC-9-%E7%AB%A0-%E6%8A%8A-skills-%E5%BC%95%E5%85%A5%E8%87%AA%E5%B7%B1%E7%9A%84%E4%BB%93%E5%BA%93">第 9 章</a>的降级路径与<a href="#%E7%AC%AC-10-%E7%AB%A0-%E6%96%B0%E4%BA%BA%E5%9B%9B%E5%91%A8%E8%AE%AD%E7%BB%83%E8%B7%AF%E7%BA%BF">第 10 章</a>的高阶挑战。</p>
+<h3 id="h-版本沿革图-历史教学图" tabindex="-1">H. 版本沿革图（历史教学图）<a class="heading-anchor" href="#h-版本沿革图-历史教学图" aria-label="链接到本节">#</a></h3>
+<p>下面两张图保留自更早的阅读版，图中的数字与入口不是本版清单，只用于说明编排思路的演变。当前清单以附录 A–D 和本版正文为准。</p>
+<p><img src="assets/azhou/stable-and-beta.png" alt="历史教学图：旧基线的 29 个非实验 Skill 与 8 个 in-progress Skill"></p>
+<p><img src="assets/azhou/six-questions-skill-router.png" alt="阿舟知识图：六个新手问题路由（旧版示意）"></p>
 <h2 id="资料与诚实声明" tabindex="-1">资料与诚实声明<a class="heading-anchor" href="#资料与诚实声明" aria-label="链接到本节">#</a></h2>
 <h3 id="上游一手材料" tabindex="-1">上游一手材料<a class="heading-anchor" href="#上游一手材料" aria-label="链接到本节">#</a></h3>
 <ul>

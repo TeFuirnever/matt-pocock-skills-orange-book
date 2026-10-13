@@ -93,7 +93,18 @@ Skill 描述的是可重复使用的工作方法：
 
 ![阿舟图解：从失败风险选择 Skill](assets/azhou/skill-selection.png)
 
-### 1.6 本章验收
+### 1.6 Agent 运行时小白词典
+
+后面章节会反复用到这些词，先各用一句话说清：
+
+- **会话（session）：** 你与 Agent 的一次连续对话；它有长度上限，接近上限时推理质量会下降。
+- **上下文（context）：** Agent 当前能看到的一切——对话、被读取的文件、工具结果。没进上下文的事实，Agent 不知道。
+- **子 Agent（subagent）：** 由当前会话派生的独立执行单元，有自己的上下文窗口，完成后只带回结论。
+- **worktree：** 同一仓库的一份独立工作目录，让两份改动互不踩踏，并行实现票常用它。
+- **hook：** 在 Agent 动作前后自动触发的检查或命令，把纪律变成机械执行。
+- **tracker：** issue/ticket 系统（GitHub Issues 或本地 Markdown），存放规格、票和阻塞关系。
+
+### 1.7 本章验收
 
 - 能用自己的话解释 Skill 与一次性 Prompt 的区别。
 - 能区分 user-invoked 与 model-invoked。
