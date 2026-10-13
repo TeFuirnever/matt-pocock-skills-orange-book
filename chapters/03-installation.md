@@ -103,7 +103,14 @@ gemini skills install https://github.com/mattpocock/skills.git --path skills/pro
 | 中等功能 | `grill-with-docs` → `to-spec` → `implement` | 边写边重新设计 |
 | 大型工作 | `wayfinder` → 决策 tickets → `to-spec` → `to-tickets` → `implement-spec`（依赖图并行交付） | 试图把所有上下文塞进一个会话 |
 
-### 2.6 本章验收
+### 2.6 常见失败
+
+- 插件与手动复制同时安装：同名 Skill 出现两份且行为漂移，同一个 Agent 只选一种方式。
+- 跳过 setup 直接进入实现：`to-spec` 和 `to-tickets` 不知道 tracker 在哪里，产物发不出去。
+- 把 `in-progress` 当稳定接口写进团队流程：实验目录的名字、行为和存在性都可能变化。
+- 跟随上游自动更新却不核对安装文本：与本版固定源不一致时，以固定提交为准复现实验。
+
+### 2.7 本章验收
 
 - 能说出四个目录的稳定性差异。
 - 知道 Claude Code 插件与 skills.sh 不应重复安装。

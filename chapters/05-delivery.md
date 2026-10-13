@@ -18,6 +18,15 @@
 
 为什么规格里要写测试接缝？因为没有这一步，下一会话很可能把内部函数当接口测试，或者为了好测而到处切新接口，最后测试很多，设计更差。
 
+示例输入：
+
+```text
+/to-spec
+
+把刚才确定的 Provider 配置决定整理成规格：新增、验证、设为默认、删除四条用户故事，
+测试接缝优先复用设置服务的持久化边界。不要补充我们没有讨论过的需求。
+```
+
 ### 4.2 `to-tickets`：按垂直切片拆，不按技术层拆
 
 ![Tracer-bullet ticket：横向分层与纵向切片](assets/diagrams/tracer-bullet-slices.png)
@@ -101,7 +110,14 @@
 
 新增的 `pr` 专门负责 PR 正文，使用 `GLOSSARY.md` 里的领域语言。Summary 用最小图、树、伪代码或 diff 草图解释关键变化；Evidence 给出真实的 Before/After；Merge Danger 说明回退难度与影响范围。视觉改动适合截图，执行逻辑适合失败与通过的命令证据。写正文不等于获准发布 PR。该 Skill 标注借鉴 Dex Horthy / Humanlayer 的 [show-me](https://github.com/humanlayer/skills/blob/main/plugins/show-me/skills/show-me/SKILL.md)，应保留归属。
 
-### 4.7 本章验收
+### 4.7 常见失败
+
+- 在规格阶段偷偷补没有讨论过的需求：`to-spec` 只记录已确定内容，新决定要退回讨论。
+- 按技术层拆票：数据结构、main、renderer 三票关闭时都没有可演示价值，反馈环断裂。
+- 实现中遇到新的产品决策时悄悄选一个答案继续写：应停下来上报，而不是边做边 redesign。
+- 评审把 Standards 与 Spec 揉成一个总分：两条轴必须分开下结论。
+
+### 4.8 本章验收
 
 - 规格只记录已确定内容，不在写作阶段偷偷补产品决定。
 - tickets 默认是 tracer-bullet 垂直切片。
