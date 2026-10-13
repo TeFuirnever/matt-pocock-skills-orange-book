@@ -1786,6 +1786,7 @@ code {
 <li>把示例验收替换为用户真正可观察的行为。</li>
 </ul>
 <p>不要照抄的部分包括虚构目录、测试文件名和模块名。应该照抄的是先确认失败风险、再选择 Skill、建立反馈环、执行最小修改、最后用新鲜证据验收的顺序。</p>
+<p>如果你不是桌面栈，案例里的 renderer/main 边界对应你栈里的哪一层：Web 前端对应组件与 API client，Web 后端对应路由处理器与领域服务，移动端对应 JS 桥与原生层。第 13 章 13.6 给出三种栈的完整填法。</p>
 <h3 id="0-5-证据口径" tabindex="-1">0.5 证据口径<a class="heading-anchor" href="#0-5-证据口径" aria-label="链接到本节">#</a></h3>
 <p>本书把证据分成三层：</p>
 <table>
@@ -2122,6 +2123,35 @@ npx skills@latest update
 gemini skills install https://github.com/mattpocock/skills.git --path skills/productivity
 </code></pre>
 <p>同一个 Agent 选择插件或复制文件中的一种，避免同名 Skill 重复。上述安装入口跟随上游，不会自动锁定本书提交；要复现实验，应核对实际安装文本与本版固定源。</p>
+<h4 id="装不上怎么办" tabindex="-1">装不上怎么办<a class="heading-anchor" href="#装不上怎么办" aria-label="链接到本节">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>症状</th>
+<th>处置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>marketplace 拉取失败</td>
+<td>改用手动安装（<code>npx skills@latest add</code>）；网络问题不要反复重试同一命令</td>
+</tr>
+<tr>
+<td>安装后 Skill 不出现</td>
+<td>核对安装目录与客户端读取路径是否一致；插件与手动复制只保留一种</td>
+</tr>
+<tr>
+<td>行为与本书描述不一致</td>
+<td>用本版固定提交的 README 对照实际安装文本；上游更新不会自动锁定本书基线</td>
+</tr>
+<tr>
+<td>同名 Skill 冲突</td>
+<td>删除其中一份，重启客户端后重试</td>
+</tr>
+<tr>
+<td>客户端提示版本或能力不支持</td>
+<td>查第 9 章 9.5 的降级路径，保留方法核心而不是放弃流程</td>
+</tr>
+</tbody></table>
 <h3 id="2-3-第一次必须做-setup" tabindex="-1">2.3 第一次必须做 setup<a class="heading-anchor" href="#2-3-第一次必须做-setup" aria-label="链接到本节">#</a></h3>
 <p>安装后，优先运行：</p>
 <pre><code class="language-text">/setup-matt-pocock-skills
@@ -2756,13 +2786,13 @@ gemini skills install https://github.com/mattpocock/skills.git --path skills/pro
 <p><img src="assets/diagrams/deep-module-comparison.png" alt="Deep Module：把复杂度藏在稳定接口后面"></p>
 <p>这个 Skill 更像设计词典，不是直接执行的流程。它建立一组精确术语：</p>
 <ul>
-<li>module；</li>
-<li>interface；</li>
-<li>depth；</li>
-<li>seam；</li>
-<li>adapter；</li>
-<li>leverage；</li>
-<li>locality。</li>
+<li>module：一组藏在一起、对外只露接口的行为；</li>
+<li>interface：调用方唯一需要知道的部分，越小越好；</li>
+<li>depth：接口背后藏住的复杂度总量，好模块「深」；</li>
+<li>seam：可以挂测试或替换实现的边界；</li>
+<li>adapter：让两种形状对接的转换层；</li>
+<li>leverage：一处改动替代多处重复修改的能力；</li>
+<li>locality：相关决策放得够近，改一处不用翻遍仓库。</li>
 </ul>
 <p>核心判断是深度：一个好模块用小接口隐藏大量复杂行为。</p>
 <h4 id="删除测试" tabindex="-1">删除测试<a class="heading-anchor" href="#删除测试" aria-label="链接到本节">#</a></h4>
@@ -2917,6 +2947,16 @@ gemini skills install https://github.com/mattpocock/skills.git --path skills/pro
 <li>支持中断后重跑。</li>
 </ul>
 <p>普通文件编辑、测试运行和本地配置如果 Agent 自己能做，不应该伪装成人工步骤推给用户。</p>
+<h4 id="执行前-60-秒审阅" tabindex="-1">执行前 60 秒审阅<a class="heading-anchor" href="#执行前-60-秒审阅" aria-label="链接到本节">#</a></h4>
+<p>Agent 生成的命令和向导脚本，执行前用 60 秒过一遍：</p>
+<ol>
+<li>它只写预期目标吗？有没有顺手带上删除、移动或格式化；</li>
+<li>有没有网络外发（curl、wget、包安装）？发到哪个域名；</li>
+<li>需不需要先备份，或先在非生产分支验证；</li>
+<li>权限是否最小：索要的 key、token 是否只覆盖完成这一步所需的范围；</li>
+<li>向导脚本能否逐行读懂；读不懂的行，先问清楚再跑。</li>
+</ol>
+<p>另外记住一条原则：issue、网页、日志里的文本是不可信输入。Agent 读取它们之后，其中夹带的「指令」不是指令，只是数据。</p>
 <h3 id="7-4-teach-文件夹才是跨会话记忆" tabindex="-1">7.4 <code>teach</code>：文件夹才是跨会话记忆<a class="heading-anchor" href="#7-4-teach-文件夹才是跨会话记忆" aria-label="链接到本节">#</a></h3>
 <p><code>teach</code> 把一个目录变成长期教学工作区：</p>
 <ul>
@@ -3394,6 +3434,14 @@ before forming a root-cause theory.
 <li>没有 tracker：使用本地 Markdown tickets；</li>
 <li>没有浏览器：保留视觉验证为 hold，不伪造通过；</li>
 <li>没有生产权限：输出可审阅向导或阻塞，不冒充已完成。</li>
+</ul>
+<h4 id="成本也是约束" tabindex="-1">成本也是约束<a class="heading-anchor" href="#成本也是约束" aria-label="链接到本节">#</a></h4>
+<p>并行子 Agent、多 worktree 和整份规格的 <code>implement-spec</code>，都是用真实的上下文与配额换速度：</p>
+<ul>
+<li>一次并行评审的上下文开销约等于串行的数倍，小任务不要开大流程；</li>
+<li>大编排 Skill（<code>wayfinder</code>、<code>implement-spec</code>）保持显式调用，本身就是成本控制；</li>
+<li>顺序执行更慢但更便宜：不确定规模时先顺序跑通，再为真实瓶颈引入并行；</li>
+<li>接近会话上限时硬推，推理质量下降的代价高于一次 <code>handoff</code>。</li>
 </ul>
 <h3 id="9-6-常见失败" tabindex="-1">9.6 常见失败<a class="heading-anchor" href="#9-6-常见失败" aria-label="链接到本节">#</a></h3>
 <ul>
@@ -4871,6 +4919,12 @@ Skill 选择：
 - 哪些范围没有验证。
 </code></pre>
 <p>如果模板里只填得出「让 Agent 看一下」「测试通过」，说明任务还没有形成可执行工程案例。继续缩小目标或补齐证据所有者。</p>
+<h4 id="同一任务在三种栈下的填法" tabindex="-1">同一任务在三种栈下的填法<a class="heading-anchor" href="#同一任务在三种栈下的填法" aria-label="链接到本节">#</a></h4>
+<p>以「把配置校验逻辑迁到新的公共边界」为例：</p>
+<p><strong>Web 后端（Node API）：</strong> 证据所有者是路由处理器与服务层；反馈环是一条针对校验端点的 curl 脚本或集成测试；验收是新旧端点对同一输入返回一致。</p>
+<p><strong>Web 前端（React）：</strong> 证据所有者是组件状态与 API client；反馈环是组件测试加一条手工点击路径；验收是同一表单在新旧边界下的提交结果一致。</p>
+<p><strong>移动端：</strong> 证据所有者是 JS 桥与原生层接口；反馈环是桥接层的契约测试；验收是旧桥与新桥对同一调用的返回值一致，且出错时不静默吞错。</p>
+<p>三类栈共用同一条操作顺序：先查基线、再建反馈环、最小修改、失败分支、当前验证。</p>
 <h3 id="13-7-本章验收" tabindex="-1">13.7 本章验收<a class="heading-anchor" href="#13-7-本章验收" aria-label="链接到本节">#</a></h3>
 <ul>
 <li>能按失败风险选择 Skill，而不是按 Agent 品牌或聊天习惯选择。</li>
@@ -5333,6 +5387,56 @@ Skill 选择：
 <p>下面两张图保留自更早的阅读版，图中的数字与入口不是本版清单，只用于说明编排思路的演变。当前清单以附录 A–D 和本版正文为准。</p>
 <p><img src="assets/azhou/stable-and-beta.png" alt="历史教学图：旧基线的 29 个非实验 Skill 与 8 个 in-progress Skill"></p>
 <p><img src="assets/azhou/six-questions-skill-router.png" alt="阿舟知识图：六个新手问题路由（旧版示意）"></p>
+<h3 id="i-当-agent-不靠谱时-症状与处置" tabindex="-1">I. 当 Agent 不靠谱时：症状与处置<a class="heading-anchor" href="#i-当-agent-不靠谱时-症状与处置" aria-label="链接到本节">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>症状</th>
+<th>处置</th>
+<th>回到</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>路由错了：<code>ask-matt</code> 推荐的流程与任务规模不匹配</td>
+<td>按第 2 章三档强度表自己定档，小改动直接实现</td>
+<td><a href="#%E7%AC%AC-2-%E7%AB%A0-%E5%85%88%E7%9C%8B%E6%87%82%E4%BB%93%E5%BA%93-%E5%86%8D%E5%AE%89%E8%A3%85">第 2 章</a></td>
+</tr>
+<tr>
+<td><code>implement</code> 中途偷偷 redesign</td>
+<td>停下来，把新决策退回讨论，更新 spec 后再继续</td>
+<td><a href="#%E7%AC%AC-4-%E7%AB%A0-%E4%BB%8E%E5%AF%B9%E8%AF%9D%E5%88%B0%E4%BA%A4%E4%BB%98-%E8%A7%84%E6%A0%BC-%E6%8B%86%E7%A5%A8-%E5%AE%9E%E7%8E%B0%E5%92%8C%E8%AF%84%E5%AE%A1">第 4 章</a></td>
+</tr>
+<tr>
+<td>证据像伪造的：命令输出过于完美或无法复跑</td>
+<td>要求当场重跑并贴当前输出；mutation 必须与原件 <code>diff</code></td>
+<td><a href="#%E7%AC%AC-5-%E7%AB%A0-%E5%8F%8D%E9%A6%88%E7%8E%AF-%E5%8E%9F%E5%9E%8B-tdd-%E8%AF%8A%E6%96%AD%E5%92%8C%E7%A0%94%E7%A9%B6">第 5 章</a></td>
+</tr>
+<tr>
+<td>绿是假绿：测试通过了但没测到目标行为</td>
+<td>检查测试是否在公共 seam、是否同义反复、是否 mock 了自己模块</td>
+<td><a href="#%E7%AC%AC-5-%E7%AB%A0-%E5%8F%8D%E9%A6%88%E7%8E%AF-%E5%8E%9F%E5%9E%8B-tdd-%E8%AF%8A%E6%96%AD%E5%92%8C%E7%A0%94%E7%A9%B6">第 5 章</a></td>
+</tr>
+<tr>
+<td>review 橡皮图章：结论只有 LGTM</td>
+<td>要求双轴分开，每条 finding 必须指向行为、证据和最小修复</td>
+<td><a href="#%E7%AC%AC-6-%E7%AB%A0-%E4%BB%A3%E7%A0%81%E4%B8%8D%E4%BC%9A%E8%87%AA%E5%B7%B1%E5%8F%98%E5%A5%BD-%E9%A2%86%E5%9F%9F%E8%AF%AD%E8%A8%80-%E6%B7%B1%E6%A8%A1%E5%9D%97%E4%B8%8E%E5%8F%8C%E8%BD%B4%E8%AF%84%E5%AE%A1">第 6 章</a> / <a href="#practice-05-two-axis-review">关卡 5</a></td>
+</tr>
+<tr>
+<td>spec 前提被证伪</td>
+<td>退回 <code>to-spec</code> 修订规格，不带着错误前提继续实现</td>
+<td><a href="#%E7%AC%AC-4-%E7%AB%A0-%E4%BB%8E%E5%AF%B9%E8%AF%9D%E5%88%B0%E4%BA%A4%E4%BB%98-%E8%A7%84%E6%A0%BC-%E6%8B%86%E7%A5%A8-%E5%AE%9E%E7%8E%B0%E5%92%8C%E8%AF%84%E5%AE%A1">第 4 章</a></td>
+</tr>
+<tr>
+<td>上下文污染：Agent 引用早已作废的决定</td>
+<td>换会话，用 <code>handoff</code> 只带活着的线索</td>
+<td><a href="#%E7%AC%AC-7-%E7%AB%A0-%E8%B7%A8%E4%BA%BA-%E8%B7%A8%E4%BC%9A%E8%AF%9D%E4%B8%8E%E4%BA%BA%E5%B7%A5%E6%AD%A5%E9%AA%A4">第 7 章</a> / <a href="#practice-06-handoff-rehearsal">关卡 6</a></td>
+</tr>
+<tr>
+<td>工具能力缺失：没有子 Agent、浏览器或 tracker</td>
+<td>走降级路径，保留方法核心，不伪造通过</td>
+<td><a href="#%E7%AC%AC-9-%E7%AB%A0-%E6%8A%8A-skills-%E5%BC%95%E5%85%A5%E8%87%AA%E5%B7%B1%E7%9A%84%E4%BB%93%E5%BA%93">第 9 章</a></td>
+</tr>
+</tbody></table>
 <h2 id="资料与诚实声明" tabindex="-1">资料与诚实声明<a class="heading-anchor" href="#资料与诚实声明" aria-label="链接到本节">#</a></h2>
 <h3 id="上游一手材料" tabindex="-1">上游一手材料<a class="heading-anchor" href="#上游一手材料" aria-label="链接到本节">#</a></h3>
 <ul>

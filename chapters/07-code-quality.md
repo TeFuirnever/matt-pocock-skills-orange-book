@@ -18,13 +18,13 @@
 
 这个 Skill 更像设计词典，不是直接执行的流程。它建立一组精确术语：
 
-- module；
-- interface；
-- depth；
-- seam；
-- adapter；
-- leverage；
-- locality。
+- module：一组藏在一起、对外只露接口的行为；
+- interface：调用方唯一需要知道的部分，越小越好；
+- depth：接口背后藏住的复杂度总量，好模块「深」；
+- seam：可以挂测试或替换实现的边界；
+- adapter：让两种形状对接的转换层；
+- leverage：一处改动替代多处重复修改的能力；
+- locality：相关决策放得够近，改一处不用翻遍仓库。
 
 核心判断是深度：一个好模块用小接口隐藏大量复杂行为。
 
