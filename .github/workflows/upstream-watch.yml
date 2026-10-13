@@ -1,0 +1,31 @@
+name: Watch upstream releases
+
+# Monthly check: does mattpocock/skills have a release newer than the recorded
+# baseline? Re-anchoring rules live in research/upstream-release-1.3.2-standby.md.
+
+on:
+  schedule:
+    - cron: '17 3 2 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Compare upstream tags with recorded baseline
+        run: |
+          set -euo pipefail
+          recorded=$(node -p "JSON.parse(require('node:fs').readFileSync('research/upstream-manifest.json','utf8')).packageVersion")
+          latest=$(git ls-remote --tags https://github.com/mattpocock/skills \
+            | grep -oE 'refs/tags/v?[0-9]+\.[0-9]+\.[0-9]+$' \
+            | sed 's#refs/tags/##; s#^v##' | sort -V | tail -1)
+          echo "recorded=$recorded latest=$latest"
+          older=$(printf '%s\n%s\n' "$recorded" "$latest" | sort -V | head -1)
+          if [ "$latest" != "$recorded" ] && [ "$older" = "$recorded" ]; then
+            echo "::error::upstream released $latest (recorded $recorded); follow research/upstream-release-1.3.2-standby.md to re-anchor"
+            exit 1
+          fi

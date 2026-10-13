@@ -1467,6 +1467,38 @@ code {
   color: var(--ink);
   text-decoration: underline;
 }
+
+/* Deep-link target flash and CJK punctuation tightening (progressive enhancement) */
+.book-article {
+  text-spacing-trim: trim-all;
+  hanging-punctuation: first allow-end;
+}
+
+.book-article :target {
+  scroll-margin-top: calc(var(--topbar-height, 64px) + 12px);
+  animation: target-flash 1.6s ease;
+}
+
+@keyframes target-flash {
+  from {
+    background: var(--orange-soft);
+  }
+
+  to {
+    background: transparent;
+  }
+}
+
+.chapter-meta {
+  margin-top: -0.4em;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.lab-article input[type="checkbox"] {
+  margin-right: 6px;
+  accent-color: var(--orange);
+}
 </style>
 </head>
 <body>
@@ -1630,6 +1662,7 @@ code {
 </ol>
 <hr>
 <h2 id="第-0-章-这本书怎样读" tabindex="-1">第 0 章 · 这本书怎样读<a class="heading-anchor" href="#第-0-章-这本书怎样读" aria-label="链接到本节">#</a></h2>
+<p class="chapter-meta">本章约 5 分钟</p>
 <p>很多传统开发同学第一次接触 Skills，会自然地把它理解成新的脚手架、插件市场，或者一组更长的 Prompt。</p>
 <p>这三个理解都只碰到表面。</p>
 <p>Matt Pocock 这套仓库真正有价值的地方，是把几十年软件工程里已经被反复验证的做法，压缩成 Agent 可以按条件调用的小型工作纪律。它不替你掌控整个过程，也不承诺一键完成项目。它做的事更克制：当某类失败风险出现时，把最合适的反馈环装进当前对话。</p>
@@ -1935,6 +1968,7 @@ code {
 <p><a href="#top">回到全书</a></p>
 <nav class="chapter-pager" aria-label="章节导航"><span></span><a class="pager-next" href="#第-1-章-skill-到底是什么">下一章：第 1 章 · Skill 到底是什么 →</a></nav>
 <h2 id="第-1-章-skill-到底是什么" tabindex="-1">第 1 章 · Skill 到底是什么<a class="heading-anchor" href="#第-1-章-skill-到底是什么" aria-label="链接到本节">#</a></h2>
+<p class="chapter-meta">本章约 3 分钟</p>
 <h3 id="1-1-skill-不是更长的-prompt" tabindex="-1">1.1 Skill 不是更长的 Prompt<a class="heading-anchor" href="#1-1-skill-不是更长的-prompt" aria-label="链接到本节">#</a></h3>
 <p>普通 Prompt 往往只描述一次任务：改一个页面、修一个 bug、写一段测试。</p>
 <p>Skill 描述的是可重复使用的工作方法：</p>
@@ -2106,6 +2140,7 @@ code {
 <hr>
 <nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-0-章-这本书怎样读">← 上一章：第 0 章 · 这本书怎样读</a><a class="pager-next" href="#第-2-章-先看懂仓库-再安装">下一章：第 2 章 · 先看懂仓库，再安装 →</a></nav>
 <h2 id="第-2-章-先看懂仓库-再安装" tabindex="-1">第 2 章 · 先看懂仓库，再安装<a class="heading-anchor" href="#第-2-章-先看懂仓库-再安装" aria-label="链接到本节">#</a></h2>
+<p class="chapter-meta">本章约 3 分钟</p>
 <h3 id="2-1-四个目录-不是同一种稳定性" tabindex="-1">2.1 四个目录，不是同一种稳定性<a class="heading-anchor" href="#2-1-四个目录-不是同一种稳定性" aria-label="链接到本节">#</a></h3>
 <p>固定提交中共有 38 个 <code>SKILL.md</code>：</p>
 <table>
@@ -2260,6 +2295,7 @@ gemini skills install https://github.com/mattpocock/skills.git --path skills/pro
 <hr>
 <nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-1-章-skill-到底是什么">← 上一章：第 1 章 · Skill 到底是什么</a><a class="pager-next" href="#第-3-章-写代码前-把模糊需求变成工程决策">下一章：第 3 章 · 写代码前：把模糊需求变成工程决策 →</a></nav>
 <h2 id="第-3-章-写代码前-把模糊需求变成工程决策" tabindex="-1">第 3 章 · 写代码前：把模糊需求变成工程决策<a class="heading-anchor" href="#第-3-章-写代码前-把模糊需求变成工程决策" aria-label="链接到本节">#</a></h2>
+<p class="chapter-meta">本章约 3 分钟</p>
 <p><img src="assets/azhou/decision-source-router.png" alt="阿舟知识图：事实调查、人类决策与规格的边界"></p>
 <h3 id="3-1-grill-me-答案在你脑子里" tabindex="-1">3.1 <code>grill-me</code>：答案在你脑子里<a class="heading-anchor" href="#3-1-grill-me-答案在你脑子里" aria-label="链接到本节">#</a></h3>
 <p><code>grill-me</code> 适合不依赖代码库的想法。它会把主题建模成一棵决策树，逐轮询问当前已经可以回答的前沿问题。</p>
@@ -2443,6 +2479,7 @@ gemini skills install https://github.com/mattpocock/skills.git --path skills/pro
 <p><a href="#practice-02-decision-to-spec">进入实践关卡 2</a> · <a href="#practice-readme">返回实践路径</a></p>
 <nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-2-章-先看懂仓库-再安装">← 上一章：第 2 章 · 先看懂仓库，再安装</a><a class="pager-next" href="#第-4-章-从对话到交付-规格-拆票-实现和评审">下一章：第 4 章 · 从对话到交付：规格、拆票、实现和评审 →</a></nav>
 <h2 id="第-4-章-从对话到交付-规格-拆票-实现和评审" tabindex="-1">第 4 章 · 从对话到交付：规格、拆票、实现和评审<a class="heading-anchor" href="#第-4-章-从对话到交付-规格-拆票-实现和评审" aria-label="链接到本节">#</a></h2>
+<p class="chapter-meta">本章约 4 分钟</p>
 <p><img src="assets/diagrams/skills-delivery-feedback-loop.png" alt="Matt Pocock Skills 交付反馈环"></p>
 <h3 id="4-1-to-spec-记录已经做完的决定" tabindex="-1">4.1 <code>to-spec</code>：记录已经做完的决定<a class="heading-anchor" href="#4-1-to-spec-记录已经做完的决定" aria-label="链接到本节">#</a></h3>
 <p><code>to-spec</code> 不负责采访。它应该读取当前对话，把已经确定的内容整理成：</p>
@@ -2617,6 +2654,7 @@ gemini skills install https://github.com/mattpocock/skills.git --path skills/pro
 <p><a href="#practice-03-red-green-bug">进入实践关卡 3</a> · <a href="#practice-readme">返回实践路径</a></p>
 <nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-3-章-写代码前-把模糊需求变成工程决策">← 上一章：第 3 章 · 写代码前：把模糊需求变成工程决策</a><a class="pager-next" href="#第-5-章-反馈环-原型-tdd-诊断和研究">下一章：第 5 章 · 反馈环：原型、TDD、诊断和研究 →</a></nav>
 <h2 id="第-5-章-反馈环-原型-tdd-诊断和研究" tabindex="-1">第 5 章 · 反馈环：原型、TDD、诊断和研究<a class="heading-anchor" href="#第-5-章-反馈环-原型-tdd-诊断和研究" aria-label="链接到本节">#</a></h2>
+<p class="chapter-meta">本章约 4 分钟</p>
 <h3 id="5-1-prototype-写代码只是为了回答问题" tabindex="-1">5.1 <code>prototype</code>：写代码只是为了回答问题<a class="heading-anchor" href="#5-1-prototype-写代码只是为了回答问题" aria-label="链接到本节">#</a></h3>
 <p>原型不是简陋版产品。它的验收标准不是代码质量，而是有没有回答那个设计问题。</p>
 <p>上游区分两类：</p>
@@ -2816,6 +2854,7 @@ gemini skills install https://github.com/mattpocock/skills.git --path skills/pro
 <p><a href="#practice-05-two-axis-review">进入实践关卡 5</a> · <a href="#practice-readme">返回实践路径</a></p>
 <nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-4-章-从对话到交付-规格-拆票-实现和评审">← 上一章：第 4 章 · 从对话到交付：规格、拆票、实现和评审</a><a class="pager-next" href="#第-6-章-代码不会自己变好-领域语言-深模块与双轴评审">下一章：第 6 章 · 代码不会自己变好：领域语言、深模块与双轴评审 →</a></nav>
 <h2 id="第-6-章-代码不会自己变好-领域语言-深模块与双轴评审" tabindex="-1">第 6 章 · 代码不会自己变好：领域语言、深模块与双轴评审<a class="heading-anchor" href="#第-6-章-代码不会自己变好-领域语言-深模块与双轴评审" aria-label="链接到本节">#</a></h2>
+<p class="chapter-meta">本章约 3 分钟</p>
 <h3 id="6-1-domain-modeling-共同语言不是术语装饰" tabindex="-1">6.1 <code>domain-modeling</code>：共同语言不是术语装饰<a class="heading-anchor" href="#6-1-domain-modeling-共同语言不是术语装饰" aria-label="链接到本节">#</a></h3>
 <p>领域语言会直接影响：</p>
 <ul>
@@ -2951,6 +2990,7 @@ gemini skills install https://github.com/mattpocock/skills.git --path skills/pro
 <p><a href="#practice-06-handoff-rehearsal">进入实践关卡 6</a> · <a href="#practice-readme">返回实践路径</a></p>
 <nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-5-章-反馈环-原型-tdd-诊断和研究">← 上一章：第 5 章 · 反馈环：原型、TDD、诊断和研究</a><a class="pager-next" href="#第-7-章-跨人-跨会话与人工步骤">下一章：第 7 章 · 跨人、跨会话与人工步骤 →</a></nav>
 <h2 id="第-7-章-跨人-跨会话与人工步骤" tabindex="-1">第 7 章 · 跨人、跨会话与人工步骤<a class="heading-anchor" href="#第-7-章-跨人-跨会话与人工步骤" aria-label="链接到本节">#</a></h2>
+<p class="chapter-meta">本章约 4 分钟</p>
 <h3 id="7-1-handoff-工作真的需要旅行时再用" tabindex="-1">7.1 <code>handoff</code>：工作真的需要旅行时再用<a class="heading-anchor" href="#7-1-handoff-工作真的需要旅行时再用" aria-label="链接到本节">#</a></h3>
 <p><img src="assets/azhou/context-durability.png" alt="阿舟图解：聊天上下文、仓库文档与工程证据"></p>
 <p><code>handoff</code> 把当前对话压缩成临时目录中的交接文档，供新 Agent 或新工具接手。保存位置为操作系统临时目录：优先 <code>$TMPDIR</code>，否则 <code>/tmp</code>；Windows 使用 <code>%TEMP%</code>，不是当前仓库。</p>
@@ -3149,6 +3189,7 @@ gemini skills install https://github.com/mattpocock/skills.git --path skills/pro
 <p><a href="#practice-readme">返回实践路径</a> · <a href="#top">回到全书</a></p>
 <nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-6-章-代码不会自己变好-领域语言-深模块与双轴评审">← 上一章：第 6 章 · 代码不会自己变好：领域语言、深模块与双轴评审</a><a class="pager-next" href="#第-8-章-七个-ui-客户端实例-从浅到深">下一章：第 8 章 · 七个 UI 客户端实例，从浅到深 →</a></nav>
 <h2 id="第-8-章-七个-ui-客户端实例-从浅到深" tabindex="-1">第 8 章 · 七个 UI 客户端实例，从浅到深<a class="heading-anchor" href="#第-8-章-七个-ui-客户端实例-从浅到深" aria-label="链接到本节">#</a></h2>
+<p class="chapter-meta">本章约 5 分钟</p>
 <p>以下案例使用一个教学用桌面 AI 客户端。它有 renderer、preload、main 进程，支持多语言、Provider 配置和定时任务。示例刻意压缩了业务细节，让读者把注意力放在 Skill 选择、操作顺序与验收证据上。</p>
 <p><img src="assets/azhou/ui-task-risk-selector.png" alt="阿舟知识图：按 UI 任务的失败风险选择最小 Skill 链"></p>
 <h3 id="实例一-设置页改一个文案" tabindex="-1">实例一：设置页改一个文案<a class="heading-anchor" href="#实例一-设置页改一个文案" aria-label="链接到本节">#</a></h3>
@@ -3386,6 +3427,7 @@ gemini skills install https://github.com/mattpocock/skills.git --path skills/pro
 <hr>
 <nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-7-章-跨人-跨会话与人工步骤">← 上一章：第 7 章 · 跨人、跨会话与人工步骤</a><a class="pager-next" href="#第-9-章-把-skills-引入自己的仓库">下一章：第 9 章 · 把 Skills 引入自己的仓库 →</a></nav>
 <h2 id="第-9-章-把-skills-引入自己的仓库" tabindex="-1">第 9 章 · 把 Skills 引入自己的仓库<a class="heading-anchor" href="#第-9-章-把-skills-引入自己的仓库" aria-label="链接到本节">#</a></h2>
+<p class="chapter-meta">本章约 3 分钟</p>
 <p><img src="assets/azhou/clean-public-history.png" alt="阿舟图解：公开仓库为什么要从干净历史开始"></p>
 <h3 id="9-1-不要一次复制全部-38-个" tabindex="-1">9.1 不要一次复制全部 38 个<a class="heading-anchor" href="#9-1-不要一次复制全部-38-个" aria-label="链接到本节">#</a></h3>
 <p>先从团队真正反复遇到的失败开始。一个适合 UI 客户端团队的最小集合通常是：</p>
@@ -3487,6 +3529,8 @@ before forming a root-cause theory.
 <li>顺序执行更慢但更便宜：不确定规模时先顺序跑通，再为真实瓶颈引入并行；</li>
 <li>接近会话上限时硬推，推理质量下降的代价高于一次 <code>handoff</code>。</li>
 </ul>
+<h4 id="从个人仓库到团队规范" tabindex="-1">从个人仓库到团队规范<a class="heading-anchor" href="#从个人仓库到团队规范" aria-label="链接到本节">#</a></h4>
+<p>个人仓库跑通后，按灰度顺序推广：先由一个人在一个真实迭代里使用最小集合，留下决策记录、spec 和红绿证据；再把这些产物展示给下一位同事复现；最后才把触发条件写进团队根指导文件。度量采用率看产物数量（spec、ticket、回归测试、handoff），不看会话数量。</p>
 <h3 id="9-6-常见失败" tabindex="-1">9.6 常见失败<a class="heading-anchor" href="#9-6-常见失败" aria-label="链接到本节">#</a></h3>
 <ul>
 <li>一次复制全部 38 个 Skill：触发噪音掩盖了真正反复出现的失败，从最小集合开始。</li>
@@ -3518,6 +3562,7 @@ before forming a root-cause theory.
 <hr>
 <nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-8-章-七个-ui-客户端实例-从浅到深">← 上一章：第 8 章 · 七个 UI 客户端实例，从浅到深</a><a class="pager-next" href="#第-10-章-新人四周训练路线">下一章：第 10 章 · 新人四周训练路线 →</a></nav>
 <h2 id="第-10-章-新人四周训练路线" tabindex="-1">第 10 章 · 新人四周训练路线<a class="heading-anchor" href="#第-10-章-新人四周训练路线" aria-label="链接到本节">#</a></h2>
+<p class="chapter-meta">本章约 3 分钟</p>
 <p><img src="assets/azhou/four-week-path.png" alt="阿舟图解：四周新人训练路线"></p>
 <p>这四周不是按自然周强制打卡，而是四个能力台阶。新人可以每周只做一个小任务；已经稳定使用 Agent 的开发者可以直接用每周验收做跳级测试。验收还做不到，就从该周开始，不需要回到第一页重读。</p>
 <p>四周路线与<a href="#practice-readme">实践路径</a>是同一套练习的两种组织：路线是调度器，六个关卡与综合交付是素材。对应关系：第 1 周配套关卡 1，第 2 周配套关卡 2 与 6，第 3 周配套关卡 3 与 4，第 4 周配套关卡 5，最后用综合交付收口。每周验收做不到时，先补齐对应关卡缺的产物，再重测，不要直接跳到下一周。</p>
@@ -3592,6 +3637,7 @@ before forming a root-cause theory.
 <hr>
 <nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-9-章-把-skills-引入自己的仓库">← 上一章：第 9 章 · 把 Skills 引入自己的仓库</a><a class="pager-next" href="#第-11-章-38-个-skills-逐项小白手册">下一章：第 11 章 · 38 个 Skills 逐项小白手册 →</a></nav>
 <h2 id="第-11-章-38-个-skills-逐项小白手册" tabindex="-1">第 11 章 · 38 个 Skills 逐项小白手册<a class="heading-anchor" href="#第-11-章-38-个-skills-逐项小白手册" aria-label="链接到本节">#</a></h2>
+<p class="chapter-meta">本章约 21 分钟</p>
 <p>这一章不是把 frontmatter 翻译成中文，而是把每个 Skill 还原成一个新手可以执行的工作单元。建议第一次阅读时只看“什么时候用”和“什么时候别用”；遇到真实任务时，再回来照着“输入、步骤、产物、验收”运行。</p>
 <blockquote>
 <p><strong>固定版本说明：</strong> 本章只对固定提交
@@ -4266,6 +4312,7 @@ before forming a root-cause theory.
 <hr>
 <nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-10-章-新人四周训练路线">← 上一章：第 10 章 · 新人四周训练路线</a><a class="pager-next" href="#第-12-章-matt-pocock-本人怎样讲-skills">下一章：第 12 章 · Matt Pocock 本人怎样讲 Skills →</a></nav>
 <h2 id="第-12-章-matt-pocock-本人怎样讲-skills" tabindex="-1">第 12 章 · Matt Pocock 本人怎样讲 Skills<a class="heading-anchor" href="#第-12-章-matt-pocock-本人怎样讲-skills" aria-label="链接到本节">#</a></h2>
+<p class="chapter-meta">本章约 4 分钟</p>
 <p>前 11 章主要解释当前固定提交中的 38 个 Skills。本章换一个视角：只看 Matt Pocock 自己的公开仓库和 AI Hero 官网，学习他如何解释 Skills、上下文、反馈环和交接。</p>
 <h3 id="12-1-先分清历史证据与当前基线" tabindex="-1">12.1 先分清历史证据与当前基线<a class="heading-anchor" href="#12-1-先分清历史证据与当前基线" aria-label="链接到本节">#</a></h3>
 <table>
@@ -4312,6 +4359,7 @@ before forming a root-cause theory.
 <li><strong>计划稳定后才进入实现：</strong> 规格与拆票完成前，不写产品代码。</li>
 </ol>
 <h3 id="12-3-十条作者公开表述" tabindex="-1">12.3 十条作者公开表述<a class="heading-anchor" href="#12-3-十条作者公开表述" aria-label="链接到本节">#</a></h3>
+<p>这一节是高阶选读：十条表述的工程翻译在第 1–9 章已经讲过，这里保留作者原话口径，供需要核对证据或设计 harness 的读者使用。小白路径可以跳过。</p>
 <h4 id="12-3-1-skill-是过程级约束-不是平台魔法" tabindex="-1">12.3.1 Skill 是过程级约束，不是平台魔法<a class="heading-anchor" href="#12-3-1-skill-是过程级约束-不是平台魔法" aria-label="链接到本节">#</a></h4>
 <p>在 <a href="https://www.aihero.dev/skills">AI Skills for Real Engineers</a> 中，Matt 把 Skills 描述为交给编码 Agent 的小型、聚焦指令，目的是让 Agent 按资深工程师式的工作方法执行。</p>
 <p>同一页还强调 Skills 可以组成链路：前一个的产出会成为后一个的输入。</p>
@@ -4410,6 +4458,7 @@ before forming a root-cause theory.
 <hr>
 <nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-11-章-38-个-skills-逐项小白手册">← 上一章：第 11 章 · 38 个 Skills 逐项小白手册</a><a class="pager-next" href="#第-13-章-三个端到端操作案例-审报告-迁逻辑-修白屏">下一章：第 13 章 · 三个端到端操作案例：审报告、迁逻辑、修白屏 →</a></nav>
 <h2 id="第-13-章-三个端到端操作案例-审报告-迁逻辑-修白屏" tabindex="-1">第 13 章 · 三个端到端操作案例：审报告、迁逻辑、修白屏<a class="heading-anchor" href="#第-13-章-三个端到端操作案例-审报告-迁逻辑-修白屏" aria-label="链接到本节">#</a></h2>
+<p class="chapter-meta">本章约 8 分钟</p>
 <p>第 8 章解决的是「遇到某类任务，应该选哪个 Skill」。这一章再往前一步：把三个真实工程中常见的任务，从收到需求一直走到可验证完成。</p>
 <p>这里不比较 Agent 品牌，也不复盘聊天过程。案例只关心五件事：任务怎样失败、为什么选择这些 Skills、Agent 具体执行什么、哪些失败可以降级、什么证据才允许宣布完成。</p>
 <p><img src="assets/diagrams/end-to-end-operation-cases.png" alt="三个端到端操作案例"></p>
@@ -4980,6 +5029,7 @@ Skill 选择：
 <hr>
 <nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-12-章-matt-pocock-本人怎样讲-skills">← 上一章：第 12 章 · Matt Pocock 本人怎样讲 Skills</a><a class="pager-next" href="#第-14-章-附录-38-个-skills-完整索引">下一章：第 14 章 · 附录：38 个 Skills 完整索引 →</a></nav>
 <h2 id="第-14-章-附录-38-个-skills-完整索引" tabindex="-1">第 14 章 · 附录：38 个 Skills 完整索引<a class="heading-anchor" href="#第-14-章-附录-38-个-skills-完整索引" aria-label="链接到本节">#</a></h2>
+<p class="chapter-meta">本章约 10 分钟</p>
 <p>下面的列表以本地源提交 <code>49dd158d1076134a641b33efb035946536778336</code> 为准，核对日期为 2026-10-12。稳定分类来自仓库目录；一句话说明综合了上游 README、各 Skill frontmatter 与正文。</p>
 <h3 id="a-engineering-20-个" tabindex="-1">A. Engineering：20 个<a class="heading-anchor" href="#a-engineering-20-个" aria-label="链接到本节">#</a></h3>
 <table>
@@ -5212,6 +5262,7 @@ Skill 选择：
 </tr>
 </tbody></table>
 <h3 id="e-一页选型表" tabindex="-1">E. 一页选型表<a class="heading-anchor" href="#e-一页选型表" aria-label="链接到本节">#</a></h3>
+<p>此表只覆盖最常见的 23 个入口；misc 与 in-progress 的 Skill 按场景查阅附录 C、D 全表。</p>
 <table>
 <thead>
 <tr>

@@ -1436,3 +1436,35 @@ code {
   color: var(--ink);
   text-decoration: underline;
 }
+
+/* Deep-link target flash and CJK punctuation tightening (progressive enhancement) */
+.book-article {
+  text-spacing-trim: trim-all;
+  hanging-punctuation: first allow-end;
+}
+
+.book-article :target {
+  scroll-margin-top: calc(var(--topbar-height, 64px) + 12px);
+  animation: target-flash 1.6s ease;
+}
+
+@keyframes target-flash {
+  from {
+    background: var(--orange-soft);
+  }
+
+  to {
+    background: transparent;
+  }
+}
+
+.chapter-meta {
+  margin-top: -0.4em;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.lab-article input[type="checkbox"] {
+  margin-right: 6px;
+  accent-color: var(--orange);
+}

@@ -1466,6 +1466,38 @@ code {
   color: var(--ink);
   text-decoration: underline;
 }
+
+/* Deep-link target flash and CJK punctuation tightening (progressive enhancement) */
+.book-article {
+  text-spacing-trim: trim-all;
+  hanging-punctuation: first allow-end;
+}
+
+.book-article :target {
+  scroll-margin-top: calc(var(--topbar-height, 64px) + 12px);
+  animation: target-flash 1.6s ease;
+}
+
+@keyframes target-flash {
+  from {
+    background: var(--orange-soft);
+  }
+
+  to {
+    background: transparent;
+  }
+}
+
+.chapter-meta {
+  margin-top: -0.4em;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.lab-article input[type="checkbox"] {
+  margin-right: 6px;
+  accent-color: var(--orange);
+}
 </style>
 </head>
 <body class="lab-page">
@@ -1663,5 +1695,20 @@ colorSchemeMedia?.addEventListener?.('change', () => {
   if (currentPreference === 'system') applyPreference('system');
 });
 </script>
+  <script>(() => {
+  const key = 'orange-book-lab-' + location.pathname;
+  const boxes = [...document.querySelectorAll('.lab-article input[type="checkbox"]')];
+  let saved = [];
+  try { saved = JSON.parse(localStorage.getItem(key) || '[]'); } catch {}
+  boxes.forEach((box, index) => {
+    box.disabled = false;
+    box.checked = Boolean(saved[index]);
+    box.addEventListener('change', () => {
+      try {
+        localStorage.setItem(key, JSON.stringify(boxes.map((item) => item.checked)));
+      } catch {}
+    });
+  });
+})();</script>
 </body>
 </html>

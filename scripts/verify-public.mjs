@@ -16,7 +16,6 @@ import {
 import { assembleBook, practiceAnchor, practicePlacements } from './content-assembly.mjs';
 
 const projectRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
-const fixedCommit = '49dd158d1076134a641b33efb035946536778336';
 const expectedChapterCount = 16;
 const expectedStatementCount = 15;
 const expectedLabs = [
@@ -125,6 +124,11 @@ function requireFile(errors, relativePath) {
 }
 
 const errors = [];
+const manifest = JSON.parse(requireFile(errors, 'research/upstream-manifest.json'));
+const fixedCommit = manifest.commit;
+if (!/^[0-9a-f]{40}$/.test(fixedCommit ?? '')) {
+  errors.push('upstream manifest commit is not a 40-char hex SHA');
+}
 const chapterDir = resolve(projectRoot, 'chapters');
 const chapterNames = readdirSync(chapterDir)
   .filter((name) => /^\d{2}-.+\.md$/.test(name))
@@ -192,8 +196,6 @@ if (documentedSkills.length !== expectedSkills.length) {
     `expected ${expectedSkills.length} detailed Skill sections, found ${documentedSkills.length}`,
   );
 }
-const manifest = JSON.parse(requireFile(errors, 'research/upstream-manifest.json'));
-if (manifest.commit !== fixedCommit) errors.push('upstream manifest commit differs from book baseline');
 if (new Set(documentedSkills).size !== documentedSkills.length) errors.push('duplicate detailed Skill sections');
 if (manifest.skills.map(({ name }) => name).sort().join('|') !== [...expectedSkills].sort().join('|')) {
   errors.push('expected Skill list differs from audited upstream manifest');
@@ -341,6 +343,16 @@ const imageReferences = [
 ];
 if (imageReferences.length < 25) {
   errors.push(`expected at least 25 unique book images, found ${imageReferences.length}`);
+}
+for (const match of book.matchAll(/!\[([^\]]*)\]\((assets\/[^)]+)\)/g)) {
+  if (!match[1].trim()) {
+    errors.push(`markdown image is missing alt text: ${match[2]}`);
+  }
+}
+for (const match of book.matchAll(/<img\b[^>]*>/g)) {
+  if (!/alt="[^"]+"/.test(match[0])) {
+    errors.push(`inline HTML image is missing alt text: ${match[0].slice(0, 80)}`);
+  }
 }
 for (const imageReference of imageReferences) {
   const sourceImage = resolve(projectRoot, imageReference);

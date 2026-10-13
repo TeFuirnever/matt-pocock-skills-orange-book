@@ -243,6 +243,21 @@ enrichedBody += `\n${chapterPager(
     : null,
   null,
 )}\n`;
+
+const chapterBounds = tocChapters.map(({ id }) => enrichedBody.indexOf(`<h2 id="${id}"`));
+for (let index = 0; index < tocChapters.length; index++) {
+  const start = chapterBounds[index];
+  const end = chapterBounds[index + 1] ?? enrichedBody.length;
+  const minutes = Math.max(
+    3,
+    Math.round((end - start - `<h2 id="${tocChapters[index].id}"`.length) / 2400),
+  );
+  enrichedBody = injectAfterHeading(
+    enrichedBody,
+    tocChapters[index].id,
+    `<p class="chapter-meta">本章约 ${minutes} 分钟</p>`,
+  );
+}
 const practiceLinks = headings
   .filter(({ depth, text }) => depth === 2 && practiceKindByTitle.has(text))
   .map(
@@ -331,6 +346,21 @@ function createLabPage({ title, description, body, labLinks, canonicalHref, main
     <a href="https://github.com/TeFuirnever/matt-pocock-skills-orange-book/issues" target="_blank" rel="noreferrer">反馈 Issue</a>
   </footer>
   <script>${themeScript}</script>
+  <script>(() => {
+  const key = 'orange-book-lab-' + location.pathname;
+  const boxes = [...document.querySelectorAll('.lab-article input[type="checkbox"]')];
+  let saved = [];
+  try { saved = JSON.parse(localStorage.getItem(key) || '[]'); } catch {}
+  boxes.forEach((box, index) => {
+    box.disabled = false;
+    box.checked = Boolean(saved[index]);
+    box.addEventListener('change', () => {
+      try {
+        localStorage.setItem(key, JSON.stringify(boxes.map((item) => item.checked)));
+      } catch {}
+    });
+  });
+})();</script>
 </body>
 </html>
 `;

@@ -36,6 +36,8 @@
 
 ### 12.3 十条作者公开表述
 
+这一节是高阶选读：十条表述的工程翻译在第 1–9 章已经讲过，这里保留作者原话口径，供需要核对证据或设计 harness 的读者使用。小白路径可以跳过。
+
 #### 12.3.1 Skill 是过程级约束，不是平台魔法
 
 在 [AI Skills for Real Engineers](https://www.aihero.dev/skills) 中，Matt 把 Skills 描述为交给编码 Agent 的小型、聚焦指令，目的是让 Agent 按资深工程师式的工作方法执行。
