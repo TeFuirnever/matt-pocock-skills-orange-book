@@ -64,7 +64,7 @@
 
 ## 材料基准
 
-- 当前阅读版：`v0.1.0`
+- 当前阅读版：`v0.2.0`
 - 上游仓库：[`mattpocock/skills`](https://github.com/mattpocock/skills)
 - 固定提交：[`49dd158d1076134a641b33efb035946536778336`](https://github.com/mattpocock/skills/tree/49dd158d1076134a641b33efb035946536778336)
 - 提交时间：2026-10-09

@@ -46,7 +46,7 @@ to the fixed upstream commit and the evidence records under `research/`.
 - Fifteen Azhou beginner diagrams as final PNG assets.
 - Ten editable Excalidraw scenes with SVG and PNG exports.
 
-The current reading edition is `v0.1.0`. Its evidence baseline is upstream commit
+The current reading edition is `v0.2.0`. Its evidence baseline is upstream commit
 [`49dd158d1076134a641b33efb035946536778336`](https://github.com/mattpocock/skills/tree/49dd158d1076134a641b33efb035946536778336):
 20 engineering, 7 productivity, 4 misc, and 7 in-progress Skills.
 
