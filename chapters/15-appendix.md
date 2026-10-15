@@ -174,11 +174,13 @@
 
 上游 README 和 Skills 明确借鉴或呼应了这些软件工程传统：
 
-- David Thomas 与 Andrew Hunt，《The Pragmatic Programmer》：反馈速度、刻意小步与需求澄清；
-- Eric Evans，《Domain-Driven Design》：ubiquitous language；
-- John Ousterhout，《A Philosophy of Software Design》：深模块与小接口；
-- Martin Fowler 的代码坏味道：Standards review 基线；
-- Kent Beck 与极限编程传统：持续设计与测试反馈。
+- David Thomas 与 Andrew Hunt，《The Pragmatic Programmer》：反馈速度、刻意小步与需求澄清；tracer-bullet 切片思想直通 `to-tickets` 与 `tdd`；
+- Eric Evans，《Domain-Driven Design》：ubiquitous language，落在 `domain-modeling` 与 `GLOSSARY.md`；
+- John Ousterhout，《A Philosophy of Software Design》：深模块与小接口，落在 `codebase-design` 与 `improve-codebase-architecture`；注意上游拒绝了原书的 depth-as-ratio 度量（它会奖励填充实现），改用 depth-as-leverage；
+- Michael Feathers 的 seam（接缝）概念：不改代码就能改变行为的缝隙，是 `tdd` 与 `codebase-design` 共用的测试词汇；
+- Martin Fowler 的代码坏味道：`code-review` Standards 轴的保底基线；
+- Kent Beck 与极限编程传统：持续设计与测试反馈；「让改动容易，再做容易的改动」直通 `to-tickets` 的 prefactoring 规则；
+- 单向门 / 双向门决策框架：`pr` 的 Merge Danger 与 ADR 的「难以逆转」条件使用同一概念（概念源头通常归于 Jeff Bezos 的公开表述，上游文本未点名）。
 
 这些书和方法提供背景，不替代上游固定提交里的实际 Skill 文本。遇到行为冲突时，本书以固定提交为事实基准。
 
@@ -189,6 +191,7 @@
 - 教学案例不证明任何私有产品已经实现或通过测试。
 - HTML 是由本书 Markdown 生成的阅读版，不是独立事实源。
 - 没有当前代码与当前命令输出时，不应把流程描述写成工程完成证明。
+- 上游刻意不覆盖的方向（部署运维、安全评审轴、非主流 tracker 一等支持等）与理由，见第 2 章 2.7 及 `research/governance-and-boundaries-2026-10-15.md`。
 
 最后只留一个记忆点：
 

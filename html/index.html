@@ -1509,7 +1509,7 @@ code {
       <button class="icon-button menu-button" id="menu-button" type="button" aria-label="打开目录" aria-expanded="false" aria-controls="sidebar" title="打开目录"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
       <a class="brand" href="#top" aria-label="回到页首">
         <span class="brand-mark" aria-hidden="true">M</span>
-        <span><strong>Skills 橙皮书</strong><small>Matt Pocock 公开材料中文讲解 · v0.2.0</small></span>
+        <span><strong>Skills 橙皮书</strong><small>Matt Pocock 公开材料中文讲解 · v0.2.1</small></span>
       </a>
       <div class="search-wrap">
         <label class="visually-hidden" for="site-search">搜索全书</label>
@@ -1580,7 +1580,7 @@ code {
 <a class="toc-link" href="#资料与诚实声明" data-section="资料与诚实声明">资料与诚实声明</a></nav>
         <div class="sidebar-meta">
           <span>当前阅读版</span>
-          <code>v0.2.0</code>
+          <code>v0.2.1</code>
         </div>
       </div>
     </aside>
@@ -1599,7 +1599,7 @@ code {
     <li><strong>交付留痕：</strong>每一步留下下一位协作者可以复跑的产物与验收。</li>
   </ul>
 </aside><p><img src="assets/azhou/skill-not-prompt.png" alt="阿舟图解：Skill 不是更长的 Prompt"></p>
-<p><strong>当前阅读版：v0.2.0</strong></p>
+<p><strong>当前阅读版：v0.2.1</strong></p>
 <p>读者选择的是橙皮书的阅读版；上游固定提交只用于追溯本版的证据基线，不作为页面主身份。
 只有存在至少两份真实发布版时，页面才显示版本选择器；当前只显示本版标签，历史版将保持可读且明确标注为历史快照。</p>
 <p><strong>本版证据基线</strong></p>
@@ -1803,6 +1803,14 @@ code {
 <tbody><tr>
 <td>不知道 Skill 与 Prompt、工具、<code>AGENTS.md</code> 有什么区别</td>
 <td>第 1 章</td>
+</tr>
+<tr>
+<td>想看穿 38 个 Skill 共享的设计决定</td>
+<td>第 1 章 1.7</td>
+</tr>
+<tr>
+<td>想知道这套仓库刻意不做什么、为什么</td>
+<td>第 2 章 2.6–2.7</td>
 </tr>
 <tr>
 <td>装好后不知道怎样选</td>
@@ -2124,23 +2132,36 @@ code {
 <h3 id="1-6-agent-运行时小白词典" tabindex="-1">1.6 Agent 运行时小白词典<a class="heading-anchor" href="#1-6-agent-运行时小白词典" aria-label="链接到本节">#</a></h3>
 <p>后面章节会反复用到这些词，先各用一句话说清：</p>
 <ul>
-<li><strong>会话（session）：</strong> 你与 Agent 的一次连续对话；它有长度上限，接近上限时推理质量会下降。</li>
+<li><strong>会话（session）：</strong> 你与 Agent 的一次连续对话；它有长度上限，接近上限时推理质量会下降。仍能保持清晰推理的区间称为 smart zone（智能区间，约 15 万 token），重决策要尽量安排在区间内。</li>
 <li><strong>上下文（context）：</strong> Agent 当前能看到的一切——对话、被读取的文件、工具结果。没进上下文的事实，Agent 不知道。</li>
 <li><strong>子 Agent（subagent）：</strong> 由当前会话派生的独立执行单元，有自己的上下文窗口，完成后只带回结论。</li>
 <li><strong>worktree：</strong> 同一仓库的一份独立工作目录，让两份改动互不踩踏，并行实现票常用它。</li>
 <li><strong>hook：</strong> 在 Agent 动作前后自动触发的检查或命令，把纪律变成机械执行。</li>
 <li><strong>tracker：</strong> issue/ticket 系统（GitHub Issues 或本地 Markdown），存放规格、票和阻塞关系。</li>
 </ul>
-<h3 id="1-7-本章验收" tabindex="-1">1.7 本章验收<a class="heading-anchor" href="#1-7-本章验收" aria-label="链接到本节">#</a></h3>
+<h3 id="1-7-七个贯穿全书的设计决定" tabindex="-1">1.7 七个贯穿全书的设计决定<a class="heading-anchor" href="#1-7-七个贯穿全书的设计决定" aria-label="链接到本节">#</a></h3>
+<p>单个 Skill 的形状千差万别，但第 3–7 章反复出现的其实是同一组决定。先在地图上点名，读到具体 Skill 时会认得更快：</p>
+<ol>
+<li><strong>原语加包装，纪律只有一个来源。</strong> 访谈纪律只写在 <code>grilling</code> 一处；<code>grill-me</code>、<code>grill-with-docs</code>、<code>triage</code>、<code>wayfinder</code> 都是组合调用它的包装，行为从不复制（第 3 章）。</li>
+<li><strong>每个阶段的出口都有人的确认键。</strong> 访谈结束确认共识、<code>to-spec</code> 确认测试接缝、<code>to-tickets</code> 批准拆票；Agent 不自行越过阶段边界（第 3、4 章）。</li>
+<li><strong>上下文是预算，不是容器。</strong> ticket 按 &quot;一个全新会话装得下&quot; 切分；子 Agent 之间用指针通信而不是复制内容；会话边界处按固定顺序决策（第 4、7 章）。</li>
+<li><strong>每一步都交付端到端的窄切片。</strong> tracer-bullet ticket 与红绿循环共享同一种切法：窄，但从界面到测试切穿所有层（第 4、5 章）。</li>
+<li><strong>验证必须有独立参照系。</strong> 双轴评审不许合并排名；测试的期望值不许由实现算出来；证据必须前后对照（第 5、6 章）。</li>
+<li><strong>产物按寿命选择落点。</strong> 机构记忆进仓库（词汇表、ADR），原型与调研进不合并的分支，交接文档与评审报告进系统临时目录；落点错了，不是污染仓库就是丢失证据（第 4、6、7 章）。</li>
+<li><strong>已决定的事不重新争论。</strong> ADR 的三条件闸门与 <code>.out-of-scope/</code> 否决档案都是机构记忆，防止同一个争论每隔几周复活一次（第 2、3 章）。</li>
+</ol>
+<p>这七条不是任何一个 Skill 的功能，而是所有 Skill 共享的形状。它们也解释了目录为什么只有 38 个条目：每加一条纪律，都要能回答 &quot;它属于哪几条决定&quot;。</p>
+<h3 id="1-8-本章验收" tabindex="-1">1.8 本章验收<a class="heading-anchor" href="#1-8-本章验收" aria-label="链接到本节">#</a></h3>
 <ul>
 <li>能用自己的话解释 Skill 与一次性 Prompt 的区别。</li>
 <li>能区分 user-invoked 与 model-invoked。</li>
 <li>面对任务时先判断失败风险，而不是先选最强、最长的流程。</li>
+<li>能说出至少三条贯穿全书的设计决定，并指出它们各自在哪一章展开。</li>
 </ul>
 <hr>
 <nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-0-章-这本书怎样读">← 上一章：第 0 章 · 这本书怎样读</a><a class="pager-next" href="#第-2-章-先看懂仓库-再安装">下一章：第 2 章 · 先看懂仓库，再安装 →</a></nav>
 <h2 id="第-2-章-先看懂仓库-再安装" tabindex="-1">第 2 章 · 先看懂仓库，再安装<a class="heading-anchor" href="#第-2-章-先看懂仓库-再安装" aria-label="链接到本节">#</a></h2>
-<p class="chapter-meta">本章约 3 分钟</p>
+<p class="chapter-meta">本章约 4 分钟</p>
 <h3 id="2-1-四个目录-不是同一种稳定性" tabindex="-1">2.1 四个目录，不是同一种稳定性<a class="heading-anchor" href="#2-1-四个目录-不是同一种稳定性" aria-label="链接到本节">#</a></h3>
 <p>固定提交中共有 38 个 <code>SKILL.md</code>：</p>
 <table>
@@ -2278,19 +2299,142 @@ gemini skills install https://github.com/mattpocock/skills.git --path skills/pro
 <td>试图把所有上下文塞进一个会话</td>
 </tr>
 </tbody></table>
-<h3 id="2-6-常见失败" tabindex="-1">2.6 常见失败<a class="heading-anchor" href="#2-6-常见失败" aria-label="链接到本节">#</a></h3>
+<p>按起点而不是规模看，入口的选择是另一张表：</p>
+<table>
+<thead>
+<tr>
+<th>起点</th>
+<th>主链</th>
+<th>什么时候换轨</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>新功能，一个会话装得下</td>
+<td><code>grill-with-docs</code> → <code>implement</code> → <code>pr</code> → <code>retro</code></td>
+<td>有设计问题谈不拢，中途迂回 <code>prototype</code></td>
+</tr>
+<tr>
+<td>新功能，跨多个会话</td>
+<td>同一窗口内 <code>grill-with-docs</code> → <code>to-spec</code> → <code>to-tickets</code>，再逐票新会话 <code>implement</code>；或交给 <code>implement-spec</code> 并行</td>
+<td>规格前提被证伪，退回 <code>to-spec</code> 修订</td>
+</tr>
+<tr>
+<td>设计问题需要能跑的答案</td>
+<td><code>handoff</code> 出 → <code>prototype</code> → <code>handoff</code> 带回结论</td>
+<td>结论一出就回到原链路，原型不进主干</td>
+</tr>
+<tr>
+<td>疑难 bug 或性能回归</td>
+<td><code>diagnosing-bugs</code> 先造变红的反馈环 → 同会话 <code>retro</code></td>
+<td>找不到可写回归测试的 seam，转 <code>improve-codebase-architecture</code></td>
+</tr>
+<tr>
+<td>别人提的 issue 堆积</td>
+<td><code>triage</code> 推出 agent-ready 的 brief → <code>implement</code> 拾取</td>
+<td>自己拆出的票已可直接执行，不要再分诊</td>
+</tr>
+<tr>
+<td>路径被雾笼罩的大工程</td>
+<td><code>wayfinder</code> 绘决策地图 → 清晰后汇入 <code>to-spec</code></td>
+<td>地图一清就交付，不要拿地图直接施工</td>
+</tr>
+</tbody></table>
+<p>每条链路的操作细节见第 3–7 章；一页式选型表见附录 E。</p>
+<h3 id="2-6-仓库怎样管住自己-四件套同步与收录门槛" tabindex="-1">2.6 仓库怎样管住自己：四件套同步与收录门槛<a class="heading-anchor" href="#2-6-仓库怎样管住自己-四件套同步与收录门槛" aria-label="链接到本节">#</a></h3>
+<p>目录结构只是表象。这个仓库更值得学的一层，是它怎样防止自己在演化中腐烂：38 个 Skill 的清单、路由、文档与分发，被几条硬性不变量锁在一起。</p>
+<p>promoted 目录（<code>engineering</code> 与 <code>productivity</code>）里的每个 Skill 必须同时出现在四处：</p>
+<ol>
+<li>顶层 <code>README.md</code> 的条目；</li>
+<li><code>.claude-plugin/plugin.json</code> 的 <code>skills</code> 数组——它决定插件实际分发哪 27 个 Skill；</li>
+<li>对应的 docs 页（发布为 <code>aihero.dev/skills-&lt;名称&gt;</code>）；</li>
+<li><code>ask-matt</code> 的路由地图。</li>
+</ol>
+<p>少一处，上游称之为「说谎的路由器」。<code>misc</code>、<code>in-progress</code>、<code>deprecated</code> 则一律不许出现在这四处的任何一处：曝光度本身就是稳定性的声明。</p>
+<p>反向的纪律同样写死。仓库根部的 <code>SCOPE.md</code> 给所有反馈设了两道门槛：一条 issue 想留在打开状态，必须描述一次真实会话中观察到的失败（跑了什么、Skill 做了什么、期待什么），并且不撞历史否决、不是个人工作流微调；「这样会更好」式的假设改进不合格，+1 也不算数。写法与结构纪律（包括全仓库散文禁用 em-dash、每个 Skill 非 user-invoked 即 model-invoked 的二元划分）集中在上游自己的 <code>.agents/</code> 目录，其中两份 ADR 分别记录了 setup 指针分级与插件分发的决策理由。</p>
+<p>把这套仓库当方法论学习时，治理层是免费的副产品：四件套同步是「清单一多就腐烂」的解法，收录门槛是「反馈越多越噪声」的解法。逐条出处见 <code>research/governance-and-boundaries-2026-10-15.md</code>。</p>
+<h3 id="2-7-这套仓库不做什么-否决档案与结构性空白" tabindex="-1">2.7 这套仓库不做什么：否决档案与结构性空白<a class="heading-anchor" href="#2-7-这套仓库不做什么-否决档案与结构性空白" aria-label="链接到本节">#</a></h3>
+<p>判断一套方法论的边界，比记住它能做什么更重要。上游把拒绝过的方向写成档案，收在 <code>.out-of-scope/</code> 里，固定提交中共有九份：</p>
+<table>
+<thead>
+<tr>
+<th>档案</th>
+<th>拒绝的方向</th>
+<th>一句话理由</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>new-skills.md</code></td>
+<td>一切新 Skill 提案（含带现成分支的）</td>
+<td>能由现有 Skill 组合出来的行为，不立新 Skill</td>
+</tr>
+<tr>
+<td><code>mainstream-issue-trackers-only.md</code></td>
+<td>Jira、Linear 等 tracker 的一等支持</td>
+<td>每个后端都是永久维护面；流行度不改变这一点</td>
+</tr>
+<tr>
+<td><code>native-question-tool.md</code></td>
+<td>访谈改用各家原生提问 UI</td>
+<td>结构化选择器会把开放访谈推向选择题</td>
+</tr>
+<tr>
+<td><code>question-limits.md</code></td>
+<td>给访谈设问题数量上限</td>
+<td>有的计划需要三个问题，有的需要五十个</td>
+</tr>
+<tr>
+<td><code>subagent-recursion.md</code></td>
+<td>Skill 内嵌子 Agent 递归守卫</td>
+<td>阻止无限循环是 harness 的责任</td>
+</tr>
+<tr>
+<td><code>harness-name-collisions.md</code></td>
+<td>为避让同名内置命令而改名</td>
+<td>同名如何解析是 harness 的行为</td>
+</tr>
+<tr>
+<td><code>setup-skill-verify-mode.md</code></td>
+<td>setup 的独立验证模式</td>
+<td>直接让 prompt 驱动的 setup 验证现状即可</td>
+</tr>
+<tr>
+<td><code>lazy-load-writing-for-agents.md</code></td>
+<td><code>retro</code> 延迟加载写作规范</td>
+<td>那是它评审时就要用的标尺</td>
+</tr>
+<tr>
+<td><code>frozen-misc-skills.md</code></td>
+<td><code>misc/</code> 的一切 issue 与 PR</td>
+<td>作者不再日用，无法判断修复对错；可自行复制修改</td>
+</tr>
+</tbody></table>
+<p>由这些否决和 38 个 Skill 的覆盖面，可以反推出几处结构性空白（这是本书的归纳，不是上游的路线图）：</p>
+<ul>
+<li>没有部署、运维、监控类 Skill；唯一沾边的 <code>wizard</code> 方向相反——把只能人做的步骤脚本化，即运维被刻意划回给人。</li>
+<li><code>code-review</code> 固定为 Standards 与 Spec 两轴，没有安全评审轴；预实现安全评审的提案已被政策关闭。</li>
+<li>没有合并冲突专用 Skill：旧的 <code>resolving-merge-conflicts</code> 在上游 1.3.0 被删除且无替代，理由是 Agent 不需要专用流程也能走完冲突。</li>
+<li>非主流 tracker 只有散文式桥接，<code>to-tickets</code> 的原生阻塞链接等深度集成不可用。</li>
+<li>生态是封闭的：未覆盖领域的官方答案不是路线图，而是用 skills.sh 复制一份，改成自己的。</li>
+</ul>
+<p>这些空白与第 9 章的本地化是一体两面：知道上游不做什么，才知道引入时要自己补什么。</p>
+<h3 id="2-8-常见失败" tabindex="-1">2.8 常见失败<a class="heading-anchor" href="#2-8-常见失败" aria-label="链接到本节">#</a></h3>
 <ul>
 <li>插件与手动复制同时安装：同名 Skill 出现两份且行为漂移，同一个 Agent 只选一种方式。</li>
 <li>跳过 setup 直接进入实现：<code>to-spec</code> 和 <code>to-tickets</code> 不知道 tracker 在哪里，产物发不出去。</li>
 <li>把 <code>in-progress</code> 当稳定接口写进团队流程：实验目录的名字、行为和存在性都可能变化。</li>
 <li>跟随上游自动更新却不核对安装文本：与本版固定源不一致时，以固定提交为准复现实验。</li>
+<li>把仓库当下载站，从不读治理层：不知道 <code>SCOPE.md</code> 的收录门槛，就会提交注定被拒的反馈，或苦等已被否决的方向。</li>
+<li>期待官方补齐部署、安全评审或 Jira 支持：这些方向已被明确否决，正确动作是复制后自行扩展。</li>
 </ul>
-<h3 id="2-7-本章验收" tabindex="-1">2.7 本章验收<a class="heading-anchor" href="#2-7-本章验收" aria-label="链接到本节">#</a></h3>
+<h3 id="2-9-本章验收" tabindex="-1">2.9 本章验收<a class="heading-anchor" href="#2-9-本章验收" aria-label="链接到本节">#</a></h3>
 <ul>
 <li>能说出四个目录的稳定性差异。</li>
 <li>知道 Claude Code 插件与 skills.sh 不应重复安装。</li>
 <li>能解释 setup 为什么是仓库级配置，不是形式步骤。</li>
 <li>遇到选型困难时先用 <code>ask-matt</code>，而不是盲猜。</li>
+<li>能说出 promoted Skill 必须同步出现的四个位置。</li>
+<li>能举出两个被上游明确否决的方向，并说明理由。</li>
+<li>知道未覆盖领域的官方答案是自行分叉，而不是等待路线图。</li>
 </ul>
 <hr>
 <nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-1-章-skill-到底是什么">← 上一章：第 1 章 · Skill 到底是什么</a><a class="pager-next" href="#第-3-章-写代码前-把模糊需求变成工程决策">下一章：第 3 章 · 写代码前：把模糊需求变成工程决策 →</a></nav>
@@ -2990,7 +3134,7 @@ gemini skills install https://github.com/mattpocock/skills.git --path skills/pro
 <p><a href="#practice-06-handoff-rehearsal">进入实践关卡 6</a> · <a href="#practice-readme">返回实践路径</a></p>
 <nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-5-章-反馈环-原型-tdd-诊断和研究">← 上一章：第 5 章 · 反馈环：原型、TDD、诊断和研究</a><a class="pager-next" href="#第-7-章-跨人-跨会话与人工步骤">下一章：第 7 章 · 跨人、跨会话与人工步骤 →</a></nav>
 <h2 id="第-7-章-跨人-跨会话与人工步骤" tabindex="-1">第 7 章 · 跨人、跨会话与人工步骤<a class="heading-anchor" href="#第-7-章-跨人-跨会话与人工步骤" aria-label="链接到本节">#</a></h2>
-<p class="chapter-meta">本章约 4 分钟</p>
+<p class="chapter-meta">本章约 5 分钟</p>
 <h3 id="7-1-handoff-工作真的需要旅行时再用" tabindex="-1">7.1 <code>handoff</code>：工作真的需要旅行时再用<a class="heading-anchor" href="#7-1-handoff-工作真的需要旅行时再用" aria-label="链接到本节">#</a></h3>
 <p><img src="assets/azhou/context-durability.png" alt="阿舟图解：聊天上下文、仓库文档与工程证据"></p>
 <p><code>handoff</code> 把当前对话压缩成临时目录中的交接文档，供新 Agent 或新工具接手。保存位置为操作系统临时目录：优先 <code>$TMPDIR</code>，否则 <code>/tmp</code>；Windows 使用 <code>%TEMP%</code>，不是当前仓库。</p>
@@ -3078,20 +3222,75 @@ gemini skills install https://github.com/mattpocock/skills.git --path skills/pro
 </tbody></table>
 <p>解决办法不是把所有内容塞进根文档，而是建立锋利的 context pointer：一行说明资料是什么、什么时候必须读取。</p>
 <p>它还强调 leading words 和 no-op 测试：如果删掉一句话，模型行为不会变化，那句话就是负担；如果一个紧凑术语可以稳定唤起完整做法，就用术语替代反复解释。</p>
-<h3 id="7-7-常见失败" tabindex="-1">7.7 常见失败<a class="heading-anchor" href="#7-7-常见失败" aria-label="链接到本节">#</a></h3>
+<h3 id="7-7-阶段边界-五选项与三条会话纪律" tabindex="-1">7.7 阶段边界：五选项与三条会话纪律<a class="heading-anchor" href="#7-7-阶段边界-五选项与三条会话纪律" aria-label="链接到本节">#</a></h3>
+<p>阶段（phase）是会话内的一段工作：一次澄清、一轮实现、一场验收。只有两个阶段之间的接缝，才是允许切换会话策略的位置；在阶段中途压缩或清空，Agent 会丢掉正在推进的线索。</p>
+<p>上游把边界处的选择整理成一棵按序提问的决策树，第一个肯定答案就是动作：</p>
+<table>
+<thead>
+<tr>
+<th>顺序</th>
+<th>先问自己</th>
+<th>命中后的动作</th>
+<th>为什么排在这里</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>下一阶段还需要这里的原文吗？</td>
+<td>继续</td>
+<td>无损、零成本，所以最先排除</td>
+</tr>
+<tr>
+<td>2</td>
+<td>这里的内容对后续完全无关吗？</td>
+<td>清空上下文</td>
+<td>全盘最便宜的走法</td>
+</tr>
+<tr>
+<td>3</td>
+<td>要换 harness、换目录、给同事，或半途分叉支线吗？</td>
+<td><code>handoff</code></td>
+<td>它买的只有可携带性</td>
+</tr>
+<tr>
+<td>4</td>
+<td>任务边界清晰、可以无人值守跑完吗？</td>
+<td>派子 Agent</td>
+<td>主会话完全不动</td>
+</tr>
+<tr>
+<td>5</td>
+<td>以上皆否</td>
+<td>压缩</td>
+<td>默认值，不是第一反应</td>
+</tr>
+</tbody></table>
+<p>排序的依据是保真度：除「继续」外，每个选项都把会话实况换成摘要——信息变有损，噪音变少。把压缩当第一反应的典型后果，是新会话自信地坚持一个被摘要压平的错误决定。</p>
+<p>决策树之外，还有三条写在上游路由器里的会话纪律：</p>
+<ol>
+<li><strong>澄清、规格、拆票在同一个不压缩的窗口里完成。</strong> <code>to-spec</code> 与 <code>to-tickets</code> 读的是当前对话而不是仓库，换窗口等于重写已决内容。</li>
+<li><strong>每次 <code>implement</code> 用新会话冷启动，从 ticket 出发。</strong> ticket 按自包含设计，上一票的上下文是一次性的。</li>
+<li><strong><code>retro</code> 在被复盘的会话内、清空之前运行。</strong> 清空后只能退化为提供会话日志指针，让复盘读二手材料。</li>
+</ol>
+<p>窗口逼近 smart zone 时不要带病坚持：在最近的阶段边界压缩，然后接着走。</p>
+<h3 id="7-8-常见失败" tabindex="-1">7.8 常见失败<a class="heading-anchor" href="#7-8-常见失败" aria-label="链接到本节">#</a></h3>
 <ul>
 <li>只是继续当前对话也写 handoff：交接只在跨会话、跨工具或跨人时使用。</li>
 <li>把 spec、ADR 的内容整段复制进交接文档：只留路径，否则交接文档立刻过期。</li>
 <li>让管理员把密钥粘贴进聊天：secret 只能由 <code>wizard</code> 脚本以无回显方式收集。</li>
 <li>把 Agent 自己能做的文件编辑伪装成人工步骤推给用户。</li>
+<li>把压缩当作边界处的第一反应：摘要是有损的，五选项里它排在最后，先问能否继续。</li>
+<li>澄清到一半换会话重写：规格与拆票读的是当前对话，半途换窗等于推翻已决内容。</li>
 </ul>
-<h3 id="7-8-本章验收" tabindex="-1">7.8 本章验收<a class="heading-anchor" href="#7-8-本章验收" aria-label="链接到本节">#</a></h3>
+<h3 id="7-9-本章验收" tabindex="-1">7.9 本章验收<a class="heading-anchor" href="#7-9-本章验收" aria-label="链接到本节">#</a></h3>
 <ul>
 <li>只有跨会话或跨工具时才 handoff。</li>
 <li>答案在别人脑子里时使用 questionnaire，而不是让 Agent 猜。</li>
 <li>secret 由人工向导安全收集，不进入聊天上下文。</li>
 <li>长期教学依赖工作区文件，不依赖模型自称记得。</li>
 <li>Agent 文档使用精确指针，并定期删除 no-op 指令。</li>
+<li>能按顺序复述五选项决策树，说清「继续」为什么最先排除、「压缩」为什么垫底。</li>
+<li>能说出三条会话纪律，以及各自防止的失真。</li>
 </ul>
 <hr>
 <h2 id="practice-06-handoff-rehearsal" class="practice-heading practice-gate-heading" tabindex="-1">实践关卡 6 · 交接前先复述<a class="heading-anchor" href="#practice-06-handoff-rehearsal" aria-label="链接到本节">#</a></h2>
@@ -4219,6 +4418,7 @@ before forming a root-cause theory.
 <h3 id="11-4-in-progress-七个实验-skill-先读稳定性再试" tabindex="-1">11.4 In-progress：七个实验 Skill，先读稳定性再试<a class="heading-anchor" href="#11-4-in-progress-七个实验-skill-先读稳定性再试" aria-label="链接到本节">#</a></h3>
 <nav class="skill-jump" aria-label="本节 Skill 速查"><a href="#11-4-1-claude-handoff-把-handoff-直接启动成后台-claude-agent"><code>claude-handoff</code></a><a href="#11-4-2-loop-me-把生活或工作中的重复循环写成可实现-workflow"><code>loop-me</code></a><a href="#11-4-3-setup-ts-deep-modules-用-dependency-cruiser-把深模块边界变成硬检查"><code>setup-ts-deep-modules</code></a><a href="#11-4-4-writing-fragments-探索期只采集有生命力的写作碎片"><code>writing-fragments</code></a><a href="#11-4-5-writing-beats-从固定素材中选择一条可达的叙事路径"><code>writing-beats</code></a><a href="#11-4-6-writing-shape-从固定素材中逐段塑造一篇文章"><code>writing-shape</code></a><a href="#11-4-7-chief-of-staff-在长会话里协调长期目标"><code>chief-of-staff</code></a></nav>
 <p>这一组目录名就是警告。它们可以提供设计灵感，但名称、接口、工具依赖和工作流都可能变化。新人应先掌握前面的稳定 Skill，再在隔离分支或练习仓库里试。</p>
+<p>换个角度，这个目录也是一张官方承认的空白地图：稳定集尚未覆盖的方向，往往先在这里出现实验。<code>chief-of-staff</code> 指向跨会话的长期目标协调，<code>loop-me</code> 指向个人重复流程的规约化，<code>setup-ts-deep-modules</code> 指向深模块边界的机械化强制，<code>writing-fragments</code>、<code>writing-beats</code> 与 <code>writing-shape</code> 指向面向人类读者的写作流水线，<code>claude-handoff</code> 指向交接的即时后台化。实验能否毕业没有承诺；其中 <code>claude-handoff</code> 依赖特定 CLI，与稳定集的跨 harness 原则存在张力，毕业前景尤其需要观察。</p>
 <h4 id="11-4-1-claude-handoff-把-handoff-直接启动成后台-claude-agent" tabindex="-1">11.4.1 <code>claude-handoff</code>：把 handoff 直接启动成后台 Claude Agent<a class="heading-anchor" href="#11-4-1-claude-handoff-把-handoff-直接启动成后台-claude-agent" aria-label="链接到本节">#</a></h4>
 <p><a href="https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/in-progress/claude-handoff/SKILL.md">固定版本原文</a></p>
 <p><strong>一句话理解：</strong> 它不把交接只保存成文件，而是把脱敏摘要作为 prompt 传给 <code>claude --bg --name</code>，让后台 Agent 立即在当前目录接手。</p>
@@ -5029,7 +5229,7 @@ Skill 选择：
 <hr>
 <nav class="chapter-pager" aria-label="章节导航"><a class="pager-prev" href="#第-12-章-matt-pocock-本人怎样讲-skills">← 上一章：第 12 章 · Matt Pocock 本人怎样讲 Skills</a><a class="pager-next" href="#第-14-章-附录-38-个-skills-完整索引">下一章：第 14 章 · 附录：38 个 Skills 完整索引 →</a></nav>
 <h2 id="第-14-章-附录-38-个-skills-完整索引" tabindex="-1">第 14 章 · 附录：38 个 Skills 完整索引<a class="heading-anchor" href="#第-14-章-附录-38-个-skills-完整索引" aria-label="链接到本节">#</a></h2>
-<p class="chapter-meta">本章约 10 分钟</p>
+<p class="chapter-meta">本章约 11 分钟</p>
 <p>下面的列表以本地源提交 <code>49dd158d1076134a641b33efb035946536778336</code> 为准，核对日期为 2026-10-12。稳定分类来自仓库目录；一句话说明综合了上游 README、各 Skill frontmatter 与正文。</p>
 <h3 id="a-engineering-20-个" tabindex="-1">A. Engineering：20 个<a class="heading-anchor" href="#a-engineering-20-个" aria-label="链接到本节">#</a></h3>
 <table>
@@ -5551,11 +5751,13 @@ Skill 选择：
 <h3 id="业界方法来源" tabindex="-1">业界方法来源<a class="heading-anchor" href="#业界方法来源" aria-label="链接到本节">#</a></h3>
 <p>上游 README 和 Skills 明确借鉴或呼应了这些软件工程传统：</p>
 <ul>
-<li>David Thomas 与 Andrew Hunt，《The Pragmatic Programmer》：反馈速度、刻意小步与需求澄清；</li>
-<li>Eric Evans，《Domain-Driven Design》：ubiquitous language；</li>
-<li>John Ousterhout，《A Philosophy of Software Design》：深模块与小接口；</li>
-<li>Martin Fowler 的代码坏味道：Standards review 基线；</li>
-<li>Kent Beck 与极限编程传统：持续设计与测试反馈。</li>
+<li>David Thomas 与 Andrew Hunt，《The Pragmatic Programmer》：反馈速度、刻意小步与需求澄清；tracer-bullet 切片思想直通 <code>to-tickets</code> 与 <code>tdd</code>；</li>
+<li>Eric Evans，《Domain-Driven Design》：ubiquitous language，落在 <code>domain-modeling</code> 与 <code>GLOSSARY.md</code>；</li>
+<li>John Ousterhout，《A Philosophy of Software Design》：深模块与小接口，落在 <code>codebase-design</code> 与 <code>improve-codebase-architecture</code>；注意上游拒绝了原书的 depth-as-ratio 度量（它会奖励填充实现），改用 depth-as-leverage；</li>
+<li>Michael Feathers 的 seam（接缝）概念：不改代码就能改变行为的缝隙，是 <code>tdd</code> 与 <code>codebase-design</code> 共用的测试词汇；</li>
+<li>Martin Fowler 的代码坏味道：<code>code-review</code> Standards 轴的保底基线；</li>
+<li>Kent Beck 与极限编程传统：持续设计与测试反馈；「让改动容易，再做容易的改动」直通 <code>to-tickets</code> 的 prefactoring 规则；</li>
+<li>单向门 / 双向门决策框架：<code>pr</code> 的 Merge Danger 与 ADR 的「难以逆转」条件使用同一概念（概念源头通常归于 Jeff Bezos 的公开表述，上游文本未点名）。</li>
 </ul>
 <p>这些书和方法提供背景，不替代上游固定提交里的实际 Skill 文本。遇到行为冲突时，本书以固定提交为事实基准。</p>
 <h3 id="已知限制" tabindex="-1">已知限制<a class="heading-anchor" href="#已知限制" aria-label="链接到本节">#</a></h3>
@@ -5565,6 +5767,7 @@ Skill 选择：
 <li>教学案例不证明任何私有产品已经实现或通过测试。</li>
 <li>HTML 是由本书 Markdown 生成的阅读版，不是独立事实源。</li>
 <li>没有当前代码与当前命令输出时，不应把流程描述写成工程完成证明。</li>
+<li>上游刻意不覆盖的方向（部署运维、安全评审轴、非主流 tracker 一等支持等）与理由，见第 2 章 2.7 及 <code>research/governance-and-boundaries-2026-10-15.md</code>。</li>
 </ul>
 <p>最后只留一个记忆点：</p>
 <p><strong>AI 协作开发的速度上限，不是生成代码的速度，而是获得可靠反馈的速度。Skills 的价值，是让你在正确的时刻建立正确的反馈环。</strong></p>
@@ -5574,7 +5777,7 @@ Skill 选择：
     </main>
   </div>
   <footer class="site-footer">
-    <span>Matt Pocock Skills 橙皮书 · 当前阅读版 v0.2.0</span>
+    <span>Matt Pocock Skills 橙皮书 · 当前阅读版 v0.2.1</span>
     <span>证据基线：上游固定提交 <code>49dd158</code></span>
     <a href="https://github.com/TeFuirnever/matt-pocock-skills-orange-book" target="_blank" rel="noreferrer">GitHub</a>
     <a href="https://github.com/TeFuirnever/matt-pocock-skills-orange-book/issues" target="_blank" rel="noreferrer">反馈 Issue</a>

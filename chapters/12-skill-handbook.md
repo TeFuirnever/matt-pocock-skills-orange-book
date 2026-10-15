@@ -808,6 +808,8 @@ Misc 不是“低价值”，而是“适用面窄”。使用前先确认仓库
 
 这一组目录名就是警告。它们可以提供设计灵感，但名称、接口、工具依赖和工作流都可能变化。新人应先掌握前面的稳定 Skill，再在隔离分支或练习仓库里试。
 
+换个角度，这个目录也是一张官方承认的空白地图：稳定集尚未覆盖的方向，往往先在这里出现实验。`chief-of-staff` 指向跨会话的长期目标协调，`loop-me` 指向个人重复流程的规约化，`setup-ts-deep-modules` 指向深模块边界的机械化强制，`writing-fragments`、`writing-beats` 与 `writing-shape` 指向面向人类读者的写作流水线，`claude-handoff` 指向交接的即时后台化。实验能否毕业没有承诺；其中 `claude-handoff` 依赖特定 CLI，与稳定集的跨 harness 原则存在张力，毕业前景尤其需要观察。
+
 #### 11.4.1 `claude-handoff`：把 handoff 直接启动成后台 Claude Agent
 
 [固定版本原文](https://github.com/mattpocock/skills/blob/49dd158d1076134a641b33efb035946536778336/skills/in-progress/claude-handoff/SKILL.md)

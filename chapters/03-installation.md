@@ -109,18 +109,79 @@ gemini skills install https://github.com/mattpocock/skills.git --path skills/pro
 | 中等功能 | `grill-with-docs` → `to-spec` → `implement` | 边写边重新设计 |
 | 大型工作 | `wayfinder` → 决策 tickets → `to-spec` → `to-tickets` → `implement-spec`（依赖图并行交付） | 试图把所有上下文塞进一个会话 |
 
-### 2.6 常见失败
+按起点而不是规模看，入口的选择是另一张表：
+
+| 起点 | 主链 | 什么时候换轨 |
+|---|---|---|
+| 新功能，一个会话装得下 | `grill-with-docs` → `implement` → `pr` → `retro` | 有设计问题谈不拢，中途迂回 `prototype` |
+| 新功能，跨多个会话 | 同一窗口内 `grill-with-docs` → `to-spec` → `to-tickets`，再逐票新会话 `implement`；或交给 `implement-spec` 并行 | 规格前提被证伪，退回 `to-spec` 修订 |
+| 设计问题需要能跑的答案 | `handoff` 出 → `prototype` → `handoff` 带回结论 | 结论一出就回到原链路，原型不进主干 |
+| 疑难 bug 或性能回归 | `diagnosing-bugs` 先造变红的反馈环 → 同会话 `retro` | 找不到可写回归测试的 seam，转 `improve-codebase-architecture` |
+| 别人提的 issue 堆积 | `triage` 推出 agent-ready 的 brief → `implement` 拾取 | 自己拆出的票已可直接执行，不要再分诊 |
+| 路径被雾笼罩的大工程 | `wayfinder` 绘决策地图 → 清晰后汇入 `to-spec` | 地图一清就交付，不要拿地图直接施工 |
+
+每条链路的操作细节见第 3–7 章；一页式选型表见附录 E。
+
+### 2.6 仓库怎样管住自己：四件套同步与收录门槛
+
+目录结构只是表象。这个仓库更值得学的一层，是它怎样防止自己在演化中腐烂：38 个 Skill 的清单、路由、文档与分发，被几条硬性不变量锁在一起。
+
+promoted 目录（`engineering` 与 `productivity`）里的每个 Skill 必须同时出现在四处：
+
+1. 顶层 `README.md` 的条目；
+2. `.claude-plugin/plugin.json` 的 `skills` 数组——它决定插件实际分发哪 27 个 Skill；
+3. 对应的 docs 页（发布为 `aihero.dev/skills-<名称>`）；
+4. `ask-matt` 的路由地图。
+
+少一处，上游称之为「说谎的路由器」。`misc`、`in-progress`、`deprecated` 则一律不许出现在这四处的任何一处：曝光度本身就是稳定性的声明。
+
+反向的纪律同样写死。仓库根部的 `SCOPE.md` 给所有反馈设了两道门槛：一条 issue 想留在打开状态，必须描述一次真实会话中观察到的失败（跑了什么、Skill 做了什么、期待什么），并且不撞历史否决、不是个人工作流微调；「这样会更好」式的假设改进不合格，+1 也不算数。写法与结构纪律（包括全仓库散文禁用 em-dash、每个 Skill 非 user-invoked 即 model-invoked 的二元划分）集中在上游自己的 `.agents/` 目录，其中两份 ADR 分别记录了 setup 指针分级与插件分发的决策理由。
+
+把这套仓库当方法论学习时，治理层是免费的副产品：四件套同步是「清单一多就腐烂」的解法，收录门槛是「反馈越多越噪声」的解法。逐条出处见 `research/governance-and-boundaries-2026-10-15.md`。
+
+### 2.7 这套仓库不做什么：否决档案与结构性空白
+
+判断一套方法论的边界，比记住它能做什么更重要。上游把拒绝过的方向写成档案，收在 `.out-of-scope/` 里，固定提交中共有九份：
+
+| 档案 | 拒绝的方向 | 一句话理由 |
+|---|---|---|
+| `new-skills.md` | 一切新 Skill 提案（含带现成分支的） | 能由现有 Skill 组合出来的行为，不立新 Skill |
+| `mainstream-issue-trackers-only.md` | Jira、Linear 等 tracker 的一等支持 | 每个后端都是永久维护面；流行度不改变这一点 |
+| `native-question-tool.md` | 访谈改用各家原生提问 UI | 结构化选择器会把开放访谈推向选择题 |
+| `question-limits.md` | 给访谈设问题数量上限 | 有的计划需要三个问题，有的需要五十个 |
+| `subagent-recursion.md` | Skill 内嵌子 Agent 递归守卫 | 阻止无限循环是 harness 的责任 |
+| `harness-name-collisions.md` | 为避让同名内置命令而改名 | 同名如何解析是 harness 的行为 |
+| `setup-skill-verify-mode.md` | setup 的独立验证模式 | 直接让 prompt 驱动的 setup 验证现状即可 |
+| `lazy-load-writing-for-agents.md` | `retro` 延迟加载写作规范 | 那是它评审时就要用的标尺 |
+| `frozen-misc-skills.md` | `misc/` 的一切 issue 与 PR | 作者不再日用，无法判断修复对错；可自行复制修改 |
+
+由这些否决和 38 个 Skill 的覆盖面，可以反推出几处结构性空白（这是本书的归纳，不是上游的路线图）：
+
+- 没有部署、运维、监控类 Skill；唯一沾边的 `wizard` 方向相反——把只能人做的步骤脚本化，即运维被刻意划回给人。
+- `code-review` 固定为 Standards 与 Spec 两轴，没有安全评审轴；预实现安全评审的提案已被政策关闭。
+- 没有合并冲突专用 Skill：旧的 `resolving-merge-conflicts` 在上游 1.3.0 被删除且无替代，理由是 Agent 不需要专用流程也能走完冲突。
+- 非主流 tracker 只有散文式桥接，`to-tickets` 的原生阻塞链接等深度集成不可用。
+- 生态是封闭的：未覆盖领域的官方答案不是路线图，而是用 skills.sh 复制一份，改成自己的。
+
+这些空白与第 9 章的本地化是一体两面：知道上游不做什么，才知道引入时要自己补什么。
+
+### 2.8 常见失败
 
 - 插件与手动复制同时安装：同名 Skill 出现两份且行为漂移，同一个 Agent 只选一种方式。
 - 跳过 setup 直接进入实现：`to-spec` 和 `to-tickets` 不知道 tracker 在哪里，产物发不出去。
 - 把 `in-progress` 当稳定接口写进团队流程：实验目录的名字、行为和存在性都可能变化。
 - 跟随上游自动更新却不核对安装文本：与本版固定源不一致时，以固定提交为准复现实验。
+- 把仓库当下载站，从不读治理层：不知道 `SCOPE.md` 的收录门槛，就会提交注定被拒的反馈，或苦等已被否决的方向。
+- 期待官方补齐部署、安全评审或 Jira 支持：这些方向已被明确否决，正确动作是复制后自行扩展。
 
-### 2.7 本章验收
+### 2.9 本章验收
 
 - 能说出四个目录的稳定性差异。
 - 知道 Claude Code 插件与 skills.sh 不应重复安装。
 - 能解释 setup 为什么是仓库级配置，不是形式步骤。
 - 遇到选型困难时先用 `ask-matt`，而不是盲猜。
+- 能说出 promoted Skill 必须同步出现的四个位置。
+- 能举出两个被上游明确否决的方向，并说明理由。
+- 知道未覆盖领域的官方答案是自行分叉，而不是等待路线图。
 
 ---
